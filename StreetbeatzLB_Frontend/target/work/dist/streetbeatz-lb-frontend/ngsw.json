@@ -1,0 +1,87 @@
+{
+  "configVersion": 1,
+  "timestamp": 1679887131645,
+  "index": "/maven-angular-app/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/maven-angular-app/452.ce7a1df8ed849215.js",
+        "/maven-angular-app/572.91a6d7b72333669b.js",
+        "/maven-angular-app/931.22c743665c2ed425.js",
+        "/maven-angular-app/favicon.ico",
+        "/maven-angular-app/index.html",
+        "/maven-angular-app/main.be4b6faab6b5a069.js",
+        "/maven-angular-app/manifest.webmanifest",
+        "/maven-angular-app/polyfills.eda552aa80b52c0e.js",
+        "/maven-angular-app/runtime.bba5eb2af83c6db1.js",
+        "/maven-angular-app/styles.ef46db3751d8e999.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/maven-angular-app/assets/icons/icon-128x128.png",
+        "/maven-angular-app/assets/icons/icon-144x144.png",
+        "/maven-angular-app/assets/icons/icon-152x152.png",
+        "/maven-angular-app/assets/icons/icon-192x192.png",
+        "/maven-angular-app/assets/icons/icon-384x384.png",
+        "/maven-angular-app/assets/icons/icon-512x512.png",
+        "/maven-angular-app/assets/icons/icon-72x72.png",
+        "/maven-angular-app/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/maven-angular-app/452.ce7a1df8ed849215.js": "43a4329b69b25cc7f9679aa5c129a3fcad5e3983",
+    "/maven-angular-app/572.91a6d7b72333669b.js": "e231f7746942a722928f40ccb06e31b446f652c3",
+    "/maven-angular-app/931.22c743665c2ed425.js": "2672c8064288abba2b5b3f5977d8307f6b44006b",
+    "/maven-angular-app/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/maven-angular-app/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/maven-angular-app/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/maven-angular-app/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/maven-angular-app/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/maven-angular-app/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/maven-angular-app/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/maven-angular-app/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/maven-angular-app/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/maven-angular-app/index.html": "38eb1aedc86da5c363852b158a96f3cb5ad4343d",
+    "/maven-angular-app/main.be4b6faab6b5a069.js": "d05659cdf9908af5916e66cde479cc896690a879",
+    "/maven-angular-app/manifest.webmanifest": "e1bb5e1319af360f15cfda67fd563a9ec4974bc7",
+    "/maven-angular-app/polyfills.eda552aa80b52c0e.js": "7ece15fdb0b7e0abe3075fdb3f451ca18e88aab2",
+    "/maven-angular-app/runtime.bba5eb2af83c6db1.js": "e5cd06b471c906bb2e6ac056ef7e6a1d44dfe617",
+    "/maven-angular-app/styles.ef46db3751d8e999.css": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
