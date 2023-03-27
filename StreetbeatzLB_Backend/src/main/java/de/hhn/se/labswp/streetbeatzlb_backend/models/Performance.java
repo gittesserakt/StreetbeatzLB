@@ -12,19 +12,8 @@ public class Performance {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @Column(name="CreatorIdentifier")
-  private String creatorName;
-
   @Column(name="StageStageNo")
   private char stageNr;
-
-  public String getCreatorName() {
-    return creatorName;
-  }
-
-  public void setCreatorName(String creatorName) {
-    this.creatorName = creatorName;
-  }
 
   public char getStageNr() {
     return stageNr;
