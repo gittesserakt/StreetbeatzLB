@@ -6,9 +6,9 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:mariadb://localhost:3306/test_schema
-    username: root
-    password: mariadb
+    url: jdbc:mariadb://localhost:3306/streetbeatzlbdb
+    username: streetbeatzlb_mariadb_admin
+    password: streetbeatzlb
     driver-class-name: org.mariadb.jdbc.Driver
   security:
     oauth2:
