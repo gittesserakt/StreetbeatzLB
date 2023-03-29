@@ -6,21 +6,17 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { environment as env } from '../environments/environment';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { LandingpageComponent } from './features/landingpage/landingpage.component';
+import {SharedModule} from "./shared";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FooterComponent,
-    NavbarComponent,
-    LandingpageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    SharedModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
