@@ -16,7 +16,7 @@ function getStringMonth(date: Date): String {
   styleUrls: ['./landingpage.component.scss']
 })
 export class LandingpageComponent {
-//Holy the monthIndex works 0-base. Not the least bit confusing.
+//The monthIndex works 0-base. Not the least bit confusing.
   startDate: Date = new Date(2023,4, 26);
   endDate: Date = new Date(2023,4, 28);
   startDay: String = getStringDay(this.startDate);
