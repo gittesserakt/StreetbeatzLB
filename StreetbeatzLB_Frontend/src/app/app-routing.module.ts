@@ -15,6 +15,11 @@ const routes: Routes = [
       import('./features/messages/messages.module').then((m) => m.MessagesModule),
   },
   {
+    path: 'performances',
+    loadChildren: () =>
+      import('./features/performances/performances.module').then((m) => m.PerformancesModule),
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./features/not-found/not-found.module').then(
