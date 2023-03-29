@@ -1,4 +1,4 @@
-header{
+.header{
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -14,6 +14,8 @@ header{
   min-height: 38px;
 
   background-color: var(--main-brand-color);
+
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.44);
 }
 
 nav ul{
@@ -89,6 +91,7 @@ label[for="burgerMenu_checkbox"]{
   nav ul{
     display: none;
     flex-direction: column;
+    font-size: 18pt;
   }
 
   #burgerMenu_checkbox:checked ~ ul{
