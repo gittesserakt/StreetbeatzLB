@@ -6,10 +6,14 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { environment as env } from '../environments/environment';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FooterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
