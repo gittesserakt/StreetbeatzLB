@@ -6,6 +6,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { environment as env } from '../environments/environment';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import {SharedModule} from "./shared";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    SharedModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

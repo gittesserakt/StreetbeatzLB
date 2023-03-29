@@ -1,0 +1,105 @@
+.header{
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  max-height: 38px;
+  min-height: 38px;
+
+  background-color: var(--main-brand-color);
+
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.44);
+}
+
+nav ul{
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a{
+  color: var(--secondary-text-color);
+  text-decoration: none;
+  position: relative;
+  padding: 3px;
+}
+
+nav a:hover{
+  color: var(--text-color);
+}
+
+nav a::after{
+  content: '';
+  height: 2px;
+  width: 0;
+  background: var(--secondary-main-brand-color);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: 150ms ease-in-out;
+}
+
+nav a:hover::after{
+  width: 100%;
+}
+
+.logoTitle{
+  width: 40%;
+  display: flex;
+  align-items: center;
+
+}
+
+.logo{
+  max-height: 50px;
+  max-width: 50px;
+  text-align: center;
+  margin: 5px;
+}
+
+.title{
+  font-family: 'Teko', sans-serif;
+}
+
+//Hides the checkbox used for the burger menu
+#burgerMenu_checkbox{
+  display: none;
+}
+//Hides the the burger menu icon
+label[for="burgerMenu_checkbox"]{
+  display: none;
+}
+
+//Calls this code if the screen size ist 800px or lower
+@media(max-width: 800px) {
+  nav{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--secondary-main-brand-color);
+    padding: 15px;
+    text-align: right;
+  }
+
+  nav ul{
+    display: none;
+    flex-direction: column;
+    font-size: 18pt;
+  }
+
+  #burgerMenu_checkbox:checked ~ ul{
+    display: flex;
+    text-align: right;
+  }
+
+  label[for="burgerMenu_checkbox"]{
+    display: block;
+  }
+}
