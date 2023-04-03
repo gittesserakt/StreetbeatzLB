@@ -4,7 +4,8 @@
     <thead>
     <tr>
       <th scope="col">performance_id</th>
-      <th scope="col">date_time</th>
+      <th scope="col">start_time</th>
+      <th scope="col">end_time</th>
       <th scope="col">created_by</th>
       <th scope="col">group_id</th>
       <th scope="col">stage_id</th>
@@ -13,7 +14,8 @@
     <tbody>
       <tr *ngFor="let performance of performances;">
         <td>{{ performance.performance_id }}</td>
-        <td>{{ performance.date_time}}</td>
+        <td>{{ performance.start_time}}</td>
+        <td>{{ performance.end_time}}</td>
         <td>{{ performance.created_by}}</td>
         <td>{{ performance.group_id}}</td>
         <td>{{ performance.stage_id}}</td>

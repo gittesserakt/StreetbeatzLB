@@ -12,7 +12,8 @@ public class Performance {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long performance_id;
-  private String date_time;
+  private String start_time;
+  private String end_time;
   private String created_by;
   private Long group_id;
   private Long stage_id;
@@ -25,14 +26,24 @@ public class Performance {
     this.performance_id = performance_id;
   }
 
-  public LocalDateTime getDate_time() {
+  public LocalDateTime getStart_time() {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    return LocalDateTime.parse(date_time,formatter);
+    return LocalDateTime.parse(start_time,formatter);
   }
 
-  public void setDate_time(LocalDateTime date_time) {
+  public void setStart_time(LocalDateTime date_time) {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    this.date_time = date_time.format(formatter);
+    this.start_time = date_time.format(formatter);
+  }
+
+  public LocalDateTime getEnd_time() {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    return LocalDateTime.parse(end_time,formatter);
+  }
+
+  public void setEnd_time(LocalDateTime date_time) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    this.end_time = date_time.format(formatter);
   }
 
   public String getCreated_by() {
