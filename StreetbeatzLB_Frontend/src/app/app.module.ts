@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { environment as env } from '../environments/environment';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import {SharedModule} from "./shared";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {SharedModule} from "./shared";
         ],
       },
     }),
+    BrowserAnimationsModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
