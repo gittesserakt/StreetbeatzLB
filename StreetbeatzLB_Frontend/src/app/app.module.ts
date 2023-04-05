@@ -1,23 +1,26 @@
-import { NgModule, isDevMode } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { environment as env } from '../environments/environment';
-import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import {NgModule, isDevMode} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {environment as env} from '../environments/environment';
+import {AuthHttpInterceptor, AuthModule} from '@auth0/auth0-angular';
 import {SharedModule} from "./shared";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {LeafletModule} from "@asymmetrik/ngx-leaflet";
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    LeafletModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
@@ -41,4 +44,5 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
