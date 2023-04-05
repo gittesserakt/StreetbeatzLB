@@ -1,3 +1,4 @@
+/*
 .header{
   padding: 10px;
   display: flex;
@@ -102,4 +103,32 @@ label[for="burgerMenu_checkbox"]{
   label[for="burgerMenu_checkbox"]{
     display: block;
   }
+}
+*/
+
+.navbar{
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.logo{
+  max-height: 50px;
+  max-width: 50px;
+  text-align: center;
+  margin: 5px;
+}
+
+nav ul{
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a{
+  color: var(--secondary-text-color);
+  text-decoration: none;
+  position: relative;
+  padding: 3px;
 }
