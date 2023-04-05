@@ -71,6 +71,7 @@ ul{
   margin-top: 50px;
     &:hover{
       opacity: 0.7;
+      transform: scale(1.05);
     }
 }
 
@@ -80,7 +81,7 @@ ul{
   height: 32px;
   border-radius: 20%;
     &:hover{
-      opacity: 0.7;
+      transform: scale(1.1);
     }
 }
 

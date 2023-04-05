@@ -210,6 +210,12 @@ body {
   }
 }
 
+.hoverTransform{
+  &:hover{
+    transform: scale(1.1);
+  }
+}
+
 //endregion
 
 //region Media Query
