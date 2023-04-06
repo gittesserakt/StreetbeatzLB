@@ -1,7 +1,11 @@
-<app-navbar></app-navbar>
 <div class="map-container"
      leaflet
      [leafletOptions]="options"
      (leafletMapReady)="onMapReady($event)"
      (leafletClick)="mapClicked($event)">
+  <div class="map-overlay" *ngIf="map">
+    <button (click)="toggleButtonChanged()" mat-fab [color]="getButtonColor()">
+      <mat-icon>{{ followPosition ? 'gps_fixed' : 'gps_not_fixed' }}</mat-icon>
+    </button>
+  </div>
 </div>
