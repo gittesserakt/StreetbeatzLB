@@ -8,32 +8,34 @@ import { environment as env } from '../environments/environment';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import {SharedModule} from "./shared";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    SharedModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
-    AuthModule.forRoot({
-      ...env.auth0,
-      httpInterceptor: {
-        allowedList: [
-          `${env.api.serverUrl}/messages`,
-        ],
-      },
-    }),
-    BrowserAnimationsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        SharedModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
+        AuthModule.forRoot({
+            ...env.auth0,
+            httpInterceptor: {
+                allowedList: [
+                    `${env.api.serverUrl}/messages`,
+                ],
+            },
+        }),
+        BrowserAnimationsModule,
+        MatSidenavModule,
+    ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthHttpInterceptor,
