@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-
 @Controller
 @RequestMapping(path="/api/performances")
 @CrossOrigin(origins = "*")
@@ -23,7 +20,12 @@ public class PerformanceController {
   }
 
   @GetMapping(path="/filtered")
-  public @ResponseBody Iterable<Performance> getFilteredPerformances(@RequestParam int group) throws SQLException {
-    return PerformanceFilter.filterPerformances(null, group, 0);
+  public @ResponseBody Iterable<Performance> getFilteredPerformances(@RequestParam String time,
+                                                                     @RequestParam int group, @RequestParam int stage) {
+    if(time.equals("0")){
+      time = null;
+    }
+
+    return PerformanceFilter.filterPerformances(performanceRepository, time, group, stage);
   }
 }
