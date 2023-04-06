@@ -1,13 +1,14 @@
 package de.hhn.se.labswp.streetbeatzlb_backend.controllers.prod;
 
 import de.hhn.se.labswp.streetbeatzlb_backend.models.Performance;
+import de.hhn.se.labswp.streetbeatzlb_backend.models.PerformanceFilter;
 import de.hhn.se.labswp.streetbeatzlb_backend.models.PerformanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping(path="/api/performances")
@@ -19,5 +20,10 @@ public class PerformanceController {
   @GetMapping(path="/all")
   public @ResponseBody Iterable<Performance> getAllPerformances() {
     return performanceRepository.findAll();
+  }
+
+  @GetMapping(path="/filtered")
+  public @ResponseBody Iterable<Performance> getFilteredPerformances(@RequestParam int group) throws SQLException {
+    return PerformanceFilter.filterPerformances(null, group, 0);
   }
 }
