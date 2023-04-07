@@ -1,5 +1,4 @@
-<app-navbar></app-navbar>
-<body>
+<!--<body>
 <div class="homeContainer1">
   <div class="date">
     <h1 class="hDate">{{startDate.getDate()}}. - {{endDate.getDate()}}. {{month}} {{startDate.getFullYear()}}</h1>
@@ -106,4 +105,101 @@
 <div>
   <app-footer></app-footer>
 </div>
-</body>
+</body>-->
+
+
+<!--  <mat-grid-tile class="homeContainer1">-->
+    <div class="homeContainer1">
+    <mat-grid-list class="homeContainer1Sub" [cols]="device === 'Web' ? 2 : 1 "
+                   [rowHeight]="device === 'Web' ? '100svh' : '50svh'">
+      <mat-grid-tile class="date">
+        <div>
+          <h1 class="hDate">{{startDate.getDate()}}. - {{endDate.getDate()}}. {{month}} {{startDate.getFullYear()}}</h1>
+          <h2 class="hTime"> {{startDay}} - {{endDay}} {{startTime}} - {{endTime}} Uhr</h2>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile class="instrument">
+        <ul>
+          <li>
+            <object class="note1" type="image/svg+xml" data="./assets/landingpageSVG/SingleNote.svg"></object>
+            <object class="note2" type="image/svg+xml" data="./assets/landingpageSVG/SingleNote.svg"></object>
+          </li>
+          <li>
+            <object class="guitar" type="image/svg+xml" data="./assets/landingpageSVG/Gitarre.svg"></object>
+          </li>
+        </ul>
+      </mat-grid-tile>
+    </mat-grid-list>
+    </div>
+<!--  </mat-grid-tile>-->
+
+<!--  <mat-grid-tile class="homeContainer2">-->
+<!--    <div class="homeContainer2Sub">-->
+      <mat-expansion-panel class="expansionPanel" expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Street Music Festival Ludwigsburg
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{generalInformation}}</p>
+      </mat-expansion-panel>
+<!--    </div>-->
+<!--  </mat-grid-tile>-->
+
+<mat-grid-list cols="1" rowHeight="100svh">
+  <mat-grid-tile class="homeContainer3">
+
+  </mat-grid-tile>
+
+  <mat-grid-tile class="homeContainer4">
+    <h2>Bilder</h2>
+    <div class="images">
+      <img src="assets/bluehendesBarock/barock1.jpg" alt="Blühendes Barock Bild 1">
+      <img src="assets/bluehendesBarock/barock2.jpg" alt="Blühendes Barock Bild 2">
+      <img src="assets/streetMusicFestival/SMF1.jpg" alt="Street Music Festival Bild 1">
+      <img src="assets/streetMusicFestival/SMF2.jpg" alt="Street Music Festival Bild 2">
+      <img src="assets/streetMusicFestival/SMF3.jpg" alt="Street Music Festival Bild 3">
+      <img src="assets/streetMusicFestival/SMF4.jpg" alt="Street Music Festival Bild 4">
+      <img src="assets/streetMusicFestival/SMF5.jpg" alt="Street Music Festival Bild 5">
+      <img src="assets/streetMusicFestival/SMF6.jpg" alt="Street Music Festival Bild 6">
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile class="homeContainer5">
+    <h2>Veranstalter, Sponsoren & Partner des Street Music Festivals</h2>
+    <div class="innerContainer5">
+      <div class="row">
+        <div class="logo1">
+          <img src="assets/companyLogo/Sparda_Bank_logo.png" alt="Logo der Sparda Bank">
+        </div>
+        <div class="logo2">
+          <img src="assets/companyLogo/blueba_logo.png" alt="Logo des Blühenden Barocks">
+        </div>
+        <div class="logo3">
+          <img src="assets/companyLogo/RZ_logo.png" alt="Logo von Pulsmacher">
+        </div>
+      </div>
+      <div class="row2">
+        <div class="logo4">
+          <img src="assets/companyLogo/rothaus_logo.png" alt="Logo von Rothaus">
+        </div>
+        <div class="logo5">
+          <img src="assets/companyLogo/Lautmacher_Logo.png" alt="Logo von Lautmacher">
+        </div>
+        <div class="logo6">
+          <img src="assets/companyLogo/Go_Control_Logo.png" alt="Logo von Go.Control">
+        </div>
+        <div class="logo7">
+          <img src="assets/companyLogo/kreiszeitung_logo.png" alt="Logo von der Ludwigsburger Kreiszeitung">
+        </div>
+        <div class="logo8">
+          <img src="assets/companyLogo/Energy_Logo.png" alt="Logo von Energy">
+        </div>
+      </div>
+    </div>
+  </mat-grid-tile>
+
+</mat-grid-list>
+<!--<mat-grid-tile-footer>
+  <app-footer></app-footer>
+</mat-grid-tile-footer>-->

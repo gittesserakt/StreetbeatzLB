@@ -4,14 +4,16 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared';
 import { LandingpageComponent } from './landingpage.component';
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [LandingpageComponent],
-    imports: [
-        CommonModule,
-        SharedModule,
-        RouterModule.forChild([{path: '', component: LandingpageComponent}]),
-        MatGridListModule,
-    ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterModule.forChild([{path: '', component: LandingpageComponent}]),
+    MatGridListModule,
+    MatExpansionModule,
+  ],
 })
 export class LandingpageModule {}

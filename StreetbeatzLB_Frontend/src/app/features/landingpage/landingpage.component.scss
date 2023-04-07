@@ -1,27 +1,79 @@
 /*body {
   background-color: var(--background-color);
 }*/
-
-@mixin Shadow{
-  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.44);
+@mixin container($rad1, $rad2, $rad3, $rad4, $shadow1, $shadow2, $shadow3, $shadow4, $shadow5,) {
+  border-radius: $rad1 $rad2 $rad3 $rad4;
+  box-shadow: $shadow1 $shadow2 $shadow3 $shadow4 $shadow5;
 }
 
-mat-grid-list{
+@mixin container1($rad1, $rad2, $rad3, $rad4, $shadow1, $shadow2, $shadow3, $shadow4, $shadow5, $img) {
+  @include container($rad1, $rad2, $rad3, $rad4, $shadow1, $shadow2, $shadow3, $shadow4, $shadow5,);
+  background-image: url($img);
+  background-size: cover;
+}
+
+@mixin container2-5($rad1, $rad2, $rad3, $rad4, $shadow1, $shadow2, $shadow3, $shadow4, $shadow5, $gDeg, $rgba1_1,
+$rgba1_2, $rgba1_3, $rgba1_4, $rgba1_5, $rgba2_1, $rgba2_2, $rgba2_3, $rgba2_4, $rgba2_5,) {
+  @include container($rad1, $rad2, $rad3, $rad4, $shadow1, $shadow2, $shadow3, $shadow4, $shadow5,);
+  background: linear-gradient($gDeg, rgba($rgba1_1, $rgba1_2, $rgba1_3, $rgba1_4) $rgba1_5,
+    rgba($rgba2_1, $rgba2_2, $rgba2_3, $rgba2_4) $rgba2_5);
+}
+
+mat-grid-list {
   overflow: hidden;
 }
 
 //region homeContainer1
-.homeContainer1{
+@mixin guitarAnimation {
+  animation-name: bounce;
+  animation-duration: 2.6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@mixin note2Animation {
+  animation-name: bounce;
+  animation-duration: 3.5s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+
+@mixin note1Animation {
+  animation-name: bounce;
+  animation-duration: 3s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+}
+
+.homeContainer1 {
+  @include container1(0, 0, 5rem, 5rem, 0px, 10px, 18px, 6px, #000000, "/assets/streetMusicFestival/SMF4.jpg");
+  width: 100%;
+  /*border-radius: 0 0 5rem 5rem;
   background-image: url("/assets/streetMusicFestival/SMF4.jpg");
-  div{
+  background-size: cover;
+  box-shadow: 0px 10px 18px 6px #000000;*/
+
+  .homeContainer1Sub {
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(255,193,7,1) 0%, rgba(255,111,0,0.24691883589373254) 100%);
+    background: linear-gradient(180deg, rgba(255, 193, 7, 1) 0%, rgba(255, 111, 0, 0.24691883589373254) 100%);
+    border-radius: 0 5rem 5rem;
+
+    .date {
+      div {
+        text-align: center;
+
+        .hDate {
+          font-size: 3rem;
+        }
+
+        .hTime {
+          font-size: 1.5rem;
+        }
+      }
+    }
 
     .instrument {
-      margin: 50px;
-      width: 60%;
-
       ul {
         text-align: center;
 
@@ -29,40 +81,45 @@ mat-grid-list{
           list-style: none;
         }
       }
+
       .note1 {
-        padding-left: 60px;
-        width: 50px;
-        height: 50px;
-
-        animation-name: bounce;
-        animation-duration: 3s;
-        animation-timing-function: ease-in;
-        animation-iteration-count: infinite;
+        padding-right: 0.8rem;
+        width: 3.5rem;
+        height: 3.5rem;
+        @include note1Animation;
       }
+
       .note2 {
-        padding-left: 60px;
-        padding-bottom: 40px;
-        width: 60px;
-        height: 60px;
-
-        animation-name: bounce;
-        animation-duration: 3.5s;
-        animation-timing-function: ease-out;
-        animation-iteration-count: infinite;
+        padding-left: 1.5rem;
+        padding-bottom: 0.4rem;
+        width: 4rem;
+        height: 4rem;
+        @include note2Animation;
       }
+
       .guitar {
-        width: 170px;
-        height: 170px;
-
-        animation-name: bounce;
-        animation-duration: 2.6s;
-        animation-timing-function: ease-in-out;
-        animation-iteration-count: infinite;
-
+        width: 14.5rem;
+        height: 15.5rem;
+        @include guitarAnimation;
       }
     }
+
+
+    /*.date{
+      div{
+        text-align: center;
+
+        .hDate{
+          font-size: $hDate-font-size;
+        }
+        .hTime{
+          font-size: $hTime-font-size;
+        }
+      }
+    }*/
   }
 }
+
 //region old1
 /*.homeContainer1 {
   background-color: var(--secondary-main-brand-color);
@@ -136,7 +193,27 @@ mat-grid-list{
 //endregion
 
 //region homeContainer2
-.homeContainer2{
+.expansionPanel {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  @include container2-5(3.5rem, 3.5rem, 3.5rem, 3.5rem, -10px, 0px, 18px, 12px, #000000, 180deg, 255, 193, 7, 1, 0%, 255, 111, 0, 0.24691883589373254, 100%);
+}
+
+/*.homeContainer2{
+  @include container1-2(5rem, 5rem, 5rem, 5rem, -10px, 0px, 18px, 12px, #000000, "/assets/streetMusicFestival/SMF5.jpg");
+  margin-top: 2rem;
+
+  .homeContainer2Sub{
+    background: linear-gradient(270deg, rgba(255,193,7,1) 0%, rgba(255,111,0,0.24691883589373254) 100%);
+    height: 100%;
+    width: 100%;
+
+    .expansionPanel{
+    }
+  }
+}*/
+
+/*.homeContainer2 {
   background-color: var(--secondary-main-brand-color);
   margin-left: 15%;
   padding: 20px;
@@ -150,39 +227,41 @@ mat-grid-list{
   animation-iteration-count: 1;
 }
 
-.homeContainer2 h2{
+.homeContainer2 h2 {
   text-decoration: underline;
-}
+}*/
+
 //endregion
 
 //region homeContainer3
-.homeContainer3{
+.homeContainer3 {
   margin: 2%;
 }
+
 //endregion
 
 //region homeContainer4
-.homeContainer4{
+.homeContainer4 {
   background-color: var(--secondary-main-brand-color);
   margin-right: 5%;
   padding: 10px;
   border-radius: 0 50px 50px 0;
 
-  @include Shadow;
+  //@include Shadow;
 
   animation-name: slideInLeft;
   animation-timing-function: ease-in-out;
   animation-duration: 2.5s;
   animation-iteration-count: 1;
 
-  h2{
+  h2 {
     text-align: center;
     text-decoration: underline;
   }
 }
 
 
-.images{
+.images {
   margin: 5%;
   display: flex;
   gap: 5%;
@@ -190,7 +269,7 @@ mat-grid-list{
   box-sizing: border-box;
   align-items: center;
 
-  img{
+  img {
     position: relative;
     margin: 5%;
     height: 400px;
@@ -202,14 +281,14 @@ mat-grid-list{
 //endregion
 
 //region homeContainer5
-.homeContainer5{
+.homeContainer5 {
   background-color: var(--secondary-main-brand-color);
   margin-left: 5%;
   margin-right: 5%;
   padding: 10px;
   border-radius: 50px 50px 0 0;
 
-  @include Shadow;
+  //@include Shadow;
 
   height: 500px;
 
@@ -219,22 +298,22 @@ mat-grid-list{
   animation-iteration-count: 1;
 
 
-  h2{
+  h2 {
     text-decoration: underline;
     text-align: center;
   }
 }
 
-.innerContainer5{
+.innerContainer5 {
   width: 100%;
   height: 100%;
 
 }
 
-.row{
+.row {
   display: flex;
 
-  div{
+  div {
     width: (100% / 3);
     box-sizing: border-box;
     align-items: center;
@@ -242,17 +321,17 @@ mat-grid-list{
     //align-content: center;
     display: flex;
 
-    img{
+    img {
       width: 70%;
       position: relative;
     }
   }
 }
 
-.row2{
+.row2 {
   display: flex;
 
-  div{
+  div {
     width: (100% / 5);
     box-sizing: border-box;
     align-items: center;
@@ -260,7 +339,7 @@ mat-grid-list{
     //align-content: center;
     display: flex;
 
-    img{
+    img {
       width: 70%;
       max-height: 80%;
       position: relative;
@@ -268,8 +347,8 @@ mat-grid-list{
   }
 }
 
-.hoverTransform{
-  &:hover{
+.hoverTransform {
+  &:hover {
     transform: scale(1.1);
   }
 }
@@ -277,7 +356,7 @@ mat-grid-list{
 //endregion
 
 //region Media Query
-@media (min-width: 800px) {
+/*@media (min-width: 800px) {
   .hDate {
     padding-top: 70px;
   }
@@ -342,7 +421,7 @@ mat-grid-list{
       }
     }
   }
-}
+}*/
 //endregion
 
 //region Animation
@@ -361,42 +440,43 @@ mat-grid-list{
 }
 
 @keyframes slideInRight {
-  from{
+  from {
     transform: translateX(900px);
   }
 
-  to{
+  to {
     transform: translateX(0);
   }
 }
 
 @keyframes slideInLeft {
-  from{
+  from {
     transform: translateX(-900px);
   }
 
-  to{
+  to {
     transform: translateX(0);
   }
 }
 
 @keyframes slideInTop {
-  from{
+  from {
     transform: translateY(-900px);
   }
 
-  to{
+  to {
     transform: translateY(0);
   }
 }
 
 @keyframes slideInBottom {
-  from{
+  from {
     transform: translateY(900px);
   }
 
-  to{
+  to {
     transform: translateY(0);
   }
 }
+
 //endregion
