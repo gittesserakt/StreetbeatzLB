@@ -10,6 +10,21 @@ Leaflet.Icon.Default.imagePath = 'assets/'
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit, OnDestroy {
+
+  @ViewChild ('toolbar', {static: true}) toolbar!: MatToolbar;
+  contentHeight!: number;
+  navHeight!: number;
+
+  ngAfterContentViewInit() {
+    this.navHeight = this.toolbar._elementRef.nativeElement.offsetHeight;
+    this.contentHeight = window.innerHeight - this.navHeight;
+    /*
+     [style.height.px]="contentHeight"
+     [style.margin-top.px]="navHeight"
+     */
+  }
+
+
   position?: GeolocationPosition;
   subscription: Subscription;
   followPosition: boolean = false;
@@ -35,7 +50,7 @@ export class MapComponent implements OnInit, OnDestroy {
     shadowSize: [41, 41]
   });
 
-  constructor() {
+  constructor(private renderer: Renderer2, private el: ElementRef) {
     this.deviceMarker = new Leaflet.Marker([0, 0],{icon: this.iconPerson});
     const source = interval(1000);
     this.subscription = source.subscribe(x => {
