@@ -14,6 +14,7 @@ export class PerformanceTileComponent {
   constructor(private router: Router) {}
 
   showLocation(){
-    this.router.navigate([`/map?stage=${this.stage}`]);
+    alert("you see something");
+    this.router.navigate([`/map?stage=${this.performance.stage}`]);
   }
 }

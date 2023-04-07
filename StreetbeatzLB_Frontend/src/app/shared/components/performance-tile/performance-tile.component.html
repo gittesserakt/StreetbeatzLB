@@ -1,8 +1,8 @@
 <mat-card>
-  <mat-card-title>{{ group }}</mat-card-title>
+  <mat-card-title>{{ performance.group }}</mat-card-title>
   <mat-card-content>
-    <p><strong>Stage:</strong> {{ stage }}</p>
-    <p><strong>Performance Time:</strong> {{ performanceDateTime }}</p>
+    <p><strong>Stage:</strong> {{ performance.stage }}</p>
+    <p><strong>Performance Time:</strong> {{ performance.date_time }}</p>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button color="primary" (click)="showLocation()">Show Location</button>
