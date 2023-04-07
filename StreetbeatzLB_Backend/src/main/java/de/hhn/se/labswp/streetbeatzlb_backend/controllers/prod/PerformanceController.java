@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping(path="/api/performances")
 @CrossOrigin(origins = "*")
@@ -22,10 +24,12 @@ public class PerformanceController {
   @GetMapping(path="/filtered")
   public @ResponseBody Iterable<Performance> getFilteredPerformances(@RequestParam String time,
                                                                      @RequestParam int group, @RequestParam int stage) {
-    if(time.equals("0")){
-      time = null;
+    LocalDateTime newTime = null;
+    if(!time.equals("0")){
+      newTime = LocalDateTime.parse(time);
     }
 
-    return PerformanceFilter.filterPerformances(performanceRepository, time, group, stage);
+
+    return PerformanceFilter.filterPerformances(performanceRepository, newTime, group, stage);
   }
 }
