@@ -1,6 +1,7 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, ElementRef, Renderer2, ViewChild} from '@angular/core';
 import * as Leaflet from 'leaflet';
 import {interval, Subscription} from "rxjs";
+import {MatToolbar} from "@angular/material/toolbar";
 
 Leaflet.Icon.Default.imagePath = 'assets/'
 
