@@ -52,6 +52,6 @@ body{
   margin: 0;
 }*/
 
-html, body { height: 100%; }
+html, body { height: 100%; /*scroll-behavior: smooth*/}
 body { margin: 0; font-family: "Open Sans", sans-serif; }
 @import "~leaflet/dist/leaflet.css";

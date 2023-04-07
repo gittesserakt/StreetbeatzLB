@@ -1,15 +1,15 @@
-import {NgModule, isDevMode} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {ServiceWorkerModule} from '@angular/service-worker';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {environment as env} from '../environments/environment';
-import {AuthHttpInterceptor, AuthModule} from '@auth0/auth0-angular';
+import { NgModule, isDevMode } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { environment as env } from '../environments/environment';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import {SharedModule} from "./shared";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSidenavModule} from "@angular/material/sidenav";
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
-
 
 @NgModule({
   declarations: [
@@ -36,6 +36,7 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
       },
     }),
     BrowserAnimationsModule,
+    MatSidenavModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -44,5 +45,4 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
