@@ -8,15 +8,10 @@ import {Router} from "@angular/router";
   styleUrls: ['./performance-tile.component.scss']
 })
 export class PerformanceTileComponent {
-  group: string;
-  stage: string;
-  performanceDateTime: string;
 
-  constructor(@Input() private performance: VerbosePerformance, private router: Router) {
-    this.group = performance.group;
-    this.stage = performance.stage;
-    this.performanceDateTime = performance.date_time;
-  }
+  @Input() performance!: VerbosePerformance;
+
+  constructor(private router: Router) {}
 
   showLocation(){
     this.router.navigate([`/map?stage=${this.stage}`]);
