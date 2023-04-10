@@ -51,6 +51,10 @@ export class LandingpageComponent {
   ])
   //endregion
 
+  //region Group Slideshow
+
+  //endregion
+
   //region Observer
   constructor(private breakpointObserver: BreakpointObserver) {
     breakpointObserver.observe([
