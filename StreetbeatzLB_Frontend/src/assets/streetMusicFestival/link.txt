@@ -1,0 +1,14 @@
+2023:
+Logo_colored: https://strassenmusikfestival.de/wp-content/uploads/2017/05/SMF17_Logo_170315_colored.png
+
+2022:
+SMF1: https://strassenmusikfestival.de/wp-content/uploads/2022/06/MP1_6681.jpg
+SMF2: https://strassenmusikfestival.de/wp-content/uploads/2022/06/MP1_6966.jpg
+SMF3: https://strassenmusikfestival.de/wp-content/uploads/2022/06/MP2_5229.jpg
+Last: 28.03.2023
+
+2019
+SMF4: https://strassenmusikfestival.de/wp-content/uploads/2019/06/RP09491.jpg
+SMF5: https://strassenmusikfestival.de/wp-content/uploads/2019/06/RP09401.jpg
+SMF6: https://strassenmusikfestival.de/wp-content/uploads/2019/06/DSC2649.jpg
+Last: 05.04.2023

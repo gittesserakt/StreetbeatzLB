@@ -7,12 +7,17 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     loadChildren: () =>
-      import('./features/home/home.module').then((m) => m.HomeModule),
+      import('./features/landingpage/landingpage.module').then((m) => m.LandingpageModule),
   },
   {
     path: 'messages',
     loadChildren: () =>
       import('./features/messages/messages.module').then((m) => m.MessagesModule),
+  },
+  {
+    path: 'performances',
+    loadChildren: () =>
+      import('./features/performances/performances.module').then((m) => m.PerformancesModule),
   },
   {
     path: '**',
