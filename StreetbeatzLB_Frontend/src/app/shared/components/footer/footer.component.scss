@@ -4,25 +4,21 @@
   box-sizing: border-box;
 }
 
+/* Defines the footer area. */
 .footer{
   background-color: var(--main-brand-color);
-  padding: 50px 0;
-}
-
-.container{
-  max-width: 1300px;
+  max-width: 100%;
   margin: auto;
-}
-
-.row{
   display: flex;
   flex-wrap: wrap;
 }
 
+/* Defines that lists are displayed without bullets. */
 ul{
   list-style: none;
 }
 
+/* Defines the appearance of columns in the footer area */
 .footer-col{
   width: 25%;
   padding: 0 15px;
@@ -66,12 +62,12 @@ ul{
 }
 
 .smf{
-  width: 225px;
-  height: 64px;
+  width: 80%;
   margin-top: 50px;
+  transition: all 0.2s ease-in-out;
     &:hover{
       opacity: 0.7;
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 }
 
@@ -80,15 +76,29 @@ ul{
   width: 32px;
   height: 32px;
   border-radius: 20%;
+  transition: all 0.2s ease-in-out;
     &:hover{
-      transform: scale(1.1);
+      transform: scale(1.2);
     }
 }
 
+/*  This is a media query that applies styles to the `.footer-col` class when the maximum width of the viewport
+    is 800px or less. It changes the width of the columns to 50%, adds a bottom margin of 30px,
+    and a left margin of 10px. This is done to adjust the layout of the footer for smaller screens,
+    making it more responsive and easier to read. */
 @media(max-width: 800px) {
+  .footer{
+    border-top: 1px solid black;
+  }
+
   .footer-col{
-    width: 50%;
+    width: 100%;
     margin-bottom: 30px;
-    margin-left: 10px;
+    text-align: center;
+  }
+
+  .footer-col h4{
+    margin-top: 35px;
+    margin-bottom: 15px;
   }
 }
