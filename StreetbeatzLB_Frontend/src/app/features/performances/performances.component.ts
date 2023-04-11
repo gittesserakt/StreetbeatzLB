@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import {Performance, PerformanceService} from "../../core";
+import {Component} from "@angular/core";
+import {VerbosePerformanceService} from "../../core";
+import {VerbosePerformance} from "../../core/models/verbosePerformance";
 
 @Component({
   selector: 'app-messages',
@@ -7,28 +8,29 @@ import {Performance, PerformanceService} from "../../core";
   styleUrls: ['./performances.component.scss']
 })
 export class PerformancesComponent {
-  performances?: Performance[];
+  verbosePerformances?: VerbosePerformance[];
 
-  constructor(private performanceService: PerformanceService) {}
+  constructor(private verbosePerformanceService: VerbosePerformanceService) {
+  }
 
-    getAllPerformances(): void {
-      this.performanceService.getAllPerformances()
-        .subscribe((response) => {
-          const { data, error } = response;
+  getAllPerformances(): void {
+    this.verbosePerformanceService.getAllVerbosePerformances()
+      .subscribe((response) => {
+        const {data, error} = response;
 
-          if (data) {
-            this.performances = data as Performance[];
-          }
+        if (data) {
+          this.verbosePerformances = data as VerbosePerformance[];
+        }
 
-          if (error) {
-            console.log(error);
-          }
-        });
-    }
+        if (error) {
+          console.log(error);
+        }
+      });
+  }
 
-    ngOnInit(): void {
-      this.getAllPerformances();
-    }
+  ngOnInit(): void {
+    this.getAllPerformances();
+  }
 
 }
 
