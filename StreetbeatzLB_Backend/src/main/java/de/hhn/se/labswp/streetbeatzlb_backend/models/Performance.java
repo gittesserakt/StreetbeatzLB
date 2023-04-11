@@ -2,7 +2,6 @@ package de.hhn.se.labswp.streetbeatzlb_backend.models;
 
 import jakarta.persistence.*;
 
-import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

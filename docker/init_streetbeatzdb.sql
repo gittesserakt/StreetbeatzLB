@@ -12,9 +12,9 @@ create or replace table administrator
 
 create or replace table `group`
 (
-    group_id int auto_increment
+    group_id  int auto_increment
         primary key,
-    name     varchar(255) not null
+    name      varchar(255) not null
 );
 
 create or replace table poi
