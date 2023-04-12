@@ -560,44 +560,7 @@ mat-grid-list {
   transform: translate3d(0, -5px, 0);
 }
 
-.sponsor-logo-rectangle {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-  /* Aktualisierte transform und transition Eigenschaften */
-  transform: scale3d(1, 1, 1);
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.sponsor-logo-rectangle:before,
-.sponsor-logo-rectangle:after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* Hinzugefügte box-shadow Eigenschaft */
-  box-shadow: 0px 0px 10px 3px #ffcc00;
-  opacity: 0;
-  /* Aktualisierte transition Eigenschaften */
-  transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.sponsor-logo-rectangle:hover:before {
-  /* Aktualisierte opacity Wert */
-  opacity: 0.6;
-}
-
-.sponsor-logo-rectangle:hover:after {
-  /* Aktualisierte opacity Wert */
-  opacity: 0.6;
-}
-
-.sponsor-logo-rectangle:hover {
-  /* Aktualisierte transform Wert */
-  transform: scale3d(1.05, 1.05, 1.05);
+.rec-logo {
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
