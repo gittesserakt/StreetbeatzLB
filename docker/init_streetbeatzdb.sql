@@ -92,13 +92,13 @@ INSERT INTO `poi` (name, icon, poi_type, latitude, longitude) VALUES
 	('Stages', NULL, NULL, 48.90194275338896, 9.197502693265069);
 
 INSERT INTO `stage` (name, stage_size) VALUES
-	(1, 25.6),
-	(2, 15.3),
-	(3, 12.5),
-	(4, 12.2),
-	(5, 10.9),
-	(6, 14.5),
-	(7, 8.8);
+	('A', 25.6),
+	('B', 15.3),
+	('C', 12.5),
+	('D', 12.2),
+	('E', 10.9),
+	('F', 14.5),
+	('G', 8.8);
 
 INSERT INTO `vote` (email, artist_id) VALUES
 	('mjouaux@stud.hs-heilbronn.de ', 1),
