@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Observable, of} from "rxjs";
+import {catchError, forkJoin, map, Observable, of, switchMap} from "rxjs";
 import {ApiResponseModel, AppErrorModel, Performance} from "../models";
 import {Stage} from "../models/stage.model";
 import {PerformanceService} from "./performance.service";
@@ -16,66 +16,45 @@ export class VerbosePerformanceService {
               private artistService: ArtistService, private stageService: StageService) {
   }
 
-  performances?: Performance[];
-  verbosePerformances?: VerbosePerformance[];
   error: AppErrorModel = {message: "verbosePerformanceService error"};
   errorFlag: boolean = false;
+
   getAllVerbosePerformances = (): Observable<ApiResponseModel> => {
-    this.performanceService.getAllPerformances()
-      .subscribe((response) => {
-        const {data, error} = response;
+    return this.performanceService.getAllPerformances().pipe(
+      switchMap((performancesResponse) => {
+        const performances = performancesResponse.data as Performance[];
 
-        if (data) {
-          this.performances = data as Performance[];
-        }
+        const verbosePerformances$ = performances.map((performance) => {
+          const verbosePerformance = new VerbosePerformance();
+          verbosePerformance.date_time = performance.date_time;
 
-        if (error) {
-          console.log(error);
-          this.errorFlag = true;
-        }
-      });
-
-    this.performances?.forEach((performance: Performance) => {
-      let verbosePerformance!: VerbosePerformance;
-
-      verbosePerformance.date_time = performance.date_time;
-
-      this.stageService.getStageById(performance.stage_id)
-        .subscribe((response) => {
-          const {data, error} = response;
-
-          if (data) {
-            verbosePerformance.stage = (data as Stage).name;
-          }
-
-          if (error) {
-            console.log(error);
-            this.errorFlag = true;
-          }
+          return forkJoin([
+            this.stageService.getStageById(performance.stage_id).pipe(map(stageResponse => {
+              const stageName = stageResponse.data ? (stageResponse.data as Stage).name : '';
+              verbosePerformance.stage = stageName;
+            })),
+            this.artistService.getArtistById(performance.artist_id).pipe(map(artistResponse => {
+              const artistName = artistResponse.data ? (artistResponse.data as Artist).name : '';
+              verbosePerformance.artist = artistName;
+            }))
+          ]).pipe(map(() => verbosePerformance));
         });
 
-      this.artistService.getArtistById(performance.artist_id)
-        .subscribe((response) => {
-          const {data, error} = response;
-
-          if (data) {
-            verbosePerformance.artist = (data as Artist).name;
-          }
-
-          if (error) {
-            console.log(error);
-            this.errorFlag = true;
-          }
+        return forkJoin(verbosePerformances$).pipe(
+          map((verbosePerformances) => ({
+            data: verbosePerformances,
+            error: this.errorFlag ? this.error : null,
+          }))
+        );
+      }),
+      catchError((error) => {
+        console.log(error);
+        return of({
+          data: null,
+          error: this.errorFlag ? this.error : null,
         });
-
-      this.verbosePerformances?.push(verbosePerformance);
-    });
-
-    return of({
-      data: this.verbosePerformances ? (this.verbosePerformances as VerbosePerformance[]) : null,
-      error: this.errorFlag ? this.error : null,
-    });
+      })
+    );
   };
-
 
 }

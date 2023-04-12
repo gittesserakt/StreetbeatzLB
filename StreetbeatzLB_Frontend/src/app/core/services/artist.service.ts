@@ -15,7 +15,7 @@ export class ArtistService {
 
   getArtistById = (artist_id: number): Observable<ApiResponseModel> => {
     const config: RequestConfigModel = {
-      url: `${env.api.serverUrl}/groups?group_id=${artist_id}`,
+      url: `${env.api.serverUrl}/artists/artistByID?artistID=${artist_id}`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',
