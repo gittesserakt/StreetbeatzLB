@@ -3,19 +3,19 @@ import {Injectable} from "@angular/core";
 import {environment as env} from '../../../environments/environment';
 import {mergeMap, Observable, of} from "rxjs";
 import {ApiResponseModel, RequestConfigModel} from "../models";
-import {Group} from "../models/group.model";
+import {Artist} from "../models/artist.model";
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class GroupService {
+export class ArtistService {
   constructor(public externalApiService: ExternalApiService) {
   }
 
-  getGroupById = (group_id: number): Observable<ApiResponseModel> => {
+  getArtistById = (artist_id: number): Observable<ApiResponseModel> => {
     const config: RequestConfigModel = {
-      url: `${env.api.serverUrl}/groups?group_id=${group_id}`,
+      url: `${env.api.serverUrl}/groups?group_id=${artist_id}`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -27,7 +27,7 @@ export class GroupService {
         const {data, error} = response;
 
         return of({
-          data: data ? (data as Group) : null,
+          data: data ? (data as Artist) : null,
           error,
         });
       })

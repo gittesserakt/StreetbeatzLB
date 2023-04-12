@@ -1,5 +1,5 @@
 export interface VerbosePerformance {
   date_time: string;
-  group: string;
+  artist: string;
   stage: string;
 }

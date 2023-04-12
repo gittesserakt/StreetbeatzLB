@@ -3,22 +3,22 @@ import {Observable, of} from "rxjs";
 import {ApiResponseModel, AppErrorModel, Performance} from "../models";
 import {Stage} from "../models/stage.model";
 import {PerformanceService} from "./performance.service";
-import {GroupService} from "./group.service";
+import {ArtistService} from "./artist.service";
 import {StageService} from "./stage.service";
 import {VerbosePerformance} from "../models/verbosePerformance";
-import {Group} from "../models/group.model";
+import {Artist} from "../models/artist.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class VerbosePerformanceService {
   constructor(private performanceService: PerformanceService,
-              private groupService: GroupService, private stageService: StageService) {
+              private artistService: ArtistService, private stageService: StageService) {
   }
 
   performances?: Performance[];
   verbosePerformances?: VerbosePerformance[];
-  error: AppErrorModel = {message: "verbosePerfomanceServiceService error"};
+  error: AppErrorModel = {message: "verbosePerformanceService error"};
   errorFlag: boolean = false;
   getAllVerbosePerformances = (): Observable<ApiResponseModel> => {
     this.performanceService.getAllPerformances()
@@ -54,12 +54,12 @@ export class VerbosePerformanceService {
           }
         });
 
-      this.groupService.getGroupById(performance.group_id)
+      this.artistService.getArtistById(performance.artist_id)
         .subscribe((response) => {
           const {data, error} = response;
 
           if (data) {
-            verbosePerformance.group = (data as Group).name;
+            verbosePerformance.artist = (data as Artist).name;
           }
 
           if (error) {
