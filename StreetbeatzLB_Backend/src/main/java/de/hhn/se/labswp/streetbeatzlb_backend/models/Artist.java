@@ -3,19 +3,19 @@ package de.hhn.se.labswp.streetbeatzlb_backend.models;
 import jakarta.persistence.*;
 
 @Entity
-public class Group {
+public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long group_id;
+    private Long artist_id;
     private String name;
 
-    public Long getGroup_id() {
-        return group_id;
+    public Long getArtist_id() {
+        return artist_id;
     }
 
-    public void setGroup_id(Long group_id) {
-        this.group_id = group_id;
+    public void setArtist_id(Long artist_id) {
+        this.artist_id = artist_id;
     }
 
     public String getName() {

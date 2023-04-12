@@ -10,9 +10,9 @@ create or replace table administrator
         unique (email)
 );
 
-create or replace table `group`
+create or replace table artist
 (
-    group_id  int auto_increment
+    artist_id  int auto_increment
         primary key,
     name      varchar(255) not null
 );
@@ -42,12 +42,12 @@ create or replace table performance
         primary key,
     date_time      datetime     null,
     created_by     varchar(255) not null,
-    group_id       int          not null,
+    artist_id       int          not null,
     stage_id       int          not null,
     constraint created_by_fk
         foreign key (created_by) references administrator (identifier),
-    constraint group_id_fk
-        foreign key (group_id) references `group` (group_id),
+    constraint artist_id_fk
+        foreign key (artist_id) references artist (artist_id),
     constraint stage_id_fk
         foreign key (stage_id) references stage (stage_id)
 );
@@ -56,13 +56,13 @@ create or replace table vote
 (
     email    varchar(255) not null
         primary key,
-    group_id int          not null,
+	artist_id int          not null,
     constraint vote_ibfk_1
-        foreign key (group_id) references `group` (group_id)
+        foreign key (artist_id) references artist (artist_id)
 );
 
-create or replace index group_id
-    on vote (group_id);
+create or replace index artist_id
+    on vote (artist_id);
 
 # identifier is email encoded with Base64URL
 INSERT INTO `administrator` (identifier, email, firstname, surname, picture) VALUES
@@ -70,7 +70,7 @@ INSERT INTO `administrator` (identifier, email, firstname, surname, picture) VAL
 	('ZW50d2lja2xlckBnbWFpbC5jb20', 'entwickler@gmail.com', 'Entwickler', 'Mustermann', null),
 	('aGFydmV5QGdtYWlsLmNvbQ', 'harvey@gmail.com', 'Harvey', 'Mustermann', null);
 
-INSERT INTO `group` (`name`) VALUES
+INSERT INTO `artist` (`name`) VALUES
 	('Dominik Friedrich'),
 	('Alice Rose'),
 	('Der Katze & Die Hund'),
@@ -99,13 +99,13 @@ INSERT INTO `stage` (name, stage_size) VALUES
 	(6, 14.5),
 	(7, 8.8);
 
-INSERT INTO `vote` (email, group_id) VALUES
+INSERT INTO `vote` (email, artist_id) VALUES
 	('mjouaux@stud.hs-heilbronn.de ', 1),
 	('mmousa@stud.hs-heilbronn.de ', 2),
 	('ddeifel@stud.hs-heilbronn.de', 3),
 	('nholl@stud.hs-heilbronn.de ', 3);
 
-INSERT INTO `performance` (date_time, created_by, group_id, stage_id) VALUES
+INSERT INTO `performance` (date_time, created_by, artist_id, stage_id) VALUES
 	('2023-05-28 08-00-00', 'ZGVubmlzQGdtYWlsLmNvbQ', 1, 1),
 	('2023-05-28 09-00-00', 'ZGVubmlzQGdtYWlsLmNvbQ', 2, 1),
 	('2023-05-28 10-00-00', 'ZGVubmlzQGdtYWlsLmNvbQ', 3, 1),
