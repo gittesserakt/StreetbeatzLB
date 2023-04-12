@@ -108,43 +108,43 @@
 </body>-->
 
 
-<!--  <mat-grid-tile class="homeContainer1">-->
-    <div class="homeContainer1">
-    <mat-grid-list class="homeContainer1Sub" [cols]="device === 'Web' ? 2 : 1 "
-                   [rowHeight]="device === 'Web' ? '100svh' : '50svh'">
-      <mat-grid-tile class="date">
-        <div>
-          <h1 class="hDate">{{startDate.getDate()}}. - {{endDate.getDate()}}. {{month}} {{startDate.getFullYear()}}</h1>
-          <h2 class="hTime"> {{startDay}} - {{endDay}} {{startTime}} - {{endTime}} Uhr</h2>
-        </div>
-      </mat-grid-tile>
-      <mat-grid-tile class="instrument">
-        <ul>
-          <li>
-            <object class="note1" type="image/svg+xml" data="./assets/landingpageSVG/SingleNote.svg"></object>
-            <object class="note2" type="image/svg+xml" data="./assets/landingpageSVG/SingleNote.svg"></object>
-          </li>
-          <li>
-            <object class="guitar" type="image/svg+xml" data="./assets/landingpageSVG/Gitarre.svg"></object>
-          </li>
-        </ul>
-      </mat-grid-tile>
-    </mat-grid-list>
-    </div>
-<!--  </mat-grid-tile>-->
 
-<!--  <mat-grid-tile class="homeContainer2">-->
-<!--    <div class="homeContainer2Sub">-->
-      <mat-expansion-panel class="expansionPanel" expanded>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Street Music Festival Ludwigsburg
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p>{{generalInformation}}</p>
-      </mat-expansion-panel>
-<!--    </div>-->
-<!--  </mat-grid-tile>-->
+<div class="homeContainer1">
+  <mat-grid-list class="homeContainer1Sub" [cols]="device === 'Web' ? 2 : 1 "
+                 [rowHeight]="device === 'Web' ? '100svh' : '50svh'">
+    <mat-grid-tile class="date">
+      <div>
+        <h1 class="hDate" [ngStyle]="{ 'font-size': hDate + 'rem' }">{{startDate.getDate()}}. - {{endDate.getDate()}}
+          . {{month}} {{startDate.getFullYear()}}</h1>
+        <h2 class="hTime" [ngStyle]="{ 'font-size': hTime + 'rem' }"> {{startDay}} - {{endDay}} {{startTime}}
+          - {{endTime}} Uhr</h2>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile class="instrument">
+      <ul>
+        <li>
+          <object class="note1" type="image/svg+xml" data="./assets/landingpageSVG/SingleNote.svg"
+                  [ngStyle]="{'width': note1WidthHeight + 'rem', 'height': note1WidthHeight + 'rem'}"></object>
+          <object class="note2" type="image/svg+xml" data="./assets/landingpageSVG/SingleNote.svg"
+                  [ngStyle]="{'width': note2WidthHeight + 'rem', 'height': note2WidthHeight + 'rem'}"></object>
+        </li>
+        <li>
+          <object class="guitar" type="image/svg+xml" data="./assets/landingpageSVG/Gitarre.svg"
+                  [ngStyle]="{'width': guitarWidth + 'rem', 'height': guitarHeight + 'rem'}"></object>
+        </li>
+      </ul>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<mat-expansion-panel class="expansionPanel" expanded>
+  <mat-expansion-panel-header>
+    <mat-panel-title [ngStyle]="{'font-size': expansionTitle + 'rem'}">
+      Street Music Festival Ludwigsburg
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <p [ngStyle]="{'font-size': expansionText + 'rem'}">{{generalInformation}}</p>
+</mat-expansion-panel>
 
 <mat-grid-list cols="1" rowHeight="90svh" gutterSize="5rem">
   <mat-grid-tile class="homeContainer3">
@@ -200,28 +200,13 @@
   </mat-grid-tile>
 
   <mat-grid-tile class="homeContainer4">
-    <div class="innerContainer4" >
-        <h2>Bilder</h2>
-      <div class="imageSlider" style="width: 90rem; height: 35rem; margin: 0 auto">
+    <div class="innerContainer4">
+      <h1>Bilder</h1>
+      <!--style="width: 90rem; height: 35rem; margin: 0 auto"-->
+      <div class="imageSlider" [ngStyle]="{'width': imageSliderWidth+'rem', 'height': imageSliderHeight+'rem', 'margin': 0}">
         <app-image-slider [slides]="slides"></app-image-slider>
       </div>
-
     </div>
-
-
-
-
-
-    <!--<div class="images">
-      <img src="assets/bluehendesBarock/barock1.jpg" alt="Blühendes Barock Bild 1">
-      <img src="assets/bluehendesBarock/barock2.jpg" alt="Blühendes Barock Bild 2">
-      <img src="assets/streetMusicFestival/SMF1.jpg" alt="Street Music Festival Bild 1">
-      <img src="assets/streetMusicFestival/SMF2.jpg" alt="Street Music Festival Bild 2">
-      <img src="assets/streetMusicFestival/SMF3.jpg" alt="Street Music Festival Bild 3">
-      <img src="assets/streetMusicFestival/SMF4.jpg" alt="Street Music Festival Bild 4">
-      <img src="assets/streetMusicFestival/SMF5.jpg" alt="Street Music Festival Bild 5">
-      <img src="assets/streetMusicFestival/SMF6.jpg" alt="Street Music Festival Bild 6">
-    </div>-->
   </mat-grid-tile>
 
   <mat-grid-tile class="homeContainer5">

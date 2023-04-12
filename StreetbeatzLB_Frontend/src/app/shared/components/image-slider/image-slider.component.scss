@@ -1,49 +1,47 @@
-//@import './image-slider.component';
 .slide {
   width: 100%;
   height: 100%;
   border-radius: 10px;
   background-size: cover;
   background-position: center;
-  //background-color: aqua;
-  //background-image: url(#{$currentSlideUrl});
 }
 
 .rightArrow {
   position: absolute;
+  height: 100%;
+  width: 5rem;
   top: 50%;
   transform: translate(0, -50%);
-  right: 32px;
-  font-size: 45px;
-  color: #fff;
+  right: 1px;
   z-index: 1;
   cursor: pointer;
+
+  mat-icon{
+    height: 15%;
+    width: 100%;
+    font-size: 4rem;
+  }
 }
 
 .leftArrow {
   position: absolute;
+  height: 100%;
+  width: 5rem;
   top: 50%;
   transform: translate(0, -50%);
-  left: 32px;
-  font-size: 45px;
-  color: #fff;
+  left: 1px;
   z-index: 1;
   cursor: pointer;
+
+  mat-icon{
+    height: 15%;
+    width: 100%;
+    font-size: 4rem;
+  }
 }
 
 .slider {
   position: relative;
   height: 100%;
-  //background-color: red;
 }
 
-.dotsContainer {
-  display: flex;
-  justify-content: center;
-}
-
-.dot {
-  margin: 0 3px;
-  cursor: pointer;
-  font-size: 20px;
-}
