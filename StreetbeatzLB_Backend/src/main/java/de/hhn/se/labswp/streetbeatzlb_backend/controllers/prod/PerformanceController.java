@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.List;
 
 @Controller
 @RequestMapping(path="/api/performances")
@@ -18,7 +20,7 @@ public class PerformanceController {
 
   @GetMapping(path="/all")
   public @ResponseBody Iterable<Performance> getAllPerformances() {
-    return performanceRepository.findAll();
+    return sortPerformances(performanceRepository.findAll());
   }
 
   @GetMapping(path="/filtered")
@@ -29,7 +31,18 @@ public class PerformanceController {
       newTime = LocalDateTime.parse(time);
     }
 
+    return sortPerformances(PerformanceFilter.filterPerformances(performanceRepository, newTime, artist, stage));
+  }
 
-    return PerformanceFilter.filterPerformances(performanceRepository, newTime, artist, stage);
+  private Iterable<Performance> sortPerformances(Iterable<Performance> performances){
+
+    List<Performance> sortedPerformances = (List<Performance>) performances;
+
+    Comparator<Performance> startTimeComparator = Comparator.comparing(Performance::getStart_time);
+    Comparator<Performance> stageComparator = Comparator.comparing(Performance::getStage_id);
+
+    sortedPerformances.sort(startTimeComparator.thenComparing(stageComparator));
+
+    return sortedPerformances;
   }
 }
