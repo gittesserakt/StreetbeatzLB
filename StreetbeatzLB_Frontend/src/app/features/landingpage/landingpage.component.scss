@@ -239,43 +239,23 @@ mat-grid-list {
 .homeContainer3 {
   @include container2-5(3.5rem, 3.5rem, 3.5rem, 3.5rem, -10px, 0px, 18px, 12px, #000000, 180deg, 255, 193, 7, 1, 0%, 255, 111, 0, 0.24691883589373254, 100%);
   margin-top: 2rem;
-  position: relative;
+  width: 100%;
+  height: 100%;
 
-  .slideshow-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-  }
-
-  .slideshow-item {
-    display: none;
-    flex: 0 0 33.33%;
-    align-items: center;
-  }
-
-  .slideshow-item img {
-    width: 100%;
-  }
-
-  .group-details {
+  .center {
     text-align: center;
   }
 
-  .prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 24px;
-    cursor: pointer;
+  .mat-carousel-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
   }
 
-  .prev{
-    left: 0;
-  }
-
-  .next {
-    right: 0;
+  .artist-info {
+    color: white;
+    text-align: center;
   }
 }
 

@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared';
 import { LandingpageComponent } from './landingpage.component';
-import {MatGridListModule} from "@angular/material/grid-list";
-import {MatExpansionModule} from "@angular/material/expansion";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatExpansionModule } from "@angular/material/expansion";
 
 @NgModule({
   declarations: [LandingpageComponent],
@@ -17,3 +17,5 @@ import {MatExpansionModule} from "@angular/material/expansion";
   ],
 })
 export class LandingpageModule {}
+
+
