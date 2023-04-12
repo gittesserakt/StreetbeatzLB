@@ -23,13 +23,13 @@ public class PerformanceController {
 
   @GetMapping(path="/filtered")
   public @ResponseBody Iterable<Performance> getFilteredPerformances(@RequestParam String time,
-                                                                     @RequestParam int group, @RequestParam int stage) {
+                                                                     @RequestParam int artist, @RequestParam int stage) {
     LocalDateTime newTime = null;
     if(!time.equals("0")){
       newTime = LocalDateTime.parse(time);
     }
 
 
-    return PerformanceFilter.filterPerformances(performanceRepository, newTime, group, stage);
+    return PerformanceFilter.filterPerformances(performanceRepository, newTime, artist, stage);
   }
 }
