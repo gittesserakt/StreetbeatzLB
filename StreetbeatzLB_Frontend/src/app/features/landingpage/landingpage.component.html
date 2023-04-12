@@ -146,7 +146,7 @@
 <!--    </div>-->
 <!--  </mat-grid-tile>-->
 
-<mat-grid-list cols="1" rowHeight="100svh">
+<mat-grid-list cols="1" rowHeight="90svh" gutterSize="5rem">
   <mat-grid-tile class="homeContainer3">
     <!--<div class="slideshow-container">
       <div class="slideshow-item">
@@ -200,8 +200,19 @@
   </mat-grid-tile>
 
   <mat-grid-tile class="homeContainer4">
-    <h2>Bilder</h2>
-    <div class="images">
+    <div class="innerContainer4" >
+        <h2>Bilder</h2>
+      <div class="imageSlider" style="width: 90rem; height: 35rem; margin: 0 auto">
+        <app-image-slider [slides]="slides"></app-image-slider>
+      </div>
+
+    </div>
+
+
+
+
+
+    <!--<div class="images">
       <img src="assets/bluehendesBarock/barock1.jpg" alt="Blühendes Barock Bild 1">
       <img src="assets/bluehendesBarock/barock2.jpg" alt="Blühendes Barock Bild 2">
       <img src="assets/streetMusicFestival/SMF1.jpg" alt="Street Music Festival Bild 1">
@@ -210,20 +221,20 @@
       <img src="assets/streetMusicFestival/SMF4.jpg" alt="Street Music Festival Bild 4">
       <img src="assets/streetMusicFestival/SMF5.jpg" alt="Street Music Festival Bild 5">
       <img src="assets/streetMusicFestival/SMF6.jpg" alt="Street Music Festival Bild 6">
-    </div>
+    </div>-->
   </mat-grid-tile>
 
   <mat-grid-tile class="homeContainer5">
     <h2>Veranstalter, Sponsoren & Partner des Street Music Festivals</h2>
     <div class="innerContainer5">
       <div class="row">
-        <div class="sponsor-logo">
+        <div class="sponsor-logo-rectangle">
           <img src="assets/companyLogo/Sparda_Bank_logo.png" alt="Logo der Sparda Bank">
         </div>
-        <div class="sponsor-logo">
+        <div class="sponsor-logo-rectangle">
           <img src="assets/companyLogo/blueba_logo.png" alt="Logo des Blühenden Barocks">
         </div>
-        <div class="sponsor-logo">
+        <div class="sponsor-logo-rectangle">
           <img src="assets/companyLogo/RZ_logo.png" alt="Logo von Pulsmacher">
         </div>
       </div>

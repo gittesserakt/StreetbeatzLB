@@ -1,0 +1,7 @@
+<div class="slider">
+  <div>
+    <div class="leftArrow" (click)="prev()"><-</div>
+    <div class="rightArrow" (click)="next()">-></div>
+  </div>
+  <div class="slide" [ngStyle]="{'background-image': getCurrentSlideUrl()}"></div>
+</div>

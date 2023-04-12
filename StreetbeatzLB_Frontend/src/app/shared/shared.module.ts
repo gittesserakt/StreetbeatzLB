@@ -8,13 +8,15 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatListModule} from "@angular/material/list";
 import { MobileComponent } from './components/navbar/mobile/mobile.component';
 import { DesktopComponent } from './components/navbar/desktop/desktop.component';
+import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
     MobileComponent,
-    DesktopComponent
+    DesktopComponent,
+    ImageSliderComponent
   ],
   imports: [
     CommonModule,

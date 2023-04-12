@@ -1,5 +1,6 @@
 import {Component, ElementRef} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {SlideInterface} from "../../shared/components/image-slider/types/slide.interface";
 
 function getStringDay(date: Date): String {
   let day = ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."];
@@ -74,4 +75,13 @@ export class LandingpageComponent {
   }
 
   //endregion
+
+  slides: SlideInterface[] = [
+    {url: '/assets/streetMusicFestival/SMF1.jpg', title: '1'},
+    {url: '/assets/streetMusicFestival/SMF2.jpg', title: '2'},
+    {url: '/assets/streetMusicFestival/SMF3.jpg', title: '3'},
+    {url: '/assets/streetMusicFestival/SMF4.jpg', title: '4'},
+    {url: '/assets/streetMusicFestival/SMF5.jpg', title: '5'},
+    {url: '/assets/streetMusicFestival/SMF6.jpg', title: '6'}
+  ];
 }

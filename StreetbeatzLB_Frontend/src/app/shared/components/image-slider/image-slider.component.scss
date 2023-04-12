@@ -1,0 +1,49 @@
+//@import './image-slider.component';
+.slide {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  //background-color: aqua;
+  //background-image: url(#{$currentSlideUrl});
+}
+
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 32px;
+  font-size: 45px;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.leftArrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 32px;
+  font-size: 45px;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.slider {
+  position: relative;
+  height: 100%;
+  //background-color: red;
+}
+
+.dotsContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  margin: 0 3px;
+  cursor: pointer;
+  font-size: 20px;
+}
