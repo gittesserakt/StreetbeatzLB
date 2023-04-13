@@ -6,11 +6,10 @@
 
 /* Defines the footer area. */
 .footer{
-  background-color: var(--main-brand-color);
+  //background-color: var(--main-brand-color);
   max-width: 100%;
-  margin: auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap;  //essential for mobile view
 }
 
 /* Defines that lists are displayed without bullets. */
@@ -20,7 +19,7 @@ ul{
 
 /* Defines the appearance of columns in the footer area */
 .footer-col{
-  width: 25%;
+  width: (100% / 4);
   padding: 0 15px;
 }
 
@@ -82,13 +81,9 @@ ul{
     }
 }
 
-/*  This is a media query that applies styles to the `.footer-col` class when the maximum width of the viewport
-    is 800px or less. It changes the width of the columns to 50%, adds a bottom margin of 30px,
-    and a left margin of 10px. This is done to adjust the layout of the footer for smaller screens,
-    making it more responsive and easier to read. */
 @media(max-width: 800px) {
   .footer{
-    border-top: 1px solid black;
+    //border-top: 1px solid black;
   }
 
   .footer-col{

@@ -108,7 +108,6 @@
 </body>-->
 
 
-
 <div class="homeContainer1">
   <mat-grid-list class="homeContainer1Sub" [cols]="device === 'Web' ? 2 : 1 "
                  [rowHeight]="device === 'Web' ? '100svh' : '50svh'">
@@ -146,9 +145,10 @@
   <p [ngStyle]="{'font-size': expansionText + 'rem'}">{{generalInformation}}</p>
 </mat-expansion-panel>
 
-<mat-grid-list cols="1" rowHeight="90svh" gutterSize="5rem">
-  <mat-grid-tile class="homeContainer3">
-    <!--<div class="slideshow-container">
+<mat-grid-list cols="1">
+</mat-grid-list>
+  <!--<mat-grid-tile class="homeContainer3">
+    <div class="slideshow-container">
       <div class="slideshow-item">
         <div class="slideshow-item">
           <img src="assets/bluehendesBarock/barock1.jpg" alt="group1">
@@ -195,11 +195,11 @@
       </div>
     </div>
     <a class="prev">&#10094;</a>
-    <a class="next">&#10095;</a>-->
+    <a class="next">&#10095;</a>
 
-  </mat-grid-tile>
+  </mat-grid-tile>-->
 
-  <mat-grid-tile class="homeContainer4">
+  <div class="homeContainer4">
     <div class="innerContainer4">
       <h1>Bilder</h1>
       <!--style="width: 90rem; height: 35rem; margin: 0 auto"-->
@@ -207,64 +207,66 @@
         <app-image-slider [slides]="slides"></app-image-slider>
       </div>
     </div>
-  </mat-grid-tile>
+  </div>
 
-  <mat-grid-tile class="homeContainer5">
+  <div class="homeContainer5">
     <div class="innerContainer5">
       <h1>Veranstalter, Sponsoren & Partner des Street Music Festivals</h1>
-      <div class="row2">
-        <div class="sponsor-logo rec-logo">
+      <div class="row">
+        <div class="sponsor-logo">
           <a href="https://www.sparda-bw.de/">
             <img src="assets/companyLogo/Sparda_Bank_logo.png" alt="Logo der Sparda Bank">
           </a>
         </div>
-        <div class="sponsor-logo rec-logo blueba">
+        <div class="sponsor-logo blueba">
           <a href="https://www.blueba.de/de/">
             <img src="assets/companyLogo/blueba_logo.png" alt="Logo des Blühenden Barocks">
           </a>
         </div>
-        <div class="sponsor-logo rec-logo">
+        <div class="sponsor-logo">
           <a href="https://pulsmacher.de/">
             <img src="assets/companyLogo/RZ_logo.png" alt="Logo von Pulsmacher">
           </a>
         </div>
-        <div class="sponsor-logo rec-logo">
+        <div class="sponsor-logo">
           <a href="https://www.energy.de/stuttgart">
             <img src="assets/companyLogo/Energy_Logo.png" alt="Logo von Energy">
           </a>
         </div>
       </div>
-      <div class="row2">
-        <div class="sponsor-logo rec-logo">
+      <div class="row">
+        <div class="sponsor-logo">
           <a href="https://www.rothaus.de/">
             <img src="assets/companyLogo/rothaus_logo.png" alt="Logo von Rothaus">
           </a>
         </div>
-        <div class="sponsor-logo rec-logo">
+        <div class="sponsor-logo">
           <a href="https://www.lautmacher.com/">
             <img src="assets/companyLogo/Lautmacher_Logo.png" alt="Logo von Lautmacher">
           </a>
         </div>
-        <div class="sponsor-logo rec-logo">
+        <div class="sponsor-logo">
           <a href="https://www.go-control.de/">
             <img src="assets/companyLogo/Go_Control_Logo.png" alt="Logo von Go.Control">
           </a>
         </div>
-        <div class="sponsor-logo rec-logo">
+        <div class="sponsor-logo">
           <a href="https://www.lkz.de/">
             <img src="assets/companyLogo/kreiszeitung_logo.png" alt="Logo von der Ludwigsburger Kreiszeitung">
           </a>
         </div>
       </div>
     </div>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <div>
+  </div>
+  <!--<mat-grid-tile>
+    <div class="homeFooter">
       <app-footer></app-footer>
     </div>
-  </mat-grid-tile>
+  </mat-grid-tile>-->
 
-</mat-grid-list>
-<!--<mat-grid-tile-footer>
-  <app-footer></app-footer>
-</mat-grid-tile-footer>-->
+
+<div class="homeFooter">
+  <div class="innerFooter">
+    <app-footer></app-footer>
+  </div>
+</div>
