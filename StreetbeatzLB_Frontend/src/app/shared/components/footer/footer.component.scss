@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-/* Defines the footer area. */
 .footer{
   //background-color: var(--main-brand-color);
   max-width: 100%;
@@ -12,12 +11,10 @@
   flex-wrap: wrap;  //essential for mobile view
 }
 
-/* Defines that lists are displayed without bullets. */
 ul{
   list-style: none;
 }
 
-/* Defines the appearance of columns in the footer area */
 .footer-col{
   width: (100% / 4);
   padding: 0 15px;
@@ -81,6 +78,7 @@ ul{
     }
 }
 
+// region Media Query
 @media(max-width: 800px) {
   .footer{
     //border-top: 1px solid black;
@@ -97,3 +95,4 @@ ul{
     margin-bottom: 15px;
   }
 }
+//endregion
