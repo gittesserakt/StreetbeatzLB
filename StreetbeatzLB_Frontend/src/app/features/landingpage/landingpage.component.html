@@ -135,8 +135,8 @@
   </mat-grid-list>
 </div>
 
-<mat-expansion-panel class="expansionPanel" expanded>
-  <mat-expansion-panel-header>
+<mat-expansion-panel class="expansionPanel" [ngClass]="{'collapsed': !expanded}">
+  <mat-expansion-panel-header (click)="expanded = !expanded">
     <mat-panel-title [ngStyle]="{'font-size': expansionTitle + 'rem'}">
       Street Music Festival Ludwigsburg
     </mat-panel-title>

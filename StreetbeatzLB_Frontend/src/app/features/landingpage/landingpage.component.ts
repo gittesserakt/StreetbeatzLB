@@ -27,6 +27,7 @@ export class LandingpageComponent {
   startTime: Number = 18;
   endTime: Number = 23;
   //endregion
+
   //region generalInformationVariable
   generalInformation: String = "Musik aus der ganzen Welt in einer einzigartigen Kulisse, hochkarätige Musiker:innen " +
     "auf elf Bühnen, ein vielfältiges kulinarisches Angebot und viele besondere Momente für kleine und große Besucher: " +
@@ -42,6 +43,7 @@ export class LandingpageComponent {
     "Abschlusskonzert auf der Hauptbühne. \n\n Auch in diesem Jahr spielen alle Künstler:innen ohne Honorar und freuen " +
     "sich über das obligatorische „Hutgeld“ und CD-Verkäufe.";
   //endregion
+
   //region responsiveVariables
   device: string | undefined;
   displayMap = new Map([
@@ -50,6 +52,7 @@ export class LandingpageComponent {
     [Breakpoints.WebLandscape, 'Web']
   ]);
   //endregion
+
   //region landingpageVariables
   hDate: number | undefined;
   hTime: number | undefined;
@@ -61,6 +64,7 @@ export class LandingpageComponent {
   imageSliderHeight: number  | undefined;
   expansionTitle: number | undefined;
   expansionText: number | undefined;
+  expanded = false;
   //endregion
 
   //region Observer
@@ -106,6 +110,7 @@ export class LandingpageComponent {
 
   //endregion
 
+  //region SlideInterface
   slides: SlideInterface[] = [
     {url: '/assets/streetMusicFestival/SMF1.jpg', title: '1'},
     {url: '/assets/streetMusicFestival/SMF2.jpg', title: '2'},
@@ -114,4 +119,5 @@ export class LandingpageComponent {
     {url: '/assets/streetMusicFestival/SMF5.jpg', title: '5'},
     {url: '/assets/streetMusicFestival/SMF6.jpg', title: '6'}
   ];
+  //endregion
 }

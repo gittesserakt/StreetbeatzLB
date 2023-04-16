@@ -83,7 +83,14 @@ mat-grid-list {
 .expansionPanel {
   margin-top: 2rem;
   margin-bottom: 2rem;
+  padding-top:  1rem;
   @include container2-5(2rem, 2rem, 2rem, 2rem, 180deg, 255, 193, 7, 1, 0%, 255, 111, 0, 0.24691883589373254, 100%);
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+
+.expansionPanel.collapsed {
+  padding-bottom: 1rem;
 }
 
 p {
@@ -121,7 +128,7 @@ p {
 .homeContainer4 {
   @include container2-5(2rem, 2rem, 2rem, 2rem, 180deg, 255, 193, 7, 1, 0%, 255, 111, 0, 0.24691883589373254, 100%);
   width: 100%;
-  padding: 10px;
+  padding-bottom: 1rem;
   display: flex;
   justify-content: center;
 
@@ -134,7 +141,7 @@ p {
 
 //region homeContainer5 (Sponsor)
 .homeContainer5 {
-  @include container2-5(2rem, 2rem, 0rem, 0rem, 180deg, 255, 193, 7, 1, 0%, 255, 111, 0, 0.24691883589373254, 100%);
+  @include container2-5(2rem, 2rem, 2rem, 2rem, 180deg, 255, 193, 7, 1, 0%, 255, 111, 0, 0.24691883589373254, 100%);
   margin-top: 5%;
   padding-bottom: 5%;
 
