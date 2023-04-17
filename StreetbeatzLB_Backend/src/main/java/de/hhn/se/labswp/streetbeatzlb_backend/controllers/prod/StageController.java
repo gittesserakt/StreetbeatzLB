@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/api/stage")
+@RequestMapping(path="/api/stages")
 @CrossOrigin(origins = "*")
 public class StageController {
     @Autowired

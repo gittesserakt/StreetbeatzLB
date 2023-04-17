@@ -43,6 +43,26 @@ public class PerformanceController {
     return sortPerformances(PerformanceFilter.filterPerformances(performanceRepository, newTime, artist, stage));
   }
 
+  @GetMapping(path="/delete")
+  public @ResponseBody void deletePerformance(@RequestParam int performanceID) {
+    performanceRepository.deleteById(performanceID);
+  }
+
+  @GetMapping(path="/add")
+  public @ResponseBody Performance addPerformance(@RequestParam String start_time, @RequestParam String end_time,
+                                                  @RequestParam String created_by, @RequestParam Long artist_id,
+                                                  @RequestParam Long stage_id) {
+
+    Performance performance = new Performance();
+    performance.setStart_time(LocalDateTime.parse(start_time));
+    performance.setEnd_time(LocalDateTime.parse(end_time));
+    performance.setCreated_by(created_by);
+    performance.setArtist_id(artist_id);
+    performance.setStage_id(stage_id);
+
+    return performanceRepository.save(performance);
+  }
+
   private Iterable<Performance> sortPerformances(Iterable<Performance> performances){
     List<Artist> artists = (List<Artist>) artistRepository.findAll();
 
