@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/api/artist")
+@RequestMapping(path="/api/artists")
 @CrossOrigin(origins = "*")
 public class ArtistController {
     @Autowired
