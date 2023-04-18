@@ -1,10 +1,12 @@
 export class VerbosePerformance {
-  date_time: string;
+  start_time: string;
+  end_time: string;
   artist: string;
   stage: string;
 
     constructor() {
-      this.date_time = '';
+      this.start_time = '';
+      this.end_time = '';
       this.artist = '';
       this.stage = '';
     }
