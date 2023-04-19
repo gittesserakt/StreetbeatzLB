@@ -2,24 +2,25 @@
   position: fixed;
   z-index: 2;
 
-  .logo{
-    max-height: 3.5rem;
-    max-width: 3.5rem;
-    text-align: center;
-  }
+  .logoTitle{
+    display: flex;
+    text-decoration: none;
 
-  .title{
-    max-height: 1.8rem;
-    text-align: center;
-    margin-left: 0.7rem;
-
-    //font-family: 'Teko', sans-serif !important;
+    .logo{
+      height: 3.5rem;
+      width: 3.5rem;
+      text-align: center;
+    }
+    .title{
+      margin-left: 0.7rem;
+      margin-top: 0.7rem;
+      color: white;
+    }
   }
 
   .example-spacer {
     flex: 1 1 auto;
   }
-
   .list {
     list-style: none;
     display: flex;
