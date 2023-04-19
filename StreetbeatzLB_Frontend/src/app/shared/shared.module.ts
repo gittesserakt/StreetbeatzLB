@@ -9,6 +9,7 @@ import {MatListModule} from "@angular/material/list";
 import { MobileComponent } from './components/navbar/mobile/mobile.component';
 import { DesktopComponent } from './components/navbar/desktop/desktop.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
+import {RouterLink} from "@angular/router";
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
     MatSidenavModule,
     MatButtonModule,
     MatListModule,
+    RouterLink,
   ],
   exports: [
     ...COMPONENTS
