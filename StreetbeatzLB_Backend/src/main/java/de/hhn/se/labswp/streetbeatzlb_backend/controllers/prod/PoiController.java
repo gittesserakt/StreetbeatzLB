@@ -16,12 +16,12 @@ public class PoiController {
     private PoiRepository poiRepository;
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Poi> getAllStages() {
+    public @ResponseBody Iterable<Poi> getAllPOIs() {
         return poiRepository.findAll();
     }
 
     @GetMapping(path="/poiByID")
-    public @ResponseBody Optional<Poi> getStageByID(@RequestParam int poiID) {
+    public @ResponseBody Optional<Poi> getPOIByID(@RequestParam int poiID) {
         return poiRepository.findById(poiID);
     }
 }
