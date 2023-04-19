@@ -1,7 +1,9 @@
-import {Component, OnInit, OnDestroy, ElementRef, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import * as Leaflet from 'leaflet';
 import {interval, Subscription} from "rxjs";
 import {MatToolbar} from "@angular/material/toolbar";
+import {PoiService} from "../../core/services/poi.service";
+import {Poi} from "../../core/models/poi.model";
 
 Leaflet.Icon.Default.imagePath = 'assets/'
 
@@ -14,17 +16,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
   @ViewChild ('toolbar', {static: true}) toolbar!: MatToolbar;
   contentHeight!: number;
-  navHeight!: number;
-
-  ngAfterContentViewInit() {
-    this.navHeight = this.toolbar._elementRef.nativeElement.offsetHeight;
-    this.contentHeight = window.innerHeight - this.navHeight;
-    /*
-     [style.height.px]="contentHeight"
-     [style.margin-top.px]="navHeight"
-     */
-  }
-
 
   position?: GeolocationPosition;
   subscription: Subscription;
@@ -51,28 +42,55 @@ export class MapComponent implements OnInit, OnDestroy {
     shadowSize: [41, 41]
   });
 
-  constructor(private renderer: Renderer2, private el: ElementRef) {
-    this.deviceMarker = new Leaflet.Marker([0, 0],{icon: this.iconPerson});
+  navHeight!: number;
+
+  ngAfterContentViewInit() {
+    this.navHeight = this.toolbar._elementRef.nativeElement.offsetHeight;
+    this.contentHeight = window.innerHeight - this.navHeight;
+    /*
+     [style.height.px]="contentHeight"
+     [style.margin-top.px]="navHeight"
+     */
+  }
+
+  pois!: Poi[];
+
+  constructor(private renderer: Renderer2, private el: ElementRef, private poiService: PoiService) {
+    this.deviceMarker = new Leaflet.Marker([0, 0], {icon: this.iconPerson});
     const source = interval(1000);
-    this.subscription = source.subscribe(x => {
+    this.subscription = source.subscribe(() => {
       this.getDeviceLocation();
       if (this.position) {
         this.deviceMarker?.setLatLng([this.position.coords.latitude, this.position.coords.longitude]);
       }
       this.setDeviceMarker();
       this.deviceMarker?.addTo(this.map)
-      if(this.followPosition){
+      if (this.followPosition) {
         this.panToDevicePosition();
       }
     });
+    this.getAllPois();
   }
+  private getAllPois(){
+    this.poiService.getAllPois().subscribe((response) => {
+      const {data, error} = response;
 
+      if (data) {
+        this.pois = data as Poi[];
+        console.log(this.pois.length);
+      }
+
+      if(error){
+        console.log(error)
+      }
+    });
+  }
   getButtonColor(): "accent" | "primary" {
     return this.followPosition ? 'accent' : 'primary';
   }
 
   toggleButtonChanged(): void {
-    this.followPosition = this.followPosition ? false : true;
+    this.followPosition = !this.followPosition;
   }
 
   private setDeviceMarker() {
@@ -104,7 +122,7 @@ export class MapComponent implements OnInit, OnDestroy {
   getDeviceLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((x) => this.position = x,
-        (y) => alert("Denied access to your location"));
+        () => alert("Denied access to your location"));
     } else {
       alert("Geolocation is not supported by this browser.");
     }
