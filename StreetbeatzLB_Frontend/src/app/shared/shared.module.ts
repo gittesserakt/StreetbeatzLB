@@ -1,6 +1,7 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import { COMPONENTS } from './components';
+import {MatCardModule} from "@angular/material/card";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -21,6 +22,7 @@ import {RouterLink} from "@angular/router";
   ],
   imports: [
     CommonModule,
+    MatCardModule,
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
