@@ -1,13 +1,13 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {VerbosePerformanceService} from "../../core";
 import {VerbosePerformance} from "../../core/models/verbosePerformance";
 
 @Component({
-  selector: 'app-messages',
+  selector: 'app-performances',
   templateUrl: './performances.component.html',
   styleUrls: ['./performances.component.scss']
 })
-export class PerformancesComponent {
+export class PerformancesComponent implements OnInit{
   verbosePerformances?: VerbosePerformance[];
 
   constructor(private verbosePerformanceService: VerbosePerformanceService) {
@@ -17,6 +17,7 @@ export class PerformancesComponent {
     this.verbosePerformanceService.getAllVerbosePerformances()
       .subscribe((response) => {
         const {data, error} = response;
+        console.log('verbosePerformances', response);
 
         if (data) {
           this.verbosePerformances = data as VerbosePerformance[];
@@ -29,6 +30,7 @@ export class PerformancesComponent {
   }
 
   ngOnInit(): void {
+    console.log("performances component init");
     this.getAllPerformances();
   }
 

@@ -7,21 +7,23 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {MatListModule} from "@angular/material/list";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
   ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatListModule,
-  ],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatListModule,
+        MatGridListModule,
+    ],
   exports: [
     ...COMPONENTS
   ]
