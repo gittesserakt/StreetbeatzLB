@@ -29,19 +29,13 @@ export class LandingpageComponent {
   //endregion
 
   //region generalInformationVariable
-  generalInformation: String = "Musik aus der ganzen Welt in einer einzigartigen Kulisse, hochkarätige Musiker:innen " +
-    "auf elf Bühnen, ein vielfältiges kulinarisches Angebot und viele besondere Momente für kleine und große Besucher: " +
-    "Das ist das Internationale Straßenmusikfestival Ludwigsburg, das am Pfingstwochenende vom 26. bis 28. Mai 2023 im " +
-    "Blühenden Barock in Ludwigsburg stattfindet. \n\n Über 30 Straßenmusiker:innen und -bands aus allen Teilen der Welt " +
-    "präsentieren ein buntes musikalisches Programm – von Singer/Songwriter und Rock/Pop über Latin und Klezmer bis " +
-    "HipHop und Country. Wie in jedem Jahr besteht das Line-Up in etwa zur Hälfte aus Publikumslieblingen, die schon " +
-    "einmal beim Straßenmusikfestival in Ludwigsburg gespielt haben, und zur Hälfte aus neuen Musiker:innen. \n\n Von " +
-    "Freitag bis Sonntag spielen alle Musiker:innen und Bands täglich von 18 bis 23 Uhr auf den zwölf Bühnen, die über " +
-    "das gesamte Gelände des Blühenden Barock verteilt sind – von der großen Hauptbühne vor dem Schloss bis zum " +
-    "gemütlichen Pavillon mitten im Park. Mit ausliegenden Stimmkarten und auf der Website können die Besucher:innen " +
-    "ihre Lieblingsmusiker:innen wählen – die mit den meisten Stimmen spielen am Sonntagabend ab 21.30 Uhr beim großen " +
-    "Abschlusskonzert auf der Hauptbühne. \n\n Auch in diesem Jahr spielen alle Künstler:innen ohne Honorar und freuen " +
-    "sich über das obligatorische „Hutgeld“ und CD-Verkäufe.";
+  generalInformation: String = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   \n" +
+    "\n" +
+    "Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   \n" +
+    "\n" +
+    "Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   \n" +
+    "\n" +
+    "Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer";
   //endregion
 
   //region responsiveVariables
@@ -112,12 +106,10 @@ export class LandingpageComponent {
 
   //region SlideInterface
   slides: SlideInterface[] = [
-    {url: '/assets/streetMusicFestival/SMF1.jpg', title: '1'},
-    {url: '/assets/streetMusicFestival/SMF2.jpg', title: '2'},
-    {url: '/assets/streetMusicFestival/SMF3.jpg', title: '3'},
-    {url: '/assets/streetMusicFestival/SMF4.jpg', title: '4'},
-    {url: '/assets/streetMusicFestival/SMF5.jpg', title: '5'},
-    {url: '/assets/streetMusicFestival/SMF6.jpg', title: '6'}
+    {url: '/assets/copyrightFree/copyrightFree-1.jpg', title: '1'},
+    {url: '/assets/copyrightFree/copyrightFree-2.jpg', title: '2'},
+    {url: '/assets/copyrightFree/copyrightFree-3.jpg', title: '3'},
+    {url: '/assets/copyrightFree/copyrightFree-4.jpg', title: '4'},
   ];
   //endregion
 }
