@@ -14,7 +14,7 @@ export class StageService {
 
   getStageById = (stage_id : number): Observable<ApiResponseModel> => {
     const config: RequestConfigModel = {
-      url: `${env.api.serverUrl}/stage/stage_id=${stage_id}`,
+      url: `${env.api.serverUrl}/stages/stageByID?stageID=${stage_id}`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

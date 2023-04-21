@@ -1,10 +1,26 @@
-<mat-card>
-  <mat-card-title>{{ performance.artist }}</mat-card-title>
-  <mat-card-content>
-    <p><strong>Stage:</strong> {{ performance.stage }}</p>
-    <p><strong>Performance Time:</strong> {{ performance.date_time }}</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="showLocation()">Show Location</button>
-  </mat-card-actions>
-</mat-card>
+<div class="performance-tile-wrapper">
+  <div class="left-column">
+    <div class="stage">
+      <p><strong>{{ performance.stage }}</strong></p>
+    </div>
+  </div>
+  <div class="middle-column">
+    <div class="description">
+      <div class="artist">
+        <strong>{{ performance.artist }}</strong>
+      </div>
+      <div class="time">
+        <p>{{ performance.start_time | date: 'EEEE, dd.MM.yy' }}</p>
+        <p>{{ performance.start_time | date: 'shortTime' }} - {{ performance.end_time | date: 'shortTime' }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="right-column">
+    <div class="navigate">
+      <button mat-fab color="primary" (click)="showLocation()">
+        <mat-icon>map</mat-icon>
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
