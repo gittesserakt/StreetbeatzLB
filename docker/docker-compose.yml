@@ -3,7 +3,7 @@ services:
     mariadb:
         build:
             context: .
-            dockerfile: dev.dockerfile
+            dockerfile: mariadb.dockerfile
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: SM3ax4EhhWFkXW
@@ -12,3 +12,19 @@ services:
             MYSQL_PASSWORD: streetbeatzlb
         ports:
             - 3306:3306
+
+    tomcat:
+        build:
+            context: .
+            dockerfile: tomcat.dockerfile
+        restart: always
+        ports:
+            - 8080:8080
+
+    nginx:
+        build:
+            context: .
+            dockerfile: nginx.dockerfile
+        restart: always
+        ports:
+            -   80:4200
