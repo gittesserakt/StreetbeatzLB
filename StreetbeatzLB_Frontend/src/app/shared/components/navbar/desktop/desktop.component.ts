@@ -1,13 +1,13 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-mobile',
-  templateUrl: './navbar-mobile.component.html',
-  styleUrls: ['./navbar-mobile.component.scss']
+  selector: 'app-desktop',
+  templateUrl: './desktop.component.html',
+  styleUrls: ['./desktop.component.scss']
 })
-export class NavbarMobileComponent implements OnInit {
+export class DesktopComponent implements OnInit {
   @Input() navbarHeight: number = 64;
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {

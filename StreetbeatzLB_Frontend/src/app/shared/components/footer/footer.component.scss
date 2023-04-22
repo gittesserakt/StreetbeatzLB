@@ -5,18 +5,10 @@
 }
 
 .footer{
-  background-color: var(--main-brand-color);
-  padding: 50px 0;
-}
-
-.container{
-  max-width: 1300px;
-  margin: auto;
-}
-
-.row{
+  //background-color: var(--main-brand-color);
+  max-width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap;  //essential for mobile view
 }
 
 ul{
@@ -24,7 +16,7 @@ ul{
 }
 
 .footer-col{
-  width: 25%;
+  width: (100% / 4);
   padding: 0 15px;
 }
 
@@ -58,6 +50,7 @@ ul{
   text-decoration: none;
   display: block;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .footer-col ul li a:hover{
@@ -66,12 +59,12 @@ ul{
 }
 
 .smf{
-  width: 225px;
-  height: 64px;
+  width: 80%;
   margin-top: 50px;
+  transition: all 0.2s ease-in-out;
     &:hover{
       opacity: 0.7;
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 }
 
@@ -80,15 +73,27 @@ ul{
   width: 32px;
   height: 32px;
   border-radius: 20%;
+  transition: all 0.2s ease-in-out;
     &:hover{
-      transform: scale(1.1);
+      transform: scale(1.2);
     }
 }
 
+// region Media Query
 @media(max-width: 800px) {
+  .footer{
+    //border-top: 1px solid black;
+  }
+
   .footer-col{
-    width: 50%;
+    width: 100%;
     margin-bottom: 30px;
-    margin-left: 10px;
+    text-align: center;
+  }
+
+  .footer-col h4{
+    margin-top: 35px;
+    margin-bottom: 15px;
   }
 }
+//endregion

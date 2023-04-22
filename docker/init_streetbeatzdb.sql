@@ -25,7 +25,7 @@ create or replace table poi
     icon      varchar(255) null,
     poi_type  int          null,
     latitude  double       not null,
-    longitude double       null
+    longitude double       not null
 );
 
 create or replace table stage

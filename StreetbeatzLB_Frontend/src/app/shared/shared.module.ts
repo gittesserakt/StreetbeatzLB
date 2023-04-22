@@ -8,26 +8,25 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {MatListModule} from "@angular/material/list";
 import {MatGridListModule} from "@angular/material/grid-list";
-import { FilterDesktopComponent } from './components/filter/filter-desktop/filter-desktop.component';
-import { FilterMobileComponent } from './components/filter/filter-mobile/filter-mobile.component';
-
+import { ImageSliderComponent } from './components/image-slider/image-slider.component';
+import {RouterLink} from "@angular/router";
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
-    FilterDesktopComponent,
-    FilterMobileComponent,
+    ImageSliderComponent,
   ],
-    imports: [
-        CommonModule,
-        MatCardModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatListModule,
-        MatGridListModule,
-    ],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatListModule,
+    RouterLink,
+    MatGridListModule,
+  ],
   exports: [
     ...COMPONENTS
   ]

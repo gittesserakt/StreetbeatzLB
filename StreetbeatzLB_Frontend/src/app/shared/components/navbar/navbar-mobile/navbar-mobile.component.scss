@@ -1,3 +1,7 @@
+mat-toolbar {
+  height: var(--navbar-height) !important;
+}
+
 .navbar{
   position: fixed;
   z-index: 2;
@@ -13,21 +17,10 @@
     }
   }
 
-  .title{
-    max-height: 1.8rem;
-    text-align: center;
-    margin-left: 0.4rem;
-  }
-
-  /*.example-spacer {
-    flex: 1 1 auto;
-  }*/
-
-  .logo{
-    max-height: 50px;
-    max-width: 50px;
-    text-align: center;
-    margin: 5px;
+  a{
+    text-decoration: none;
+    font-family: "Teko", sans-serif;
+    padding-top: 0.5rem;
   }
 }
 
