@@ -20,7 +20,7 @@ public class ArtistController {
     }
 
     @GetMapping(path="/artistByID")
-    public @ResponseBody Optional<Artist> getArtistByID(@RequestParam int artistID) {
-        return artistRepository.findById(artistID);
+    public @ResponseBody Optional<Artist> getArtistByID(@RequestParam int artist_id) {
+        return artistRepository.findById(artist_id);
     }
 }
