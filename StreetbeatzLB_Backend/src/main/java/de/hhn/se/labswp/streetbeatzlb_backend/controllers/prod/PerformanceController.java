@@ -5,6 +5,7 @@ import de.hhn.se.labswp.streetbeatzlb_backend.models.ArtistRepository;
 import de.hhn.se.labswp.streetbeatzlb_backend.models.Performance;
 import de.hhn.se.labswp.streetbeatzlb_backend.models.PerformanceFilter;
 import de.hhn.se.labswp.streetbeatzlb_backend.models.PerformanceRepository;
+import de.hhn.se.labswp.streetbeatzlb_backend.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -28,6 +29,12 @@ public class PerformanceController {
   @Autowired
   private ArtistRepository artistRepository;
 
+  @Autowired
+  private StageRepository stageRepository;
+
+  @Autowired
+  private ArtistRepository artistRepository;
+
   @GetMapping(path="/all")
   public @ResponseBody Iterable<Performance> getAllPerformances() {
     return sortPerformances(performanceRepository.findAll());
@@ -38,14 +45,16 @@ public class PerformanceController {
     return performanceRepository.findById(performance_id);
   }
 
-  @GetMapping(path="/filtered")
-  public @ResponseBody Iterable<Performance> getFilteredPerformances(@RequestParam String time,
+  @GetMapping(path="/filteredByID")
+  public @ResponseBody Iterable<Performance> getFilteredPerformancesByID(@RequestParam String time,
                                                                      @RequestParam int artist, @RequestParam int stage) {
     LocalDateTime newTime = null;
     if(!time.equals("0")){
       newTime = LocalDateTime.parse(time);
     }
 
+    return PerformanceFilter.filterPerformancesByID(performanceRepository, newTime, artist, stage);
+  }
     return sortPerformances(PerformanceFilter.filterPerformances(performanceRepository, newTime, artist, stage));
   }
 
@@ -69,6 +78,15 @@ public class PerformanceController {
     return performanceRepository.save(performance);
   }
 
+  @GetMapping(path="/filteredByName")
+  public @ResponseBody Iterable<Performance> getFilteredPerformancesByName(@RequestParam String time,
+                                                                     @RequestParam String artist, @RequestParam String stage) {
+    LocalDateTime newTime = null;
+    if(!time.equals("0")){
+      newTime = LocalDateTime.parse(time);
+    }
+
+    return PerformanceFilter.filterPerformancesByName(performanceRepository, artistRepository, stageRepository, newTime, artist, stage);
   @GetMapping(path="/edit")
   public @ResponseBody Performance editPerformance(@RequestParam Integer performance_id,
                                                    @RequestParam String start_time, @RequestParam String end_time,

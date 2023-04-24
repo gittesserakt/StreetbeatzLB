@@ -24,4 +24,21 @@ public class StageController {
     public @ResponseBody Optional<Stage> getStageByID(@RequestParam int stage_id) {
         return stageRepository.findById(stage_id);
     }
+
+    @GetMapping(path="/stageByName")
+    public @ResponseBody Optional<Stage> getStageByName(@RequestParam String stage) {
+
+        Iterable<Stage> stages = stageRepository.findAll();
+
+        int stageID = 0;
+
+        for(Stage currentStage : stages) {
+            if(currentStage.getName().equals(stage)){
+                stageID = Math.toIntExact(currentStage.getStage_id());
+                break;
+            }
+        }
+
+        return stageRepository.findById(stageID);
+    }
 }
