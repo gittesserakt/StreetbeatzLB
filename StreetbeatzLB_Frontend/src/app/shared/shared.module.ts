@@ -12,6 +12,9 @@ import { DesktopComponent } from './components/navbar/desktop/desktop.component'
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import {RouterLink} from "@angular/router";
 import {MatGridListModule} from "@angular/material/grid-list";
+import { LoginButtonComponent } from './components/login-button/login-button.component';
+import { SignupButtonComponent } from './components/signup-button/signup-button.component';
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import {MatGridListModule} from "@angular/material/grid-list";
     ...COMPONENTS,
     MobileComponent,
     DesktopComponent,
-    ImageSliderComponent
+    ImageSliderComponent,
+    LoginButtonComponent,
+    SignupButtonComponent,
+    LogoutButtonComponent
   ],
   imports: [
     CommonModule,

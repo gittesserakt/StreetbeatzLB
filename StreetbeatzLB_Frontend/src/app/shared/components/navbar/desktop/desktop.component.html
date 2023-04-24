@@ -12,8 +12,18 @@
   </a>
 
 <!--  <object class="logo" type="image/svg+xml" data="./assets/streetbeatzLogo/logo.svg"></object>-->
-
 <!--  <object class="title" type="image/svg+xml" data="./assets/streetbeatzLogo/Streetbeatz(1).svg"></object>-->
+
+  <!--<div class="nav-bar__buttons">
+    <ng-container *ngIf="isAuthenticated$ | async; else unAuthenticated">
+      <app-logout-button></app-logout-button>
+    </ng-container>
+
+    <ng-template #unAuthenticated>
+      <app-signup-button></app-signup-button>
+      <app-login-button></app-login-button>
+    </ng-template>
+  </div>-->
 
   <span class="example-spacer"></span>
 
@@ -22,6 +32,6 @@
     <a mat-list-item routerLink="/performances">Performances</a>
     <a mat-list-item routerLink="/map">Map</a>
     <a mat-list-item routerLink="/vote">Vote</a>
-    <a mat-list-item routerLink="">Lorem</a>
+    <a mat-list-item routerLink="/admin-login">Lorem</a>
   </mat-nav-list>
 </mat-toolbar>
