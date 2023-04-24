@@ -32,9 +32,6 @@ public class PerformanceController {
   @Autowired
   private StageRepository stageRepository;
 
-  @Autowired
-  private ArtistRepository artistRepository;
-
   @GetMapping(path="/all")
   public @ResponseBody Iterable<Performance> getAllPerformances() {
     return sortPerformances(performanceRepository.findAll());
@@ -53,9 +50,18 @@ public class PerformanceController {
       newTime = LocalDateTime.parse(time);
     }
 
-    return PerformanceFilter.filterPerformancesByID(performanceRepository, newTime, artist, stage);
+    return sortPerformances(PerformanceFilter.filterPerformancesByID(performanceRepository, newTime, artist, stage));
   }
-    return sortPerformances(PerformanceFilter.filterPerformances(performanceRepository, newTime, artist, stage));
+
+  @GetMapping(path="/filteredByName")
+  public @ResponseBody Iterable<Performance> getFilteredPerformancesByName(@RequestParam String time,
+                                                                           @RequestParam String artist, @RequestParam String stage) {
+    LocalDateTime newTime = null;
+    if (!time.equals("0")) {
+      newTime = LocalDateTime.parse(time);
+    }
+
+    return sortPerformances(PerformanceFilter.filterPerformancesByName(performanceRepository, artistRepository, stageRepository, newTime, artist, stage));
   }
 
   @GetMapping(path="/delete")
@@ -78,15 +84,6 @@ public class PerformanceController {
     return performanceRepository.save(performance);
   }
 
-  @GetMapping(path="/filteredByName")
-  public @ResponseBody Iterable<Performance> getFilteredPerformancesByName(@RequestParam String time,
-                                                                     @RequestParam String artist, @RequestParam String stage) {
-    LocalDateTime newTime = null;
-    if(!time.equals("0")){
-      newTime = LocalDateTime.parse(time);
-    }
-
-    return PerformanceFilter.filterPerformancesByName(performanceRepository, artistRepository, stageRepository, newTime, artist, stage);
   @GetMapping(path="/edit")
   public @ResponseBody Performance editPerformance(@RequestParam Integer performance_id,
                                                    @RequestParam String start_time, @RequestParam String end_time,
