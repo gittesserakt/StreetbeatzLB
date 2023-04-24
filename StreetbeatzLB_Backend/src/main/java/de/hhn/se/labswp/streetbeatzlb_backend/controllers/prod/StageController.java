@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/api/stage")
+@RequestMapping(path="/api/stages")
 @CrossOrigin(origins = "*")
 public class StageController {
     @Autowired
@@ -22,6 +22,23 @@ public class StageController {
 
     @GetMapping(path="/stageByID")
     public @ResponseBody Optional<Stage> getStageByID(@RequestParam int stageID) {
+        return stageRepository.findById(stageID);
+    }
+
+    @GetMapping(path="/stageByName")
+    public @ResponseBody Optional<Stage> getStageByName(@RequestParam String stage) {
+
+        Iterable<Stage> stages = stageRepository.findAll();
+
+        int stageID = 0;
+
+        for(Stage currentStage : stages) {
+            if(currentStage.getName().equals(stage)){
+                stageID = Math.toIntExact(currentStage.getStage_id());
+                break;
+            }
+        }
+
         return stageRepository.findById(stageID);
     }
 }

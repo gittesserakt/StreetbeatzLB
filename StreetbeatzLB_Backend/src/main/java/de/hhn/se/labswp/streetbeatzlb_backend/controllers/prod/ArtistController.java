@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/api/artist")
+@RequestMapping(path="/api/artists")
 @CrossOrigin(origins = "*")
 public class ArtistController {
     @Autowired
@@ -21,6 +21,22 @@ public class ArtistController {
 
     @GetMapping(path="/artistByID")
     public @ResponseBody Optional<Artist> getArtistByID(@RequestParam int artistID) {
+        return artistRepository.findById(artistID);
+    }
+
+    @GetMapping(path="/artistByName")
+    public @ResponseBody Optional<Artist> getArtistByName(@RequestParam String artist) {
+
+        Iterable<Artist> artists = artistRepository.findAll();
+
+        int artistID = 0;
+
+        for(Artist currentArtist : artists) {
+            if(currentArtist.getName().equals(artist)){
+                artistID = Math.toIntExact(currentArtist.getArtist_id());
+                break;
+            }
+        }
         return artistRepository.findById(artistID);
     }
 }
