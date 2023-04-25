@@ -1,7 +1,7 @@
-FROM tomcat:latest
+FROM tomcat:alpine
 
 # Install Git and Node.js
-RUN apt-get update && apt-get install -y git nodejs npm
+RUN apk add --update git nodejs npm
 
 # Clone the backend code
 RUN git clone https://github.com/gittesserakt/StreetbeatzLB/tree/main/StreetbeatzLB_Backend /backend
@@ -10,7 +10,7 @@ RUN git clone https://github.com/gittesserakt/StreetbeatzLB/tree/main/Streetbeat
 WORKDIR /backend
 
 # Build the backend with Gradle
-RUN apt-get update && apt-get install -y gradle && gradle build -x test
+RUN apk add --update gradle && gradle build -x test
 
 # Clone the frontend code
 RUN git clone https://github.com/gittesserakt/StreetbeatzLB/tree/main/StreetbeatzLB_Frontend /frontend
