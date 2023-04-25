@@ -26,6 +26,10 @@
     <a mat-list-item routerLink="/performances" (click)="sidenav.toggle()">Performances</a>
     <a mat-list-item routerLink="/map" (click)="sidenav.toggle()">Map</a>
     <a mat-list-item routerLink="/vote" (click)="sidenav.toggle()">Vote</a>
-<!--    <a mat-list-item routerLink="" (click)="sidenav.toggle()">Lorem</a>-->
+    <ng-container *ngIf="isAuthenticated$ | async;">
+      <a mat-list-item>
+        <app-logout-button></app-logout-button>
+      </a>
+    </ng-container>
   </mat-nav-list>
 </mat-sidenav>
