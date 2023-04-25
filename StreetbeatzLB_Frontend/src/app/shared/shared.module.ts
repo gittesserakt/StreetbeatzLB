@@ -13,7 +13,6 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
 import {RouterLink} from "@angular/router";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { LoginButtonComponent } from './components/login-button/login-button.component';
-import { SignupButtonComponent } from './components/signup-button/signup-button.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { PageLoaderComponent } from './components/page-loader/page-loader.component';
 
@@ -25,7 +24,6 @@ import { PageLoaderComponent } from './components/page-loader/page-loader.compon
     DesktopComponent,
     ImageSliderComponent,
     LoginButtonComponent,
-    SignupButtonComponent,
     LogoutButtonComponent,
     PageLoaderComponent
   ],
