@@ -3,11 +3,19 @@ FROM tomcat:alpine
 # Install Git and Node.js
 RUN apk add --update git nodejs npm
 
-# Clone the backend code
-RUN git clone https://github.com/gittesserakt/StreetbeatzLB/tree/main/StreetbeatzLB_Backend /backend
-
 # Change to the backend directory
-WORKDIR /backend
+WORKDIR /work
+
+# Clone the backend code
+RUN git clone https://github.com/gittesserakt/StreetbeatzLB.git
+RUN cd ./StreetbeatzLB
+RUN git checkout dev
+RUN cd ./StreetbeatzLB_Backend
+RUN gradle bootWar
+RUN cp ./build/libs/StreetbeatzLB_Backend-*.war /usr/local/tomcat/webapps/
+
+RUN cd ../StreetbeatzLB_Frontend
+
 
 # Build the backend with Gradle
 RUN apk add --update gradle && gradle build -x test
