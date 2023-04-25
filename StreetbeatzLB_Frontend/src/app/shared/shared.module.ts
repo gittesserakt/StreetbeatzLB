@@ -15,6 +15,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { SignupButtonComponent } from './components/signup-button/signup-button.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+import { PageLoaderComponent } from './components/page-loader/page-loader.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
     ImageSliderComponent,
     LoginButtonComponent,
     SignupButtonComponent,
-    LogoutButtonComponent
+    LogoutButtonComponent,
+    PageLoaderComponent
   ],
   imports: [
     CommonModule,

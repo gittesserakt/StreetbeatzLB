@@ -13,7 +13,14 @@
       <li><a>Performances</a></li>
       <li><a>Map</a></li>
       <li><a>Vote</a></li>
-      <li><a>Lorem</a></li>
+      <li>
+        <ng-container *ngIf="isAuthenticated$ | async; else unAuthenticated">
+          <app-logout-button></app-logout-button>
+        </ng-container>
+        <ng-template #unAuthenticated>
+          <app-login-button></app-login-button>
+        </ng-template>
+      </li>
     </ul>
   </div>
 

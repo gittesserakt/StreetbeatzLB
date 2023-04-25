@@ -7,6 +7,7 @@ import {DesktopComponent} from "./navbar/desktop/desktop.component";
 import {SignupButtonComponent} from "./signup-button/signup-button.component";
 import {LoginButtonComponent} from "./login-button/login-button.component";
 import {LogoutButtonComponent} from "./logout-button/logout-button.component";
+import {PageLoaderComponent} from "./page-loader/page-loader.component";
 
 
 export const COMPONENTS = [
@@ -18,6 +19,7 @@ export const COMPONENTS = [
   DesktopComponent,
   SignupButtonComponent,
   LoginButtonComponent,
-  LogoutButtonComponent
+  LogoutButtonComponent,
+  PageLoaderComponent
 ]
 
