@@ -20,7 +20,23 @@ public class ArtistController {
     }
 
     @GetMapping(path="/artistByID")
-    public @ResponseBody Optional<Artist> getArtistByID(@RequestParam int artistID) {
+    public @ResponseBody Optional<Artist> getArtistByID(@RequestParam int artist_id) {
+        return artistRepository.findById(artist_id);
+    }
+
+    @GetMapping(path="/artistByName")
+    public @ResponseBody Optional<Artist> getArtistByName(@RequestParam String artist) {
+
+        Iterable<Artist> artists = artistRepository.findAll();
+
+        int artistID = 0;
+
+        for(Artist currentArtist : artists) {
+            if(currentArtist.getName().equals(artist)){
+                artistID = Math.toIntExact(currentArtist.getArtist_id());
+                break;
+            }
+        }
         return artistRepository.findById(artistID);
     }
 }

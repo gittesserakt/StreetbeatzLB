@@ -8,6 +8,7 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 })
 export class NavbarComponent {
   device:String = "Web";
+  navbarHeight: number = 64;
 
   displayMap = new Map([
     [Breakpoints.Handset, 'Handset'],

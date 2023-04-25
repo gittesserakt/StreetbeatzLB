@@ -10,9 +10,10 @@
   <div class="footer-col">
     <h4>Infos</h4>
     <ul>
-      <li><a>Performances</a></li>
-      <li><a>Map</a></li>
-      <li><a>Vote</a></li>
+      <li><a mat-list-item routerLink="/performances">Performances</a></li>
+      <li><a mat-list-item routerLink="/map">Map</a></li>
+      <li><a mat-list-item routerLink="/vote">Vote</a></li>
+<!--      <li><a mat-list-item routerLink="/">Lorem</a></li>-->
       <li>
         <ng-container *ngIf="isAuthenticated$ | async; else unAuthenticated">
           <app-logout-button></app-logout-button>
@@ -25,10 +26,10 @@
   </div>
 
   <div class="footer-col">
-    <h4>Rechtliches?</h4>
+    <h4>Lorem Ipsum</h4>
     <ul>
-      <li><a>Lorem Ipsum</a></li>
-      <li><a>Lorem Ipsum</a></li>
+      <li><a mat-list-item routerLink="/">Lorem Ipsum</a></li>
+      <li><a mat-list-item routerLink="/">Lorem Ipsum</a></li>
     </ul>
   </div>
 
