@@ -44,24 +44,24 @@ public class PerformanceController {
 
   @GetMapping(path="/filteredByID")
   public @ResponseBody Iterable<Performance> getFilteredPerformancesByID(@RequestParam String time,
-                                                                     @RequestParam int artist, @RequestParam int stage) {
+                                                                     @RequestParam int artist_id, @RequestParam int stage_id) {
     LocalDateTime newTime = null;
     if(!time.equals("0")){
       newTime = LocalDateTime.parse(time);
     }
 
-    return sortPerformances(PerformanceFilter.filterPerformancesByID(performanceRepository, newTime, artist, stage));
+    return sortPerformances(PerformanceFilter.filterPerformancesByID(performanceRepository, newTime, artist_id, stage_id));
   }
 
   @GetMapping(path="/filteredByName")
   public @ResponseBody Iterable<Performance> getFilteredPerformancesByName(@RequestParam String time,
-                                                                           @RequestParam String artist, @RequestParam String stage) {
+                                                                           @RequestParam String artist_id, @RequestParam String stage_id) {
     LocalDateTime newTime = null;
     if (!time.equals("0")) {
       newTime = LocalDateTime.parse(time);
     }
 
-    return sortPerformances(PerformanceFilter.filterPerformancesByName(performanceRepository, artistRepository, stageRepository, newTime, artist, stage));
+    return sortPerformances(PerformanceFilter.filterPerformancesByName(performanceRepository, artistRepository, stageRepository, newTime, artist_id, stage_id));
   }
 
   @GetMapping(path="/delete")
