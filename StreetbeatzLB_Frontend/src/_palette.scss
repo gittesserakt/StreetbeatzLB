@@ -1,0 +1,111 @@
+@use 'sass:map';
+
+/*
+"palette1" bitte zum Namen der Farbpalette ändern.
+Hex-code zwischen ":" und "," schreiben.
+Die Werte von 50 - 900 ist der Farbbereich von hell nach dunkel.
+Die Werte von A100 - A700 besondere Accent auch von hell nach dunkel.
+"contrast" sind die Kontrastfarben für Text.
+Beispiel: http://mcg.mbitson.com/
+*/
+$palette1: (
+  50:,
+  100:,
+  200:,
+  300:,
+  400:,
+  500:,
+  600:,
+  700:,
+  800:,
+  900:,
+  A100:,
+  A200:,
+  A400:,
+  A700:,
+
+  contrast: (
+    50:,
+    100:,
+    200:,
+    300:,
+    400:,
+    500:,
+    600:,
+    700:,
+    800:,
+    900:,
+    A100:,
+    A200:,
+    A400:,
+    A700:,
+  )
+);
+
+$palette2: (
+  50:,
+  100:,
+  200:,
+  300:,
+  400:,
+  500:,
+  600:,
+  700:,
+  800:,
+  900:,
+  A100:,
+  A200:,
+  A400:,
+  A700:,
+
+  contrast: (
+    50:,
+    100:,
+    200:,
+    300:,
+    400:,
+    500:,
+    600:,
+    700:,
+    800:,
+    900:,
+    A100:,
+    A200:,
+    A400:,
+    A700:,
+  )
+);
+
+$palette3: (
+  50:,
+  100:,
+  200:,
+  300:,
+  400:,
+  500:,
+  600:,
+  700:,
+  800:,
+  900:,
+  A100:,
+  A200:,
+  A400:,
+  A700:,
+
+  contrast: (
+    50:,
+    100:,
+    200:,
+    300:,
+    400:,
+    500:,
+    600:,
+    700:,
+    800:,
+    900:,
+    A100:,
+    A200:,
+    A400:,
+    A700:,
+  )
+);
