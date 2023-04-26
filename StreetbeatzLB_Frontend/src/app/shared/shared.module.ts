@@ -12,6 +12,10 @@ import { DesktopComponent } from './components/navbar/desktop/desktop.component'
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import {RouterLink} from "@angular/router";
 import {MatGridListModule} from "@angular/material/grid-list";
+import { PerformancePopupComponent } from './components/performance-popup/performance-popup.component';
+import {FormsModule} from "@angular/forms";
+import {EditPerformanceTileComponent} from "./components/edit-performance-tile/edit-performance-tile.component";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -19,19 +23,23 @@ import {MatGridListModule} from "@angular/material/grid-list";
     ...COMPONENTS,
     MobileComponent,
     DesktopComponent,
-    ImageSliderComponent
+    ImageSliderComponent,
+    PerformancePopupComponent,
+    EditPerformanceTileComponent
   ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatListModule,
-    RouterLink,
-    MatGridListModule,
-  ],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatListModule,
+        RouterLink,
+        MatGridListModule,
+        FormsModule,
+        MatDialogModule,
+    ],
   exports: [
     ...COMPONENTS
   ]

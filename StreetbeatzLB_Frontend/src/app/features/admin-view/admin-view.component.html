@@ -1,0 +1,18 @@
+<mat-tab-group>
+  <mat-tab label="Performances">
+    <div class="performances-list">
+      <button mat-fab color="primary" class="add-performance-button">
+        <mat-icon>add</mat-icon>
+      </button>
+      <div *ngFor="let performance of verbosePerformances;">
+        <mat-divider vertical="false" [inset]></mat-divider>
+        <app-edit-performance-tile [performance]="performance"></app-edit-performance-tile>
+      </div>
+      <mat-divider vertical="false" [inset]></mat-divider>
+    </div>
+  </mat-tab>
+  <mat-tab label="Lorem">
+  </mat-tab>
+  <mat-tab label="Ipsum">
+  </mat-tab>
+</mat-tab-group>
