@@ -21,7 +21,7 @@ public class StageController {
     }
 
     @GetMapping(path="/stageByID")
-    public @ResponseBody Optional<Stage> getStageByID(@RequestParam int stageID) {
-        return stageRepository.findById(stageID);
+    public @ResponseBody Optional<Stage> getStageByID(@RequestParam int stage_id) {
+        return stageRepository.findById(stage_id);
     }
 }

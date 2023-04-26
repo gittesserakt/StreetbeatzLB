@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -30,6 +31,11 @@ public class PerformanceController {
   @GetMapping(path="/all")
   public @ResponseBody Iterable<Performance> getAllPerformances() {
     return sortPerformances(performanceRepository.findAll());
+  }
+
+  @GetMapping(path="/performanceByID")
+  public @ResponseBody Optional<Performance> getPerformanceByID(@RequestParam Integer performance_id) {
+    return performanceRepository.findById(performance_id);
   }
 
   @GetMapping(path="/filtered")
@@ -59,6 +65,36 @@ public class PerformanceController {
     performance.setCreated_by(created_by);
     performance.setArtist_id(artist_id);
     performance.setStage_id(stage_id);
+
+    return performanceRepository.save(performance);
+  }
+
+  @GetMapping(path="/edit")
+  public @ResponseBody Performance editPerformance(@RequestParam Integer performance_id,
+                                                   @RequestParam String start_time, @RequestParam String end_time,
+                                                   @RequestParam Long artist_id, @RequestParam Long stage_id) {
+
+    Optional<Performance> optionalPerformance = performanceRepository.findById(performance_id);
+    if (optionalPerformance.isEmpty()) {
+      // Return an error response if the performance ID is invalid
+      throw new IllegalArgumentException("Performance not found for ID: " + performance_id);
+    }
+
+    // Update the performance fields with the new values
+    Performance performance = optionalPerformance.get();
+
+    if(!start_time.equals("0")) {
+      performance.setStart_time(LocalDateTime.parse(start_time));
+    }
+    if(!end_time.equals("0")) {
+      performance.setEnd_time(LocalDateTime.parse(end_time));
+    }
+    if(artist_id != 0){
+      performance.setArtist_id(artist_id);
+    }
+    if(stage_id != 0){
+      performance.setStage_id(stage_id);
+    }
 
     return performanceRepository.save(performance);
   }
