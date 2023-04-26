@@ -1,0 +1,13 @@
+<div class="slider">
+  <div>
+    <button mat-button class="leftArrow" (click)="prev()" color="accent">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <button mat-button class="rightArrow" (click)="next()" color="accent">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+    <!--<div class="leftArrow" (click)="prev()"><-</div>
+    <div class="rightArrow" (click)="next()">-></div>-->
+  </div>
+  <div class="slide" [ngStyle]="{'background-image': getCurrentSlideUrl()}"></div>
+</div>

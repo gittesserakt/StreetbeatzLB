@@ -1,34 +1,38 @@
-import { Component, OnInit } from "@angular/core";
-import {Performance, PerformanceService} from "../../core";
+import {Component, OnInit} from "@angular/core";
+import {VerbosePerformanceService} from "../../core";
+import {VerbosePerformance} from "../../core/models/verbosePerformance";
 
 @Component({
-  selector: 'app-messages',
+  selector: 'app-performances',
   templateUrl: './performances.component.html',
   styleUrls: ['./performances.component.scss']
 })
-export class PerformancesComponent {
-  performances?: Performance[];
+export class PerformancesComponent implements OnInit{
+  verbosePerformances?: VerbosePerformance[];
 
-  constructor(private performanceService: PerformanceService) {}
+  constructor(private verbosePerformanceService: VerbosePerformanceService) {
+  }
 
-    getAllPerformances(): void {
-      this.performanceService.getAllPerformances()
-        .subscribe((response) => {
-          const { data, error } = response;
+  getAllPerformances(): void {
+    this.verbosePerformanceService.getAllVerbosePerformances()
+      .subscribe((response) => {
+        const {data, error} = response;
+        console.log('verbosePerformances', response);
 
-          if (data) {
-            this.performances = data as Performance[];
-          }
+        if (data) {
+          this.verbosePerformances = data as VerbosePerformance[];
+        }
 
-          if (error) {
-            console.log(error);
-          }
-        });
-    }
+        if (error) {
+          console.log(error);
+        }
+      });
+  }
 
-    ngOnInit(): void {
-      this.getAllPerformances();
-    }
+  ngOnInit(): void {
+    console.log("performances component init");
+    this.getAllPerformances();
+  }
 
 }
 
