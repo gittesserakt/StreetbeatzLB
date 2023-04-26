@@ -38,6 +38,7 @@ export class AdminViewComponent implements OnInit{
   addPerformance() {
     const dialogRef = this.dialog.open(PerformancePopupComponent, {
       width: '500px',
+      data: { functionName: 'Add Performance' }
     });
 
     dialogRef.afterClosed().subscribe((result: VerbosePerformance | undefined) => {

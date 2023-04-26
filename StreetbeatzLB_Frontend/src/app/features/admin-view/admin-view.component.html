@@ -1,7 +1,7 @@
 <mat-tab-group>
   <mat-tab label="Performances">
     <div class="performances-list">
-      <button mat-fab color="primary" class="add-performance-button">
+      <button mat-fab color="primary" class="add-performance-button" (click)="addPerformance()">
         <mat-icon>add</mat-icon>
       </button>
       <div *ngFor="let performance of verbosePerformances;">

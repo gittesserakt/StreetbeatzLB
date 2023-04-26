@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Inject, OnInit } from '@angular/core';
 import { VerbosePerformance } from '../../../core/models/verbosePerformance';
-import { MatDialogRef } from "@angular/material/dialog";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-edit-popup',
@@ -8,7 +8,8 @@ import { MatDialogRef } from "@angular/material/dialog";
   styleUrls: ['./performance-popup.component.scss']
 })
 
-export class PerformancePopupComponent {
+export class PerformancePopupComponent implements OnInit{
+  popupName: string = "";
 
   @Input() performance!: VerbosePerformance;
   @Output() saved = new EventEmitter<VerbosePerformance>();
@@ -16,7 +17,16 @@ export class PerformancePopupComponent {
 
   updatedPerformance: VerbosePerformance = { ...this.performance };
 
-  constructor(private dialofRef: MatDialogRef<PerformancePopupComponent>) {}
+  constructor(private dialofRef: MatDialogRef<PerformancePopupComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: { performance: VerbosePerformance, functionName: string }) {}
+
+  ngOnInit() {
+    this.popupName = this.data.functionName;
+    const labelElement = document.querySelector('#popup-label');
+    if (labelElement) {
+      labelElement.textContent = `${this.popupName}`;
+    }
+  }
 
   getDateTime() {
     if (!this.updatedPerformance.start_time) {

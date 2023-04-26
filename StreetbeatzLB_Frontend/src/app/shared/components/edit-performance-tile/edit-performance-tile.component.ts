@@ -35,7 +35,7 @@ export class EditPerformanceTileComponent {
   editPerformance() {
     const dialogRef = this.dialog.open(PerformancePopupComponent, {
       width: '500px',
-      data: this.performance
+      data: { performance: this.performance, functionName: 'Edit Performance' }
     });
 
     dialogRef.afterClosed().subscribe((result: VerbosePerformance | undefined) => {
