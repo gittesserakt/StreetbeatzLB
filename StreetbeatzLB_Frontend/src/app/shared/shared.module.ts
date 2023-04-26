@@ -10,7 +10,6 @@ import {MatListModule} from "@angular/material/list";
 import { MobileComponent } from './components/navbar/mobile/mobile.component';
 import { DesktopComponent } from './components/navbar/desktop/desktop.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
-import {RouterLink} from "@angular/router";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { PerformancePopupComponent } from './components/performance-popup/performance-popup.component';
 import {FormsModule} from "@angular/forms";
@@ -35,7 +34,6 @@ import {MatDialogModule} from "@angular/material/dialog";
         MatSidenavModule,
         MatButtonModule,
         MatListModule,
-        RouterLink,
         MatGridListModule,
         FormsModule,
         MatDialogModule,

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { VerbosePerformance } from '../../../core/models/verbosePerformance';
+import { MatDialogRef } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-edit-popup',
@@ -15,7 +16,7 @@ export class PerformancePopupComponent {
 
   updatedPerformance: VerbosePerformance = { ...this.performance };
 
-  constructor() {}
+  constructor(private dialofRef: MatDialogRef<PerformancePopupComponent>) {}
 
   getDateTime() {
     if (!this.updatedPerformance.start_time) {
@@ -36,7 +37,7 @@ export class PerformancePopupComponent {
     if (start_time >= start_period && start_time <= end_period) {
       if (/* künstler bedingung */ true) { //TODO: checken ob Künstler frei ist
         if (/* stage bedingung */ true) { //TODO: checken ob Stage frei ist
-          const newPerformance: VerbosePerformance = {
+          const changedPerformance: VerbosePerformance = {
             performance_id: this.performance.performance_id,
             start_time: start_time.toISOString(),
             end_time: this.performance.end_time,
@@ -44,13 +45,13 @@ export class PerformancePopupComponent {
             stage: this.updatedPerformance.stage
           };
           //TODO: speichern der änderungen
-          this.closed.emit();
+          this.dialofRef.close();
         } else { alert('The stage is already occupied at that time.'); }
       } else { alert('The artist is already playing on another stage at the time.'); }
     } else { alert('The start time is outside the festival period and must be between 26/05/2023 and 28/05/2023.'); }
   }
 
   onCancel() {
-    this.closed.emit(); //TODO: funktioniert nicht
+    this.dialofRef.close();
   }
 }
