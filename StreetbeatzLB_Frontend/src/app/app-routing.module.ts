@@ -20,12 +20,6 @@ const routes: Routes = [
       import('./features/performances/performances.module').then((m) => m.PerformancesModule),
   },
   {
-    path: 'admin-login',
-    loadChildren: () =>
-      import('./features/admin-login/admin-login.module').then((m) => m.AdminLoginModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: '**',
     loadChildren: () =>
       import('./features/not-found/not-found.module').then(
