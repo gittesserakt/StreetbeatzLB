@@ -23,6 +23,8 @@ public class PerformanceFilter {
 
         Iterable<Stage> stages = stageRepository.findAll();
 
+        artist = artist.replace('_', ' ');
+
         long artistID = 0;
         long stageID = 0;
 
