@@ -101,7 +101,7 @@ public class PerformanceController {
         }
       }
     }
-    if(stage_id.equals("0")){
+    if(!stage_id.equals("0")){
       for(Stage currentStage : stages) {
         if(currentStage.getName().equals(stage_id)){
           performance.setStage_id(currentStage.getStage_id());
