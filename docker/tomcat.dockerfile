@@ -1,49 +1,40 @@
 FROM alpine:latest
 
-# Install Git and Node.js OpenJDK Gradle
-RUN apk add --update git nodejs npm openjdk17-jdk gradle tomcat-native
+# Install Git and Node.js npm OpenJDK Gradle and Maven
+RUN apk add --update git nodejs npm openjdk17-jdk gradle maven
 
-# Change to the backend directory
-WORKDIR /work
+RUN mkdir "/opt/tomcat/" \
+    && cd "/opt/tomcat/" \
+    && wget "https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.8/bin/apache-tomcat-10.1.8.tar.gz" \
+    && tar xvzf apache-tomcat-10.1.8.tar.gz --strip-components 1 --directory /opt/tomcat
+
+
 
 # Clone the backend code
-RUN git clone https://github.com/gittesserakt/StreetbeatzLB.git
-WORKDIR StreetbeatzLB
-RUN git checkout dev
-WORKDIR StreetbeatzLB_Backend
-
+WORKDIR streetbeatzlbwork
+#RUN sleep 1200
+RUN git clone https://github.com/gittesserakt/StreetbeatzLB.git && cd ./StreetbeatzLB && git checkout dev
 # Build the backend with Gradle
-RUN gradle bootWar
-
-
-###########################
-#RUN sleep 1200            #please remove after testing
-###########################
-
-
-# Create tomcat directory
-RUN mkdir /usr/local/tomcat/
-
-# Create webapps directory
-RUN mkdir /usr/local/tomcat/webapps/
-
+RUN cd ./StreetbeatzLB/StreetbeatzLB_Backend && gradle bootWar
 
 # Copy the backend WAR file to Tomcat
-RUN cp ./build/libs/StreetbeatzLB_Backend-*.war /usr/local/tomcat/webapps/
+RUN cp ./StreetbeatzLB/StreetbeatzLB_Backend/build/libs/StreetbeatzLB_Backend-0.0.1-SNAPSHOT.war /opt/tomcat/webapps
 
-WORKDIR ../StreetbeatzLB_Frontend
+RUN cd ./StreetbeatzLB/StreetbeatzLB_Frontend && mvn clean install && cp ./target/maven-angular-app.war /opt/tomcat/webapps/
 
 # Install Angular CLI and dependencies
-RUN npm install -g @angular/cli && npm install
+#RUN npm install -g @angular/cli && npm install
 
 # Build the frontend
-RUN ng build --output-path=/tmp/frontend
-
-# Copy the frontend files to Tomcat
-RUN cp -R /tmp/frontend/* /usr/local/tomcat/webapps/StreetbeatzLB_Frontend/
+#RUN ng build --output-path=/tmp/frontend
 
 # Expose the default Tomcat port
+#Ich muss mich noch einlesen wie zwei War Files in einem Tomcat Container funktionieren
 EXPOSE 8080
+EXPOSE 4200
+
+# Add Tomcat to the PATH
+ENV PATH=$PATH:/usr/local/tomcat/bin
 
 # Start Tomcat and run in the foreground
-CMD ["catalina.sh", "run"]
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
