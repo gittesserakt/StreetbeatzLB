@@ -13,7 +13,14 @@
       <li><a mat-list-item routerLink="/performances">Performances</a></li>
       <li><a mat-list-item routerLink="/map">Map</a></li>
       <li><a mat-list-item routerLink="/vote">Vote</a></li>
-<!--      <li><a mat-list-item routerLink="/">Lorem</a></li>-->
+      <li class="logInOut">
+        <ng-container *ngIf="isAuthenticated$ | async; else unAuthenticated">
+          <app-logout-button></app-logout-button>
+        </ng-container>
+        <ng-template #unAuthenticated>
+          <app-login-button></app-login-button>
+        </ng-template>
+      </li>
     </ul>
   </div>
 

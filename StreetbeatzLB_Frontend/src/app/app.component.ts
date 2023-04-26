@@ -1,5 +1,6 @@
 import {Component, ViewChild, AfterViewInit, OnInit} from '@angular/core';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import {AuthService} from "@auth0/auth0-angular";
 
 @Component({
   selector: 'app-root',
@@ -18,4 +19,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     document.documentElement.style.setProperty('--navbar-height', this.navbarHeight + 'px');
   }
+
+  isAuth0Loading$ = this.authService.isLoading$;
+  constructor(private authService: AuthService) {}
 }

@@ -12,7 +12,6 @@
   </a>
 
 <!--  <object class="logo" type="image/svg+xml" data="./assets/streetbeatzLogo/logo.svg"></object>-->
-
 <!--  <object class="title" type="image/svg+xml" data="./assets/streetbeatzLogo/Streetbeatz(1).svg"></object>-->
 
   <span class="example-spacer"></span>
@@ -22,6 +21,11 @@
     <a mat-list-item routerLink="/performances">Performances</a>
     <a mat-list-item routerLink="/map">Map</a>
     <a mat-list-item routerLink="/vote">Vote</a>
-<!--    <a mat-list-item routerLink="">Lorem</a>-->
+    <ng-container *ngIf="isAuthenticated$ | async;">
+      <a mat-list-item routerLink="/admin-view">Admin</a>
+      <a mat-list-item>
+        <app-logout-button></app-logout-button>
+      </a>
+    </ng-container>
   </mat-nav-list>
 </mat-toolbar>
