@@ -7,14 +7,20 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {MatListModule} from "@angular/material/list";
-import {MatGridListModule} from "@angular/material/grid-list";
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import {RouterLink} from "@angular/router";
+import {MatGridListModule} from "@angular/material/grid-list";
+import { LoginButtonComponent } from './components/login-button/login-button.component';
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+import { PageLoaderComponent } from './components/page-loader/page-loader.component';
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
     ImageSliderComponent,
+    LoginButtonComponent,
+    LogoutButtonComponent,
+    PageLoaderComponent,
   ],
   imports: [
     CommonModule,
