@@ -1,10 +1,6 @@
 package de.hhn.se.labswp.streetbeatzlb_backend.controllers.prod;
 
-import de.hhn.se.labswp.streetbeatzlb_backend.models.Artist;
-import de.hhn.se.labswp.streetbeatzlb_backend.models.ArtistRepository;
-import de.hhn.se.labswp.streetbeatzlb_backend.models.Performance;
-import de.hhn.se.labswp.streetbeatzlb_backend.models.PerformanceFilter;
-import de.hhn.se.labswp.streetbeatzlb_backend.models.PerformanceRepository;
+import de.hhn.se.labswp.streetbeatzlb_backend.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -27,6 +23,9 @@ public class PerformanceController {
 
   @Autowired
   private ArtistRepository artistRepository;
+
+  @Autowired
+  private StageRepository stageRepository;
 
   @GetMapping(path="/all")
   public @ResponseBody Iterable<Performance> getAllPerformances() {
@@ -72,15 +71,13 @@ public class PerformanceController {
   @GetMapping(path="/edit")
   public @ResponseBody Performance editPerformance(@RequestParam Integer performance_id,
                                                    @RequestParam String start_time, @RequestParam String end_time,
-                                                   @RequestParam Long artist_id, @RequestParam Long stage_id) {
+                                                   @RequestParam String artist_id, @RequestParam String stage_id) {
 
     Optional<Performance> optionalPerformance = performanceRepository.findById(performance_id);
     if (optionalPerformance.isEmpty()) {
-      // Return an error response if the performance ID is invalid
       throw new IllegalArgumentException("Performance not found for ID: " + performance_id);
     }
 
-    // Update the performance fields with the new values
     Performance performance = optionalPerformance.get();
 
     if(!start_time.equals("0")) {
@@ -89,11 +86,28 @@ public class PerformanceController {
     if(!end_time.equals("0")) {
       performance.setEnd_time(LocalDateTime.parse(end_time));
     }
-    if(artist_id != 0){
-      performance.setArtist_id(artist_id);
+
+    Iterable<Artist> artists = artistRepository.findAll();
+
+    Iterable<Stage> stages = stageRepository.findAll();
+
+    artist_id = artist_id.replace('_', ' ');
+
+    if(!artist_id.equals("0")){
+      for(Artist currentArtist : artists) {
+        if(currentArtist.getName().equals(artist_id)){
+          performance.setArtist_id(currentArtist.getArtist_id());
+          break;
+        }
+      }
     }
-    if(stage_id != 0){
-      performance.setStage_id(stage_id);
+    if(stage_id.equals("0")){
+      for(Stage currentStage : stages) {
+        if(currentStage.getName().equals(stage_id)){
+          performance.setStage_id(currentStage.getStage_id());
+          break;
+        }
+      }
     }
 
     return performanceRepository.save(performance);
