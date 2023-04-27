@@ -29,9 +29,9 @@ RUN cd ./StreetbeatzLB/StreetbeatzLB_Frontend && mvn clean install && cp ./targe
 #RUN ng build --output-path=/tmp/frontend
 
 # Expose the default Tomcat port
-#Ich muss mich noch einlesen wie zwei War Files in einem Tomcat Container funktionieren
-EXPOSE 8080
-EXPOSE 4200
+#Ich muss mich noch einlesen wie ich zwei .war Dateien auf einem Tomcat laufen lassen kann
+EXPOSE 8080:8080
+EXPOSE 4200:4200
 
 # Add Tomcat to the PATH
 ENV PATH=$PATH:/usr/local/tomcat/bin
