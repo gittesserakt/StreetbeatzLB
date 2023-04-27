@@ -25,11 +25,11 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.72515432"
-     inkscape:cx="417.15259"
-     inkscape:cy="451.62801"
-     inkscape:window-width="1920"
-     inkscape:window-height="1001"
-     inkscape:window-x="-9"
+     inkscape:cx="130.31709"
+     inkscape:cy="102.73675"
+     inkscape:window-width="2400"
+     inkscape:window-height="1271"
+     inkscape:window-x="2391"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
@@ -46,13 +46,21 @@
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <rect
+       style="fill:#e19400;fill-opacity:1;stroke:#1043aa;stroke-width:0.000000323533;stroke-opacity:0;paint-order:markers stroke fill"
+       id="rect2544"
+       width="105.08925"
+       height="109.29235"
+       x="44.861881"
+       y="26.249357" />
     <text
        xml:space="preserve"
-       transform="matrix(0.26459126,0,0,0.26458333,57.282603,34.662162)"
+       transform="matrix(0.7937894,0,0,0.79373859,-73.360086,-157.49482)"
        id="text234"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:85.3321px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect236);fill:#000000;stroke:#ffffff;stroke-width:0.00000041;stroke-opacity:0;paint-order:markers stroke fill"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:191.996px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect236);fill:#000000;fill-opacity:1;stroke:#4a81ee;stroke-width:0.00000041;stroke-opacity:0;paint-order:markers stroke fill"
+       sodipodi:insensitive="true"><tspan
          x="148.93359"
-         y="272.08245"
-         id="tspan959">A</tspan></text>
+         y="369.13264"
+         id="tspan2555">A</tspan></text>
   </g>
 </svg>
