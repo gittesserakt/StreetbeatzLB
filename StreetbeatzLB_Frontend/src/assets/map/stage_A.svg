@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="700mm"
+   height="700mm"
+   viewBox="0 0 700 700"
    version="1.1"
    id="svg5"
    inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
@@ -24,9 +24,9 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.36257716"
-     inkscape:cx="-1032.8836"
-     inkscape:cy="528.16344"
+     inkscape:zoom="0.12819038"
+     inkscape:cx="-1521.1749"
+     inkscape:cy="503.15786"
      inkscape:window-width="2400"
      inkscape:window-height="1271"
      inkscape:window-x="2391"
@@ -37,8 +37,8 @@
      id="defs2">
     <rect
        x="148.93382"
-       y="194.44137"
-       width="370.95552"
+       y="194.44138"
+       width="370.95551"
        height="256.49713"
        id="rect236" />
   </defs>
@@ -47,28 +47,19 @@
      inkscape:groupmode="layer"
      id="layer1">
     <ellipse
-       style="fill:#ff22ce;fill-opacity:1;stroke:#1043aa;stroke-width:3.86707e-07;stroke-opacity:0;paint-order:markers stroke fill"
+       style="display:inline;fill:#ff22ce;fill-opacity:1;stroke:#1043aa;stroke-width:3.86707e-07;stroke-opacity:0;paint-order:markers stroke fill"
        id="path8471"
        ry="230.41216"
        rx="235.24663"
-       cy="166.41243"
-       cx="-279.3949" />
-    <rect
-       style="display:none;fill:#ff22ce;fill-opacity:1;stroke:#1043aa;stroke-width:3.23533e-07;stroke-opacity:0;paint-order:markers stroke fill"
-       id="rect2544"
-       width="105.08925"
-       height="109.29235"
-       x="44.861881"
-       y="26.249357"
-       sodipodi:insensitive="true" />
+       cy="340.80676"
+       cx="341.66827" />
     <text
        xml:space="preserve"
-       transform="matrix(2.3813659,0,0,2.3812158,-792.15491,-576.09355)"
+       transform="matrix(2.3813659,0,0,2.3812158,-171.09173,-401.6992)"
        id="text234"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:191.996px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect236);display:inline;fill:#000000;fill-opacity:1;stroke:#4a81ee;stroke-width:0.00000041;stroke-opacity:0;paint-order:markers stroke fill"
-       sodipodi:insensitive="true"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:191.996px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect236);display:inline;fill:#000000;fill-opacity:1;stroke:#4a81ee;stroke-width:0.00000041;stroke-opacity:0;paint-order:markers stroke fill"><tspan
          x="148.93359"
          y="369.13264"
-         id="tspan8494">A</tspan></text>
+         id="tspan853">A</tspan></text>
   </g>
 </svg>
