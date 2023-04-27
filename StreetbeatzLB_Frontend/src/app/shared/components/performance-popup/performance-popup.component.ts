@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 })
 
 export class PerformancePopupComponent implements OnInit{
-  popupName: string = "";
+  popupName: string = ""; // "Edit Performance" or "Add Performance"
 
   @Input() performance!: VerbosePerformance;
   @Output() saved = new EventEmitter<VerbosePerformance>();
@@ -28,7 +28,7 @@ export class PerformancePopupComponent implements OnInit{
     }
   }
 
-  getDateTime() {
+  getDateTime() { //TODO: Zeit ausgeben
     if (!this.updatedPerformance.start_time) {
       return '';
     }
