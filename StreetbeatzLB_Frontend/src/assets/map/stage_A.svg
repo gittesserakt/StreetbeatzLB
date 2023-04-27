@@ -24,9 +24,9 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.72515432"
-     inkscape:cx="130.31709"
-     inkscape:cy="102.73675"
+     inkscape:zoom="0.36257716"
+     inkscape:cx="-1032.8836"
+     inkscape:cy="528.16344"
      inkscape:window-width="2400"
      inkscape:window-height="1271"
      inkscape:window-x="2391"
@@ -46,21 +46,29 @@
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <ellipse
+       style="fill:#ff22ce;fill-opacity:1;stroke:#1043aa;stroke-width:3.86707e-07;stroke-opacity:0;paint-order:markers stroke fill"
+       id="path8471"
+       ry="230.41216"
+       rx="235.24663"
+       cy="166.41243"
+       cx="-279.3949" />
     <rect
-       style="fill:#e19400;fill-opacity:1;stroke:#1043aa;stroke-width:0.000000323533;stroke-opacity:0;paint-order:markers stroke fill"
+       style="display:none;fill:#ff22ce;fill-opacity:1;stroke:#1043aa;stroke-width:3.23533e-07;stroke-opacity:0;paint-order:markers stroke fill"
        id="rect2544"
        width="105.08925"
        height="109.29235"
        x="44.861881"
-       y="26.249357" />
+       y="26.249357"
+       sodipodi:insensitive="true" />
     <text
        xml:space="preserve"
-       transform="matrix(0.7937894,0,0,0.79373859,-73.360086,-157.49482)"
+       transform="matrix(2.3813659,0,0,2.3812158,-792.15491,-576.09355)"
        id="text234"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:191.996px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect236);fill:#000000;fill-opacity:1;stroke:#4a81ee;stroke-width:0.00000041;stroke-opacity:0;paint-order:markers stroke fill"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:191.996px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect236);display:inline;fill:#000000;fill-opacity:1;stroke:#4a81ee;stroke-width:0.00000041;stroke-opacity:0;paint-order:markers stroke fill"
        sodipodi:insensitive="true"><tspan
          x="148.93359"
          y="369.13264"
-         id="tspan2555">A</tspan></text>
+         id="tspan8494">A</tspan></text>
   </g>
 </svg>
