@@ -6,6 +6,8 @@ import { AdminViewComponent } from './admin-view.component';
 import { MatDividerModule } from "@angular/material/divider";
 import { MatIconModule } from "@angular/material/icon";
 import {MatTabsModule} from "@angular/material/tabs";
+import {PerformancesModule} from "../performances/performances.module";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [AdminViewComponent],
@@ -15,7 +17,9 @@ import {MatTabsModule} from "@angular/material/tabs";
         RouterModule.forChild([{path: '', component: AdminViewComponent}]),
         MatDividerModule,
         MatIconModule,
-        MatTabsModule
+        MatTabsModule,
+        PerformancesModule,
+        MatButtonModule
     ],
 })
 export class AdminViewModule {}
