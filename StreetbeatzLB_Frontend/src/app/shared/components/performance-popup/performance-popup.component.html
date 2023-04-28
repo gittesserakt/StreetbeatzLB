@@ -2,7 +2,7 @@
   <h2 id="popup-label" class="title">{{popupName}}</h2>
   <div class="content">
     <label class="label">Start Time:</label>
-    <input class="input" type="datetime-local" [(ngModel)]="updatedPerformance.start_time">
+    <input class="input" type="datetime-local" [(ngModel)]="updatedPerformance.start_time" value="getDateTime()">
     <label class="label">Artist:</label>
     <select class="input" [(ngModel)]="updatedPerformance.artist">
       <option value="Artist1">Artist1</option>

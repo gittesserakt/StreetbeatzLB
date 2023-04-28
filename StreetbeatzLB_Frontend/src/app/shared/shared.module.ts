@@ -15,6 +15,7 @@ import { PerformancePopupComponent } from './components/performance-popup/perfor
 import {FormsModule} from "@angular/forms";
 import {EditPerformanceTileComponent} from "./components/edit-performance-tile/edit-performance-tile.component";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {MatDialogModule} from "@angular/material/dialog";
         MatGridListModule,
         FormsModule,
         MatDialogModule,
+        MatTooltipModule,
     ],
   exports: [
     ...COMPONENTS

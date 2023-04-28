@@ -5,21 +5,23 @@ import { SharedModule } from '../../shared';
 import { AdminViewComponent } from './admin-view.component';
 import { MatDividerModule } from "@angular/material/divider";
 import { MatIconModule } from "@angular/material/icon";
-import {MatTabsModule} from "@angular/material/tabs";
-import {PerformancesModule} from "../performances/performances.module";
-import {MatButtonModule} from "@angular/material/button";
+import { MatTabsModule } from "@angular/material/tabs";
+import { PerformancesModule } from "../performances/performances.module";
+import { MatButtonModule } from "@angular/material/button";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [AdminViewComponent],
-    imports: [
-        CommonModule,
-        SharedModule,
-        RouterModule.forChild([{path: '', component: AdminViewComponent}]),
-        MatDividerModule,
-        MatIconModule,
-        MatTabsModule,
-        PerformancesModule,
-        MatButtonModule
-    ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterModule.forChild([{path: '', component: AdminViewComponent}]),
+    MatDividerModule,
+    MatIconModule,
+    MatTabsModule,
+    PerformancesModule,
+    MatButtonModule,
+    MatTooltipModule
+  ],
 })
 export class AdminViewModule {}
