@@ -6,6 +6,9 @@ import {EditPerformanceTileComponent} from "./edit-performance-tile/edit-perform
 import {MobileComponent} from "./navbar/mobile/mobile.component";
 import {DesktopComponent} from "./navbar/desktop/desktop.component";
 import {PerformancePopupComponent} from "./performance-popup/performance-popup.component";
+import {LoginButtonComponent} from "./login-button/login-button.component";
+import {LogoutButtonComponent} from "./logout-button/logout-button.component";
+import {PageLoaderComponent} from "./page-loader/page-loader.component";
 
 
 export const COMPONENTS = [
@@ -17,5 +20,8 @@ export const COMPONENTS = [
   DesktopComponent,
   EditPerformanceTileComponent,
   PerformancePopupComponent,
+  LoginButtonComponent,
+  LogoutButtonComponent,
+  PageLoaderComponent
 ]
 

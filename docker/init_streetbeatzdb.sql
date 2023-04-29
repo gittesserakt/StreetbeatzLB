@@ -82,14 +82,14 @@ INSERT INTO `artist` (`name`) VALUES
 	('The Busquitos');
 
 INSERT INTO `poi` (name, icon, poi_type, latitude, longitude) VALUES
-	('Haupteingang', NULL, NULL, 48.89629356141575, 9.196231354904848),
-	('Eingang Mömpelgardstraße', NULL, NULL, 48.89885774762525, 9.197583035983675),
+	('Haupteingang', '0', NULL, 48.89629356141575, 9.196231354904848),
+	('Eingang Mömpelgardstraße', '0', NULL, 48.89885774762525, 9.197583035983675),
 	('Vorgarten', NULL, NULL, 48.89890437269485, 9.196007967518401),
 	('Barocke Broderie', NULL, NULL, 48.90163303471827, 9.195045750240379),
 	('Herzogschaukel/ Aktionshaus', NULL, NULL, 48.902251005875385, 9.199487247719524),
-	('Restaurant Parkcafé', NULL, NULL, 48.89950208404342, 9.201831829700073),
-	('Eingang Hinterer Schlosshof', NULL, NULL, 48.89982743592445, 9.197495485734656),
-	('Stages', NULL, NULL, 48.90194275338896, 9.197502693265069);
+	('Restaurant Parkcafé', '2', NULL, 48.89950208404342, 9.201831829700073),
+	('Eingang Hinterer Schlosshof', '0', NULL, 48.89982743592445, 9.197495485734656),
+	('Stages', '1', NULL, 48.90194275338896, 9.197502693265069);
 
 INSERT INTO `stage` (name, stage_size) VALUES
 	('A', 25.6),

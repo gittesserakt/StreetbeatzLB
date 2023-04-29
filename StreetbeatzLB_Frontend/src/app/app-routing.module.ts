@@ -26,6 +26,11 @@ const routes: Routes = [
       import('./features/admin-view/admin-view.module').then((m) => m.AdminViewModule),
   },
   {
+    path: 'map',
+    loadChildren: () =>
+      import('./features/map/map.module').then((m) => m.MapModule),
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./features/not-found/not-found.module').then(

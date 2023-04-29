@@ -10,7 +10,11 @@ import {MatListModule} from "@angular/material/list";
 import { MobileComponent } from './components/navbar/mobile/mobile.component';
 import { DesktopComponent } from './components/navbar/desktop/desktop.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
+import {RouterLink} from "@angular/router";
 import {MatGridListModule} from "@angular/material/grid-list";
+import { LoginButtonComponent } from './components/login-button/login-button.component';
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+import { PageLoaderComponent } from './components/page-loader/page-loader.component';
 import { PerformancePopupComponent } from './components/performance-popup/performance-popup.component';
 import {FormsModule} from "@angular/forms";
 import {EditPerformanceTileComponent} from "./components/edit-performance-tile/edit-performance-tile.component";
@@ -24,8 +28,12 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MobileComponent,
     DesktopComponent,
     ImageSliderComponent,
+    LoginButtonComponent,
+    LogoutButtonComponent,
+    PageLoaderComponent,
+    ImageSliderComponent,
     PerformancePopupComponent,
-    EditPerformanceTileComponent
+    EditPerformanceTileComponent,
   ],
     imports: [
         CommonModule,
