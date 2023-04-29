@@ -6,7 +6,6 @@ import { AdminViewComponent } from './admin-view.component';
 import { MatDividerModule } from "@angular/material/divider";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTabsModule } from "@angular/material/tabs";
-import { PerformancesModule } from "../performances/performances.module";
 import { MatButtonModule } from "@angular/material/button";
 import { MatTooltipModule } from "@angular/material/tooltip";
 
@@ -19,7 +18,6 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     MatDividerModule,
     MatIconModule,
     MatTabsModule,
-    PerformancesModule,
     MatButtonModule,
     MatTooltipModule
   ],
