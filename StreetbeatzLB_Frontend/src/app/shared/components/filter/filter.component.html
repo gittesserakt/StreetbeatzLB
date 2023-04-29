@@ -1,1 +1,6 @@
-<p>filter works!</p>
+<div *ngIf="device === 'Web', else elseBlock">
+  <app-filter-desktop></app-filter-desktop>
+</div>
+<ng-template #elseBlock>
+  <app-filter-mobile [inFilter]=filter (outFilter)="filtersChanged($event)"></app-filter-mobile>
+</ng-template>

@@ -14,7 +14,28 @@ export class StageService {
 
   getStageById = (stage_id : number): Observable<ApiResponseModel> => {
     const config: RequestConfigModel = {
-      url: `${env.api.serverUrl}/stages/stageByID?stageID=${stage_id}`,
+      url: `${env.api.serverUrl}/stages/stageByID?stage_id=${stage_id}`,
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    };
+
+    return this.externalApiService.callExternalApi(config).pipe(
+      mergeMap((response) => {
+        const { data, error } = response;
+
+        return of({
+          data: data ? (data as Stage) : null,
+          error,
+        });
+      })
+    );
+  };
+
+  getAllStages = (): Observable<ApiResponseModel> => {
+    const config: RequestConfigModel = {
+      url: `${env.api.serverUrl}/stages/all`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

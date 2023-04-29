@@ -9,6 +9,8 @@ import de.hhn.se.labswp.streetbeatzlb_backend.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,7 +60,7 @@ public class PerformanceController {
                                                                            @RequestParam String artist_id, @RequestParam String stage_id) {
     LocalDateTime newTime = null;
     if (!time.equals("0")) {
-      newTime = LocalDateTime.parse(time);
+      newTime = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
     }
 
     return sortPerformances(PerformanceFilter.filterPerformancesByName(performanceRepository, artistRepository, stageRepository, newTime, artist_id, stage_id));

@@ -4,7 +4,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {AuthService} from "@auth0/auth0-angular";
 
 @Component({
-  selector: 'app-mobile',
+  selector: 'app-navbar-mobile',
   templateUrl: './navbar-mobile.component.html',
   styleUrls: ['./navbar-mobile.component.scss']
 })
