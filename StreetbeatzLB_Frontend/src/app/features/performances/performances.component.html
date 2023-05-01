@@ -1,25 +1,6 @@
-<h1>Performances</h1>
-<div class="table-responsive">
-  <table class=" table table-striped">
-    <thead>
-    <tr>
-      <th scope="col">performance_id</th>
-      <th scope="col">start_time</th>
-      <th scope="col">end_time</th>
-      <th scope="col">created_by</th>
-      <th scope="col">group_id</th>
-      <th scope="col">stage_id</th>
-    </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let performance of performances;">
-        <td>{{ performance.performance_id }}</td>
-        <td>{{ performance.start_time}}</td>
-        <td>{{ performance.end_time}}</td>
-        <td>{{ performance.created_by}}</td>
-        <td>{{ performance.group_id}}</td>
-        <td>{{ performance.stage_id}}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="performances-list">
+  <div *ngFor="let performance of verbosePerformances;">
+    <app-performance-tile [performance]="performance"></app-performance-tile>
+    <mat-divider vertical="false" [inset]></mat-divider>
+  </div>
 </div>

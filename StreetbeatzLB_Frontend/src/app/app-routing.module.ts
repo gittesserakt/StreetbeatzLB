@@ -20,6 +20,11 @@ const routes: Routes = [
       import('./features/performances/performances.module').then((m) => m.PerformancesModule),
   },
   {
+    path: 'map',
+    loadChildren: () =>
+      import('./features/map/map.module').then((m) => m.MapModule),
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./features/not-found/not-found.module').then(

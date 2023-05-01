@@ -3,6 +3,6 @@ export interface Performance {
   start_time: string;
   end_time: string;
   created_by: string;
-  group_id: number;
+  artist_id: number;
   stage_id: number;
 }

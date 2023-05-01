@@ -1,2 +1,2 @@
 export * from './message.service';
-export * from './performance.service';
+export * from './verbose-perfomance.service';

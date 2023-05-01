@@ -1,25 +1,10 @@
-<head>
+<!--<head>
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
-</head>
-<div class="header">
-  <div class="logoTitle">
-    <object class="logo" type="image/svg+xml" data="./assets/streetbeatzLogo/logo.svg"></object>
-    <h1 class="title">StreetBeatz</h1>
-  </div>
-  <div>
-    <nav>
-      <input type="checkbox" id="burgerMenu_checkbox">
-      <label for="burgerMenu_checkbox">
-        <span class="material-symbols-rounded">menu</span>
-      </label>
-      <ul class="links">
-        <li><a routerLink="">Home</a></li>
-        <li><a routerLink="">Events</a></li>
-        <li><a routerLink="">Map</a></li>
-        <li><a routerLink="">Vote</a></li>
-        <li><a routerLink="">Lorem</a></li>
-      </ul>
-    </nav>
-  </div>
+</head>-->
+<div *ngIf="device === 'Web', else elseBlock">
+<app-desktop [navbarHeight]=navbarHeight></app-desktop>
 </div>
+<ng-template #elseBlock>
+  <app-mobile [navbarHeight]=navbarHeight></app-mobile>
+</ng-template>

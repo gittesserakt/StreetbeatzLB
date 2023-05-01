@@ -1,208 +1,171 @@
-body {
-  background-color: var(--background-color);
+//region mixin
+@mixin container($rad1, $rad2, $rad3, $rad4) { //$shadow1, $shadow2, $shadow3, $shadow4, $shadow5,) {
+  border-radius: $rad1 $rad2 $rad3 $rad4;
+  //box-shadow: $shadow1 $shadow2 $shadow3 $shadow4 $shadow5;
 }
 
-@mixin Shadow{
-  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.44);
+@mixin container1($rad1, $rad2, $rad3, $rad4, $img) {
+  @include container($rad1, $rad2, $rad3, $rad4);
+  background-image: url($img);
+  background-size: cover;
+}
+
+@mixin container2-5($rad1, $rad2, $rad3, $rad4, $gDeg, $rgba1_1,
+$rgba1_2, $rgba1_3, $rgba1_4, $rgba1_5, $rgba2_1, $rgba2_2, $rgba2_3, $rgba2_4, $rgba2_5,) {
+  @include container($rad1, $rad2, $rad3, $rad4);
+  background: linear-gradient($gDeg, rgba($rgba1_1, $rgba1_2, $rgba1_3, $rgba1_4) $rgba1_5,
+    rgba($rgba2_1, $rgba2_2, $rgba2_3, $rgba2_4) $rgba2_5);
+}
+//endregion
+
+mat-grid-list {
+  overflow: hidden;
 }
 
 //region homeContainer1
 .homeContainer1 {
-  background-color: var(--secondary-main-brand-color);
-  display: flex;
+  @include container1(0, 0, 2rem, 2rem, "/assets/copyrightFree/copyrightFree-3.jpg");
   width: 100%;
-  border-radius: 0 0 50px 50px;
 
-  @include Shadow;
+  .homeContainer1Sub {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 193, 7, 1) 0%, rgba(255, 111, 0, 0.24691883589373254) 100%);
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
 
-  animation-name: slideInTop;
-  animation-timing-function: ease-in-out;
-  animation-duration: 2.5s;
-  animation-iteration-count: 1;
-}
+    .date {
+      div {
+        text-align: center;
+      }
+    }
 
-.date {
-  margin: 50px;
-  width: 57%;
-  padding: 5px;
-  text-align: center;
-}
+    .instrument {
+      ul {
+        text-align: center;
 
+        li {
+          list-style: none;
+        }
+      }
 
-.instrument {
-  margin: 50px;
-  width: 60%;
+      .note1 {
+        padding-right: 0.8rem;
 
-  ul {
-    text-align: center;
+        animation-name: bounce;
+        animation-duration: 3s;
+        animation-timing-function: ease-in;
+        animation-iteration-count: infinite;
+      }
 
-    li {
-      list-style: none;
+      .note2 {
+        padding-left: 1.5rem;
+        padding-bottom: 0.4rem;
+
+        animation-name: bounce;
+        animation-duration: 3.5s;
+        animation-timing-function: ease-out;
+        animation-iteration-count: infinite;
+      }
+
+      .guitar {
+        animation-name: bounce;
+        animation-duration: 2.6s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+      }
     }
   }
-}
-
-.note1 {
-  padding-left: 60px;
-  width: 50px;
-  height: 50px;
-
-  animation-name: bounce;
-  animation-duration: 3s;
-  animation-timing-function: ease-in;
-  animation-iteration-count: infinite;
-}
-
-.note2 {
-  padding-left: 60px;
-  padding-bottom: 40px;
-  width: 60px;
-  height: 60px;
-
-  animation-name: bounce;
-  animation-duration: 3.5s;
-  animation-timing-function: ease-out;
-  animation-iteration-count: infinite;
-}
-
-.guitar {
-  width: 170px;
-  height: 170px;
-
-  animation-name: bounce;
-  animation-duration: 2.6s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-
 }
 //endregion
 
 //region homeContainer2
-.homeContainer2{
-  background-color: var(--secondary-main-brand-color);
-  margin-left: 15%;
-  padding: 20px;
-  border-radius: 25px 0 0 25px;
-
-  @include Shadow;
-
-  animation: slideInRight;
-  animation-timing-function: ease-in-out;
-  animation-duration: 2.5s;
-  animation-iteration-count: 1;
+.expansionPanel {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top:  1rem;
+  @include container2-5(2rem, 2rem, 2rem, 2rem, 180deg, 255, 193, 7, 1, 0%, 255, 111, 0, 0.24691883589373254, 100%);
+  position: relative;
+  transition: all 0.5s ease-in-out;
 }
 
-.homeContainer2 h2{
-  text-decoration: underline;
+.expansionPanel.collapsed {
+  padding-bottom: 1rem;
+}
+
+p {
+  height: 100%;
 }
 //endregion
 
 //region homeContainer3
-.homeContainer3{
-  margin: 2%;
+.homeContainer3 {
+  @include container2-5(2rem, 2rem, 2rem, 2rem, 180deg, 255, 193, 7, 1, 0%, 255, 111, 0, 0.24691883589373254, 100%);
+  margin-top: 2rem;
+  //margin-bottom: 5rem;
+  width: 100%;
+  height: 100%;
+
+  .center {
+    text-align: center;
+  }
+
+  .mat-carousel-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+  }
+
+  .artist-info {
+    color: white;
+    text-align: center;
+  }
 }
 //endregion
 
 //region homeContainer4
-.homeContainer4{
-  background-color: var(--secondary-main-brand-color);
-  margin-right: 5%;
-  padding: 10px;
-  border-radius: 0 50px 50px 0;
-
-  @include Shadow;
-
-  animation-name: slideInLeft;
-  animation-timing-function: ease-in-out;
-  animation-duration: 2.5s;
-  animation-iteration-count: 1;
-
-  h2{
-    text-align: center;
-    text-decoration: underline;
-  }
-}
-
-
-.images{
-  margin: 5%;
+.homeContainer4 {
+  @include container2-5(2rem, 2rem, 2rem, 2rem, 180deg, 255, 193, 7, 1, 0%, 255, 111, 0, 0.24691883589373254, 100%);
+  width: 100%;
+  padding-bottom: 1rem;
   display: flex;
-  gap: 5%;
-  flex-wrap: wrap;
-  box-sizing: border-box;
-  align-items: center;
+  justify-content: center;
 
-  img{
-    position: relative;
-    margin: 5%;
-    height: 400px;
-    width: (100% / 3);
-    border: 5px solid black;
+  .innerContainer4{
+    height: 100%;
+    text-align: center;
   }
 }
-
 //endregion
 
-//region homeContainer5
-.homeContainer5{
-  background-color: var(--secondary-main-brand-color);
-  margin-left: 5%;
-  margin-right: 5%;
-  padding: 10px;
-  border-radius: 50px 50px 0 0;
+//region homeContainer5 (Sponsor)
+.homeContainer5 {
+  @include container2-5(2rem, 2rem, 2rem, 2rem, 180deg, 255, 193, 7, 1, 0%, 255, 111, 0, 0.24691883589373254, 100%);
+  margin-top: 5%;
+  padding-bottom: 5%;
 
-  @include Shadow;
-
-  height: 500px;
-
-  animation-name: slideInBottom;
-  animation-timing-function: ease-in-out;
-  //animation-duration: 2.5s;
-  animation-iteration-count: 1;
-
-
-  h2{
+  h1 {
     text-decoration: underline;
     text-align: center;
   }
 }
 
-.innerContainer5{
-  width: 100%;
-  height: 100%;
-
+.innerContainer5 {
+  padding: 10px;
 }
 
-.row{
+.row {
   display: flex;
 
-  div{
-    width: (100% / 3);
+  div {
+    width: calc(100% / 4);
     box-sizing: border-box;
     align-items: center;
-    margin: 2%;
-    //align-content: center;
+    margin: 1%;
     display: flex;
 
-    img{
-      width: 70%;
-      position: relative;
-    }
-  }
-}
-
-.row2{
-  display: flex;
-
-  div{
-    width: (100% / 5);
-    box-sizing: border-box;
-    align-items: center;
-    margin: 2%;
-    //align-content: center;
-    display: flex;
-
-    img{
+    img {
       width: 70%;
       max-height: 80%;
       position: relative;
@@ -210,9 +173,129 @@ body {
   }
 }
 
+.sponsor-logo {
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  transform: translate3d(0, 0, 0);
+  transition: transform 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  a {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.sponsor-logo:before,
+.sponsor-logo:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15%;
+  background: antiquewhite;
+  opacity: 0;
+  transition: opacity 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.sponsor-logo:before {
+  transform: scale3d(1, 1, 1);
+}
+
+.sponsor-logo:after {
+  transform: scale3d(0.8, 0.8, 1);
+}
+
+.sponsor-logo:hover:before {
+  transform: scale3d(0.8, 0.8, 1);
+  opacity: 1;
+}
+
+.sponsor-logo:hover:after {
+  transform: scale3d(1, 1, 1);
+  opacity: 1;
+}
+
+.sponsor-logo:hover {
+  transform: translate3d(0, -5px, 0);
+}
+
+//endregion
+
+//region Footer
+.homeFooter {
+  //@include container2-5(0, 0, 0, 0, 0, 0, 0, 0, #000000, 180deg, 255, 111, 0, 0.24691883589373254, 0%, 0, 0, 0, 0, 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0 , 0, 0, 0) 100%);
+  width: 100%;
+  margin-top: 10%;
+}
+
+.innerFooter {
+  width: 100%;
+  margin-bottom: 5%;
+  margin-left: 7%;
+}
 //endregion
 
 //region Media Query
+@media(max-width: 800px) {
+  .homeContainer5 {
+    h1 {
+      text-decoration: 0;
+    }
+  }
+
+  .innerContainer5 {
+    padding: 2px 5px;
+  }
+
+  .sponsor-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+  }
+
+  .sponsor-logo img {
+    margin: 0 auto;
+  }
+
+  .row {
+    display: block;
+
+    div {
+      width: 100%;
+      height: calc(100% / 4);
+    }
+  }
+
+  .sponsor-logo {
+    margin-top: 10%;
+    transition: transform 0.1ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    a {
+      display: flex;
+      justify-content: center;
+    }
+
+    &:before,
+    &:after {
+      transition: opacity 0.1ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+  }
+
+  .innerFooter {
+    margin-left: 0;
+  }
+}
+
+/*
 @media (min-width: 800px) {
   .hDate {
     padding-top: 70px;
@@ -278,7 +361,7 @@ body {
       }
     }
   }
-}
+}   */
 //endregion
 
 //region Animation
@@ -297,41 +380,41 @@ body {
 }
 
 @keyframes slideInRight {
-  from{
+  from {
     transform: translateX(900px);
   }
 
-  to{
+  to {
     transform: translateX(0);
   }
 }
 
 @keyframes slideInLeft {
-  from{
+  from {
     transform: translateX(-900px);
   }
 
-  to{
+  to {
     transform: translateX(0);
   }
 }
 
 @keyframes slideInTop {
-  from{
+  from {
     transform: translateY(-900px);
   }
 
-  to{
+  to {
     transform: translateY(0);
   }
 }
 
 @keyframes slideInBottom {
-  from{
+  from {
     transform: translateY(900px);
   }
 
-  to{
+  to {
     transform: translateY(0);
   }
 }

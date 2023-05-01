@@ -1,3 +1,4 @@
+/*
 .header{
   padding: 10px;
   display: flex;
@@ -103,3 +104,40 @@ label[for="burgerMenu_checkbox"]{
     display: block;
   }
 }
+*/
+
+/*.sidenavContainer{
+  height: 100svh;
+  //position: sticky;
+  flex: 1;
+  .sidenav{
+    padding: 2rem;
+    width: 10%;
+    //position: sticky;
+  }
+}*/
+
+/*.navbar{
+  //position: sticky;
+  .logo{
+    max-height: 50px;
+    max-width: 50px;
+    text-align: center;
+    margin: 5px;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  nav ul{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  nav a{
+    text-decoration: none;
+    position: relative;
+    padding: 3px;
+  }
+}*/
