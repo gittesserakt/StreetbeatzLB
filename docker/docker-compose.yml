@@ -1,5 +1,13 @@
 version: "3.9"
 services:
+    builder:
+        build:
+            context: .
+            dockerfile: builder.dockerfile
+        volumes:
+            - ./builds:/builds
+            - ../StreetbeatzLB_Backend:/backend
+            - ../StreetbeatzLB_Frontend:/frontend
     mariadb:
         build:
             context: .
@@ -12,7 +20,11 @@ services:
             MYSQL_PASSWORD: streetbeatzlb
         ports:
             - 3306:3306
-
+        networks:
+            - backend
+        depends_on:
+            builder:
+                condition: service_completed_successfully
     tomcat:
         build:
             context: .
@@ -20,11 +32,29 @@ services:
         restart: always
         ports:
             - 8080:8080
-
+        networks:
+            - backend
+        volumes:
+            - ./builds/backend:/usr/local/tomcat/webapps/backend
+        depends_on:
+            builder:
+                condition: service_completed_successfully
     nginx:
         build:
             context: .
             dockerfile: nginx.dockerfile
-        restart: always
         ports:
-            -   80:4200
+            - "80:80"
+        networks:
+            - backend
+            - frontend
+        volumes:
+            - ./builds/frontend:/var/www/streetbeatzlb
+        depends_on:
+            builder:
+                condition: service_completed_successfully
+networks:
+    backend:
+        name: backend
+    frontend:
+        name: frontend

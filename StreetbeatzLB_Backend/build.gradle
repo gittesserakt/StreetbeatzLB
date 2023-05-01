@@ -37,3 +37,8 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+war {
+    archiveFileName = 'StreetbeatzLB_Backend.war'
+    enabled = true
+}
