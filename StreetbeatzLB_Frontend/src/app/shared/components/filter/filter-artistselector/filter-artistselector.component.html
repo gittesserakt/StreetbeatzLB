@@ -1,0 +1,7 @@
+<mat-form-field appearance="fill">
+  <mat-label>Artist</mat-label>
+  <mat-select [(value)]=inArtist (valueChange)="artistChangeEvent($event)">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let artist of artists" value="{{artist.name}}">{{artist.name}}</mat-option>
+  </mat-select>
+</mat-form-field>

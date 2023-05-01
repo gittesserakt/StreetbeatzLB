@@ -4,11 +4,11 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {AuthService} from "@auth0/auth0-angular";
 
 @Component({
-  selector: 'app-mobile',
-  templateUrl: './mobile.component.html',
-  styleUrls: ['./mobile.component.scss']
+  selector: 'app-navbar-mobile',
+  templateUrl: './navbar-mobile.component.html',
+  styleUrls: ['./navbar-mobile.component.scss']
 })
-export class MobileComponent implements OnInit {
+export class NavbarMobileComponent implements OnInit {
   @Input() navbarHeight: number = 64;
   isAuthenticated$ = this.authService.isAuthenticated$;
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private authService: AuthService) {

@@ -42,7 +42,6 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-war {
+bootWar {
     archiveFileName = 'StreetbeatzLB_Backend.war'
-    enabled = true
 }

@@ -1,0 +1,7 @@
+FROM tomcat:latest
+
+RUN cd /usr/local/tomcat && mv webapps webapps2 && mv webapps.dist/ webapps
+#COPY ./dist/streetbeatz-lb-frontend /usr/local/tomcat/webapps/streetbeatz-lb-frontend/
+#COPY ./target/StreetbeatzLB_Backend.war /usr/local/tomcat/webapps/
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
