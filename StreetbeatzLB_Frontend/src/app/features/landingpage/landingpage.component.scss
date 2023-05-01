@@ -255,8 +255,15 @@ p {
   }
 
   .sponsor-logo {
-    padding-top: 14%;
-    padding-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+  }
+
+  .sponsor-logo img {
+    margin: 0 auto;
   }
 
   .row {
