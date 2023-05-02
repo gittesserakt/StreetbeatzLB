@@ -1,3 +1,3 @@
 #!/bin/bash
 
-nginx -g 'daemon off;'
+cp -R /usr/local/mount/streetbeatzlb /usr/share/nginx/

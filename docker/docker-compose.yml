@@ -1,6 +1,7 @@
 version: "3.9"
 services:
     builder:
+        container_name: builder-sb
         build:
             context: .
             dockerfile: builder.dockerfile
@@ -8,7 +9,11 @@ services:
             - ./builds:/builds
             - ../StreetbeatzLB_Backend:/backend
             - ../StreetbeatzLB_Frontend:/frontend
+        environment:
+            SPRING_PROFILES_ACTIVE: prod
+            ACTIVE: false
     mariadb:
+        container_name: mariadb-sb
         build:
             context: .
             dockerfile: mariadb.dockerfile
@@ -19,27 +24,35 @@ services:
             MYSQL_USER: streetbeatzlb_mariadb_admin
             MYSQL_PASSWORD: streetbeatzlb
         ports:
-            - 3306:3306
+            - "3306:3306"
         networks:
             - backend
         depends_on:
             builder:
                 condition: service_completed_successfully
+        healthcheck:
+            test: [ "CMD", "mysqladmin" ,"ping", "-h", "mariadb" ]
+            timeout: 20s
+            retries: 10
     tomcat:
+        container_name: tomcat-sb
         build:
             context: .
             dockerfile: tomcat.dockerfile
         restart: always
         ports:
-            - 8080:8080
+            - "8080:8080"
         networks:
             - backend
         volumes:
-            - ./builds/backend:/usr/local/tomcat/webapps/backend
+            - ./builds/backend:/var/www/streetbeatzlb
         depends_on:
             builder:
                 condition: service_completed_successfully
+            mariadb:
+                condition: service_healthy
     nginx:
+        container_name: nginx-sb
         build:
             context: .
             dockerfile: nginx.dockerfile
@@ -49,10 +62,12 @@ services:
             - backend
             - frontend
         volumes:
-            - ./builds/frontend:/var/www/streetbeatzlb
+            - ./builds/frontend:/usr/local/mount
         depends_on:
             builder:
                 condition: service_completed_successfully
+            tomcat:
+                condition: service_started
 networks:
     backend:
         name: backend

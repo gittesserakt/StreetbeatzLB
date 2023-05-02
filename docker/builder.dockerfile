@@ -33,7 +33,7 @@ RUN apt-get install -y openjdk-17-jdk
 # install angular cli
 RUN npm install -g @angular/cli
 
-COPY ./build_project.sh /usr/local/build_project.sh
-RUN chmod +x /usr/local/build_project.sh
+COPY ./build_project.sh /usr/build_project.sh
+RUN chmod +x /usr/build_project.sh
 
-ENTRYPOINT /usr/local/build_project.sh
+ENTRYPOINT /usr/build_project.sh

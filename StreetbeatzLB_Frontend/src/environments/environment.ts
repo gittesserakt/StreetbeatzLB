@@ -10,6 +10,6 @@ export const environment = {
     errorPath: '/callback',
   },
   api: {
-    serverUrl: 'http://localhost:8080/api',
+    serverUrl: 'http://localhost:80/api',
   },
 };

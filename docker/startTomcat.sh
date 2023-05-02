@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # tomcat webapps bug workaround
-mv /opt/tomcat/webapps /opt/tomcat/webapps2
-mv /opt/tomcat/webapps.dist /opt/tomcat/webapps
+mv webapps webapps2
+mv webapps.dist webapps
 
 # start tomcat
-cp /var/www/streetbeatzlb/StreetbeatzLB_Backend.war /opt/tomcat/webapps/
-/opt/tomcat/bin/catalina.sh run
+cp /var/www/streetbeatzlb/StreetbeatzLB_Backend.war ./webapps/streetbeatzlb.war
+/usr/local/tomcat/bin/catalina.sh run
