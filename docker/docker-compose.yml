@@ -23,8 +23,6 @@ services:
             MYSQL_DATABASE: streetbeatzlbdb
             MYSQL_USER: streetbeatzlb_mariadb_admin
             MYSQL_PASSWORD: streetbeatzlb
-        ports:
-            - "3306:3306"
         networks:
             - backend
         depends_on:
