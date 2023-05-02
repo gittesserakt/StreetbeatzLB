@@ -15,7 +15,28 @@ export class ArtistService {
 
   getArtistById = (artist_id: number): Observable<ApiResponseModel> => {
     const config: RequestConfigModel = {
-      url: `${env.api.serverUrl}/artists/artistByID?artistID=${artist_id}`,
+      url: `${env.api.serverUrl}/artists/artistByID?artist_id=${artist_id}`,
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    };
+
+    return this.externalApiService.callExternalApi(config).pipe(
+      mergeMap((response) => {
+        const {data, error} = response;
+
+        return of({
+          data: data ? (data as Artist) : null,
+          error,
+        });
+      })
+    );
+  };
+
+  getAllArtists = (): Observable<ApiResponseModel> => {
+    const config: RequestConfigModel = {
+      url: `${env.api.serverUrl}/artists/all`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

@@ -58,4 +58,43 @@ export class VerbosePerformanceService {
     );
   };
 
+  getFilteredVerbosePerformances = (date: Date | null, artist: string | null, stage: string | null): Observable<ApiResponseModel> => {
+    return this.performanceService.getFilteredPerformances(date, artist, stage)
+      .pipe(switchMap((performancesResponse) => {
+        const performances = performancesResponse.data as Performance[];
+
+        const verbosePerformances$ = performances.map((performance) => {
+          const verbosePerformance = new VerbosePerformance();
+          verbosePerformance.start_time = performance.start_time;
+          verbosePerformance.end_time = performance.end_time;
+
+          return forkJoin([
+            this.stageService.getStageById(performance.stage_id).pipe(map(stageResponse => {
+              const stageName = stageResponse.data ? (stageResponse.data as Stage).name : '';
+              verbosePerformance.stage = stageName;
+            })),
+            this.artistService.getArtistById(performance.artist_id).pipe(map(artistResponse => {
+              const artistName = artistResponse.data ? (artistResponse.data as Artist).name : '';
+              verbosePerformance.artist = artistName;
+            }))
+          ]).pipe(map(() => verbosePerformance));
+        });
+
+        return forkJoin(verbosePerformances$).pipe(
+          map((verbosePerformances) => ({
+            data: verbosePerformances,
+            error: this.errorFlag ? this.error : null,
+          }))
+        );
+      }),
+      catchError((error) => {
+        console.log(error);
+        return of({
+          data: null,
+          error: this.errorFlag ? this.error : null,
+        });
+      })
+    );
+  };
+
 }
