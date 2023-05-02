@@ -55,8 +55,8 @@ export class MapComponent implements OnInit, OnDestroy {
   });
 
   iconStage = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_black_24dp.svg',
-    iconUrl: 'assets/map/fstage_black_24dp.svg',
+    iconRetinaUrl: 'assets/map/stage_A.svg',
+    iconUrl: 'assets/map/stage_A.svg',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
