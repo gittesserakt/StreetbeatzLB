@@ -1,9 +1,11 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {VoteDialogComponent} from "../../shared/components/vote-dialog/vote-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {ArtistService} from "../../core/services/artist.service";
+import {Artist} from "../../core/models/artist.model";
 
 export interface DialogData {
-  chosenArtist: string;
+  chosenArtist: Artist;
   hasChosen: boolean;
 }
 
@@ -15,15 +17,16 @@ export interface DialogData {
 export class VoteComponent implements OnInit {
   screenHeightPX: number = 0;
   rowHeight: number = 0;
-  chosenArtist: string | undefined;
+  chosenArtist?: Artist;
   hasChosen: boolean = false;
-  artists: string[] | undefined;
+  artists?: Artist[];
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private artistService: ArtistService) {
   }
 
   ngOnInit(): void {
     this.calculateHeight();
+    this.getAllArtists();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -50,6 +53,21 @@ export class VoteComponent implements OnInit {
       } else {
         this.hasChosen = false;
       }
+      console.log(this.chosenArtist?.name);
     });
+  }
+
+  getAllArtists():void{
+    this.artistService.getAllArtists().subscribe((response)=>{
+      const {data, error} = response;
+      console.log('artist', response);
+
+      if(data){
+        this.artists = data as Artist[];
+      }
+      if(error){
+        console.log(error);
+      }
+    })
   }
 }

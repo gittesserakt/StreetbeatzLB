@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>{{voteTitle}}</h1>
 <div mat-dialog-content>
   <p>{{text}}</p>
-  <p><b>{{data.chosenArtist}}</b></p>
+  <p *ngIf="data.chosenArtist != undefined"><b>{{data.chosenArtist.name}}</b></p>
 </div>
 <div mat-dialog-actions>
   <button mat-flat-button (click)="onNoClick()" color="warn">{{noButton}}</button>
