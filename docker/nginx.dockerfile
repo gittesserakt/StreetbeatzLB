@@ -1,6 +1,7 @@
 FROM nginx:latest
 
-VOLUME /ssl
+VOLUME /data
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-COPY ./ssl /etc/nginx/ssl/hjetter
+COPY ./data/hjetter.key /etc/nginx/ssl/hjetter
+COPY ./data/hjetter_ddns_net.pem /etc/nginx/ssl/hjetter

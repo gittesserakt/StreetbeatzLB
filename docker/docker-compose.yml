@@ -61,7 +61,7 @@ services:
             - backend
         volumes:
             - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7/docker/builds/frontend:/usr/share/nginx/
-            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7/ssl:/ssl
+            - /var/snap/docker/common/var-lib-docker/volumes/StreetbeatzLB_Volume/_data:/data
         depends_on:
             builder:
                 condition: service_completed_successfully
