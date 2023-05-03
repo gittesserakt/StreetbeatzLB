@@ -5,7 +5,7 @@ export const environment = {
     clientId: 'PVLubF1ASpXIGc69aZANFwzWH4iLU0mj',
     authorizationParams: {
       audience: 'https://streetbeatzlb.de/auth/api',
-      redirect_uri: 'http://localhost:4200/',
+      redirect_uri: 'http://hjetter.ddns.net/',
     },
     errorPath: '/callback',
   },

@@ -25,7 +25,7 @@ spring:
       continue-on-error: true
 application:
   audience: https://streetbeatzlb.de/auth/api
-  client-origin-url: http://localhost:4200
+  client-origin-url: http://hjetter.ddns.net
 
 server:
   error:
