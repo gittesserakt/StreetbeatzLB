@@ -11,7 +11,7 @@ services:
             - ../StreetbeatzLB_Frontend:/frontend
         environment:
             SPRING_PROFILES_ACTIVE: prod
-            ACTIVE: false
+            ACTIVE: true
     mariadb:
         container_name: mariadb-sb
         build:
@@ -37,9 +37,9 @@ services:
         build:
             context: .
             dockerfile: tomcat.dockerfile
-        restart: always
         ports:
             - "8080:8080"
+        restart: always
         networks:
             - backend
         volumes:
@@ -58,7 +58,6 @@ services:
             - "80:80"
         networks:
             - backend
-            - frontend
         volumes:
             - ./builds/frontend:/usr/local/mount
         depends_on:
@@ -69,5 +68,3 @@ services:
 networks:
     backend:
         name: backend
-    frontend:
-        name: frontend
