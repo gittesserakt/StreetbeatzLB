@@ -7,8 +7,8 @@ services:
             dockerfile: builder.dockerfile
         volumes:
             - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7/docker/builds:/builds
-            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7//StreetbeatzLB_Backend:/backend
-            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7//StreetbeatzLB_Frontend:/frontend
+            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7/StreetbeatzLB_Backend:/backend
+            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7/StreetbeatzLB_Frontend:/frontend
         environment:
             SPRING_PROFILES_ACTIVE: prod
             ACTIVE: true
