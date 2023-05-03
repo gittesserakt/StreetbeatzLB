@@ -1,0 +1,31 @@
+<div class="performance-popup">
+  <h2 id="popup-label" class="title">{{popupName}}</h2>
+  <div class="content">
+    <label class="label">Start Time:</label>
+    <input class="input" type="datetime-local" [(ngModel)]="updatedPerformance.start_time" value="getDateTime()">
+    <label class="label">Artist:</label>
+    <select class="input" [(ngModel)]="updatedPerformance.artist">
+      <option value="Artist1">Artist1</option>
+      <option value="Artist2">Artist2</option>
+      <option value="Artist3">Artist3</option>
+    </select>
+    <label class="label">Stage:</label>
+    <select class="input" [(ngModel)]="updatedPerformance.stage">
+      <option value="A">Stage A</option>
+      <option value="B">Stage B</option>
+      <option value="C">Stage C</option>
+      <option value="D">Stage D</option>
+      <option value="E">Stage E</option>
+      <option value="F">Stage F</option>
+      <option value="G">Stage G</option>
+    </select>
+  </div>
+  <div class="buttons">
+    <button class="left-Button" (click)="onCancel()">
+      <mat-icon>clear</mat-icon>
+    </button>
+    <button (click)="onSave()">
+      <mat-icon>done</mat-icon>
+    </button>
+  </div>
+</div>

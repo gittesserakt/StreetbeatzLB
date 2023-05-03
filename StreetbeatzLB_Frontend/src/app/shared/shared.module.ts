@@ -7,6 +7,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {MatListModule} from "@angular/material/list";
+import { MobileComponent } from './components/navbar/mobile/mobile.component';
+import { DesktopComponent } from './components/navbar/desktop/desktop.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import {RouterLink} from "@angular/router";
@@ -21,6 +23,11 @@ import { FilterTimepickerComponent } from './components/filter/filter-timepicker
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { PageLoaderComponent } from './components/page-loader/page-loader.component';
+import { PerformancePopupComponent } from './components/performance-popup/performance-popup.component';
+import {FormsModule} from "@angular/forms";
+import {EditPerformanceTileComponent} from "./components/edit-performance-tile/edit-performance-tile.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -30,6 +37,10 @@ import { PageLoaderComponent } from './components/page-loader/page-loader.compon
     LogoutButtonComponent,
     PageLoaderComponent,
     FilterTimepickerComponent,
+    PageLoaderComponent,
+    ImageSliderComponent,
+    PerformancePopupComponent,
+    EditPerformanceTileComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +61,19 @@ import { PageLoaderComponent } from './components/page-loader/page-loader.compon
     FormsModule,
     ReactiveFormsModule,
   ],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatListModule,
+        MatGridListModule,
+        FormsModule,
+        MatDialogModule,
+        MatTooltipModule,
+    ],
   exports: [
     ...COMPONENTS
   ]
