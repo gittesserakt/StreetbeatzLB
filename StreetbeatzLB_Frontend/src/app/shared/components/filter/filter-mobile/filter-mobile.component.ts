@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Filter} from "../../../../core/models/filter.model";
+import {SmfCookieService} from "../../../../core/services/smfCookieService";
 import {Time} from "@angular/common";
 
 @Component({
@@ -13,7 +14,10 @@ export class FilterMobileComponent implements OnInit {
   filterTypes: string[] = []; // 'Date', 'Artist', 'Stage'
   @Input() inFilter!: Filter;
   @Output() outFilter = new EventEmitter<Filter>();
-
+  smfCookieService:SmfCookieService
+  constructor(smfCookieService:SmfCookieService) {
+    this.smfCookieService = smfCookieService;
+  }
   ngOnInit() {
     if (this.inFilter) {
       this.filter = this.inFilter;
@@ -93,5 +97,6 @@ export class FilterMobileComponent implements OnInit {
   applyFilter() {
     this.outFilter.emit(this.filter);
     this.panelOpenState = false;
+    this.smfCookieService.setFilterCookies(this.filter);
   }
 }
