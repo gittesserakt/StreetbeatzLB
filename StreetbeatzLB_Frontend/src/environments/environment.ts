@@ -5,11 +5,11 @@ export const environment = {
     clientId: 'PVLubF1ASpXIGc69aZANFwzWH4iLU0mj',
     authorizationParams: {
       audience: 'https://streetbeatzlb.de/auth/api',
-      redirect_uri: 'http://hjetter.ddns.net/',
+      redirect_uri: 'https://hjetter.ddns.net/',
     },
     errorPath: '/callback',
   },
   api: {
-    serverUrl: 'http://hjetter.ddns.net:8080/streetbeatzlb/api',
+    serverUrl: 'https://hjetter.ddns.net:8080/streetbeatzlb/api',
   },
 };
