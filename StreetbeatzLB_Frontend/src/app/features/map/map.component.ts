@@ -5,7 +5,6 @@ import {MatToolbar} from "@angular/material/toolbar";
 import {PoiService} from "../../core/services/poi.service";
 import {Poi} from "../../core/models/poi.model";
 import {LatLng} from "leaflet";
-import {waitForAsync} from "@angular/core/testing";
 
 Leaflet.Icon.Default.imagePath = 'assets/'
 
@@ -54,16 +53,6 @@ export class MapComponent implements OnInit, OnDestroy {
     shadowSize: [41, 41]
   });
 
-  iconStage = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_A.svg',
-    iconUrl: 'assets/map/stage_A.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
   iconToilet = Leaflet.icon({
     iconRetinaUrl: 'assets/map/wc_black_24dp.svg',
     iconUrl: 'assets/map/wc_black_24dp.svg',
@@ -77,6 +66,139 @@ export class MapComponent implements OnInit, OnDestroy {
   iconEntrance = Leaflet.icon({
     iconRetinaUrl: 'assets/map/entrance_black_24dp.svg',
     iconUrl: 'assets/map/entrance_black_24dp.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+  });
+
+  IconStageA = Leaflet.icon({
+    iconRetinaUrl: 'assets/map/stage_A.svg',
+    iconUrl: 'assets/map/stage_A.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+  });
+
+  IconStageB = Leaflet.icon({
+    iconRetinaUrl: 'assets/map/stage_B.svg',
+    iconUrl: 'assets/map/stage_B.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+  });
+
+  IconStageC = Leaflet.icon({
+    iconRetinaUrl: 'assets/map/stage_C.svg',
+    iconUrl: 'assets/map/stage_C.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+  });
+
+  IconStageD = Leaflet.icon({
+    iconRetinaUrl: 'assets/map/stage_D.svg',
+    iconUrl: 'assets/map/stage_D.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+  });
+
+  IconStageE = Leaflet.icon({
+    iconRetinaUrl: 'assets/map/stage_E.svg',
+    iconUrl: 'assets/map/stage_E.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+  });
+
+  IconStageF = Leaflet.icon({
+    iconRetinaUrl: 'assets/map/stage_F.svg',
+    iconUrl: 'assets/map/stage_F.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+  });
+
+  IconStageG = Leaflet.icon({
+    iconRetinaUrl: 'assets/map/stage_G.svg',
+    iconUrl: 'assets/map/stage_G.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+  });
+
+  IconStageH = Leaflet.icon({
+    iconRetinaUrl: 'assets/map/stage_H.svg',
+    iconUrl: 'assets/map/stage_H.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+  });
+
+  IconStageI = Leaflet.icon({
+    iconRetinaUrl: 'assets/map/stage_I.svg',
+    iconUrl: 'assets/map/stage_I.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+  });
+
+  IconStageK = Leaflet.icon({
+    iconRetinaUrl: 'assets/map/stage_K.svg',
+    iconUrl: 'assets/map/stage_K.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+  });
+
+
+  IconStageL = Leaflet.icon({
+    iconRetinaUrl: 'assets/map/stage_L.svg',
+    iconUrl: 'assets/map/stage_L.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+  });
+
+
+  IconStageM = Leaflet.icon({
+    iconRetinaUrl: 'assets/map/stage_M.svg',
+    iconUrl: 'assets/map/stage_M.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41]
+  });
+
+
+  IconStageS = Leaflet.icon({
+    iconRetinaUrl: 'assets/map/stage_S.svg',
+    iconUrl: 'assets/map/stage_S.svg',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -219,14 +341,38 @@ export class MapComponent implements OnInit, OnDestroy {
     switch (icondId) {
       case "0":
         return this.iconEntrance;
-      case "1":
-        return this.iconStage;
       case "2":
         return this.iconFoodTruck;
       case "3":
         return this.iconToilet;
+      case "A":
+        return this.IconStageA;
+      case "B":
+        return this.IconStageB;
+      case "C":
+        return this.IconStageC;
+      case "D":
+        return this.IconStageD;
+      case "E":
+        return this.IconStageE;
+      case "F":
+        return this.IconStageF;
+      case "G":
+        return this.IconStageG;
+      case "H":
+        return this.IconStageH;
+      case "I":
+        return this.IconStageI;
+      case "K":
+        return this.IconStageK;
+      case "L":
+        return this.IconStageL;
+      case "M":
+        return this.IconStageM;
+      case "S":
+        return this.IconStageS;
     }
-    return this.iconStage;
+    return this.IconStageA;
   }
 }
 
