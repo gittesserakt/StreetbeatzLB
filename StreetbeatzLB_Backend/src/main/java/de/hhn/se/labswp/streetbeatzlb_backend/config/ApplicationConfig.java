@@ -29,7 +29,7 @@ public class ApplicationConfig { // implements WebMvcConfigurer
   public CorsFilter corsFilter() {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
     corsConfiguration.setAllowCredentials(true);
-    corsConfiguration.setAllowedOriginPatterns(Arrays.asList("http://localhost:4200", "http://localhost:8080", "http://localhost", "http://nginx-sb", "http://hjetter.ddns.net"));
+    corsConfiguration.setAllowedOriginPatterns(Arrays.asList("http://localhost:4200", "http://localhost:8080", "http://localhost", "http://nginx-sb", "https://hjetter.ddns.net"));
     corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
         "Accept", "Authorization", "Origin, Accept", "X-Requested-With",
         "Access-Control-Request-Method", "Access-Control-Request-Headers"));
