@@ -6,9 +6,9 @@ services:
             context: .
             dockerfile: builder.dockerfile
         volumes:
-            - ./builds:/builds
-            - ../StreetbeatzLB_Backend:/backend
-            - ../StreetbeatzLB_Frontend:/frontend
+            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7/docker/builds:/builds
+            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7//StreetbeatzLB_Backend:/backend
+            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7//StreetbeatzLB_Frontend:/frontend
         environment:
             SPRING_PROFILES_ACTIVE: prod
             ACTIVE: true
@@ -43,7 +43,7 @@ services:
         networks:
             - backend
         volumes:
-            - ./builds/backend:/var/www/streetbeatzlb
+            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7/docker/builds/backend:/var/www/streetbeatzlb
         depends_on:
             builder:
                 condition: service_completed_successfully
@@ -59,7 +59,7 @@ services:
         networks:
             - backend
         volumes:
-            - ./builds/frontend:/usr/local/mount
+            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7/docker/builds/frontend:/usr/local/mount
         depends_on:
             builder:
                 condition: service_completed_successfully
