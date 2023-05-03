@@ -59,7 +59,7 @@ services:
         networks:
             - backend
         volumes:
-            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7/docker/builds/frontend:/usr/local/mount
+            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/7/docker/builds/frontend:/usr/share/nginx/
         depends_on:
             builder:
                 condition: service_completed_successfully
