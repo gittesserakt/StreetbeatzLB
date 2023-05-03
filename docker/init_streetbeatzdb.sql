@@ -14,7 +14,8 @@ create or replace table artist
 (
     artist_id  int auto_increment
         primary key,
-    name      varchar(255) not null
+    name      varchar(255) not null,
+	vote_count 	int null
 );
 
 create or replace table poi
@@ -71,15 +72,15 @@ INSERT INTO `administrator` (identifier, email, firstname, surname, picture) VAL
 	('ZW50d2lja2xlckBnbWFpbC5jb20', 'entwickler@gmail.com', 'Entwickler', 'Mustermann', null),
 	('aGFydmV5QGdtYWlsLmNvbQ', 'harvey@gmail.com', 'Harvey', 'Mustermann', null);
 
-INSERT INTO `artist` (`name`) VALUES
-	('Dominik Friedrich'),
-	('Alice Rose'),
-	('Der Katze & Die Hund'),
-	('Maxmaber Orkestar'),
-	('Nothing Concrete'),
-	('PHI'),
-	('Teresa Bergman'),
-	('The Busquitos');
+INSERT INTO `artist` (`name`, vote_count) VALUES
+	('Dominik Friedrich', 0),
+	('Alice Rose', 0),
+	('Der Katze & Die Hund', 0),
+	('Maxmaber Orkestar', 0),
+	('Nothing Concrete', 0),
+	('PHI', 0),
+	('Teresa Bergman', 0),
+	('The Busquitos', 0);
 
 INSERT INTO `poi` (name, icon, poi_type, latitude, longitude) VALUES
 	('Haupteingang', '0', NULL, 48.89629356141575, 9.196231354904848),

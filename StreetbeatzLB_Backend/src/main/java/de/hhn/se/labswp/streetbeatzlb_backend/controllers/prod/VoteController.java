@@ -8,37 +8,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/api/artists")
+@RequestMapping(path="/api/voting")
 @CrossOrigin(origins = "*")
-public class ArtistController {
+public class VoteController {
     @Autowired
     private ArtistRepository artistRepository;
 
-    @GetMapping(path="/all")
-    public @ResponseBody Iterable<Artist> getAllArtists() {
-        return artistRepository.findAll();
-    }
-
-    @GetMapping(path="/artistByID")
-    public @ResponseBody Optional<Artist> getArtistByID(@RequestParam int artist_id) {
-        return artistRepository.findById(artist_id);
-    }
-
-    @GetMapping(path="/artistByName")
-    public @ResponseBody Optional<Artist> getArtistByName(@RequestParam String artist) {
+    @GetMapping(path="/vote")
+    public @ResponseBody void voteForArtist(@RequestParam String artist) {
 
         artist = artist.replace('_', ' ');
 
         Iterable<Artist> artists = artistRepository.findAll();
 
-        int artistID = 0;
-
         for(Artist currentArtist : artists) {
             if(currentArtist.getName().equals(artist)){
-                artistID = Math.toIntExact(currentArtist.getArtist_id());
+                int artistID = Math.toIntExact(currentArtist.getArtist_id());
+                artistRepository.findById(artistID).get()
+                        .setVote_count(artistRepository.findById(artistID).get()
+                                .getVote_count() + 1L);
                 break;
             }
         }
-        return artistRepository.findById(artistID);
+    }
+
+    @GetMapping(path = "/getVotesByID")
+    public @ResponseBody long getVotesByID(@RequestParam int artist_id){
+        return artistRepository.findById(artist_id).get().getVote_count();
     }
 }
