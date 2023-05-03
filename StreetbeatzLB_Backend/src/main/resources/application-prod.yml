@@ -35,8 +35,8 @@ server:
   ssl:
     enabled: true
     key-alias: hjetter
-    key-password: streetbeatzlb
-    key-store: /usr/local/tomcat/conf/keystore.p12
-    key-store-type: PKCS12
+    key-store: classpath:tomcatssl.jks
     key-store-password: streetbeatzlb
+    key-password: streetbeatzlb
+    key-store-type: JKS
 
