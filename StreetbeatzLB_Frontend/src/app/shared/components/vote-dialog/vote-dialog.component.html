@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>{{voteTitle}}</h1>
+<div mat-dialog-content>
+  <p>{{text}}</p>
+  <p><b>{{data.chosenArtist}}</b></p>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button (click)="onNoClick()" color="warn">{{noButton}}</button>
+  <button mat-flat-button [mat-dialog-close]="data.hasChosen" color="primary" [disabled]="data.chosenArtist == undefined">{{yesButton}}</button>
+</div>

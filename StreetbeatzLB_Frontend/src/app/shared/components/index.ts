@@ -13,6 +13,7 @@ import {FilterStageselectorComponent} from "./filter/filter-stageselector/filter
 import {LoginButtonComponent} from "./login-button/login-button.component";
 import {LogoutButtonComponent} from "./logout-button/logout-button.component";
 import {PageLoaderComponent} from "./page-loader/page-loader.component";
+import {VoteDialogComponent} from "./vote-dialog/vote-dialog.component";
 
 export const COMPONENTS = [
   NavbarComponent,
@@ -30,5 +31,6 @@ export const COMPONENTS = [
   LoginButtonComponent,
   LogoutButtonComponent,
   PageLoaderComponent,
+  VoteDialogComponent
 ]
 

@@ -21,6 +21,7 @@ import { FilterTimepickerComponent } from './components/filter/filter-timepicker
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { PageLoaderComponent } from './components/page-loader/page-loader.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { PageLoaderComponent } from './components/page-loader/page-loader.compon
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
   ],
   exports: [
     ...COMPONENTS
