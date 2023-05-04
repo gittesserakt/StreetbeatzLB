@@ -10,6 +10,7 @@ RUN mv webapps webapps2 && \
     mv webapps.dist webapps
 
 #install certificate for ssl
+COPY /home/hannes/hjetter.p12 /data/hjetter.p12
 RUN cd / && keytool -importkeystore -srckeystore /data/hjetter.p12 -srcstoretype PKCS12 -destkeystore /usr/local/tomcat/tomcatssl.jks -deststoretype JKS -deststorepass streetbeatzlb -srcstorepass streetbeatzlb -noprompt
 
 COPY server.xml /usr/local/tomcat/conf/server.xml
