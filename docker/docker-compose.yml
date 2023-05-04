@@ -6,9 +6,9 @@ services:
             context: .
             dockerfile: builder.dockerfile
         volumes:
-            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/11/docker/builds:/builds
-            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/11/StreetbeatzLB_Backend:/backend
-            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/11/StreetbeatzLB_Frontend:/frontend
+            - /home/hannes/StreetbeatzLB/docker/builds:/builds
+            - /home/hannes/StreetbeatzLB/StreetbeatzLB_Backend:/backend
+            - /home/hannes/StreetbeatzLB/StreetbeatzLB_Frontend:/frontend
         environment:
             SPRING_PROFILES_ACTIVE: prod
             ACTIVE: true
@@ -43,8 +43,8 @@ services:
         networks:
             - backend
         volumes:
-            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/11/docker/builds/backend:/var/www/streetbeatzlb
-            - /var/snap/docker/common/var-lib-docker/volumes/StreetbeatzLB_Volume/_data:/data
+            - /home/hannes/StreetbeatzLB/builds/backend:/var/www/streetbeatzlb
+            - /home/hannes:/data
         depends_on:
             builder:
                 condition: service_completed_successfully
@@ -60,8 +60,8 @@ services:
         networks:
             - backend
         volumes:
-            - /var/snap/docker/common/var-lib-docker/volumes/portainer_data/_data/compose/11/docker/builds/frontend:/usr/share/nginx/
-            - /var/snap/docker/common/var-lib-docker/volumes/StreetbeatzLB_Volume/_data:/data
+            - /home/hannes/StreetbeatzLB/docker/builds/frontend:/usr/share/nginx/
+            - /home/hannes:/data
         depends_on:
             builder:
                 condition: service_completed_successfully
