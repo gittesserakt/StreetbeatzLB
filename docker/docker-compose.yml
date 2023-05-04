@@ -43,7 +43,7 @@ services:
         networks:
             - backend
         volumes:
-            - /home/hannes/StreetbeatzLB/builds/backend:/var/www/streetbeatzlb
+            - /home/hannes/StreetbeatzLB/docker/builds/backend:/var/www/streetbeatzlb
             - /home/hannes:/data
         depends_on:
             builder:
