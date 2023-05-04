@@ -89,7 +89,7 @@ public class PerformanceController {
   @GetMapping(path="/edit")
   public @ResponseBody Performance editPerformance(@RequestParam Integer performance_id,
                                                    @RequestParam String start_time, @RequestParam String end_time,
-                                                   @RequestParam Long artist_id, @RequestParam Long stage_id) {
+                                                   @RequestParam String artist_id, @RequestParam String stage_id) {
 
     Optional<Performance> optionalPerformance = performanceRepository.findById(performance_id);
     if (optionalPerformance.isEmpty()) {
@@ -106,11 +106,28 @@ public class PerformanceController {
     if(!end_time.equals("0")) {
       performance.setEnd_time(LocalDateTime.parse(end_time));
     }
-    if(artist_id != 0){
-      performance.setArtist_id(artist_id);
+
+    Iterable<Artist> artists = artistRepository.findAll();
+
+    Iterable<Stage> stages = stageRepository.findAll();
+
+    artist_id = artist_id.replace('_', ' ');
+
+    if(!artist_id.equals("0")){
+      for(Artist currentArtist : artists) {
+        if(currentArtist.getName().equals(artist_id)){
+          performance.setArtist_id(currentArtist.getArtist_id());
+          break;
+        }
+      }
     }
-    if(stage_id != 0){
-      performance.setStage_id(stage_id);
+    if(!stage_id.equals("0")){
+      for(Stage currentStage : stages) {
+        if(currentStage.getName().equals(stage_id)){
+          performance.setStage_id(currentStage.getStage_id());
+          break;
+        }
+      }
     }
 
     return performanceRepository.save(performance);
