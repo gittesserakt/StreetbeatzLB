@@ -11,7 +11,7 @@ services:
             - /home/hannes/StreetbeatzLB/StreetbeatzLB_Frontend:/frontend
         environment:
             SPRING_PROFILES_ACTIVE: prod
-            ACTIVE: true
+            ACTIVE: "true"
     mariadb:
         container_name: mariadb-sb
         build:
