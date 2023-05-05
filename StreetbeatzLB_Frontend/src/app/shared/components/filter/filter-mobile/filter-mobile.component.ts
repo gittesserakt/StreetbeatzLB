@@ -14,9 +14,7 @@ export class FilterMobileComponent implements OnInit {
   filterTypes: string[] = []; // 'Date', 'Artist', 'Stage'
   @Input() inFilter!: Filter;
   @Output() outFilter = new EventEmitter<Filter>();
-  smfCookieService:SmfCookieService
-  constructor(smfCookieService:SmfCookieService) {
-    this.smfCookieService = smfCookieService;
+  constructor(private smfCookieService:SmfCookieService) {
   }
   ngOnInit() {
     if (this.inFilter) {
