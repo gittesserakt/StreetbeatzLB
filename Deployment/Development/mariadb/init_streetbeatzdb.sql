@@ -89,7 +89,19 @@ INSERT INTO `poi` (name, icon, poi_type, latitude, longitude) VALUES
 	('Herzogschaukel/ Aktionshaus', NULL, NULL, 48.902251005875385, 9.199487247719524),
 	('Restaurant Parkcafé', '2', NULL, 48.89950208404342, 9.201831829700073),
 	('Eingang Hinterer Schlosshof', '0', NULL, 48.89982743592445, 9.197495485734656),
-	('Stages', '1', NULL, 48.90194275338896, 9.197502693265069);
+	('Stage A', 'A', NULL, 48.898986, 9.195800),
+	('Stage B', 'B', NULL, 48.897815, 9.196530),
+	('Stage C', 'C', NULL, 48.896432, 9.196165),
+	('Stage D', 'D', NULL, 48.899091, 9.197302),
+	('Stage E', 'E', NULL, 48.900007, 9.201417),
+	('Stage F', 'F', NULL, 48.900457, 9.200464),
+	('Stage G', 'G', NULL, 48.900477, 9.198559),
+	('Stage H', 'H', NULL, 48.902243, 9.198940),
+	('Stage I', 'I', NULL, 48.901842, 9.197179),
+	('Stage K', 'K', NULL, 48.901475, 9.195543),
+	('Stage L', 'L', NULL, 48.901147, 9.196509),
+	('Stage M', 'M', NULL, 48.899800, 9.198606),
+	('Stage S', 'S', NULL, 48.900378, 9.195961);
 
 INSERT INTO `stage` (name, stage_size) VALUES
 	('A', 25.6),

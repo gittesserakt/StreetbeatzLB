@@ -3,7 +3,7 @@ services:
     mariadb:
         build:
             context: .
-            dockerfile: dev.dockerfile
+            dockerfile: mariadb/dockerfile
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: SM3ax4EhhWFkXW

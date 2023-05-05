@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-@Component
+/*@Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class ResponseHeadersFilter implements Filter {
 
@@ -25,6 +25,7 @@ public class ResponseHeadersFilter implements Filter {
     httpResponse.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
     httpResponse.setHeader("X-Frame-Options", "deny");
     httpResponse.setHeader("X-Content-Type-Options", "nosniff");
+    httpResponse.setHeader("Access-Control-Allow-Origin", "*");
     //httpResponse.setHeader("Content-Security-Policy", "default-src 'self' dev-decl55hw5iibzttr.eu.auth0.com; frame-ancestors 'none';");
     httpResponse.setHeader(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, max-age=0, must-revalidate");
     httpResponse.setHeader(HttpHeaders.PRAGMA, "no-cache");
@@ -32,4 +33,4 @@ public class ResponseHeadersFilter implements Filter {
 
     chain.doFilter(request, response);
   }
-}
+}*/

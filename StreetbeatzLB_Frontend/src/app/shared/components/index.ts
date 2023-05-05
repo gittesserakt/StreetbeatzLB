@@ -10,15 +10,21 @@ import {FilterDesktopComponent} from "./filter/filter-desktop/filter-desktop.com
 import {FilterDatepickerComponent} from "./filter/filter-datepicker/filter-datepicker.component";
 import {FilterArtistselectorComponent} from "./filter/filter-artistselector/filter-artistselector.component";
 import {FilterStageselectorComponent} from "./filter/filter-stageselector/filter-stageselector.component";
+import {EditPerformanceTileComponent} from "./edit-performance-tile/edit-performance-tile.component";
+import {PerformancePopupComponent} from "./performance-popup/performance-popup.component";
 import {LoginButtonComponent} from "./login-button/login-button.component";
 import {LogoutButtonComponent} from "./logout-button/logout-button.component";
 import {PageLoaderComponent} from "./page-loader/page-loader.component";
+import {FilterTimepickerComponent} from "./filter/filter-timepicker/filter-timepicker.component";
+
 
 export const COMPONENTS = [
   NavbarComponent,
   FooterComponent,
   ImageSliderComponent,
   PerformanceTileComponent,
+  EditPerformanceTileComponent,
+  PerformancePopupComponent,
   NavbarMobileComponent,
   NavbarDesktopComponent,
   FilterComponent,
@@ -30,5 +36,14 @@ export const COMPONENTS = [
   LoginButtonComponent,
   LogoutButtonComponent,
   PageLoaderComponent,
+  ImageSliderComponent,
+  LoginButtonComponent,
+  LogoutButtonComponent,
+  PageLoaderComponent,
+  FilterTimepickerComponent,
+  PageLoaderComponent,
+  ImageSliderComponent,
+  PerformancePopupComponent,
+  EditPerformanceTileComponent,
 ]
 
