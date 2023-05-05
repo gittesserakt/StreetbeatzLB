@@ -27,7 +27,7 @@
     <a mat-list-item routerLink="/map" (click)="sidenav.toggle()">Map</a>
     <a mat-list-item routerLink="/vote" (click)="sidenav.toggle()">Vote</a>
     <ng-container *ngIf="isAuthenticated$ | async;">
-      <a mat-list-item routerLink="/admin-view">Admin</a>
+      <a mat-list-item routerLink="/admin-view" (click)="sidenav.toggle()">Admin</a>
       <a mat-list-item>
         <app-logout-button></app-logout-button>
       </a>

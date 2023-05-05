@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
+import {AdminViewModule} from "./features/admin-view/admin-view.module";
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
     path: 'performances',
     loadChildren: () =>
       import('./features/performances/performances.module').then((m) => m.PerformancesModule),
+  },
+  {
+    path: 'admin-view',
+    loadChildren: () =>
+      import('./features/admin-view/admin-view.module').then((m) => m.AdminViewModule),
   },
   {
     path: 'map',

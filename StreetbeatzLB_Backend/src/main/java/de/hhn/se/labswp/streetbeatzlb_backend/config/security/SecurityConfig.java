@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2Res
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.OAuth2ErrorCodes;
@@ -15,6 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @RequiredArgsConstructor
+@EnableWebSecurity
 public class SecurityConfig {
 
   private final AuthenticationErrorHandler authenticationErrorHandler;
@@ -23,31 +25,17 @@ public class SecurityConfig {
 
   private final ApplicationProperties applicationProps;
 
-  /*@Bean
-  public WebSecurityCustomizer webSecurity() {
-    final var exclusionRegex = "^(?!%s|%s).*$".formatted(
-      "/api/messages/protected",
-      "/api/messages/admin"
-    );
-
-    return web ->
-      web.ignoring()
-        .regexMatchers(exclusionRegex);
-  }*/
-
   @Bean
   public SecurityFilterChain httpSecurity(final HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests((authz) -> authz
+    http.cors().and().csrf().disable()
+        .authorizeHttpRequests()
         .requestMatchers("/api/messages/protected", "/api/users/all")
-          .authenticated()
-        .anyRequest()
-          .permitAll())
-        .cors().and()
-          .oauth2ResourceServer()
-            .authenticationEntryPoint(authenticationErrorHandler)
-              .jwt()
-                .decoder(makeJwtDecoder())
-              .and();
+          .authenticated().anyRequest()
+          .permitAll().and()
+        .oauth2ResourceServer()
+          .authenticationEntryPoint(authenticationErrorHandler)
+            .jwt()
+              .decoder(makeJwtDecoder());
     return http.build();
   }
 
