@@ -1,0 +1,82 @@
+version: "3.9"
+services:
+    builder:
+        container_name: builder-sb
+        restart: no
+        build:
+            context: .
+            dockerfile: builder-sb/builder.dockerfile
+        env_file:
+            - ../Environment/production.env
+        volumes:
+            - /home/hannes/StreetbeatzLB/docker/builds:/builds
+            - /home/hannes/StreetbeatzLB/StreetbeatzLB_Backend:/backend
+            - /home/hannes/StreetbeatzLB/StreetbeatzLB_Frontend:/frontend
+    mariadb:
+        container_name: mariadb-sb
+        restart: always
+        build:
+            context: .
+            dockerfile: mariadb-sb/mariadb.dockerfile
+        env_file:
+            - ../Environment/production.env
+        networks:
+            - backend
+        depends_on:
+            builder:
+                condition: service_completed_successfully
+        healthcheck:
+            test: [ "CMD", "mysqladmin" ,"ping", "-h", "mariadb" ]
+            timeout: 20s
+            retries: 10
+    tomcat:
+        container_name: tomcat-sb
+        restart: always
+        build:
+            context: .
+            dockerfile: tomcat-sb/tomcat.dockerfile
+        env_file:
+            - ../Environment/production.env
+        volumes:
+            - /home/hannes/StreetbeatzLB/docker/builds/backend:/var/www/streetbeatzlb
+            - /home/hannes:/data
+        ports:
+            - "8443:8443"
+        networks:
+            - backend
+        depends_on:
+            builder:
+                condition: service_completed_successfully
+            mariadb:
+                condition: service_healthy
+        healthcheck:
+            test: [ "CMD", "curl", "-f", "https://hjetter:8443/streetbeatzlb/api/healthcheck" ]
+            timeout: 20s
+            retries: 10
+    nginx:
+        container_name: nginx-sb
+        restart: always
+        build:
+            context: .
+            dockerfile: nginx-sb/nginx.dockerfile
+        env_file:
+            - ../Environment/production.env
+        volumes:
+            - /home/hannes/StreetbeatzLB/docker/builds/frontend:/usr/share/nginx/
+            - /home/hannes:/data
+        ports:
+            - "443:443"
+        networks:
+            - backend
+        depends_on:
+            builder:
+                condition: service_completed_successfully
+            tomcat:
+                condition: service_healthy
+        healthcheck:
+            test: [ "CMD", "curl", "-f", "https://hjetter:443" ]
+            timeout: 20s
+            retries: 10
+networks:
+    backend:
+        name: backend
