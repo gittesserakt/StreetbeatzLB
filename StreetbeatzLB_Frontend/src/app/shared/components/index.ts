@@ -37,7 +37,7 @@ export const COMPONENTS = [
   LoginButtonComponent,
   LogoutButtonComponent,
   PageLoaderComponent,
-  VoteDialogComponent
+  VoteDialogComponent,
   ImageSliderComponent,
   LoginButtonComponent,
   LogoutButtonComponent,
