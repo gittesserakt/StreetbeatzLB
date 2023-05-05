@@ -1,5 +1,6 @@
 .background {
   //background: linear-gradient(180deg, rgba(45, 29, 249, 1) 5%, rgba(255, 0, 254, 1) 100%);
+  height: 100%;
 }
 
 .listContainer {
@@ -7,6 +8,7 @@
   padding: 5px;
 
   .list {
+    //background-color: red;
     height: 95%;
     margin: 5px;
     overflow-y: scroll;
