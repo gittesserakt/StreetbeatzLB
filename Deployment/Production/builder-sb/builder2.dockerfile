@@ -18,7 +18,7 @@ RUN cd ./tmp && \
     mv gradle-8.1.1 /usr/local/gradle && \
     ln -s /usr/local/gradle/bin/gradle /usr/bin/gradle \
 
-COPY ./build_project.sh /usr/build_project.sh
+COPY build_project.sh /usr/build_project.sh
 RUN chmod +x /usr/build_project.sh
 
 CMD tail -f /dev/null

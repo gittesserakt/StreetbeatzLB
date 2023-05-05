@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+    mariadb:
+        build:
+            context: .
+            dockerfile: mariadb/dockerfile
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: SM3ax4EhhWFkXW
+            MYSQL_DATABASE: streetbeatzlbdb
+            MYSQL_USER: streetbeatzlb_mariadb_admin
+            MYSQL_PASSWORD: streetbeatzlb
+        ports:
+            - 3306:3306

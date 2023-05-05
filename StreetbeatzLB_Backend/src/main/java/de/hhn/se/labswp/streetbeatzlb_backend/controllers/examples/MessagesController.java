@@ -1,6 +1,6 @@
 package de.hhn.se.labswp.streetbeatzlb_backend.controllers.examples;
 
-import de.hhn.se.labswp.streetbeatzlb_backend.models.examples.Message;
+import de.hhn.se.labswp.streetbeatzlb_backend.models.Message;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

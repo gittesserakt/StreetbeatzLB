@@ -3,7 +3,8 @@ FROM tomcat:10-jdk17
 VOLUME /data
 
 RUN apt-get update && \
-    apt-get install -y bash
+    apt-get install -y bash && \
+    apt-get install -y curl
 
 # tomcat webapps bug workaround
 RUN mv webapps webapps2 && \
