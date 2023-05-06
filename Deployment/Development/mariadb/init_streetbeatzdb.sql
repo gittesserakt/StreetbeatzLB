@@ -54,18 +54,6 @@ create or replace table performance
         foreign key (stage_id) references stage (stage_id)
 );
 
-create or replace table vote
-(
-    email    varchar(255) not null
-        primary key,
-	artist_id int          not null,
-    constraint vote_ibfk_1
-        foreign key (artist_id) references artist (artist_id)
-);
-
-create or replace index artist_id
-    on vote (artist_id);
-
 # identifier is email encoded with Base64URL
 INSERT INTO `administrator` (identifier, email, firstname, surname, picture) VALUES
 	('ZGVubmlzQGdtYWlsLmNvbQ', 'dennis@gmail.com', 'Dennis', 'Mustermann', null),
@@ -112,12 +100,6 @@ INSERT INTO `stage` (name, stage_size) VALUES
 	('E', 10.9),
 	('F', 14.5),
 	('G', 8.8);
-
-INSERT INTO `vote` (email, artist_id) VALUES
-	('mjouaux@stud.hs-heilbronn.de ', 1),
-	('mmousa@stud.hs-heilbronn.de ', 2),
-	('ddeifel@stud.hs-heilbronn.de', 3),
-	('nholl@stud.hs-heilbronn.de ', 3);
 
 INSERT INTO `performance` (start_time, end_time, created_by, artist_id, stage_id) VALUES
 		 ('2023-05-28 08:00:00', '2023-05-28 08:30:00', 'ZGVubmlzQGdtYWlsLmNvbQ', 1, 1),

@@ -14,7 +14,7 @@ public class VoteController {
     @Autowired
     private ArtistRepository artistRepository;
 
-    @GetMapping(path="/vote")
+    @PutMapping(path="/vote")
     public @ResponseBody void voteForArtist(@RequestParam String artist) {
 
         artist = artist.replace('_', ' ');
@@ -27,6 +27,7 @@ public class VoteController {
                 artistRepository.findById(artistID).get()
                         .setVote_count(artistRepository.findById(artistID).get()
                                 .getVote_count() + 1L);
+                artistRepository.save(artistRepository.findById(artistID).get());
                 break;
             }
         }
