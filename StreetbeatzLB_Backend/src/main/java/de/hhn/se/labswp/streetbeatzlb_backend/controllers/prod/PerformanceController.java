@@ -11,13 +11,11 @@ import org.springframework.stereotype.Controller;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
+import java.util.*;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -66,12 +64,12 @@ public class PerformanceController {
     return sortPerformances(PerformanceFilter.filterPerformancesByName(performanceRepository, artistRepository, stageRepository, newTime, artist_id, stage_id));
   }
 
-  @GetMapping(path="/delete")
+  @PutMapping(path="/delete")
   public @ResponseBody void deletePerformance(@RequestParam int performanceID) {
     performanceRepository.deleteById(performanceID);
   }
 
-  @GetMapping(path="/add")
+  @PostMapping(path="/add")
   public @ResponseBody Performance addPerformance(@RequestParam String start_time, @RequestParam String end_time,
                                                   @RequestParam String created_by, @RequestParam Long artist_id,
                                                   @RequestParam Long stage_id) {
@@ -86,7 +84,7 @@ public class PerformanceController {
     return performanceRepository.save(performance);
   }
 
-  @GetMapping(path="/edit")
+  @PutMapping(path="/edit")
   public @ResponseBody Performance editPerformance(@RequestParam Integer performance_id,
                                                    @RequestParam String start_time, @RequestParam String end_time,
                                                    @RequestParam String artist_id, @RequestParam String stage_id) {
@@ -115,7 +113,7 @@ public class PerformanceController {
 
     if(!artist_id.equals("0")){
       for(Artist currentArtist : artists) {
-        if(currentArtist.getName().equals(artist_id)){
+        if(currentArtist.getArtist_id().toString().equals(artist_id)){
           performance.setArtist_id(currentArtist.getArtist_id());
           break;
         }
@@ -123,7 +121,7 @@ public class PerformanceController {
     }
     if(!stage_id.equals("0")){
       for(Stage currentStage : stages) {
-        if(currentStage.getName().equals(stage_id)){
+        if(currentStage.getStage_id().toString().equals(stage_id)){
           performance.setStage_id(currentStage.getStage_id());
           break;
         }
