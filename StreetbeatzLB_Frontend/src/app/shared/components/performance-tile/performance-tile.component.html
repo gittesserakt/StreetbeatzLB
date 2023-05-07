@@ -16,11 +16,23 @@
     </div>
   </div>
   <div class="right-column">
-    <div class="navigate">
-      <button mat-fab color="primary" (click)="showLocation()">
-        <mat-icon>map</mat-icon>
-        <mat-icon>chevron_right</mat-icon>
-      </button>
-    </div>
+    <ng-container *ngIf="isAdmin">
+      <div class="change">
+        <button mat-fab color="primary" matTooltip="Edit the performance" (click)="editPerformance()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-fab color="primary" matTooltip="Delete the performance" (click)="deletePerformance()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!isAdmin">
+      <div class="navigate">
+        <button mat-fab color="primary" matTooltip="Show stage on the map" (click)="showLocation()">
+          <mat-icon>map</mat-icon>
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </ng-container>
   </div>
 </div>

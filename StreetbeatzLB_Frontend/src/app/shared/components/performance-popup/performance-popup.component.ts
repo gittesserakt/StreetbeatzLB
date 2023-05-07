@@ -17,7 +17,7 @@ export class PerformancePopupComponent implements OnInit{
 
   updatedPerformance: VerbosePerformance = { ...this.performance };
 
-  constructor(private dialofRef: MatDialogRef<PerformancePopupComponent>,
+  constructor(private dialogRef: MatDialogRef<PerformancePopupComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { performance: VerbosePerformance, functionName: string }) {}
 
   ngOnInit() {
@@ -55,13 +55,13 @@ export class PerformancePopupComponent implements OnInit{
             stage: this.updatedPerformance.stage
           };
           //TODO: speichern der änderungen
-          this.dialofRef.close();
+          this.dialogRef.close();
         } else { alert('The stage is already occupied at that time.'); }
       } else { alert('The artist is already playing on another stage at the time.'); }
     } else { alert('The start time is outside the festival period and must be between 26/05/2023 and 28/05/2023.'); }
   }
 
   onCancel() {
-    this.dialofRef.close();
+    this.dialogRef.close();
   }
 }

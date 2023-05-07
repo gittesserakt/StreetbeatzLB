@@ -6,7 +6,7 @@
       </button>
       <div *ngFor="let performance of verbosePerformances;">
         <mat-divider vertical="false" [inset]></mat-divider>
-        <app-edit-performance-tile [performance]="performance"></app-edit-performance-tile>
+        <app-performance-tile [performance]="performance" [isAdmin]="true"></app-performance-tile>
       </div>
       <mat-divider vertical="false" [inset]></mat-divider>
     </div>
