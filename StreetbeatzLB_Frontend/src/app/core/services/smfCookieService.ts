@@ -22,26 +22,27 @@ export class SmfCookieService {
     if (filter.time) {
       this.smfService.set("filterCookieHours", filter.time.hours + "")
       this.smfService.set("filterCookieMinutes", filter.time.minutes + "")
-    }else {
+    } else {
       this.smfService.delete("filterCookieHours")
       this.smfService.delete("filterCookieMinutes")
     }
     if (filter.artist) {
       this.smfService.set("filterCookieArtist", <string>filter.artist.toString())
-    }else {
+    } else {
       this.smfService.delete("filterCookieArtist")
     }
     if (filter.stage) {
       this.smfService.set("filterCookieStage", <string>filter.stage.toString())
-    }else {
+    } else {
       this.smfService.delete("filterCookieStage")
     }
+    console.log(filter.toString())
   }
 
-  getFilterCookies(): Filter {
+  getFilter(): Filter {
     console.log("Get Filter from Cookies")
 
-    return new Filter(
+    const filter = new Filter(
       this.smfService.check("filterCookieDate") ? new Date(<string>this.smfService.get("filterCookieDate")) : null,
       (this.smfService.check("filterCookieHours") &&
         this.smfService.check("filterCookieMinutes")) ? {
@@ -51,5 +52,7 @@ export class SmfCookieService {
       this.smfService.check("filterCookieArtist") ? this.smfService.get("filterCookieArtist") : null,
       this.smfService.check("filterCookieStage") ? this.smfService.get("filterCookieStage") : null,
     );
+    console.log("HALLO= " + filter.toString())
+    return filter;
   }
 }
