@@ -64,7 +64,7 @@ public class PerformanceController {
     return sortPerformances(PerformanceFilter.filterPerformancesByName(performanceRepository, artistRepository, stageRepository, newTime, artist_id, stage_id));
   }
 
-  @PutMapping(path="/delete")
+  @DeleteMapping(path="/delete")
   public @ResponseBody void deletePerformance(@RequestParam int performanceID) {
     performanceRepository.deleteById(performanceID);
   }

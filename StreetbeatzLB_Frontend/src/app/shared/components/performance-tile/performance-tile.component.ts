@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {VerbosePerformance} from "../../../core/models/verbosePerformance";
+import { PerformanceService } from "../../../core/services/performance.service";
 import {PerformancePopupComponent} from "../performance-popup/performance-popup.component";
 
 @Component({
@@ -13,7 +14,7 @@ export class PerformanceTileComponent {
   @Input() performance!: VerbosePerformance;
   @Input() isAdmin: boolean;
 
-  constructor(private router: Router, private dialog: MatDialog) {
+  constructor(private router: Router, private dialog: MatDialog, private performanceService: PerformanceService) {
     this.isAdmin = false; //default value
   }
 
@@ -32,10 +33,19 @@ export class PerformanceTileComponent {
       minute: '2-digit'
     });
 
-    if (confirm("Do you really want to delete this entry on " + formattedDate + " on Stage "
-      + this.performance.stage + "?")) {
-      // löschen
-    } else {
+    if (confirm( this.performance.performance_id + "Do you really want to delete this performance by " + this.performance.artist + " on " + formattedDate + " on Stage "
+            + this.performance.stage + "?")) {
+      this.performanceService.deletePerformance(parseInt(this.performance.performance_id))
+        .subscribe({
+          next: () => {
+            console.log(`Performance with ID ${this.performance.performance_id} deleted.`);
+            location.reload();
+          },
+          error: (error : any) => {
+            console.log(error);
+            console.log("Etwas ist schiefgelaufen");
+          }
+        });
     }
   }
 
