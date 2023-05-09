@@ -2,7 +2,7 @@ version: "3.9"
 services:
     builder:
         container_name: builder-sb
-        restart: no
+        restart: "no"
         build:
             context: .
             dockerfile: builder-sb/builder.dockerfile
