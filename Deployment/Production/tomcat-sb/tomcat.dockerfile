@@ -10,7 +10,7 @@ RUN mv webapps webapps2 && \
     mv webapps.dist webapps
 
 COPY tomcat-sb/server.xml /usr/local/tomcat/conf/server.xml
-RUN chmod +x tomcat-sb/startTomcat.sh
-COPY tomcat-sb/startTomcat.sh startTomcat.sh
+COPY tomcat-sb/startTomcat.sh /usr/local/tomcat/startTomcat.sh
+RUN chmod +x /usr/local/tomcat/startTomcat.sh
 
-ENTRYPOINT ["./startTomcat.sh"]
+ENTRYPOINT /usr/local/tomcat/startTomcat.sh

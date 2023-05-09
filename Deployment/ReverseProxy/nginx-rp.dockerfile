@@ -1,8 +1,8 @@
 FROM nginx:latest
 
-VOLUME /data
+VOLUME /certs
 
 RUN apt-get update && \
     apt-get install -y bash
 
-COPY nginx-sb/nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx-rp.conf /etc/nginx/conf.d/default.conf
