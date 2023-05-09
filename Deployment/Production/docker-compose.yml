@@ -7,11 +7,9 @@ services:
             context: .
             dockerfile: builder-sb/builder.dockerfile
         env_file:
-            - ../Environment/production.env
+            - ${VOLUME_PATH}/Environment/production.env
         volumes:
-            - /home/hannes/StreetbeatzLB/docker/builds:/builds
-            - /home/hannes/StreetbeatzLB/StreetbeatzLB_Backend:/backend
-            - /home/hannes/StreetbeatzLB/StreetbeatzLB_Frontend:/frontend
+            - ${VOLUME_PATH}:/data
     mariadb:
         container_name: mariadb-sb
         restart: always
@@ -19,7 +17,10 @@ services:
             context: .
             dockerfile: mariadb-sb/mariadb.dockerfile
         env_file:
-            - ../Environment/production.env
+            - ${VOLUME_PATH}/Environment/production.env
+        volumes:
+            - ${VOLUME_PATH}:/data
+            - ${VOLUME_PATH}/database:/var/lib/mysql
         networks:
             - backend
         depends_on:
@@ -36,12 +37,11 @@ services:
             context: .
             dockerfile: tomcat-sb/tomcat.dockerfile
         env_file:
-            - ../Environment/production.env
+            - ${VOLUME_PATH}/Environment/production.env
         volumes:
-            - /home/hannes/StreetbeatzLB/docker/builds/backend:/var/www/streetbeatzlb
-            - /home/hannes:/data
+            - ${VOLUME_PATH}:/data
         ports:
-            - "8443:8443"
+            - 8443:${TOMCAT_PORT}
         networks:
             - backend
         depends_on:
@@ -50,7 +50,7 @@ services:
             mariadb:
                 condition: service_healthy
         healthcheck:
-            test: [ "CMD", "curl", "-f", "https://hjetter:8443/streetbeatzlb/api/healthcheck" ]
+            test: [ "CMD", "curl", "-f", 'https://hjetter:${TOMCAT_PORT}/streetbeatzlb/api/healthcheck' ]
             timeout: 20s
             retries: 10
     nginx:
@@ -60,12 +60,11 @@ services:
             context: .
             dockerfile: nginx-sb/nginx.dockerfile
         env_file:
-            - ../Environment/production.env
+            - ${VOLUME_PATH}/Environment/production.env
         volumes:
-            - /home/hannes/StreetbeatzLB/docker/builds/frontend:/usr/share/nginx/
-            - /home/hannes:/data
+            - ${VOLUME_PATH}:/data
         ports:
-            - "443:443"
+            - 443:${NGINX_PORT}
         networks:
             - backend
         depends_on:
@@ -74,7 +73,7 @@ services:
             tomcat:
                 condition: service_healthy
         healthcheck:
-            test: [ "CMD", "curl", "-f", "https://hjetter:443" ]
+            test: [ "CMD", "curl", "-f", 'https://hjetter:${NGINX_PORT}']
             timeout: 20s
             retries: 10
 networks:
