@@ -7,7 +7,7 @@ services:
             context: .
             dockerfile: builder-sb/builder.dockerfile
         env_file:
-            - ${VOLUME_PATH}/Environment/production.env
+            - ${VOLUME_PATH}/Environment/.env.prod
         volumes:
             - ${VOLUME_PATH}:/data
     mariadb:
@@ -17,7 +17,7 @@ services:
             context: .
             dockerfile: mariadb-sb/mariadb.dockerfile
         env_file:
-            - ${VOLUME_PATH}/Environment/production.env
+            - ${VOLUME_PATH}/Environment/.env.prod
         volumes:
             - ${VOLUME_PATH}:/data
             - ${VOLUME_PATH}/database:/var/lib/mysql
@@ -37,7 +37,7 @@ services:
             context: .
             dockerfile: tomcat-sb/tomcat.dockerfile
         env_file:
-            - ${VOLUME_PATH}/Environment/production.env
+            - ${VOLUME_PATH}/Environment/.env.prod
         volumes:
             - ${VOLUME_PATH}:/data
         ports:
@@ -60,7 +60,7 @@ services:
             context: .
             dockerfile: nginx-sb/nginx.dockerfile
         env_file:
-            - ${VOLUME_PATH}/Environment/production.env
+            - ${VOLUME_PATH}/Environment/.env.prod
         volumes:
             - ${VOLUME_PATH}:/data
         ports:
