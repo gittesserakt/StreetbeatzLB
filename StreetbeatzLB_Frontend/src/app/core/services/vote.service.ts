@@ -10,33 +10,24 @@ import {Artist} from "../models/artist.model";
 })
 
 export class VoteService {
-  constructor(public externalApiService: ExternalApiService) {
-  }
+  constructor(public externalApiService: ExternalApiService) {}
 
-  voteForArtist = (artist: string): Observable<ApiResponseModel> => {
-    const config: RequestConfigModel = {
-      url: `${env.api.serverUrl}/voting/vote?artist=${artist}`,
-      method: 'Post',
-      headers: {
-        'content-type': 'application/json',
-      },
-    };
-
-    return this.externalApiService.callExternalApi(config).pipe(
-      mergeMap((response) => {
-        const {data, error} = response;
-
-        return of({
-          data: data ? (data as Artist) : null,
-          error,
-        });
-      })
-    );
+  voteForArtist = async (artist: string): Promise<void> => {
+    console.log(artist);
+    const re = new RegExp(' ', 'g');
+    const formattedArtist = artist.replace(re, '_');
+    console.log(encodeURIComponent(formattedArtist));
+    const response = await fetch(`${env.api.serverUrl}/voting/vote?artist=` + encodeURIComponent(formattedArtist), {
+      method: 'PUT',
+    });
+    console.log(response);
+    const responseData = await response.text();
+    console.log(responseData);
   };
 
   getVoteById = (artist_id: number): Observable<ApiResponseModel> => {
     const config: RequestConfigModel = {
-      url: `${env.api.serverUrl}/artists/artistByID?artist_id=${artist_id}`,
+      url: `${env.api.serverUrl}/voting/getVoteById?artist_id=${artist_id}`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

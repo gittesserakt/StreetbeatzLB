@@ -45,10 +45,10 @@ export class VoteComponent implements OnInit {
       }
     })
 
-    if (this.device == 'Web'){
-      this.centerList = 'center'
+    if (this.device == 'Handset'){
+      this.centerList = 'left';
     }else {
-      this.centerList = 'left'
+      this.centerList = 'center';
     }
   }
 
@@ -100,17 +100,9 @@ export class VoteComponent implements OnInit {
     })
   }
 
-  voteForArtist(artist: string | undefined):void{
+  voteForArtist(artist?: string):void{
     if (artist != null) {
-      this.voteService.voteForArtist(artist).subscribe((response) => {
-        const {data, error} = response;
-        console.log('artist', response);
-
-        if (error) {
-          console.log('Error: ');
-          console.log(error)
-        }
-      })
+      this.voteService.voteForArtist(artist)
     }
   }
 }
