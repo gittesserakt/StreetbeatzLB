@@ -19,43 +19,31 @@ export interface DialogData {
 })
 export class VoteComponent implements OnInit {
   screenHeightPX: number = 0;
-  rowHeight: number = 0;
-  centerList?: string;
+  centerList?: number;
+
   chosenArtist?: Artist;
   hasChosen: boolean = false;
+
   artists?: Artist[];
-  // artists: string[] = ['q','w','e','r','t','z','u','i','o','p','a','s','d','f','g','h','j','k','l','y','x','c','v','b','n','m'];
 
   device?: string;
   displayMap = new Map([
-    [Breakpoints.Handset, 'Handset'],
-    [Breakpoints.Tablet, 'Tablet'],
-    [Breakpoints.WebLandscape, 'Web']
+    [Breakpoints.HandsetPortrait, 'HandsetPortrait'], //max-width: 599.98
+    [Breakpoints.HandsetLandscape, 'HandsetLandscape'], //max-width: 959.98px
+    [Breakpoints.TabletPortrait, 'TabletPortrait'], //min-width: 600px & max-width: 839.98px
+    [Breakpoints.TabletLandscape, 'TabletLandscape'], //min-width: 960px & max-width: 1279.98px
+    [Breakpoints.WebPortrait, 'WebPortrait'], //min-width: 840px
+    [Breakpoints.WebLandscape, 'WebLandscape'] //min-width: 1280px
   ]);
 
   constructor(public dialog: MatDialog, private artistService: ArtistService, private  voteService: VoteService,
               private breakpointObserver: BreakpointObserver, private smfCookieService: SmfCookieService) {
-    breakpointObserver.observe([
-      Breakpoints.Handset,
-      Breakpoints.Tablet,
-      Breakpoints.WebLandscape
-    ]).subscribe(result => {
-      for(const query of Object.keys(result.breakpoints)){
-        if(result.breakpoints[query]){
-          this.device = this.displayMap.get(query) as string;
-        }
-      }
-    })
-
-    if (this.device == 'Web'){
-      this.centerList = 'center'
-    }else {
-      this.centerList = 'left'
-    }
+    this.getBreakpoint(breakpointObserver);
+    this.onResize();
   }
 
   ngOnInit(): void {
-    this.calculateHeight();
+    this.onResize();
     console.log("check cache")
     if(this.smfCookieService.getVoteCookies() != ""){
       console.log("vote found")
@@ -73,13 +61,16 @@ export class VoteComponent implements OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.calculateHeight();
-  }
-
-  calculateHeight() {
+  onResize(event?: any) {
+    this.getBreakpoint(this.breakpointObserver);
     this.screenHeightPX = window.innerHeight;
-    this.rowHeight = (this.screenHeightPX - 64) / 10;
+    if (this.device == 'HandsetPortrait'){
+      this.centerList = 100;
+    }else if (this.device == 'WebLandscape') {
+      this.centerList = 44.5;
+    }else {
+      this.centerList = 40;
+    }
   }
 
   openDialog() {
@@ -121,5 +112,24 @@ export class VoteComponent implements OnInit {
       this.voteService.voteForArtist(artist);
       this.smfCookieService.setVoteCookies(this.chosenArtist, true);
     }
+  }
+
+  getBreakpoint(breakpointObserver: BreakpointObserver){
+    breakpointObserver.observe([
+      Breakpoints.HandsetPortrait,
+      Breakpoints.HandsetLandscape,
+      Breakpoints.TabletPortrait,
+      Breakpoints.TabletLandscape,
+      Breakpoints.WebPortrait,
+      Breakpoints.WebLandscape
+    ]).subscribe(result => {
+      for(const query of Object.keys(result.breakpoints)){
+        if(result.breakpoints[query]){
+          this.device = this.displayMap.get(query) as string;
+        }
+      }
+    })
+
+    console.log('Breakpoint: ' + this.device)
   }
 }
