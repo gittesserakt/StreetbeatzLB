@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, Output, Inject, OnInit } from '@angular/core';
-import { VerbosePerformance } from '../../../core/models/verbosePerformance';
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { VerbosePerformance } from '../../../core/models/verbosePerformance';
+import { Artist } from "../../../core/models/artist.model";
+import { ArtistService } from "../../../core/services/artist.service";
+import { Stage } from "../../../core/models/stage.model";
+import { StageService } from "../../../core/services/stage.service";
 
 @Component({
   selector: 'app-edit-popup',
@@ -12,16 +16,22 @@ export class PerformancePopupComponent implements OnInit{
   popupName: string = ""; // "Edit Performance" or "Add Performance"
 
   @Input() performance!: VerbosePerformance;
+  @Input() artists!: Artist[];
+  @Input() stages!: Stage[];
   @Output() saved = new EventEmitter<VerbosePerformance>();
   @Output() closed = new EventEmitter();
 
   updatedPerformance: VerbosePerformance = { ...this.performance };
 
-  constructor(private dialogRef: MatDialogRef<PerformancePopupComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { performance: VerbosePerformance, functionName: string }) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { performance: VerbosePerformance, functionName: string },
+              private dialogRef: MatDialogRef<PerformancePopupComponent>,
+              private artistService: ArtistService,
+              private stageService: StageService) {}
 
   ngOnInit() {
     this.popupName = this.data.functionName;
+    this.getAllArtists();
+    this.getAllStages();
     const labelElement = document.querySelector('#popup-label');
     if (labelElement) {
       labelElement.textContent = `${this.popupName}`;
@@ -36,8 +46,37 @@ export class PerformancePopupComponent implements OnInit{
     return date.toISOString().slice(0, 16);
   }
 
-  //TODO: Künstler für Combobox aus der DB lesen
-  //TODO: vllt, Stages für Combobox aus der DB lesen
+  getAllArtists() {
+    this.artistService.getAllArtists()
+      .subscribe((response) => {
+        const {data, error} = response;
+        console.log('artists', response);
+
+        if (data) {
+          this.artists = data as Artist[];
+        }
+
+        if (error) {
+          console.log(error);
+        }
+      })
+  }
+
+  getAllStages() {
+    this.stageService.getAllStages()
+      .subscribe((response) => {
+        const {data, error} = response;
+        console.log('stages', response)
+
+        if (data) {
+          this.stages = data as Stage[];
+        }
+
+        if (error) {
+          console.log(error);
+        }
+      })
+  }
 
   onSave() {
     const start_time = new Date(this.updatedPerformance.start_time);

@@ -5,11 +5,11 @@
     <input class="input" type="datetime-local" [(ngModel)]="updatedPerformance.start_time" value="getDateTime()">
     <label class="label">Artist:</label>
     <select class="input" [(ngModel)]="updatedPerformance.artist">
-      <option value="Artist1">Dominik Friedrich</option>
+      <option *ngFor="let artist of artists" value="{{artist.group_id}}">{{artist.name}}</option>
     </select>
     <label class="label">Stage:</label>
     <select class="input" [(ngModel)]="updatedPerformance.stage">
-      <option value="A">A</option>
+      <option *ngFor="let stage of stages" value="{{stage.stage_id}}">{{stage.name}}</option>
     </select>
   </div>
   <div class="buttons">
