@@ -10,6 +10,6 @@ export const environment = {
     errorPath: '/callback',
   },
   api: {
-    serverUrl: 'https://hjetter.ddns.net:8443/streetbeatzlb/api',
+    serverUrl: 'https://hjetter.ddns.net:8080/streetbeatzlb/api',
   },
 };
