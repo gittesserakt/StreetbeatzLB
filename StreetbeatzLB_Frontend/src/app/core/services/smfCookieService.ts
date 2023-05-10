@@ -12,7 +12,7 @@ export class SmfCookieService {
   }
 
   saveFilter(filter: Filter) {
-    console.log("Write Filter as Cookies")
+    console.log("Write Filter as Cookies, param = " + filter.toString())
 
     if (filter.date) {
       this.smfService.set("filterCookieDate", <string>filter.date.toISOString())
@@ -29,7 +29,6 @@ export class SmfCookieService {
     } else {
       this.smfService.delete("filterCookieStage")
     }
-    console.log(filter.toString())
   }
 
   loadFilter(): Filter {

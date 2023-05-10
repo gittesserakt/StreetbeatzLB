@@ -72,7 +72,6 @@ export class PerformancesComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("performances component init");
-    this.getFilteredPerformances(this.smfService.loadFilter());
   }
 
   filterChanged(event: Filter) {

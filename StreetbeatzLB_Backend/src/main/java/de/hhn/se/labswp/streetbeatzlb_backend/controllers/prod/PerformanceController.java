@@ -45,24 +45,28 @@ public class PerformanceController {
 
   @GetMapping(path="/filteredByID")
   public @ResponseBody Iterable<Performance> getFilteredPerformancesByID(@RequestParam String time,
-                                                                     @RequestParam int artist_id, @RequestParam int stage_id) {
+                                                                     @RequestParam int artist_id,
+                                                                         @RequestParam int stage_id) {
     LocalDateTime newDateTime = null;
     if(!time.equals("0")){
       newDateTime = LocalDateTime.parse(time);
     }
 
-    return sortPerformances(PerformanceFilter.filterPerformancesByID(performanceRepository, newDateTime, artist_id, stage_id));
+    return sortPerformances(PerformanceFilter.filterPerformancesByID(performanceRepository,
+            newDateTime, artist_id, stage_id));
   }
 
   @GetMapping(path="/filteredByName")
   public @ResponseBody Iterable<Performance> getFilteredPerformancesByName(@RequestParam String time,
-                                                                           @RequestParam String artist_id, @RequestParam String stage_id) {
+                                                                           @RequestParam String artist_id,
+                                                                           @RequestParam String stage_id) {
     LocalDateTime newDateTime = null;
     if (!time.equals("0")) {
       newDateTime = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
     }
 
-    return sortPerformances(PerformanceFilter.filterPerformancesByName(performanceRepository, artistRepository, stageRepository, newDateTime, artist_id, stage_id));
+    return sortPerformances(PerformanceFilter.filterPerformancesByName(performanceRepository,
+            artistRepository, stageRepository, newDateTime, artist_id, stage_id));
   }
 
   @GetMapping(path="/delete")

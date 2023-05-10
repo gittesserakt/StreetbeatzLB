@@ -1,5 +1,4 @@
 import {Time} from "@angular/common";
-import {min} from "rxjs";
 
 /**
  * Date is never allowed to be null, because if a time can not be stored in a null field.

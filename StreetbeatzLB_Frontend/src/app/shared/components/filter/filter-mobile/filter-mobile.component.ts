@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Filter} from "../../../../core/models/filter.model";
-import {SmfCookieService} from "../../../../core/services/smfCookieService";
 import {Time} from "@angular/common";
 
 @Component({
