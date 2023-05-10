@@ -35,7 +35,7 @@ export class PerformanceTileComponent {
 
     if (confirm( this.performance.performance_id + "Do you really want to delete this performance by " + this.performance.artist + " on " + formattedDate + " on Stage "
             + this.performance.stage + "?")) {
-      this.performanceService.deletePerformance(parseInt(this.performance.performance_id))
+      this.performanceService.deletePerformance(this.performance.performance_id)
         .subscribe({
           next: () => {
             console.log(`Performance with ID ${this.performance.performance_id} deleted.`);
