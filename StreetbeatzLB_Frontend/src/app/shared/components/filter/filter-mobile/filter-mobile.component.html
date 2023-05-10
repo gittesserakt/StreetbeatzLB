@@ -19,7 +19,7 @@
   <div class="spacer"></div>
   <div class="select-filter-area">
     <app-filter-datepicker [inDate]=filter.date (outDate)="dateChangeEvent($event)"></app-filter-datepicker>
-    <app-filter-timepicker [inTime]=filter.time (outTime)="timeChangeEvent($event)"></app-filter-timepicker>
+    <app-filter-timepicker [inTime]=filter.getTime() (outTime)="timeChangeEvent($event)"></app-filter-timepicker>
     <app-filter-artistselector [inArtist]=filter.artist (outArtist)="artistChangeEvent($event)"></app-filter-artistselector>
     <app-filter-stageselector [inStage]=filter.stage (outStage)="stageChangeEvent($event)"></app-filter-stageselector>
     <button mat-raised-button color="primary" (click)="applyFilter()">Apply</button>

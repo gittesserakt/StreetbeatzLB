@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Filter} from "../../../../core/models/filter.model";
-import {SmfCookieService} from "../../../../core/services/smfCookieService";
 import {Time} from "@angular/common";
 
 @Component({
@@ -10,31 +9,19 @@ import {Time} from "@angular/common";
 })
 export class FilterMobileComponent implements OnInit {
   panelOpenState = false;
-  filter: Filter = new Filter(null, null, null, null);
+  filter: Filter = new Filter(null, null, null);
   filterTypes: string[] = []; // 'Date', 'Artist', 'Stage'
+  time: Time = this.filter.date ? {
+    hours: this.filter.date.getHours(),
+    minutes: this.filter.date.getMinutes()
+  } : {hours: 0, minutes: 0}
   @Input() inFilter!: Filter; //Was macht dieser inFilter?
   @Output() outFilter = new EventEmitter<Filter>();
 
-  constructor(private smfCookieService: SmfCookieService) {
-  }
-
   ngOnInit() {
-    this.filter = this.smfCookieService.getFilterCookies();
-    this.updateFilterTypes()
-  }
-
-  private updateFilterTypes() {
-    if (this.filter.date || this.filter.date != undefined) {
-      this.add("Date")
-    }
-    if (this.filter.time || this.filter.time != undefined) {
-      this.add("Time")
-    }
-    if (this.filter.artist || this.filter.artist != undefined) {
-      this.add("Artist")
-    }
-    if (this.filter.stage || this.filter.stage != undefined) {
-      this.add("Stage")
+    if (this.inFilter) {
+      this.filter = this.inFilter;
+      this.applyFilter()
     }
   }
 
@@ -46,7 +33,7 @@ export class FilterMobileComponent implements OnInit {
         this.filter.date = null;
         break;
       case 'Time':
-        this.filter.time = null;
+        this.filter.setTime(0,0)
         break;
       case 'Artist':
         this.filter.artist = null;
@@ -56,7 +43,6 @@ export class FilterMobileComponent implements OnInit {
         break;
     }
 
-    this.smfCookieService.setFilterCookies(this.filter);
     if (index >= 0) {
       this.filterTypes.splice(index, 1);
     }
@@ -97,9 +83,10 @@ export class FilterMobileComponent implements OnInit {
   }
 
   timeChangeEvent($event: Time | null) {
-    this.filter.time = $event;
-
     if ($event) {
+      this.time = $event
+
+      this.filter.setTime($event.hours, $event.minutes)
       if (!this.filterTypes.includes('Time')) {
         this.add('Time');
       }
@@ -111,6 +98,5 @@ export class FilterMobileComponent implements OnInit {
   applyFilter() {
     this.outFilter.emit(this.filter);
     this.panelOpenState = false;
-    this.smfCookieService.setFilterCookies(this.filter);
   }
 }
