@@ -9,4 +9,4 @@ services:
     volumes:
       - /var/snap/docker/common/var-lib-docker/volumes/ReverseProxy/_data/reverse_proxy/certs:/certs
     ports:
-      - "443"
+      - "443:443"

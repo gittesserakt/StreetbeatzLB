@@ -31,11 +31,5 @@ server:
   error:
     whitelabel:
       enabled: false
-  port: 8443
-  ssl:
-    enabled: true
-    key-alias: hjetter
-    key-store: tomcatssl.jks
-    key-store-password: streetbeatzlb
-    key-password: streetbeatzlb
+  port: 8080
 
