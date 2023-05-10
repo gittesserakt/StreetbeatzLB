@@ -40,6 +40,7 @@ services:
             - ${VOLUME_PATH}/Environment/.env.prod
         volumes:
             - ${VOLUME_PATH}:/data
+            - ${VOLUME_PATH}/StreetbeatzLB/Deployment/Builds/backend:/usr/local/tomcat/webapps
         ports:
             - ${TOMCAT_PORT}:8443
         networks:
@@ -63,6 +64,7 @@ services:
             - ${VOLUME_PATH}/Environment/.env.prod
         volumes:
             - ${VOLUME_PATH}:/data
+            - ${VOLUME_PATH}/StreetbeatzLB/Deployment/Builds/frontend:/usr/share/nginx
         ports:
             - ${NGINX_PORT}:443
         networks:
