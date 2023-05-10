@@ -34,6 +34,29 @@ export class ArtistService {
     );
   };
 
+  getArtistByName = (artist_id: string): Observable<ApiResponseModel> => {
+    console.log(artist_id)
+    const config: RequestConfigModel = {
+      url: `${env.api.serverUrl}/artists/artistByName?artist=${artist_id}`,
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    };
+
+    return this.externalApiService.callExternalApi(config).pipe(
+      mergeMap((response) => {
+        const {data, error} = response;
+
+        console.log(data as Artist)
+        return of({
+          data: data ? (data as Artist) : null,
+          error,
+        });
+      })
+    );
+  };
+
   getAllArtists = (): Observable<ApiResponseModel> => {
     const config: RequestConfigModel = {
       url: `${env.api.serverUrl}/artists/all`,

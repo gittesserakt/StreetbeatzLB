@@ -3,6 +3,7 @@ import {VoteDialogComponent} from "../../shared/components/vote-dialog/vote-dial
 import {MatDialog} from "@angular/material/dialog";
 import {ArtistService} from "../../core/services/artist.service";
 import {VoteService} from "../../core/services/vote.service";
+import {SmfCookieService} from "../../core/services/smfCookieService";
 import {Artist} from "../../core/models/artist.model";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 
@@ -32,7 +33,8 @@ export class VoteComponent implements OnInit {
     [Breakpoints.WebLandscape, 'Web']
   ]);
 
-  constructor(public dialog: MatDialog, private artistService: ArtistService, private  voteService: VoteService, private breakpointObserver: BreakpointObserver) {
+  constructor(public dialog: MatDialog, private artistService: ArtistService, private  voteService: VoteService,
+              private breakpointObserver: BreakpointObserver, private smfCookieService: SmfCookieService) {
     breakpointObserver.observe([
       Breakpoints.Handset,
       Breakpoints.Tablet,
@@ -45,16 +47,29 @@ export class VoteComponent implements OnInit {
       }
     })
 
-    if (this.device == 'Handset'){
-      this.centerList = 'left';
+    if (this.device == 'Web'){
+      this.centerList = 'center'
     }else {
-      this.centerList = 'center';
+      this.centerList = 'left'
     }
   }
 
   ngOnInit(): void {
     this.calculateHeight();
-    this.getAllArtists();
+    console.log("check cache")
+    if(this.smfCookieService.getVoteCookies() != ""){
+      console.log("vote found")
+      this.hasChosen = true;
+      this.artistService.getArtistByName(this.smfCookieService.getVoteCookies())
+        .subscribe((response) => {
+          console.log("start")
+          this.chosenArtist = response.data as Artist;
+          console.log(this.chosenArtist)
+        });
+    }
+    setTimeout(() => {
+      this.getAllArtists();
+    }, 100);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -93,6 +108,7 @@ export class VoteComponent implements OnInit {
 
       if(data){
         this.artists = data as Artist[];
+        console.log(this.artists)
       }
       if(error){
         console.log(error);
@@ -102,7 +118,8 @@ export class VoteComponent implements OnInit {
 
   voteForArtist(artist?: string):void{
     if (artist != null) {
-      this.voteService.voteForArtist(artist)
+      this.voteService.voteForArtist(artist);
+      this.smfCookieService.setVoteCookies(this.chosenArtist, true);
     }
   }
 }

@@ -3,7 +3,7 @@
     <mat-list class="list" [ngStyle]="{'text-align': centerList}">
       <mat-radio-group class="radioGroup" [(ngModel)]="chosenArtist">
         <mat-radio-button class="radioButton" [disabled]="hasChosen" *ngFor="let artist of artists"
-                          [value]="artist">{{artist.name}}</mat-radio-button>
+                          [value]="artist" [checked]="artist.name === chosenArtist?.name">{{artist.name}}</mat-radio-button>
       </mat-radio-group>
     </mat-list>
   </div>
