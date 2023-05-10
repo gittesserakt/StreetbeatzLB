@@ -7,6 +7,6 @@ services:
       context: .
       dockerfile: nginx-rp.dockerfile
     volumes:
-      - ../certs:/certs
+      - /var/snap/docker/common/var-lib-docker/volumes/ReverseProxy/_data/reverse_proxy/certs:/certs
     ports:
-      - "6000"
+      - "443"
