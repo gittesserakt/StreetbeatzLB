@@ -8,18 +8,20 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatButtonModule } from "@angular/material/button";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [AdminViewComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterModule.forChild([{path: '', component: AdminViewComponent}]),
-    MatDividerModule,
-    MatIconModule,
-    MatTabsModule,
-    MatButtonModule,
-    MatTooltipModule
-  ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        RouterModule.forChild([{path: '', component: AdminViewComponent}]),
+        MatDividerModule,
+        MatIconModule,
+        MatTabsModule,
+        MatButtonModule,
+        MatTooltipModule,
+        MatCheckboxModule
+    ],
 })
 export class AdminViewModule {}

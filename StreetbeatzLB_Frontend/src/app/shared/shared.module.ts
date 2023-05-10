@@ -18,32 +18,34 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {RouterModule} from "@angular/router";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
   ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatListModule,
-    MatGridListModule,
-    MatExpansionModule,
-    MatChipsModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatTooltipModule,
-    RouterModule,
-  ],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatListModule,
+        MatGridListModule,
+        MatExpansionModule,
+        MatChipsModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatTooltipModule,
+        RouterModule,
+        MatCheckboxModule,
+    ],
   exports: [
     ...COMPONENTS
   ]
