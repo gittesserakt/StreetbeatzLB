@@ -17,6 +17,11 @@ export class AdminViewComponent implements OnInit{
     private dialog: MatDialog,
   ) {}
 
+  ngOnInit(): void {
+    console.log("performances component init");
+    this.getAllPerformances();
+  }
+
   getAllPerformances(): void {
     this.verbosePerformanceService.getAllVerbosePerformances()
       .subscribe((response) => {
@@ -33,11 +38,6 @@ export class AdminViewComponent implements OnInit{
       });
   }
 
-  ngOnInit(): void {
-    console.log("performances component init");
-    this.getAllPerformances();
-  }
-
   addPerformance(): void {
     this.dialog.open(PerformancePopupComponent, {
       width: '500px',
@@ -45,7 +45,7 @@ export class AdminViewComponent implements OnInit{
     });
   }
 
-  deleteMarkedPerformances():void {
+  deleteMarkedPerformances():void { //TODO:
 
   }
 }

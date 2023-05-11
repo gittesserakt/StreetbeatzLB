@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {VerbosePerformanceService} from "../../core";
 import {VerbosePerformance} from "../../core/models/verbosePerformance";
-import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Filter} from "../../core/models/filter.model";
 
 @Component({
@@ -20,8 +20,10 @@ export class PerformancesComponent implements OnInit{
 
   verbosePerformances?: VerbosePerformance[];
 
-  constructor(private verbosePerformanceService: VerbosePerformanceService,
-              private breakpointObserver: BreakpointObserver) {
+  constructor(
+    private verbosePerformanceService: VerbosePerformanceService,
+    private breakpointObserver: BreakpointObserver
+  ) {
     breakpointObserver.observe([
       Breakpoints.Handset,
       Breakpoints.Tablet,
@@ -35,6 +37,11 @@ export class PerformancesComponent implements OnInit{
       }
       //console.log(this.device);
     })
+  }
+
+  ngOnInit(): void {
+    console.log("performances component init");
+    this.getAllPerformances();
   }
 
   getAllPerformances(): void {
@@ -67,11 +74,6 @@ export class PerformancesComponent implements OnInit{
           console.log(error);
         }
       });
-  }
-
-  ngOnInit(): void {
-    console.log("performances component init");
-    this.getAllPerformances();
   }
 
   filtersChanged(event: Filter) {
