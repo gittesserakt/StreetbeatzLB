@@ -69,6 +69,15 @@ public class PerformanceController {
     performanceRepository.deleteById(performanceID);
   }
 
+  @DeleteMapping(path="/bulkDelete")
+  public @ResponseBody void bulkDeletePerformances(@RequestParam String performanceIDs) {
+    String[] numbersArray = performanceIDs.split("_");
+
+    for (String s : numbersArray) {
+      performanceRepository.deleteById(Integer.parseInt(s));
+    }
+  }
+
   @PostMapping(path="/add")
   public @ResponseBody Performance addPerformance(@RequestParam String start_time, @RequestParam String end_time,
                                                   @RequestParam String created_by, @RequestParam Long artist_id,
