@@ -79,7 +79,7 @@ public class PerformanceController {
   }
 
   @PostMapping(path="/add")
-  public @ResponseBody Performance addPerformance(@RequestParam String start_time, @RequestParam String end_time,
+  public @ResponseBody void addPerformance(@RequestParam String start_time, @RequestParam String end_time,
                                                   @RequestParam String created_by, @RequestParam Long artist_id,
                                                   @RequestParam Long stage_id) {
 
@@ -90,11 +90,11 @@ public class PerformanceController {
     performance.setArtist_id(artist_id);
     performance.setStage_id(stage_id);
 
-    return performanceRepository.save(performance);
+    performanceRepository.save(performance);
   }
 
   @PutMapping(path="/edit")
-  public @ResponseBody Performance editPerformance(@RequestParam Integer performance_id,
+  public @ResponseBody void editPerformance(@RequestParam Integer performance_id,
                                                    @RequestParam String start_time, @RequestParam String end_time,
                                                    @RequestParam String artist_id, @RequestParam String stage_id) {
 
@@ -137,7 +137,7 @@ public class PerformanceController {
       }
     }
 
-    return performanceRepository.save(performance);
+    performanceRepository.save(performance);
   }
 
   private Iterable<Performance> sortPerformances(Iterable<Performance> performances){

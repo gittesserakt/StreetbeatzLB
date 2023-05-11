@@ -12,9 +12,9 @@ public class Performance {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long performance_id;
-  @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+  @JsonFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
   private String start_time;
-  @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+  @JsonFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
   private String end_time;
   private String created_by;
   private Long artist_id;
