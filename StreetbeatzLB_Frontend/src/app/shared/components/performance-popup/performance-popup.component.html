@@ -2,21 +2,21 @@
   <h2 id="popup-label" class="title">{{popupName}}</h2>
   <div class="content">
     <label class="label">Start Time:</label>
-    <input class="input" type="datetime-local" [(ngModel)]="updatedPerformance.start_time" value="getDateTime()">
+    <input class="input" type="datetime-local" [(ngModel)]="startTime">
     <label class="label">Artist:</label>
-    <select class="input" [(ngModel)]="updatedPerformance.artist">
-      <option *ngFor="let artist of artists" value="{{artist.group_id}}">{{artist.name}}</option>
+    <select class="input" [(ngModel)]="selectedArtistId">
+      <option *ngFor="let artist of artists" [value]="[artist.group_id]">{{artist.name}}</option>
     </select>
     <label class="label">Stage:</label>
-    <select class="input" [(ngModel)]="updatedPerformance.stage">
-      <option *ngFor="let stage of stages" value="{{stage.stage_id}}">{{stage.name}}</option>
+    <select class="input" [(ngModel)]="selectedStageId">
+      <option *ngFor="let stage of stages" [value]="[stage.stage_id]">{{stage.name}}</option>
     </select>
   </div>
   <div class="buttons">
     <button class="left-Button" (click)="onCancel()">
       <mat-icon>clear</mat-icon>
     </button>
-    <button (click)="onSave()">
+    <button (click)="popupName === 'Add Performance' ? createPerformance() : editPerformance()">
       <mat-icon>done</mat-icon>
     </button>
   </div>
