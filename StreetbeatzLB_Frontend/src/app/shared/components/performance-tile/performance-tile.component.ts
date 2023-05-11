@@ -1,9 +1,9 @@
-import {Component, Input} from '@angular/core';
-import {Router} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
-import {VerbosePerformance} from "../../../core/models/verbosePerformance";
+import { Component, Input } from '@angular/core';
+import { MatDialog } from "@angular/material/dialog";
+import { Router } from "@angular/router";
+import { PerformancePopupComponent } from "../performance-popup/performance-popup.component";
 import { PerformanceService } from "../../../core/services/performance.service";
-import {PerformancePopupComponent} from "../performance-popup/performance-popup.component";
+import { VerbosePerformance } from "../../../core/models/verbosePerformance";
 
 @Component({
   selector: 'app-performance-tile',
@@ -14,7 +14,10 @@ export class PerformanceTileComponent {
   @Input() performance!: VerbosePerformance;
   @Input() isAdmin: boolean;
 
-  constructor(private router: Router, private dialog: MatDialog, private performanceService: PerformanceService) {
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+    private performanceService: PerformanceService) {
     this.isAdmin = false; //default value
   }
 
@@ -51,7 +54,7 @@ export class PerformanceTileComponent {
   editPerformance() {
     this.dialog.open(PerformancePopupComponent, {
       width: '500px',
-      data: { performance: this.performance, functionName: 'Edit Performance' }
+      data: { performance: this.performance, performance_popup_id: this.performance.performance_id, functionName: 'Edit Performance' }
     });
   }
 }

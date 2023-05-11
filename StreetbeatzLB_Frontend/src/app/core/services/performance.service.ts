@@ -1,12 +1,10 @@
 import { ExternalApiService } from "./external-api.service";
-import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
 import { mergeMap, Observable, of } from "rxjs";
 import { map } from 'rxjs/operators';
 import { ApiResponseModel, Performance, RequestConfigModel } from "../models";
-import { ArtistService} from "./artist.service";
-import { StageService } from "./stage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +14,6 @@ export class PerformanceService {
   constructor(
     public externalApiService: ExternalApiService,
     private http: HttpClient,
-    private artistService: ArtistService,
-    private stageService: StageService
   ) {}
 
   getAllPerformances = (): Observable<ApiResponseModel> => {
@@ -41,7 +37,8 @@ export class PerformanceService {
     );
   };
 
-  getFilteredPerformances = (date: Date | null, artist: string | null, stage: string | null): Observable<ApiResponseModel> => {
+  getFilteredPerformances = (date: Date | null, artist: string | null,
+                             stage: string | null): Observable<ApiResponseModel> => {
     const _date = date === null ? "0" : date.toISOString();
     const _artist = artist === null ? "0" : artist;
     const _stage = stage === null ? "0" : stage;
@@ -79,18 +76,11 @@ export class PerformanceService {
     const stage_id = performance.stage_id;
 
     const config: RequestConfigModel = {
-      url: `${env.api.serverUrl}/performances/add`,
+      url: `${env.api.serverUrl}/performances/add?start_time=${start_time}&end_time=${end_time}&created_by=${created_by}&artist_id=${artist_id}&stage_id=${stage_id}`,
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-      },
-      body: {
-        start_time,
-        end_time,
-        created_by,
-        artist_id,
-        stage_id,
-      },
+      }
     };
 
     return this.externalApiService.callExternalApi(config).pipe(
@@ -101,21 +91,30 @@ export class PerformanceService {
     );
   };
 
-  editPerformance = (performanceId: number, startTime: string | null, endTime: string | null, artist: string | null,
-                     stage: string | null): Observable<Performance> => {
-    const url = `${env.api.serverUrl}/performances/edit`;
+  editPerformance = (performance: Performance): Observable<ApiResponseModel> => {
+    const performance_id = performance.performance_id;
+    const start_time = performance.start_time;
+    const end_time = performance.end_time;
+    const artist_id = performance.artist_id;
+    const stage_id = performance.stage_id;
 
-    const artistId = artist === null ? null : this.artistService.getIdByArtist(artist)  //TODO???
-    const stageId = stage === null ? null : this.stageService.getIdByStage(stage)
-
-    const body = {
-      performance_id: performanceId,
-      start_time: startTime,
-      end_time: endTime,
-      artist_id: artistId,
-      stage_id: stageId
+    const config: RequestConfigModel = {
+      url: `${env.api.serverUrl}/performances/edit?performance_id=${performance_id}&start_time=${start_time}&end_time=${end_time}&artist_id=${artist_id}&stage_id=${stage_id}`,
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+      },
     };
 
-    return this.http.put<Performance>(url, body);
+    return this.externalApiService.callExternalApi(config).pipe(
+      mergeMap((response) => {
+        const { data, error } = response;
+
+        return of({
+          data: data ? (data as Performance[]) : null,
+          error,
+        });
+      })
+    );
   };
 }
