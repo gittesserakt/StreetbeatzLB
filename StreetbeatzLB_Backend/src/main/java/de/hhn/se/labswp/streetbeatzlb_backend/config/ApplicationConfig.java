@@ -16,7 +16,7 @@ public class ApplicationConfig { // implements WebMvcConfigurer
 
   private final ApplicationProperties applicationProps;
 
-  @Bean
+  /*@Bean
   public CorsFilter corsFilter() {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
     corsConfiguration.setAllowCredentials(true);
@@ -31,5 +31,5 @@ public class ApplicationConfig { // implements WebMvcConfigurer
     UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
     urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
     return new CorsFilter(urlBasedCorsConfigurationSource);
-  }
+  }*/
 }
