@@ -43,25 +43,15 @@ export class PerformanceTileComponent {
           },
           error: (error : any) => {
             console.log(error);
-            console.log("Etwas ist schiefgelaufen");
           }
         });
     }
   }
 
   editPerformance() {
-    const dialogRef = this.dialog.open(PerformancePopupComponent, {
+    this.dialog.open(PerformancePopupComponent, {
       width: '500px',
       data: { performance: this.performance, functionName: 'Edit Performance' }
-    });
-
-    dialogRef.afterClosed().subscribe((result: VerbosePerformance | undefined) => {
-      if (result) {
-        this.performance = result;
-        console.log('Performance updated:', result);
-      } else {
-        console.log('Edit canceled.');
-      }
     });
   }
 }

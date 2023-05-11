@@ -12,9 +12,11 @@ import {Artist} from "../models/artist.model";
   providedIn: 'root'
 })
 export class VerbosePerformanceService {
-  constructor(private performanceService: PerformanceService,
-              private artistService: ArtistService, private stageService: StageService) {
-  }
+  constructor(
+    private performanceService: PerformanceService,
+    private artistService: ArtistService,
+    private stageService: StageService
+  ) {}
 
   error: AppErrorModel = {message: "verbosePerformanceService error"};
   errorFlag: boolean = false;

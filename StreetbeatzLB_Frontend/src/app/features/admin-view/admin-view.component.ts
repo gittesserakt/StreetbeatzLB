@@ -12,7 +12,10 @@ import { PerformancePopupComponent } from "../../shared/components/performance-p
 export class AdminViewComponent implements OnInit{
   verbosePerformances?: VerbosePerformance[];
 
-  constructor(private verbosePerformanceService: VerbosePerformanceService, private dialog: MatDialog) {}
+  constructor(
+    private verbosePerformanceService: VerbosePerformanceService,
+    private dialog: MatDialog,
+  ) {}
 
   getAllPerformances(): void {
     this.verbosePerformanceService.getAllVerbosePerformances()
@@ -35,19 +38,14 @@ export class AdminViewComponent implements OnInit{
     this.getAllPerformances();
   }
 
-  addPerformance() {
-    const dialogRef = this.dialog.open(PerformancePopupComponent, {
+  addPerformance(): void {
+    this.dialog.open(PerformancePopupComponent, {
       width: '500px',
       data: { functionName: 'Add Performance' }
     });
+  }
 
-    dialogRef.afterClosed().subscribe((result: VerbosePerformance | undefined) => {
-      if (result) {
-        //this.performance = result;
-        console.log('Performance created:', result);
-      } else {
-        console.log('Performance canceled.');
-      }
-    });
+  deleteMarkedPerformances():void {
+
   }
 }
