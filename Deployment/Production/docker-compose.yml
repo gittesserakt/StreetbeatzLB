@@ -22,7 +22,7 @@ services:
             - ${VOLUME_PATH}:/data
             - ${VOLUME_PATH}/database:/var/lib/mysql
         networks:
-            - backend
+            - streetbeatzlb_network
         depends_on:
             builder:
                 condition: service_completed_successfully
@@ -42,9 +42,9 @@ services:
             - ${VOLUME_PATH}:/data
             - ${VOLUME_PATH}/StreetbeatzLB/Deployment/Builds/backend:/var/www/streetbeatzlb
         ports:
-            - ${TOMCAT_PORT}:8080
+            - ${TOMCAT_PORT}:8443
         networks:
-            - backend
+            - streetbeatzlb_network
         depends_on:
             builder:
                 condition: service_completed_successfully
@@ -66,9 +66,9 @@ services:
             - ${VOLUME_PATH}:/data
             - ${VOLUME_PATH}/StreetbeatzLB/Deployment/Builds/frontend:/usr/share/nginx
         ports:
-            - ${NGINX_PORT}:80
+            - ${NGINX_PORT}:443
         networks:
-            - backend
+            - streetbeatzlb_network
         depends_on:
             builder:
                 condition: service_completed_successfully
@@ -80,4 +80,4 @@ services:
         #    retries: 10
 networks:
     backend:
-        name: backend
+        name: streetbeatzlb_network

@@ -32,4 +32,10 @@ server:
     whitelabel:
       enabled: false
   port: 8080
+  ssl:
+    enabled: true
+    key-alias: hjetter
+    key-store: tomcatssl.jks
+    key-store-password: streetbeatzlb
+    key-password: streetbeatzlb
 
