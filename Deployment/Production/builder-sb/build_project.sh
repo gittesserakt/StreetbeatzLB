@@ -11,10 +11,6 @@ if [ "$ACTIVE" = "true" ]; then
   # rebuild database
   if [ "$REBUILD_DB" = "true" ]; then
     echo "Rebuilding database"
-    # append sample data to database
-    if [ "$DB_SAMPLE_DATA" = "true" ]; then
-      cat /data/StreetbeatzLB/Deployment/Database/sample_data.sql >> /data/StreetbeatzLB/Deployment/Database/init_streetbeatzlb.sql
-    fi
     rm -r /data/database/*
   fi
 
