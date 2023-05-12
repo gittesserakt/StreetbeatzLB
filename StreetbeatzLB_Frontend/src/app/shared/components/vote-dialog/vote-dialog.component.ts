@@ -11,11 +11,17 @@ export class VoteDialogComponent {
   yesButton: string = "Yes";
   noButton: string = "No";
   voteTitle: string = "Vote";
-
   text: string = "Are you sure that you want to vote for this artist?";
 
+
   constructor(public dialogRef: MatDialogRef<VoteDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData,){
+    if (this.data.hasCookie){
+      this.text = "You have already voted for this artist:";
+    }else {
       this.data.hasChosen = true;
+    }
+    console.log("Dialog: ");
+    console.log(this.data);
   }
 
   onNoClick(): void{
