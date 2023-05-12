@@ -1,4 +1,8 @@
 <div class="background" [ngStyle]="{'height': screenHeightPX - 64 + 'px'}">
+  <div class="voteTitle" [ngStyle]="{'width': centerList + '%'}">
+    <a>{{voteTitle}}</a>
+  </div>
+
   <div class="listContainer" [ngStyle]="{'width': centerList + '%'}">
     <mat-list class="list">
       <mat-radio-group class="radioGroup" [(ngModel)]="chosenArtist">
@@ -8,8 +12,9 @@
     </mat-list>
   </div>
 
-  <div class="buttonContainer">
-    <button mat-flat-button class="voteButton" (click)="openDialog()" color="primary" [disabled]="hasChosen">Vote
+  <div class="buttonContainer" [ngStyle]="{'width': centerList + '%'}">
+    <button mat-flat-button class="voteButton" (click)="onClick()" color="primary" [disabled]="hasChosen">
+      {{voteButton}}
     </button>
   </div>
 </div>

@@ -6,10 +6,13 @@ import {VoteService} from "../../core/services/vote.service";
 import {SmfCookieService} from "../../core/services/smfCookieService";
 import {Artist} from "../../core/models/artist.model";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {VoteSnackbarComponent} from "../../shared/components/vote-snackbar/vote-snackbar.component";
 
 export interface DialogData {
   chosenArtist: Artist;
   hasChosen: boolean;
+  hasCookie: boolean;
 }
 
 @Component({
@@ -18,11 +21,15 @@ export interface DialogData {
   styleUrls: ['./vote.component.scss']
 })
 export class VoteComponent implements OnInit {
+  voteTitle: string = 'Please select the artist you want to vote for:';
+  voteButton: string = 'vote';
+
   screenHeightPX: number = 0;
   centerList?: number;
 
   chosenArtist?: Artist;
   hasChosen: boolean = false;
+  hasCookie: boolean = false;
 
   artists?: Artist[];
 
@@ -37,13 +44,14 @@ export class VoteComponent implements OnInit {
   ]);
 
   constructor(public dialog: MatDialog, private artistService: ArtistService, private  voteService: VoteService,
-              private breakpointObserver: BreakpointObserver, private smfCookieService: SmfCookieService) {
+              private breakpointObserver: BreakpointObserver, private smfCookieService: SmfCookieService, private _snackbar: MatSnackBar) {
     this.getBreakpoint(breakpointObserver);
     this.onResize();
   }
 
   ngOnInit(): void {
     this.onResize();
+
     console.log("check cache")
     if(this.smfCookieService.getVoteCookies() != ""){
       console.log("vote found")
@@ -55,6 +63,14 @@ export class VoteComponent implements OnInit {
           console.log(this.chosenArtist)
         });
     }
+
+    setTimeout(()=>{
+      if(this.chosenArtist != undefined){
+        this.hasCookie = true;
+        this.openDialog();
+      }
+    }, 100);
+
     setTimeout(() => {
       this.getAllArtists();
     }, 100);
@@ -69,27 +85,18 @@ export class VoteComponent implements OnInit {
     }else if (this.device == 'WebLandscape') {
       this.centerList = 44.5;
     }else {
-      this.centerList = 40;
+      this.centerList = 50;
     }
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(VoteDialogComponent, {
-      data: {
-        chosenArtist: this.chosenArtist,
-        hasChosen: this.hasChosen
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == true) {
-        this.hasChosen = result;
-        this.voteForArtist(this.chosenArtist?.name)
-      } else {
-        this.hasChosen = false;
-      }
-      console.log(this.chosenArtist?.name);
-    });
+  onClick() {
+    if(this.chosenArtist != undefined){
+      this.openDialog();
+    }else {
+      this._snackbar.openFromComponent(VoteSnackbarComponent, {
+        duration: 4000, //1000 = 1 Second
+      });
+    }
   }
 
   getAllArtists():void{
@@ -131,5 +138,27 @@ export class VoteComponent implements OnInit {
     })
 
     console.log('Breakpoint: ' + this.device)
+  }
+
+  openDialog(){
+    const dialogRef = this.dialog.open(VoteDialogComponent, {
+      data: {
+        chosenArtist: this.chosenArtist,
+        hasChosen: this.hasChosen,
+        hasCookie: this.hasCookie,
+      }
+    });
+
+    if(!this.hasCookie){
+      dialogRef.afterClosed().subscribe(result => {
+        if (result == true) {
+          this.hasChosen = result;
+          this.voteForArtist(this.chosenArtist?.name)
+        } else {
+          this.hasChosen = false;
+        }
+        console.log(this.chosenArtist?.name);
+      });
+    }
   }
 }
