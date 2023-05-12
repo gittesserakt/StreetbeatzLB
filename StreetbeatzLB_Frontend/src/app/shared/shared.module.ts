@@ -18,10 +18,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {RouterModule} from "@angular/router";
-import { FilterTimepickerComponent } from './components/filter/filter-timepicker/filter-timepicker.component';
-import { LoginButtonComponent } from './components/login-button/login-button.component';
-import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
-import { PageLoaderComponent } from './components/page-loader/page-loader.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -47,6 +44,7 @@ import { PageLoaderComponent } from './components/page-loader/page-loader.compon
     MatDialogModule,
     MatTooltipModule,
     RouterModule,
+    MatSnackBarModule,
   ],
   exports: [
     ...COMPONENTS
