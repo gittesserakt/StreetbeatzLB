@@ -1,6 +1,6 @@
 <mat-tab-group>
   <mat-tab label="Performances">
-    <div class="performances-list">
+    <div class="performanceWrapper">
       <button mat-button color="primary" matTooltip="Add a performance" class="add-performance-button" (click)="addPerformance()">
         <mat-icon>add</mat-icon>
       </button>
@@ -11,6 +11,7 @@
           <mat-icon>delete</mat-icon>
         </button>
       </div>
+      <!--<app-performances></app-performances>-->
       <div *ngFor="let performance of verbosePerformances;">
         <mat-divider vertical="false" [inset]></mat-divider>
         <app-performance-tile [performance]="performance" [isAdmin]="true"></app-performance-tile>
@@ -19,6 +20,8 @@
     </div>
   </mat-tab>
   <mat-tab label="Voting">
-    <!-- Voting Bereich -->
+    <div class="votingWrapper">
+
+    </div>
   </mat-tab>
 </mat-tab-group>
