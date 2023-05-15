@@ -1,6 +1,7 @@
 import { Component, Input, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { AuthService } from "@auth0/auth0-angular";
+import { take } from "rxjs/operators";
 import { VerbosePerformanceService } from "../../../core";
 import { VerbosePerformance } from '../../../core/models/verbosePerformance';
 import { PerformanceService } from "../../../core/services/performance.service";
@@ -27,6 +28,7 @@ export class PerformancePopupComponent implements OnInit{
   startTime: string = '';
   selectedArtistId: number = 0;
   selectedStageId: number = 0;
+  userId: string = '';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
@@ -53,6 +55,20 @@ export class PerformancePopupComponent implements OnInit{
     if (labelElement) {
       labelElement.textContent = `${this.popupName}`;
     }
+
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.authService.user$.pipe(take(1)).subscribe({
+      next: (user) => {
+        this.userId = user?.sub || ""; // Hier wird user?.sub dem userId zugewiesen
+        console.log(user); // Hier haben Sie die UserId des aktuellen Benutzers
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
   getIdByArtist(selectedName: string): number {
@@ -153,7 +169,7 @@ export class PerformancePopupComponent implements OnInit{
         performance_id: this.data.performance_popup_id,
         artist_id: this.selectedArtistId,
         stage_id: this.selectedStageId,
-        created_by: 'ZGVubmlzQGdtYWlsLmNvbQ', //this.authService.user$,
+        created_by: this.userId,
 
         start_time: this.startTime == '' ? '0' :
           new Date(new Date(this.startTime).setTime(new Date(this.startTime).getTime() + (120 * 60 * 1000))).toISOString().slice(0, 19),
