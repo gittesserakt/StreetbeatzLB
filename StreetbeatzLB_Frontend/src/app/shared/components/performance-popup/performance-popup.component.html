@@ -5,10 +5,12 @@
     <input class="input" type="datetime-local" [(ngModel)]="startTime">
     <label class="label">Artist:</label>
     <select class="input" [(ngModel)]="selectedArtistId">
+      <option [value]="0" disabled selected hidden>{{this.data.p_artist}}</option>
       <option *ngFor="let artist of artists" [value]="artist.artist_id">{{artist.name}}</option>
     </select>
     <label class="label">Stage:</label>
     <select class="input" [(ngModel)]="selectedStageId">
+      <option [value]="0" disabled selected hidden>{{this.data.p_stage}}</option>
       <option *ngFor="let stage of stages" [value]="stage.stage_id">{{stage.name}}</option>
     </select>
   </div>

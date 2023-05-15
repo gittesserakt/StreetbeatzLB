@@ -33,6 +33,8 @@ export class PerformancePopupComponent implements OnInit{
       performance: VerbosePerformance;
       functionName: string;
       performance_popup_id: number;
+      p_artist: string;
+      p_stage: string;
     },
     private dialogRef: MatDialogRef<PerformancePopupComponent>,
     private authService: AuthService,
