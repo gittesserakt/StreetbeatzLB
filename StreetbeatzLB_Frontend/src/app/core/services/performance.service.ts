@@ -68,7 +68,7 @@ export class PerformanceService {
     return this.http.delete<void>(url);
   };
 
-  addPerformance = (performance: Performance): Observable<Performance> => {
+  addPerformance = (performance: Performance): Observable<Observable<{ data: Performance[] | null; error: any }>> => {
     const start_time = performance.start_time;
     const end_time = performance.end_time;
     const created_by = performance.created_by;
@@ -85,8 +85,11 @@ export class PerformanceService {
 
     return this.externalApiService.callExternalApi(config).pipe(
       map((response) => {
-        const { data } = response;
-        return data as Performance;
+        const { data, error } = response;
+        return of({
+          data: data ? (data as Performance[]) : null,
+          error,
+        });
       })
     );
   };

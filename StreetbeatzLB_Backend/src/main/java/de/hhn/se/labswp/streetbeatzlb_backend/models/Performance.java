@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 public class Performance {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long performance_id;
   @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
   private String start_time;

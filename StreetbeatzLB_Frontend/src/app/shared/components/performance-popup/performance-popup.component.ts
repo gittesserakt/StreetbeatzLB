@@ -151,7 +151,7 @@ export class PerformancePopupComponent implements OnInit{
         performance_id: this.data.performance_popup_id,
         artist_id: this.selectedArtistId,
         stage_id: this.selectedStageId,
-        created_by: '3f7jtr9', //this.authService.user$,
+        created_by: 'ZGVubmlzQGdtYWlsLmNvbQ', //this.authService.user$,
 
         start_time: this.startTime == '' ? '0' :
           new Date(new Date(this.startTime).setTime(new Date(this.startTime).getTime() + (120 * 60 * 1000))).toISOString().slice(0, 19),
