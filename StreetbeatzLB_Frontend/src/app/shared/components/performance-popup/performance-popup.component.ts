@@ -62,7 +62,7 @@ export class PerformancePopupComponent implements OnInit{
   getCurrentUser() {
     this.authService.user$.pipe(take(1)).subscribe({
       next: (user) => {
-        this.userId = user?.sub || ""; // Hier wird user?.sub dem userId zugewiesen
+        this.userId = user?.sub?.replace("auth0|", "") || ""; // Hier wird user?.sub dem userId zugewiesen
         console.log(user); // Hier haben Sie die UserId des aktuellen Benutzers
       },
       error: (error) => {
