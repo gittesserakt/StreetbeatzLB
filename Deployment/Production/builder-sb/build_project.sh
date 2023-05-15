@@ -12,6 +12,15 @@ if [ "$ACTIVE" = "true" ]; then
   if [ "$REBUILD_DB" = "true" ]; then
     echo "Rebuilding database"
     rm -r /data/database/*
+
+    if [ "$DB_SAMPLE_DATA" = "true" ]; then
+      echo "Inserting sample data"
+      cat /data/StreetbeatzLB/Deployment/Production/mariadb/database_structure.sql >> /data/SteetbeatzLB/Deployment/Production/mariadb/init_steeetbeatzlb.sql
+      cat /data/StreetbeatzLB/Deployment/Production/mariadb/sample_data.sql >> /data/SteetbeatzLB/Deployment/Production/mariadb/init_steeetbeatzlb.sql
+    else
+      echo "No sample data"
+      cat /data/StreetbeatzLB/Deployment/Production/mariadb/database_structure.sql >> /data/SteetbeatzLB/Deployment/Production/mariadb/init_steeetbeatzlb.sql
+    fi
   fi
 
   # change to project root
