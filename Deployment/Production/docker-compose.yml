@@ -19,8 +19,7 @@ services:
         env_file:
             - ${VOLUME_PATH}/Environment/.env.prod
         volumes:
-            - ${VOLUME_PATH}/StreetbeatzLB/Deployment/Production/mariadb-sb/init_streetbeatzlb.sql:/docker-entrypoint-initdb.d/init_streetbeatzlb.sql
-            - ${VOLUME_PATH}/StreetbeatzLB/Deployment/Production/mariadb-sb/privileges.sql:/docker-entrypoint-initdb.d/privileges.sql
+            - ${VOLUME_PATH}/StreetbeatzLB/Deployment/Production/mariadb-sb/sql-entrypoint:/docker-entrypoint-initdb.d/
             - ${VOLUME_PATH}/database:/var/lib/mysql
         networks:
             - streetbeatzlb_network
