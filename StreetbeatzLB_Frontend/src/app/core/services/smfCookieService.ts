@@ -13,11 +13,16 @@ export class SmfCookieService {
 
   saveFilter(filter: Filter) {
     console.log("Write Filter as Cookies, param = " + filter.toString())
-
-    if (filter.date) {
-      this.smfService.set("filterCookieDate", <string>filter.date.toISOString())
+    this.removeFilter()
+    if (filter.dateDate) {
+      this.smfService.set("filterCookieDateDate", <string>filter.dateDate.toISOString())
     } else {
-      this.smfService.delete("filterCookieDate")
+      this.smfService.delete("filterCookieDateDate")
+    }
+    if (filter.timeDate) {
+      this.smfService.set("filterCookieTimeDate", <string>filter.timeDate.toISOString())
+    } else {
+      this.smfService.delete("filterCookieTimeDate")
     }
     if (filter.artist) {
       this.smfService.set("filterCookieArtist", <string>filter.artist.toString())
@@ -31,10 +36,15 @@ export class SmfCookieService {
     }
   }
 
+  removeFilter() {
+    this.smfService.deleteAll()
+  }
+
   loadFilter(): Filter {
     console.log("Get Filter from Cookies")
     const filter = new Filter(
-      this.smfService.check("filterCookieDate") ? new Date(<string>this.smfService.get("filterCookieDate")) : null,
+      this.smfService.check("filterCookieDateDate") ? new Date(<string>this.smfService.get("filterCookieDate")) : null,
+      this.smfService.check("filterCookieTimeDate") ? new Date(<string>this.smfService.get("filterCookieTimeDate")) : null,
       this.smfService.check("filterCookieArtist") ? this.smfService.get("filterCookieArtist") : null,
       this.smfService.check("filterCookieStage") ? this.smfService.get("filterCookieStage") : null,
     );
