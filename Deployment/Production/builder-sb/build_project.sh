@@ -15,11 +15,11 @@ if [ "$ACTIVE" = "true" ]; then
 
     if [ "$DB_SAMPLE_DATA" = "true" ]; then
       echo "Inserting sample data"
-      cat /data/StreetbeatzLB/Deployment/Production/mariadb/database_structure.sql >> /data/SteetbeatzLB/Deployment/Production/mariadb/sql-entrypoint/init_steeetbeatzlb.sql
-      cat /data/StreetbeatzLB/Deployment/Production/mariadb/sample_data.sql >> /data/SteetbeatzLB/Deployment/Production/mariadb/sql-entrypoint/init_steeetbeatzlb.sql
+      cat /data/StreetbeatzLB/Deployment/Production/mariadb-sb/database_structure.sql >> /data/SteetbeatzLB/Deployment/Production/mariadb-sb/sql-entrypoint/init_steeetbeatzlb.sql
+      cat /data/StreetbeatzLB/Deployment/Production/mariadb-sb/sample_data.sql >> /data/SteetbeatzLB/Deployment/Production/mariadb-sb/sql-entrypoint/init_steeetbeatzlb.sql
     else
       echo "No sample data"
-      cat /data/StreetbeatzLB/Deployment/Production/mariadb/database_structure.sql >> /data/SteetbeatzLB/Deployment/Production/mariadb/sql-entrypoint/init_steeetbeatzlb.sql
+      cat /data/StreetbeatzLB/Deployment/Production/mariadb-sb/database_structure.sql >> /data/SteetbeatzLB/Deployment/Production/mariadb-sb/sql-entrypoint/init_steeetbeatzlb.sql
     fi
   fi
 
