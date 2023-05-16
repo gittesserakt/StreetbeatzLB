@@ -1,4 +1,40 @@
-mat-sidenav-content {
+/*mat-sidenav-content {
   // get height of navbar and set margin-top
-  margin-top: var(--navbar-height); // default height of navbar is 64px
+  //margin-top: var(--navbar-height); // default height of navbar is 64px
+  height: 600px;
+}*/
+mat-sidenav{
+  width: 50%;
+}
+
+.navbar-mobile{
+  background-color: rgba(0,0,0,0);
+  height: 64px;
+  .logoWrapper{
+    height: 100%;
+    width: 20%;
+    .logo{
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .example-spacer{
+    width: 80%;
+  }
+  .menuButton{
+    height: 100%;
+    width: 20%;
+    .menu{
+      height: 100%;
+      width: 100%;
+      font-size: 2.5rem;
+    }
+  }
+}
+.mat-elevation-z5 {
+  position: relative;
+}
+.sticky {
+  position: fixed;
+  top: 0px;
 }

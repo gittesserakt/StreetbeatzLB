@@ -10,8 +10,8 @@ import {AuthService} from "@auth0/auth0-angular";
 })
 export class NavbarMobileComponent implements OnInit {
   @Input() navbarHeight: number = 64;
-  isAuthenticated$ = this.authService.isAuthenticated$;
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private authService: AuthService) {
+
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon('streetbeatz', sanitizer.bypassSecurityTrustResourceUrl('./assets/streetbeatzLogo/logo.svg'));
   }
 

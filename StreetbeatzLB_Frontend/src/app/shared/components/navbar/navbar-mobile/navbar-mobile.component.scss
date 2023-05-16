@@ -1,53 +1,32 @@
 mat-toolbar {
   height: var(--navbar-height) !important;
+  background-color: rgba(0,0,255,1);
 }
 
 .navbar{
   position: fixed;
   z-index: 2;
 
-  button{
-    width: auto;
+  .logoWrapper{
     height: 100%;
-
-    .menu{
-      width: 100%;
+    width: 20%;
+    .logo{
       height: 100%;
-      font-size: 2.5rem;
+      width: 100%;
     }
   }
 
-  a{
-    text-decoration: none;
-    font-family: "Teko", sans-serif;
-    padding-top: 0.5rem;
+  .example-spacer{
+    width: 80%;
   }
-}
 
-.sidenav{
-  position: fixed;
-  flex: 1 0 auto;
-
-  width: 100%;
-
-  div{
-    width: 100%;
-    height: 3.5rem;
-    text-align: center;
-    button{
-      width: 100%;
+  .menuButton{
+    height: 100%;
+    width: 20%;
+    .menu{
       height: 100%;
-      text-align: center;
-
-      .arrow{
-        width: 10%;
-        height: 100%;
-        font-size: 3.7rem;
-      }
-      .logo{
-        width: 100%;
-        height: 100%;
-      }
+      width: 100%;
+      font-size: 2.5rem;
     }
   }
 }

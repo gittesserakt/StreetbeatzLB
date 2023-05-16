@@ -18,6 +18,7 @@ import {PageLoaderComponent} from "./page-loader/page-loader.component";
 import {VoteDialogComponent} from "./vote-dialog/vote-dialog.component";
 import {FilterTimepickerComponent} from "./filter/filter-timepicker/filter-timepicker.component";
 import {VoteSnackbarComponent} from "./vote-snackbar/vote-snackbar.component";
+import {SidenavComponent} from "./sidenav/sidenav.component";
 
 
 export const COMPONENTS = [
@@ -49,5 +50,6 @@ export const COMPONENTS = [
   PerformancePopupComponent,
   EditPerformanceTileComponent,
   VoteSnackbarComponent,
+  SidenavComponent,
 ]
 
