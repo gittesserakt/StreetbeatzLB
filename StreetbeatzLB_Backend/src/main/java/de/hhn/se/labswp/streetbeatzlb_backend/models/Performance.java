@@ -1,8 +1,8 @@
 package de.hhn.se.labswp.streetbeatzlb_backend.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
-import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -12,9 +12,12 @@ public class Performance {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long performance_id;
-  private String date_time;
+  @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+  private String start_time;
+  @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+  private String end_time;
   private String created_by;
-  private Long group_id;
+  private Long artist_id;
   private Long stage_id;
 
   public Long getPerformance_id() {
@@ -25,14 +28,24 @@ public class Performance {
     this.performance_id = performance_id;
   }
 
-  public LocalDateTime getDate_time() {
+  public LocalDateTime getStart_time() {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    return LocalDateTime.parse(date_time,formatter);
+    return LocalDateTime.parse(start_time,formatter);
   }
 
-  public void setDate_time(LocalDateTime date_time) {
+  public void setStart_time(LocalDateTime date_time) {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    this.date_time = date_time.format(formatter);
+    this.start_time = date_time.format(formatter);
+  }
+
+  public LocalDateTime getEnd_time() {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    return LocalDateTime.parse(end_time,formatter);
+  }
+
+  public void setEnd_time(LocalDateTime date_time) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    this.end_time = date_time.format(formatter);
   }
 
   public String getCreated_by() {
@@ -43,12 +56,12 @@ public class Performance {
     this.created_by = created_by;
   }
 
-  public Long getGroup_id() {
-    return group_id;
+  public Long getArtist_id() {
+    return artist_id;
   }
 
-  public void setGroup_id(Long group_id) {
-    this.group_id = group_id;
+  public void setArtist_id(Long artist_id) {
+    this.artist_id = artist_id;
   }
 
   public Long getStage_id() {

@@ -1,109 +1,101 @@
-
-<body>
 <div class="homeContainer1">
-  <div class="date">
-    <h1 class="hDate">{{startDate.getDate()}}. - {{endDate.getDate()}}. {{month}} {{startDate.getFullYear()}}</h1>
-    <h2 class="hTime"> {{startDay}} - {{endDay}} {{startTime}} - {{endTime}} Uhr</h2>
-  </div>
-  <div class="instrument">
-    <ul>
-      <li>
-        <object class="note1" type="image/svg+xml" data="./assets/landingpageSVG/SingleNote.svg"></object>
-        <object class="note2" type="image/svg+xml" data="./assets/landingpageSVG/SingleNote.svg"></object>
-      </li>
-      <li>
-        <object class="guitar" type="image/svg+xml" data="./assets/landingpageSVG/Gitarre.svg"></object>
-      </li>
-    </ul>
-  </div>
+  <mat-grid-list class="homeContainer1Sub" [cols]="device === 'Web' ? 2 : 1 "
+                 [rowHeight]="device === 'Web' ? '100svh' : '50svh'">
+    <mat-grid-tile class="date">
+      <div>
+        <h1 class="hDate" [ngStyle]="{ 'font-size': hDate + 'rem' }">{{startDate.getDate()}}. - {{endDate.getDate()}}
+          . {{month}} {{startDate.getFullYear()}}</h1>
+        <h2 class="hTime" [ngStyle]="{ 'font-size': hTime + 'rem' }"> {{startDay}} - {{endDay}} {{startTime}}
+          - {{endTime}} Uhr</h2>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile class="instrument">
+      <ul>
+        <li>
+          <object class="note1" type="image/svg+xml" data="./assets/landingpageSVG/SingleNote.svg"
+                  [ngStyle]="{'width': note1WidthHeight + 'rem', 'height': note1WidthHeight + 'rem'}"></object>
+          <object class="note2" type="image/svg+xml" data="./assets/landingpageSVG/SingleNote.svg"
+                  [ngStyle]="{'width': note2WidthHeight + 'rem', 'height': note2WidthHeight + 'rem'}"></object>
+        </li>
+        <li>
+          <object class="guitar" type="image/svg+xml" data="./assets/landingpageSVG/Gitarre.svg"
+                  [ngStyle]="{'width': guitarWidth + 'rem', 'height': guitarHeight + 'rem'}"></object>
+        </li>
+      </ul>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
 
-<div class="homeContainer3"></div>
-
-<div class="homeContainer2">
-  <h2>Street Music Festival Ludwigsburg</h2>
-  <p>
-    {{generalInformation1}}
-  </p>
-  <p>
-    {{generalInformation2}}
-  </p>
-  <p>
-    {{generalInformation3}}
-  </p>
-  <p>
-    {{generalInformation4}}
-  </p>
-</div>
-
-<div class="homeContainer3"></div>
+<mat-expansion-panel class="expansionPanel" [ngClass]="{'collapsed': !expanded}">
+  <mat-expansion-panel-header (click)="expanded = !expanded">
+    <mat-panel-title [ngStyle]="{'font-size': expansionTitle + 'rem'}">
+      Lorem Ipsum
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <p [ngStyle]="{'font-size': expansionText + 'rem'}">{{generalInformation}}</p>
+</mat-expansion-panel>
 
 <div class="homeContainer4">
-  <h2>Bilder</h2>
-  <div class="images">
-    <img src="assets/bluehendesBarock/barock1.jpg" alt="Blühendes Barock Bild 1">
-    <img src="assets/bluehendesBarock/barock2.jpg" alt="Blühendes Barock Bild 2">
-    <img src="assets/streetMusicFestival/SMF1.jpg" alt="Street Music Festival Bild 1">
-    <img src="assets/streetMusicFestival/SMF2.jpg" alt="Street Music Festival Bild 2">
-    <img src="assets/streetMusicFestival/SMF3.jpg" alt="Street Music Festival Bild 3">
-    <img src="assets/streetMusicFestival/SMF4.jpg" alt="Street Music Festival Bild 4">
-    <img src="assets/streetMusicFestival/SMF5.jpg" alt="Street Music Festival Bild 5">
-    <img src="assets/streetMusicFestival/SMF6.jpg" alt="Street Music Festival Bild 6">
+  <div class="innerContainer4">
+    <h1>Bilder</h1>
+    <div class="imageSlider" [ngStyle]="{'width': imageSliderWidth+'rem', 'height': imageSliderHeight+'rem', 'margin': 0}">
+      <app-image-slider [slides]="slides"></app-image-slider>
+    </div>
   </div>
 </div>
-
-<div class="homeContainer3"></div>
 
 <div class="homeContainer5">
-  <h2>Sponsoren, Veranstalter & Partner des Street Music Festivals</h2>
   <div class="innerContainer5">
+    <h1>Veranstalter, Sponsoren & Partner des Street Music Festivals</h1>
     <div class="row">
-      <div class="logo1">
+      <div class="sponsor-logo">
         <a href="https://www.sparda-bw.de/">
-          <img src="assets/companyLogo/Sparda_Bank_logo.png" alt="Logo der Sparda Bank" class="hoverTransform">
+          <img src="assets/companyLogo/Sparda_Bank_logo.png" alt="Logo der Sparda Bank">
         </a>
       </div>
-      <div class="logo2">
+      <div class="sponsor-logo blueba">
         <a href="https://www.blueba.de/de/">
-          <img src="assets/companyLogo/blueba_logo.png" alt="Logo des Blühenden Barocks" class="hoverTransform">
+          <img src="assets/companyLogo/blueba_logo.png" alt="Logo des Blühenden Barocks">
         </a>
       </div>
-      <div class="logo3">
+      <div class="sponsor-logo">
         <a href="https://pulsmacher.de/">
-          <img src="assets/companyLogo/RZ_logo.png" alt="Logo von Pulsmacher" class="hoverTransform">
+          <img src="assets/companyLogo/RZ_logo.png" alt="Logo von Pulsmacher">
+        </a>
+      </div>
+      <div class="sponsor-logo">
+        <a href="https://www.energy.de/stuttgart">
+          <img src="assets/companyLogo/Energy_Logo.png" alt="Logo von Energy">
         </a>
       </div>
     </div>
-    <div class="row2">
-      <div class="logo4">
+    <div class="row">
+      <div class="sponsor-logo">
         <a href="https://www.rothaus.de/">
-          <img src="assets/companyLogo/rothaus_logo.png" alt="Logo von Rothaus" class="hoverTransform">
+          <img src="assets/companyLogo/rothaus_logo.png" alt="Logo von Rothaus">
         </a>
       </div>
-      <div class="logo5">
+      <div class="sponsor-logo">
         <a href="https://www.lautmacher.com/">
-          <img src="assets/companyLogo/Lautmacher_Logo.png" alt="Logo von Lautmacher" class="hoverTransform">
+          <img src="assets/companyLogo/Lautmacher_Logo.png" alt="Logo von Lautmacher">
         </a>
       </div>
-      <div class="logo6">
+      <div class="sponsor-logo">
         <a href="https://www.go-control.de/">
-          <img src="assets/companyLogo/Go_Control_Logo.png" alt="Logo von Go.Control" class="hoverTransform">
+          <img src="assets/companyLogo/Go_Control_Logo.png" alt="Logo von Go.Control">
         </a>
       </div>
-      <div class="logo7">
+      <div class="sponsor-logo">
         <a href="https://www.lkz.de/">
-          <img src="assets/companyLogo/kreiszeitung_logo.png" alt="Logo von der Ludwigsburger Kreiszeitung" class="hoverTransform">
-        </a>
-      </div>
-      <div class="logo8">
-        <a href="https://www.energy.de/stuttgart">
-          <img src="assets/companyLogo/Energy_Logo.png" alt="Logo von Energy" class="hoverTransform">
+          <img src="assets/companyLogo/kreiszeitung_logo.png" alt="Logo von der Ludwigsburger Kreiszeitung">
         </a>
       </div>
     </div>
   </div>
 </div>
-<div>
-  <app-footer></app-footer>
+
+<div class="homeFooter">
+  <div class="innerFooter">
+    <app-footer></app-footer>
+  </div>
 </div>
-</body>

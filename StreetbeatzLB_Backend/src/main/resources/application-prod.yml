@@ -1,0 +1,41 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+        format_sql: true
+        show_sql: true
+  datasource:
+    url: jdbc:mariadb://mariadb-sb:3306/streetbeatzlbdb
+    username: streetbeatzlb_mariadb_admin
+    password: streetbeatzlb
+    driver-class-name: org.mariadb.jdbc.Driver
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-decl55hw5iibzttr.eu.auth0.com/
+  sql:
+    init:
+      continue-on-error: true
+application:
+  audience: https://streetbeatzlb.de/auth/api
+  client-origin-url: https://hjetter.ddns.net
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+  port: 8443
+  ssl:
+    enabled: true
+    key-alias: hjetter
+    key-store: tomcatssl.jks
+    key-store-password: streetbeatzlb
+    key-password: streetbeatzlb
+

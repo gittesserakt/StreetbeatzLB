@@ -1,0 +1,53 @@
+mat-toolbar {
+  height: var(--navbar-height) !important;
+}
+
+.navbar{
+  position: fixed;
+  z-index: 2;
+
+  button{
+    width: auto;
+    height: 100%;
+
+    .menu{
+      width: 100%;
+      height: 100%;
+      font-size: 2.5rem;
+    }
+  }
+
+  a{
+    text-decoration: none;
+    font-family: "Teko", sans-serif;
+    padding-top: 0.5rem;
+  }
+}
+
+.sidenav{
+  position: fixed;
+  flex: 1 0 auto;
+
+  width: 100%;
+
+  div{
+    width: 100%;
+    height: 3.5rem;
+    text-align: center;
+    button{
+      width: 100%;
+      height: 100%;
+      text-align: center;
+
+      .arrow{
+        width: 10%;
+        height: 100%;
+        font-size: 3.7rem;
+      }
+      .logo{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

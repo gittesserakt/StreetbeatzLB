@@ -1,0 +1,55 @@
+.background {
+  //background: linear-gradient(180deg, rgba(45, 29, 249, 1) 5%, rgba(255, 0, 254, 1) 100%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.voteTitle{
+  //background: radial-gradient(circle, rgba(255,255,255,0.5046219171262255) 0%, rgba(255,255,255,0.7007003484987745) 90%);
+  height: 5%;
+  display: flex;
+  align-self: center;
+
+  a{
+    text-decoration: underline;
+    align-self: center;
+    padding-left: 5%;
+  }
+}
+
+.listContainer {
+  //background: radial-gradient(circle, rgba(255,255,255,0.5046219171262255) 0%, rgba(255,255,255,0.7007003484987745) 90%);
+  height: 85%;
+
+  align-self: center;
+
+  .list {
+    height: 95%;
+    margin: 5px;
+    overflow-y: scroll;
+    flex-grow: 1;
+    .radioGroup {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.buttonContainer {
+  //background: radial-gradient(circle, rgba(255,255,255,0.5046219171262255) 0%, rgba(255,255,255,0.7007003484987745) 90%);
+  height: 10%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+
+  .voteButton {
+    margin-top: auto;
+    margin-bottom: auto;
+    align-self: center;
+    height: 85%;
+    width: 85%;
+    max-height: 80px;
+  }
+}

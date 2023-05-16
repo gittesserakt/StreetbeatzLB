@@ -1,0 +1,20 @@
+<div class="background" [ngStyle]="{'height': screenHeightPX - 64 + 'px'}">
+  <div class="voteTitle" [ngStyle]="{'width': centerList + '%'}">
+    <a>{{voteTitle}}</a>
+  </div>
+
+  <div class="listContainer" [ngStyle]="{'width': centerList + '%'}">
+    <mat-list class="list">
+      <mat-radio-group class="radioGroup" [(ngModel)]="chosenArtist">
+        <mat-radio-button class="radioButton" [disabled]="hasChosen" *ngFor="let artist of artists"
+                          [value]="artist" [checked]="artist.name === chosenArtist?.name">{{artist.name}}</mat-radio-button>
+      </mat-radio-group>
+    </mat-list>
+  </div>
+
+  <div class="buttonContainer" [ngStyle]="{'width': centerList + '%'}">
+    <button mat-flat-button class="voteButton" (click)="onClick()" color="primary" [disabled]="hasChosen">
+      {{voteButton}}
+    </button>
+  </div>
+</div>

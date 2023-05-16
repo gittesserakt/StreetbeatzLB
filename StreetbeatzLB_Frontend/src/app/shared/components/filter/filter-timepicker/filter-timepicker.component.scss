@@ -1,0 +1,11 @@
+.form-time-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+
+  button {
+    height: 28px;
+  }
+}

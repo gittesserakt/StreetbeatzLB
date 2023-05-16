@@ -3,8 +3,8 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
 </head>-->
 <div *ngIf="device === 'Web', else elseBlock">
-<app-desktop></app-desktop>
+<app-navbar-desktop [navbarHeight]=navbarHeight></app-navbar-desktop>
 </div>
 <ng-template #elseBlock>
-  <app-mobile></app-mobile>
+  <app-navbar-mobile [navbarHeight]=navbarHeight></app-navbar-mobile>
 </ng-template>

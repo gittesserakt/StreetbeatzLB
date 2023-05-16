@@ -1,0 +1,13 @@
+// fill screen with map but keep navbar visible and dont allow scrolling
+.map-container {
+  height: calc(100vh - 64px);
+}
+
+// button to toggle follow mode; positioned in the bottom right corner relative to the map-container
+.map-overlay button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 2rem;
+  z-index: 1000;
+}

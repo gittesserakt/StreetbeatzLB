@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="700mm"
+   height="700mm"
+   viewBox="0 0 700 700"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="stage_M.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.41564499"
+     inkscape:cx="1320.8387"
+     inkscape:cy="1326.8535"
+     inkscape:window-width="2400"
+     inkscape:window-height="1271"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="false" />
+  <defs
+     id="defs2">
+    <rect
+       x="148.93382"
+       y="194.44138"
+       width="370.95551"
+       height="256.49713"
+       id="rect236" />
+  </defs>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       style="display:inline;fill:#ff22ce;fill-opacity:1;stroke:#1043aa;stroke-width:4.44488e-07;stroke-opacity:0;paint-order:markers stroke fill"
+       id="path8471"
+       ry="264.42102"
+       rx="270.82468"
+       cy="344.69669"
+       cx="364.11322"
+       sodipodi:insensitive="true" />
+    <text
+       xml:space="preserve"
+       transform="matrix(2.3813659,0,0,2.3812158,-208.88866,-380.37546)"
+       id="text234"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:191.996px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect236);display:inline;fill:#000000;fill-opacity:1;stroke:#4a81ee;stroke-width:0.00000041;stroke-opacity:0;paint-order:markers stroke fill"><tspan
+         x="148.93359"
+         y="369.13264"
+         id="tspan441">M</tspan></text>
+  </g>
+</svg>

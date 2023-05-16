@@ -1,0 +1,162 @@
+// Funktion, um Hex-Code in RGBA umzuwandeln
+@function hex_rgba($hex, $alpha: 1) {
+  $r: red($hex);
+  $g: green($hex);
+  $b: blue($hex);
+  $a: $alpha;
+
+  @return rgba($r, $g, $b, $a);
+}
+
+// color palette from theme
+$primary-color: blue; //mat.get-color-from-palette($mat-light-theme, primary, 500);
+$primary-color-light: lightblue;
+$secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent, 500);
+
+.performance-tile-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100px;
+  height: 100px;
+  max-height: 150px;
+  width: 100%;
+  overflow: hidden;
+
+  .left-column {
+    margin-left: 10px;
+    flex: 2;
+    width: 20%;
+    max-width: 100px;
+    height: 100%;
+    overflow: hidden;
+
+    @media screen and (max-width: 400px) {
+      max-width: 60px;
+    }
+
+    .stage {
+      color: $secondary-color;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      height: 100%;
+
+      p {
+        font-size: 2.8rem;
+      }
+
+      &::before {
+        content: 'STAGE';
+        margin-right: 6px;
+        margin-left: 2px;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        font-size: 12px;
+        font-weight: normal;
+        color: $secondary-color;
+      }
+
+      @media screen and (max-width: 400px) {
+        .p {
+          font-size: 0.8rem;
+        }
+
+        &::before {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+
+  .middle-column {
+    flex: 4;
+    height: 100%;
+
+    .description {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      $min-font-size: 12px;
+      $max-font-size: 24px;
+
+      .artist {
+        font-size: $max-font-size; // Schriftgröße auf Maximum setzen
+
+        @if (calc($min-font-size * 1.5) > $max-font-size) { // falls die maximale Schriftgröße zu klein ist
+          font-size: $min-font-size; // Schriftgröße auf Minimum setzen
+        }
+        @else {
+          $i: 1;
+          @while (calc(100% - $i * 10%) > 0) { // Schriftgröße in 10%-Schritten reduzieren, bis sie passt
+            $font-size: calc($max-font-size - $i * 2px);
+            @if (calc(100% - $i * 10%) < 0 or $font-size < $min-font-size) { // falls die Schriftgröße zu klein wird
+              $font-size: $min-font-size;
+               // Schleife beenden
+            }
+            .text {
+              font-size: $font-size;
+            }
+            $i: $i + 1;
+          }
+        }
+      }
+
+      @media screen and (max-width: 400px) {
+        .artist {
+          font-size: 1.2rem;
+        }
+      }
+
+      .time {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 1.2rem;
+
+        @media screen and (max-width: 400px) {
+          p {
+            font-size: 0.8rem;
+          }
+
+          p:first-child {
+            margin-bottom: 2px;
+          }
+        }
+
+        p {
+          margin: 0;
+        }
+
+        p:first-child {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  .right-column {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+
+    .change {
+      display: flex;
+      justify-content: center;
+    }
+
+    .change button {
+      background-color: transparent;
+      color: $secondary-color;
+      flex: 1;
+      margin: 0 5px;
+      height: 150%;
+      box-shadow: none;
+    }
+  }
+}
