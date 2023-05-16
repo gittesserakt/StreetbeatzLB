@@ -9,7 +9,7 @@
 </div>
 <ng-template #elseBlock>
   <div class="performances-wrapper-desktop">
-    <app-filter (outFilter)="filtersChanged($event)"></app-filter>
+    <app-filter (outFilter)="filterChanged($event)"></app-filter>
     <div class="performances-list">
       <div *ngFor="let performance of verbosePerformances;">
         <app-performance-tile [performance]="performance"></app-performance-tile>

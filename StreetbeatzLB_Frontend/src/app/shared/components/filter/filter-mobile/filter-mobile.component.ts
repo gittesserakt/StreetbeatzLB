@@ -9,14 +9,19 @@ import {Time} from "@angular/common";
 })
 export class FilterMobileComponent implements OnInit {
   panelOpenState = false;
-  filter: Filter = new Filter(null, null, null, null);
+  filter: Filter = new Filter(null, null, null);
   filterTypes: string[] = []; // 'Date', 'Artist', 'Stage'
-  @Input() inFilter!: Filter;
+  time: Time = this.filter.date ? {
+    hours: this.filter.date.getHours(),
+    minutes: this.filter.date.getMinutes()
+  } : {hours: 0, minutes: 0}
+  @Input() inFilter!: Filter; //Was macht dieser inFilter?
   @Output() outFilter = new EventEmitter<Filter>();
 
   ngOnInit() {
     if (this.inFilter) {
       this.filter = this.inFilter;
+      this.applyFilter()
     }
   }
 
@@ -26,10 +31,9 @@ export class FilterMobileComponent implements OnInit {
     switch (filterType) {
       case 'Date':
         this.filter.date = null;
-        this.remove('Time');
         break;
       case 'Time':
-        this.filter.time = null;
+        this.filter.setTime(0,0)
         break;
       case 'Artist':
         this.filter.artist = null;
@@ -79,9 +83,10 @@ export class FilterMobileComponent implements OnInit {
   }
 
   timeChangeEvent($event: Time | null) {
-    this.filter.time = $event;
-
     if ($event) {
+      this.time = $event
+
+      this.filter.setTime($event.hours, $event.minutes)
       if (!this.filterTypes.includes('Time')) {
         this.add('Time');
       }

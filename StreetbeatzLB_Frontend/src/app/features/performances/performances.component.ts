@@ -3,14 +3,15 @@ import {VerbosePerformanceService} from "../../core";
 import {VerbosePerformance} from "../../core/models/verbosePerformance";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Filter} from "../../core/models/filter.model";
+import {SmfCookieService} from "../../core/services/smfCookieService";
 
 @Component({
   selector: 'app-performances',
   templateUrl: './performances.component.html',
   styleUrls: ['./performances.component.scss']
 })
-export class PerformancesComponent implements OnInit{
-  device:String = "Web";
+export class PerformancesComponent implements OnInit {
+  device: String = "Web";
 
   displayMap = new Map([
     [Breakpoints.Handset, 'Handset'],
@@ -21,15 +22,15 @@ export class PerformancesComponent implements OnInit{
   verbosePerformances?: VerbosePerformance[];
 
   constructor(private verbosePerformanceService: VerbosePerformanceService,
-              private breakpointObserver: BreakpointObserver) {
+              private breakpointObserver: BreakpointObserver, private smfService: SmfCookieService) {
     breakpointObserver.observe([
       Breakpoints.Handset,
       Breakpoints.Tablet,
       Breakpoints.WebLandscape
-    ]).subscribe(result =>{
+    ]).subscribe(result => {
       //console.log(result);
-      for(const query of Object.keys(result.breakpoints)){
-        if(result.breakpoints[query]){
+      for (const query of Object.keys(result.breakpoints)) {
+        if (result.breakpoints[query]) {
           this.device = this.displayMap.get(query) as String;
         }
       }
@@ -71,10 +72,9 @@ export class PerformancesComponent implements OnInit{
 
   ngOnInit(): void {
     console.log("performances component init");
-    this.getAllPerformances();
   }
 
-  filtersChanged(event: Filter) {
+  filterChanged(event: Filter) {
     this.getFilteredPerformances(event);
   }
 }

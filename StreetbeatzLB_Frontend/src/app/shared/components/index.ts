@@ -15,7 +15,9 @@ import {PerformancePopupComponent} from "./performance-popup/performance-popup.c
 import {LoginButtonComponent} from "./login-button/login-button.component";
 import {LogoutButtonComponent} from "./logout-button/logout-button.component";
 import {PageLoaderComponent} from "./page-loader/page-loader.component";
+import {VoteDialogComponent} from "./vote-dialog/vote-dialog.component";
 import {FilterTimepickerComponent} from "./filter/filter-timepicker/filter-timepicker.component";
+import {VoteSnackbarComponent} from "./vote-snackbar/vote-snackbar.component";
 
 
 export const COMPONENTS = [
@@ -36,6 +38,7 @@ export const COMPONENTS = [
   LoginButtonComponent,
   LogoutButtonComponent,
   PageLoaderComponent,
+  VoteDialogComponent,
   ImageSliderComponent,
   LoginButtonComponent,
   LogoutButtonComponent,
@@ -45,5 +48,6 @@ export const COMPONENTS = [
   ImageSliderComponent,
   PerformancePopupComponent,
   EditPerformanceTileComponent,
+  VoteSnackbarComponent,
 ]
 

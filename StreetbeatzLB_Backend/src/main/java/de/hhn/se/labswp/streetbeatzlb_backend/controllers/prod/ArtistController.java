@@ -27,6 +27,8 @@ public class ArtistController {
     @GetMapping(path="/artistByName")
     public @ResponseBody Optional<Artist> getArtistByName(@RequestParam String artist) {
 
+        artist = artist.replace('_', ' ');
+
         Iterable<Artist> artists = artistRepository.findAll();
 
         int artistID = 0;

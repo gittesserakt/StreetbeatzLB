@@ -14,6 +14,7 @@ const routes: Routes = [
     path: 'messages',
     loadChildren: () =>
       import('./features/messages/messages.module').then((m) => m.MessagesModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'performances',
@@ -29,6 +30,11 @@ const routes: Routes = [
     path: 'map',
     loadChildren: () =>
       import('./features/map/map.module').then((m) => m.MapModule),
+  },
+  {
+    path: 'vote',
+    loadChildren: () =>
+      import('./features/vote/vote.module').then((m) => m.VoteModule),
   },
   {
     path: '**',
