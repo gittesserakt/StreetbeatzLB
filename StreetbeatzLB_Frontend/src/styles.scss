@@ -1,7 +1,9 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
+
+@use 'sass:map';
+@use "palette";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -12,7 +14,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$StreetbeatzLB_Frontend-primary: mat.define-palette(mat.$amber-palette);
+/*$StreetbeatzLB_Frontend-primary: mat.define-palette(mat.$amber-palette);*/
+$StreetbeatzLB_Frontend-primary: mat.define-palette(palette.$primary);
 $StreetbeatzLB_Frontend-accent: mat.define-palette(mat.$light-blue-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).

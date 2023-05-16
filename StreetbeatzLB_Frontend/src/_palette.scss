@@ -1,0 +1,37 @@
+@use 'sass:map';
+
+//Black (#000000) are only placeholder for the time being. They can be replace with the needed color but please comment for what the color is an what color.
+//All the colors in "contrast" are the colors for text.
+$primary: (
+  50: #000000,
+  100: #000000,
+  200: #000000,
+  300: #000000,
+  400: #000000,
+  500: #2d1df9ff, //Primary-color: blue
+  600: #000000,
+  700: #000000,
+  800: #000000,
+  900: #000000,
+  A100: #ff22ceff, //Secondary-color for landing-page: magenta?
+  A200: #000000, //Secondary-color for performances:
+  A400: #000000, //Secondary-color for vote:
+  A700: #000000, //Secondary-color for admin:
+
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #ffffff, //Text-color for secondary-color of the landing-page
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  )
+);
