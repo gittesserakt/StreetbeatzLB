@@ -1,5 +1,4 @@
-import {Component, ViewChild, AfterViewInit, OnInit, HostListener} from '@angular/core';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import {Component, OnInit, HostListener} from '@angular/core';
 import {AuthService} from "@auth0/auth0-angular";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 
@@ -8,10 +7,8 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit, OnInit {
+export class AppComponent implements  OnInit {
   title = 'StreetbeatzLB_Frontend';
-  @ViewChild(NavbarComponent) navbar!: NavbarComponent;
-  navbarHeight: number = 64;
   device:String = "Web";
   displayMap = new Map([
     [Breakpoints.Handset, 'Handset'],
@@ -19,15 +16,10 @@ export class AppComponent implements AfterViewInit, OnInit {
     [Breakpoints.WebLandscape, 'Web']
   ])
 
-  ngAfterViewInit(){
-    this.navbarHeight = this.navbar.navbarHeight;
-  }
 
   ngOnInit(): void {
-    document.documentElement.style.setProperty('--navbar-height', this.navbarHeight + 'px');
   }
 
-  isAuth0Loading$ = this.authService.isLoading$;
   constructor(private authService: AuthService,private breakpointObserver: BreakpointObserver) {
     breakpointObserver.observe([
       Breakpoints.Handset,
