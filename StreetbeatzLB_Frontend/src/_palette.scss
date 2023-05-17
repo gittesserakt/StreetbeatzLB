@@ -3,16 +3,16 @@
 //Black (#000000) are only placeholder for the time being. They can be replace with the needed color but please comment for what the color is an what color.
 //All the colors in "contrast" are the colors for text.
 $primary: (
-  50: #000000,
-  100: #000000,
+  50: #ffffff99, //Glass effect color
+  100: #ffffff00, //If you need to make something transparent
   200: #000000,
   300: #000000,
   400: #000000,
-  500: #2d1df9ff, //Primary-color: blue
+  500: #FFC107, //Accent-color: amber
   600: #000000,
   700: #000000,
   800: #000000,
-  900: #000000,
+  900: #2d1df9ff, //Primary-color: blue
   A100: #ff22ceff, //Secondary-color for landing-page: magenta?
   A200: #000000, //Secondary-color for performances:
   A400: #000000, //Secondary-color for vote:
