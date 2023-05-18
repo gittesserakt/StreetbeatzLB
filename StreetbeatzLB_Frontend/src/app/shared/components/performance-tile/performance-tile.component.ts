@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { PerformancePopupComponent } from "../performance-popup/performance-popup.component";
-import { PerformanceService } from "../../../core/services/performance.service";
+import { VerbosePerformanceService } from "../../../core";
 import { VerbosePerformance } from "../../../core/models/verbosePerformance";
 
 @Component({
@@ -17,7 +17,7 @@ export class PerformanceTileComponent {
   constructor(
     private router: Router,
     private dialog: MatDialog,
-    private performanceService: PerformanceService) {
+    private verbosePerformanceService: VerbosePerformanceService) {
     this.isAdmin = false; //default value
   }
 
@@ -34,11 +34,11 @@ export class PerformanceTileComponent {
       day: '2-digit',
       hour: '2-digit',
       minute: '2-digit'
-    });
+    }); // For the alert display.
 
     if (confirm( this.performance.performance_id + "Do you really want to delete this performance by " + this.performance.artist + " on " + formattedDate + " on Stage "
             + this.performance.stage + "?")) {
-      this.performanceService.deletePerformance(this.performance.performance_id)
+      this.verbosePerformanceService.deletePerformance(this.performance.performance_id)
         .subscribe({
           next: () => {
             console.log(`Performance with ID ${this.performance.performance_id} deleted.`);

@@ -67,7 +67,7 @@ create or replace index artist_id
 
 # identifier is email encoded with Base64URL
 INSERT INTO `administrator` (identifier, email, firstname, surname, picture) VALUES
-	('644e4e24dfb8300113c88833', 'streetmusicfestivallb@gmail.com', 'streetmusicfestivallb', 'Mustermann', null);
+	('644e4e24dfb8300113c88833', 'streetmusicfestivallb@gmail.com', 'streetmusicfestivallb', 'surname', null);
     --"auth0|" is removed when reading the Id, leads to problems.
 
 INSERT INTO `artist` (`name`) VALUES

@@ -5,7 +5,6 @@ import { take } from "rxjs/operators";
 import { VerbosePerformanceService } from "../../../core";
 import { VerbosePerformance } from '../../../core/models/verbosePerformance';
 import { PerformanceService } from "../../../core/services/performance.service";
-import { Performance} from "../../../core";
 import { ArtistService } from "../../../core/services/artist.service";
 import { Artist } from "../../../core/models/artist.model";
 import { StageService } from "../../../core/services/stage.service";
@@ -28,7 +27,7 @@ export class PerformancePopupComponent implements OnInit{
   startTime: string = '';
   selectedArtistId: number = 0;
   selectedStageId: number = 0;
-  userId: string = '';
+  authSub: string = '';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
@@ -62,23 +61,13 @@ export class PerformancePopupComponent implements OnInit{
   getCurrentUser() {
     this.authService.user$.pipe(take(1)).subscribe({
       next: (user) => {
-        this.userId = user?.sub?.replace("auth0|", "") || ""; // Hier wird user?.sub dem userId zugewiesen
+        this.authSub = user?.sub || ""; // Hier wird der auth0 user sub der variable authSub zugewiesen
         console.log(user); // Hier haben Sie die UserId des aktuellen Benutzers
       },
       error: (error) => {
         console.log(error);
       }
     });
-  }
-
-  getIdByArtist(selectedName: string): number {
-    const artist = this.artists.find(artist => artist.name === selectedName);
-    return artist ? artist.artist_id : 0;
-  }
-
-  getIdByStage(selectedStage: string): number {
-    const stage = this.stages.find(stage => stage.name === selectedStage);
-    return stage ? stage.stage_id : 0;
   }
 
   getAllPerformances() {
@@ -129,7 +118,61 @@ export class PerformancePopupComponent implements OnInit{
       })
   }
 
-  checkArtistFree(artistName: string, startTime: String): boolean { //TODO: nach Feedback fragen
+  savePerformance() {
+    if (this.popupName == "Add Performance" && (this.startTime == '' || this.selectedArtistId == 0 || this.selectedStageId == 0)) {
+      if (this.startTime == '') {
+        alert("Please select a start time!");
+      } else if (this.selectedArtistId == 0) {
+        alert("Please select a artist!")
+      } else if (this.selectedStageId == 0) {
+        alert("Please select a stage!")
+      }
+    } else {
+      if (this.popupName == "Edit Performance") {
+        //TODO: If the bug to show the current time in the "Edit Popup" is fixed, a Date object can be passed for startTime.
+        // Currently a string is passed, otherwise it leads to an error if the time field is left empty.
+        this.verbosePerformanceService.editPerformance(this.data.performance_popup_id, this.startTime, this.selectedArtistId, this.selectedStageId)
+          .subscribe(
+            (response: any) => {
+              const {data, error} = response;
+
+              if (data) {
+                console.log("Performance updated successfully: ", data);
+              }
+
+              if (error) {
+                console.log(error);
+              } else {
+                this.dialogRef.close();
+                location.reload();
+              }
+            }
+          );
+      } else {
+        this.verbosePerformanceService.addPerformance(new Date(this.startTime), this.authSub, this.selectedArtistId, this.selectedStageId)
+          .subscribe(
+            (response: any) => {
+              const {data, error} = response;
+
+              if (data) {
+                console.log("Performance updated successfully: ", data);
+                this.dialogRef.close();
+                location.reload();
+              }
+
+              if (error) {
+                console.log(error);
+              } else {
+                console.log("Performance updated successfully");
+                this.dialogRef.close();
+              }
+            }
+          );
+      }
+    }
+  }
+
+  checkArtistFree(artistName: string, startTime: String): boolean { //TODO: Im Daily nach Feedback von PO fragen
     if (!this.verbosePerformances) {
       return true; // Return true if verbosePerformances is undefined
     }
@@ -153,74 +196,6 @@ export class PerformancePopupComponent implements OnInit{
       }
     }
     return true;
-  }
-
-  savePerformance() {
-    if (this.popupName == "Add Performance" && (this.startTime == '' || this.selectedArtistId == 0 || this.selectedStageId == 0)) {
-      if (this.startTime == '') {
-        alert("Please select a start time!");
-      } else if (this.selectedArtistId == 0) {
-        alert("Please select a artist!")
-      } else if (this.selectedStageId == 0) {
-        alert("Please select a stage!")
-      }
-    } else {
-      const performance: Performance = {
-        performance_id: this.data.performance_popup_id,
-        artist_id: this.selectedArtistId,
-        stage_id: this.selectedStageId,
-        created_by: this.userId,
-
-        start_time: this.startTime == '' ? '0' :
-          new Date(new Date(this.startTime).setTime(new Date(this.startTime).getTime() + (120 * 60 * 1000))).toISOString().slice(0, 19),
-        end_time: this.startTime == '' ? '0' :
-          new Date(new Date(this.startTime).setTime(new Date(this.startTime).getTime() + (150 * 60 * 1000))).toISOString().slice(0, 19)
-      };
-
-      if (this.popupName == "Edit Performance") {
-        this.performanceService.editPerformance(performance)
-          .subscribe(
-            (response: any) => {
-              const {data, error} = response;
-
-              if (data) {
-                console.log("Performance updated successfully: ", data);
-                this.dialogRef.close();
-                location.reload();
-              }
-
-              if (error) {
-                console.log(error);
-              } else {
-                console.log("Performance updated successfully");
-                this.dialogRef.close();
-                location.reload();
-              }
-            }
-          );
-      } else {
-        this.performanceService.addPerformance(performance)
-          .subscribe(
-            (response: any) => {
-              const {data, error} = response;
-
-              if (data) {
-                console.log("Performance updated successfully: ", data);
-                this.dialogRef.close();
-                location.reload();
-              }
-
-              if (error) {
-                console.log(error);
-              } else {
-                console.log("Performance updated successfully");
-                this.dialogRef.close();
-                location.reload();
-              }
-            }
-          );
-      }
-    }
   }
 
   onCancel() {
