@@ -11,11 +11,7 @@
           <mat-icon>delete</mat-icon>
         </button>
       </div>
-      <!--<app-performances></app-performances>-->
-      <div *ngFor="let performance of verbosePerformances;">
-        <mat-divider vertical="false" [inset]></mat-divider>
-        <app-performance-tile [performance]="performance" [isAdmin]="true"></app-performance-tile>
-      </div>
+      <app-performance-view [isAdmin]="true"></app-performance-view>
       <mat-divider vertical="false" [inset]></mat-divider>
     </div>
   </mat-tab>

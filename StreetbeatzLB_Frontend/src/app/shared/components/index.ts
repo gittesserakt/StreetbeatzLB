@@ -15,6 +15,7 @@ import {LoginButtonComponent} from "./login-button/login-button.component";
 import {LogoutButtonComponent} from "./logout-button/logout-button.component";
 import {PageLoaderComponent} from "./page-loader/page-loader.component";
 import {FilterTimepickerComponent} from "./filter/filter-timepicker/filter-timepicker.component";
+import {PerformanceViewComponent} from "./performance-view/performance-view.component";
 
 
 export const COMPONENTS = [
@@ -41,6 +42,6 @@ export const COMPONENTS = [
   FilterTimepickerComponent,
   PageLoaderComponent,
   ImageSliderComponent,
-  PerformancePopupComponent,
+  PerformanceViewComponent,
 ]
 

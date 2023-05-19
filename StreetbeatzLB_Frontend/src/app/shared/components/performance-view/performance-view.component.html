@@ -1,0 +1,20 @@
+<div *ngIf="device === 'Web', else elseBlock">
+  <app-filter></app-filter>
+  <div class="performances-list">
+    <div *ngFor="let performance of verbosePerformances;">
+      <app-performance-tile [performance]="performance"></app-performance-tile>
+      <mat-divider vertical="false" [inset]></mat-divider>
+    </div>
+  </div>
+</div>
+<ng-template #elseBlock>
+  <div class="performances-wrapper-desktop">
+    <app-filter (outFilter)="filtersChanged($event)"></app-filter>
+    <div class="performances-list">
+      <div *ngFor="let performance of verbosePerformances;">
+        <app-performance-tile [performance]="performance" [isAdmin]="isAdmin"></app-performance-tile>
+        <mat-divider vertical="false" [inset]></mat-divider>
+      </div>
+    </div>
+  </div>
+</ng-template>
