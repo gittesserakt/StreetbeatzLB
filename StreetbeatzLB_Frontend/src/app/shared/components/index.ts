@@ -19,6 +19,10 @@ import {VoteDialogComponent} from "./vote-dialog/vote-dialog.component";
 import {FilterTimepickerComponent} from "./filter/filter-timepicker/filter-timepicker.component";
 import {VoteSnackbarComponent} from "./vote-snackbar/vote-snackbar.component";
 import {SidenavComponent} from "./sidenav/sidenav.component";
+import {LandingpageStartComponent} from "./landingpage-start/landingpage-start.component";
+import {LandingpageSponsorComponent} from "./landingpage-sponsor/landingpage-sponsor.component";
+import {LandingpageDateBoxComponent} from "./landingpage-date-box/landingpage-date-box.component";
+import {TextboxComponent} from "./textbox/textbox.component";
 
 
 export const COMPONENTS = [
@@ -51,5 +55,9 @@ export const COMPONENTS = [
   EditPerformanceTileComponent,
   VoteSnackbarComponent,
   SidenavComponent,
+  LandingpageStartComponent,
+  LandingpageSponsorComponent,
+  LandingpageDateBoxComponent,
+  TextboxComponent,
 ]
 

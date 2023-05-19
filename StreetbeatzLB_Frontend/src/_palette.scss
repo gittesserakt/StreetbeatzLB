@@ -3,7 +3,7 @@
 //Black (#000000) are only placeholder for the time being. They can be replace with the needed color but please comment for what the color is an what color.
 //All the colors in "contrast" are the colors for text.
 $primary: (
-  50: #ffffff99, //Glass effect color
+  50: #ffffff77, //Glass effect color
   100: #ffffff00, //If you need to make something transparent
   200: #000000,
   300: #000000,
@@ -24,11 +24,11 @@ $primary: (
     200: #000000,
     300: #000000,
     400: #000000,
-    500: #ffffff, //Text-color for the primary-color
+    500: #ffffff, //Text-color for the accent-color
     600: #000000,
     700: #000000,
     800: #000000,
-    900: #000000,
+    900: #ffffff, //Text-color for the primary-color
     A100: #ffffff, //Text-color for the secondary-color of the landing-page
     A200: #000000,
     A400: #000000,
