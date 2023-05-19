@@ -1,0 +1,135 @@
+@import "../../../../_palette.scss";
+
+.infoWrapper {
+  background-color: red;
+  padding-left: 10px;
+
+  .titleWrapper {
+    background-color: #45ff84;
+    height: 4.5rem;
+    .title {
+      background-color: #6e6fff;
+      color: map-get(map-get($primary, contrast), 500);
+      font-size: 3rem;
+      width: 50%;
+      line-height: 85%;
+    }
+  }
+  .textWrapper {
+    background-color: blue;
+    width: 100%;
+    app-textbox {
+      font-size: 0.7rem;
+    }
+  }
+  .spacer{
+    height: 10%;
+  }
+  .dateWrapper{
+    background-color: #ff22ce;
+    padding-left: 10px;
+  }
+}
+//region HandsetLandscape
+@media screen and (max-width: 959.98px){
+  .infoWrapper {
+    .titleWrapper {
+      height: 3.5rem;
+      .title {
+        font-size: 2.6rem;
+        width: 70%;
+      }
+    }
+    .textWrapper {
+      width: 100%;
+      app-textbox {
+        font-size: 0.7rem;
+      }
+    }
+    .spacer{
+      height: 5%;
+    }
+    .dateWrapper{
+      padding-left: 10px;
+    }
+  }
+}
+//endregion
+//region TabletPortrait
+@media screen and (min-width: 800px) and (max-width: 839.98px){
+  .infoWrapper {
+    padding-left: 30px;
+    .titleWrapper {
+      height: 5rem;
+      .title {
+        font-size: 3.3rem;
+        width: 25%;
+      }
+    }
+    .textWrapper {
+      width: 70%;
+      app-textbox {
+        font-size: 0.9rem;
+      }
+    }
+    .spacer{
+      height: 7%;
+    }
+    .dateWrapper{
+      padding-left: 10px;
+    }
+  }
+}
+//endregion
+//region TabletLandscape
+@media screen and (min-width: 960px) and (max-width: 1279.98px){
+  .infoWrapper {
+    padding-left: 30px;
+    .titleWrapper {
+      height: 5rem;
+      .title {
+        font-size: 3.3rem;
+        width: 40%;
+      }
+    }
+    .textWrapper {
+      width: 100%;
+      app-textbox {
+        font-size: 0.9rem;
+      }
+    }
+    .spacer{
+      height: 7%;
+    }
+    .dateWrapper{
+      padding-left: 10px;
+    }
+  }
+}
+//endregion
+//region WebLandscape
+@media screen and (min-width: 1280px){
+  .infoWrapper {
+    padding-left: 30px;
+    .titleWrapper {
+      height: 6rem;
+      .title {
+        font-size: 4rem;
+        width: 35%;
+      }
+    }
+    .textWrapper {
+      width: 70%;
+      app-textbox {
+        font-size: 1rem;
+      }
+    }
+    .spacer{
+      height: 5%;
+    }
+    .dateWrapper{
+      padding-left: 10px;
+    }
+  }
+}
+//endregion
