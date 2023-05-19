@@ -1,5 +1,3 @@
-$secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent, 500);
-
 .performanceWrapper {
   max-width: 850px;
   border: rgba(0,0,0,0.12) solid 3px;
@@ -21,19 +19,5 @@ $secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent,
 
   .checkbox {
 
-  }
-
-  .change {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    button {
-      background-color: transparent;
-      color: $secondary-color;
-      margin: 0 5px;
-      height: 150%;
-      box-shadow: none;
-    }
   }
 }

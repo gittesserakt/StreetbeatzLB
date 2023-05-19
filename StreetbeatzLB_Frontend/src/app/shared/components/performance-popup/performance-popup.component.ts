@@ -155,9 +155,8 @@ export class PerformancePopupComponent implements OnInit{
               const {data, error} = response;
 
               if (data) {
-                console.log("Performance updated successfully: ", data);
+                console.log("Performance added successfully: ", data);
                 this.dialogRef.close();
-                location.reload();
               }
 
               if (error) {
@@ -165,6 +164,7 @@ export class PerformancePopupComponent implements OnInit{
               } else {
                 console.log("Performance updated successfully");
                 this.dialogRef.close();
+                location.reload();
               }
             }
           );

@@ -44,8 +44,4 @@ export class AdminViewComponent implements OnInit{
       data: { functionName: 'Add Performance' }
     });
   }
-
-  deleteMarkedPerformances():void { //TODO:
-
-  }
 }

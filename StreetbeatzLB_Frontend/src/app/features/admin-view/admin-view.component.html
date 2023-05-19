@@ -5,12 +5,6 @@
         <mat-icon>add</mat-icon>
       </button>
       <mat-divider vertical="false" [inset]></mat-divider>
-      <div class="change">
-        <mat-checkbox class="checkbox"><strong>Mark all performances</strong></mat-checkbox>
-        <button mat-fab color="primary" matTooltip="Delete the marked performances" (click)="deleteMarkedPerformances()">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
       <app-performance-view [isAdmin]="true"></app-performance-view>
       <mat-divider vertical="false" [inset]></mat-divider>
     </div>
