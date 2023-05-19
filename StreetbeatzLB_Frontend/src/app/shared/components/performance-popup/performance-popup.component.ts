@@ -47,7 +47,6 @@ export class PerformancePopupComponent implements OnInit{
 
   ngOnInit() {
     this.popupName = this.data.functionName;
-    this.getAllPerformances();
     this.getAllArtists();
     this.getAllStages();
     const labelElement = document.querySelector('#popup-label');
@@ -61,29 +60,13 @@ export class PerformancePopupComponent implements OnInit{
   getCurrentUser() {
     this.authService.user$.pipe(take(1)).subscribe({
       next: (user) => {
-        this.authSub = user?.sub || ""; // Hier wird der auth0 user sub der variable authSub zugewiesen
-        console.log(user); // Hier haben Sie die UserId des aktuellen Benutzers
+        this.authSub = user?.sub || ""; // Hier wird der auth0 user sub der variable authSub zugewiesen.
+        //console.log(user);  //Benutzerdaten in console ausgeben, zum manuellen Hinzufügen von Admins.
       },
       error: (error) => {
         console.log(error);
       }
     });
-  }
-
-  getAllPerformances() {
-    this.verbosePerformanceService.getAllVerbosePerformances()
-      .subscribe((response) => {
-        const {data, error} = response;
-        console.log('verbosePerformances', response);
-
-        if (data) {
-          this.verbosePerformances = data as VerbosePerformance[];
-        }
-
-        if (error) {
-          console.log(error);
-        }
-      });
   }
 
   getAllArtists() {
@@ -136,13 +119,11 @@ export class PerformancePopupComponent implements OnInit{
             (response: any) => {
               const {data, error} = response;
 
-              if (data) {
-                console.log("Performance updated successfully: ", data);
-              }
-
               if (error) {
                 console.log(error);
               } else {
+                console.log("Performance updated successfully: ", data);
+                console.log("Please refresh the page to see updated entries!")
                 this.dialogRef.close();
                 location.reload();
               }
@@ -154,15 +135,11 @@ export class PerformancePopupComponent implements OnInit{
             (response: any) => {
               const {data, error} = response;
 
-              if (data) {
-                console.log("Performance added successfully: ", data);
-                this.dialogRef.close();
-              }
-
               if (error) {
                 console.log(error);
               } else {
-                console.log("Performance updated successfully");
+                console.log("Performance added successfully: ", data);
+                console.log("Please refresh the page to see updated entries!")
                 this.dialogRef.close();
                 location.reload();
               }
@@ -172,7 +149,8 @@ export class PerformancePopupComponent implements OnInit{
     }
   }
 
-  checkArtistFree(artistName: string, startTime: String): boolean { //TODO: Im Daily nach Feedback von PO fragen
+  /* checkArtist & Stage is Free
+  checkArtistFree(artistName: string, startTime: String): boolean {
     if (!this.verbosePerformances) {
       return true; // Return true if verbosePerformances is undefined
     }
@@ -197,6 +175,7 @@ export class PerformancePopupComponent implements OnInit{
     }
     return true;
   }
+  */
 
   onCancel() {
     this.dialogRef.close();

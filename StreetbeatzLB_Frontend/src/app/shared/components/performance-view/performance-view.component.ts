@@ -44,7 +44,8 @@ export class PerformanceViewComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log("performances component init");
+    console.log(this.isAdmin ? "performance-view component (as admin) init":
+      "performance-view component init");
     this.getAllPerformances();
   }
 
