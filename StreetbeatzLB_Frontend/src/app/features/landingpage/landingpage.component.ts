@@ -1,6 +1,7 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, Inject} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {SlideInterface} from "../../shared/components/image-slider/types/slide.interface";
+import {APP_BASE_HREF} from "@angular/common";
 
 function getStringDay(date: Date): String {
   let day = ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."];
@@ -60,7 +61,7 @@ export class LandingpageComponent {
   //endregion
 
   //region Observer
-  constructor(private breakpointObserver: BreakpointObserver, private el:ElementRef) {
+  constructor(private breakpointObserver: BreakpointObserver, private el:ElementRef, @Inject(APP_BASE_HREF) private baseHref: string) {
     breakpointObserver.observe([
       Breakpoints.Handset,
       Breakpoints.Tablet,
@@ -104,10 +105,10 @@ export class LandingpageComponent {
 
   //region SlideInterface
   slides: SlideInterface[] = [
-    {url: '/streetbeatzlb/assets/copyrightFree/copyrightFree-1.jpg', title: '1'},
-    {url: '/streetbeatzlb/assets/copyrightFree/copyrightFree-2.jpg', title: '2'},
-    {url: '/streetbeatzlb/assets/copyrightFree/copyrightFree-3.jpg', title: '3'},
-    {url: '/streetbeatzlb/assets/copyrightFree/copyrightFree-4.jpg', title: '4'},
+    {url: `${this.baseHref}assets/copyrightFree/copyrightFree-1.jpg`, title: '1'},
+    {url: `${this.baseHref}assets/copyrightFree/copyrightFree-1.jpg`, title: '2'},
+    {url: `${this.baseHref}assets/copyrightFree/copyrightFree-1.jpg`, title: '3'},
+    {url: `${this.baseHref}assets/copyrightFree/copyrightFree-1.jpg`, title: '4'},
   ];
   //endregion
 }
