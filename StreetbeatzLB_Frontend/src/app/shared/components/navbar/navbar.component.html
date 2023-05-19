@@ -1,6 +1,23 @@
-<div *ngIf="device === 'Web', else elseBlock">
-<app-navbar-desktop [navbarHeight]=navbarHeight></app-navbar-desktop>
-</div>
-<ng-template #elseBlock>
-  <app-navbar-mobile [navbarHeight]=navbarHeight></app-navbar-mobile>
-</ng-template>
+<mat-toolbar class="navbar" color="primary">
+  <a routerLink="/" class="logoTitle">
+    <mat-icon class="logo" svgIcon="streetbeatz"></mat-icon>
+    <h1 class="title" [ngStyle]="{'font-family': 'Teko, sans-serif', 'color': '#000000', 'font-size': '2.75rem'}">
+      Streetbeatz
+    </h1>
+  </a>
+
+  <span class="example-spacer"></span>
+
+  <mat-nav-list class="list">
+    <a mat-list-item routerLink="/">Home</a>
+    <a mat-list-item routerLink="/performances">Performances</a>
+    <a mat-list-item routerLink="/map">Map</a>
+    <a mat-list-item routerLink="/vote">Vote</a>
+    <!--<ng-container *ngIf="isAuthenticated$ | async;">
+      <a mat-list-item routerLink="/admin-view">Admin</a>
+      <a mat-list-item>
+        <app-logout-button></app-logout-button>
+      </a>
+    </ng-container>-->
+  </mat-nav-list>
+</mat-toolbar>

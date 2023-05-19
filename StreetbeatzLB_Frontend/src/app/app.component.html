@@ -5,7 +5,7 @@
 
   <mat-sidenav-content class="navbar">
       <div *ngIf="device === 'Web', else elseBlock" class="navbar-desktop">
-        <app-navbar-desktop></app-navbar-desktop>
+        <app-navbar></app-navbar>
       </div>
       <ng-template #elseBlock>
         <mat-toolbar class="navbar-mobile" [ngClass]="{'mat-elevation-z5': true, 'sticky': isSticky}">

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {Component, Input} from '@angular/core';
+import {MatIconRegistry} from "@angular/material/icon";
+import {DomSanitizer} from "@angular/platform-browser";
+import {AuthService} from "@auth0/auth0-angular";
 
 @Component({
   selector: 'app-navbar',
@@ -7,28 +9,14 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  device:String = "Web";
-  navbarHeight: number = 64;
+  @Input() navbarHeight: number = 64;
+  isAuthenticated$ = this.authService.isAuthenticated$;
 
-  displayMap = new Map([
-    [Breakpoints.Handset, 'Handset'],
-    [Breakpoints.Tablet, 'Tablet'],
-    [Breakpoints.WebLandscape, 'Web']
-  ])
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private authService: AuthService) {
+    iconRegistry.addSvgIcon('streetbeatz', sanitizer.bypassSecurityTrustResourceUrl('./assets/streetbeatzLogo/logo.svg'));
+  }
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-    breakpointObserver.observe([
-      Breakpoints.Handset,
-      Breakpoints.Tablet,
-      Breakpoints.WebLandscape
-    ]).subscribe(result =>{
-      //console.log(result);
-      for(const query of Object.keys(result.breakpoints)){
-        if(result.breakpoints[query]){
-          this.device = this.displayMap.get(query) as String;
-        }
-      }
-      //console.log(this.device);
-    })
+  ngOnInit(): void {
+    document.documentElement.style.setProperty('--navbar-height', this.navbarHeight + 'px');
   }
 }
