@@ -137,17 +137,9 @@ export class VerbosePerformanceService {
     );
   };
 
-  editPerformance = (performance_id: number, startTime_date: string, artist_id: number, stage_id: number): Observable<ApiResponseModel> => {
-    // If startTime is passed as string:
-    const startTime = startTime_date == "" ? 0 :
-      new Date(new Date(startTime_date).getTime() + (120 * 60 * 1000)).toISOString().slice(0, 19);
-    const endTime = startTime_date == "" ? 0 :
-      new Date(new Date(startTime_date).getTime() + (150 * 60 * 1000)).toISOString().slice(0, 19);
-
-    /* If startTime is passed as Date object:
+  editPerformance = (performance_id: number, startTime_date: Date, artist_id: number, stage_id: number): Observable<ApiResponseModel> => {
     const startTime = new Date(startTime_date.getTime() + (120 * 60 * 1000)).toISOString().slice(0, 19);
     const endTime = new Date(startTime_date.getTime() + (150 * 60 * 1000)).toISOString().slice(0, 19);
-     */
 
     const config: RequestConfigModel = {
       url: `${env.api.serverUrl}/performances/edit?performance_id=${performance_id}&start_time=${startTime}&end_time=${endTime}&artist_id=${artist_id}&stage_id=${stage_id}`,

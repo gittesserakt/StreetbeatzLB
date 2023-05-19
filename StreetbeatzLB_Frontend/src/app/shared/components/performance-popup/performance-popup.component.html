@@ -1,9 +1,10 @@
 <div class="performance-popup">
-  <h2 id="popup-label" class="title">{{popupName}}</h2>
+  <h2 id="popup-label" class="title">{{this.data.functionName}}</h2>
   <div class="content">
-    <app-date-time-picker></app-date-time-picker>
+    <label class="label">Start Date:</label>
+    <input class="input" type="date" [(ngModel)]="startDate">
     <label class="label">Start Time:</label>
-    <input class="input" type="datetime-local" [(ngModel)]="startTime">
+    <input class="input" type="time" [(ngModel)]="startTime">
     <label class="label">Artist:</label>
     <select class="input" [(ngModel)]="selectedArtistId">
       <option [value]="0" disabled selected hidden>{{this.data.p_artist}}</option>

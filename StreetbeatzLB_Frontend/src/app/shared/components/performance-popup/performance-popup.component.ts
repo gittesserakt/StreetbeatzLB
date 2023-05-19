@@ -1,10 +1,8 @@
-import { Component, Input, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { AuthService } from "@auth0/auth0-angular";
 import { take } from "rxjs/operators";
 import { VerbosePerformanceService } from "../../../core";
-import { VerbosePerformance } from '../../../core/models/verbosePerformance';
-import { PerformanceService } from "../../../core/services/performance.service";
 import { ArtistService } from "../../../core/services/artist.service";
 import { Artist } from "../../../core/models/artist.model";
 import { StageService } from "../../../core/services/stage.service";
@@ -18,42 +16,39 @@ import { Stage } from "../../../core/models/stage.model";
 
 export class PerformancePopupComponent implements OnInit{
 
-  @Input() performance!: VerbosePerformance;
-  @Input() artists!: Artist[];
-  @Input() stages!: Stage[];
-
-  popupName: string = ""; // "Edit Performance" or "Add Performance"
-  verbosePerformances?: VerbosePerformance[];
-  startTime: string = '';
+  // [(ngModel)]
+  startTime!: string;
+  startDate!: string;
   selectedArtistId: number = 0;
   selectedStageId: number = 0;
-  authSub: string = '';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
-      performance: VerbosePerformance;
-      functionName: string;
+      functionName: string;   // "Edit Performance" or "Add Performance"
       performance_popup_id: number;
       p_artist: string;
       p_stage: string;
+      p_time: string;
     },
     private dialogRef: MatDialogRef<PerformancePopupComponent>,
     private authService: AuthService,
     private verbosePerformanceService: VerbosePerformanceService,
-    private performanceService: PerformanceService,
     private artistService: ArtistService,
     private stageService: StageService
-  ) {}
+  ) {
+
+    if(this.data.functionName == "Edit Performance") {
+      [this.startDate, this.startTime] = this.data.p_time.split('T');
+    }
+  }
+
+  artists!: Artist[];
+  stages!: Stage[];
+  authSub!: string;
 
   ngOnInit() {
-    this.popupName = this.data.functionName;
     this.getAllArtists();
     this.getAllStages();
-    const labelElement = document.querySelector('#popup-label');
-    if (labelElement) {
-      labelElement.textContent = `${this.popupName}`;
-    }
-
     this.getCurrentUser();
   }
 
@@ -102,19 +97,18 @@ export class PerformancePopupComponent implements OnInit{
   }
 
   savePerformance() {
-    if (this.popupName == "Add Performance" && (this.startTime == '' || this.selectedArtistId == 0 || this.selectedStageId == 0)) {
-      if (this.startTime == '') {
-        alert("Please select a start time!");
+    const startTimeDate = this.startDate + " " + this.startTime;
+    if (this.data.functionName == "Add Performance" && (startTimeDate == " " || this.selectedArtistId == 0 || this.selectedStageId == 0)) {
+      if (startTimeDate == " ") {
+        alert("Please select a start time and date!");
       } else if (this.selectedArtistId == 0) {
         alert("Please select a artist!")
       } else if (this.selectedStageId == 0) {
         alert("Please select a stage!")
       }
     } else {
-      if (this.popupName == "Edit Performance") {
-        //TODO: If the bug to show the current time in the "Edit Popup" is fixed, a Date object can be passed for startTime.
-        // Currently a string is passed, otherwise it leads to an error if the time field is left empty.
-        this.verbosePerformanceService.editPerformance(this.data.performance_popup_id, this.startTime, this.selectedArtistId, this.selectedStageId)
+      if (this.data.functionName == "Edit Performance") {
+        this.verbosePerformanceService.editPerformance(this.data.performance_popup_id, new Date(startTimeDate), this.selectedArtistId, this.selectedStageId)
           .subscribe(
             (response: any) => {
               const {data, error} = response;
@@ -130,7 +124,7 @@ export class PerformancePopupComponent implements OnInit{
             }
           );
       } else {
-        this.verbosePerformanceService.addPerformance(new Date(this.startTime), this.authSub, this.selectedArtistId, this.selectedStageId)
+        this.verbosePerformanceService.addPerformance(new Date(startTimeDate), this.authSub, this.selectedArtistId, this.selectedStageId)
           .subscribe(
             (response: any) => {
               const {data, error} = response;
@@ -148,34 +142,6 @@ export class PerformancePopupComponent implements OnInit{
       }
     }
   }
-
-  /* checkArtist & Stage is Free
-  checkArtistFree(artistName: string, startTime: String): boolean {
-    if (!this.verbosePerformances) {
-      return true; // Return true if verbosePerformances is undefined
-    }
-
-    for (const verbosePerformance of this.verbosePerformances) {
-      if (verbosePerformance.artist === artistName && verbosePerformance.start_time === startTime) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  checkStageFree(stageName: string, startTime: String): boolean {
-    if (!this.verbosePerformances) {
-      return true; // Return true if verbosePerformances is undefined
-    }
-
-    for (const verbosePerformance of this.verbosePerformances) {
-      if (verbosePerformance.stage === stageName && verbosePerformance.start_time === startTime) {
-        return false;
-      }
-    }
-    return true;
-  }
-  */
 
   onCancel() {
     this.dialogRef.close();

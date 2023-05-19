@@ -54,9 +54,13 @@ export class PerformanceTileComponent {
   editPerformance() {
     this.dialog.open(PerformancePopupComponent, {
       width: '500px',
-      data: { performance: this.performance, performance_popup_id: this.performance.performance_id,
-        p_artist: this.performance.artist, p_stage: this.performance.stage,
-        functionName: 'Edit Performance' }
+      data: {
+        functionName: 'Edit Performance',
+        performance_popup_id: this.performance.performance_id,
+        p_artist: this.performance.artist,
+        p_stage: this.performance.stage,
+        p_time: this.performance.start_time
+      }
     });
   }
 }
