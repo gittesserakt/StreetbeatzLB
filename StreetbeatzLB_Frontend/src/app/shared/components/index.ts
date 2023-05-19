@@ -23,6 +23,7 @@ import {LandingpageStartComponent} from "./landingpage-start/landingpage-start.c
 import {LandingpageSponsorComponent} from "./landingpage-sponsor/landingpage-sponsor.component";
 import {LandingpageDateBoxComponent} from "./landingpage-date-box/landingpage-date-box.component";
 import {TextboxComponent} from "./textbox/textbox.component";
+import {LandingpageInfoComponent} from "./landingpage-info/landingpage-info.component";
 
 
 export const COMPONENTS = [
@@ -58,6 +59,7 @@ export const COMPONENTS = [
   LandingpageStartComponent,
   LandingpageSponsorComponent,
   LandingpageDateBoxComponent,
+  LandingpageInfoComponent,
   TextboxComponent,
 ]
 
