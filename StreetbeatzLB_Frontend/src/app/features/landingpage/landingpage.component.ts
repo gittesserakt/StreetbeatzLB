@@ -106,9 +106,9 @@ export class LandingpageComponent {
   //region SlideInterface
   slides: SlideInterface[] = [
     {url: `${this.baseHref}assets/copyrightFree/copyrightFree-1.jpg`, title: '1'},
-    {url: `${this.baseHref}assets/copyrightFree/copyrightFree-1.jpg`, title: '2'},
-    {url: `${this.baseHref}assets/copyrightFree/copyrightFree-1.jpg`, title: '3'},
-    {url: `${this.baseHref}assets/copyrightFree/copyrightFree-1.jpg`, title: '4'},
+    {url: `${this.baseHref}assets/copyrightFree/copyrightFree-2.jpg`, title: '2'},
+    {url: `${this.baseHref}assets/copyrightFree/copyrightFree-3.jpg`, title: '3'},
+    {url: `${this.baseHref}assets/copyrightFree/copyrightFree-4.jpg`, title: '4'},
   ];
   //endregion
 }

@@ -10,6 +10,7 @@ import {SharedModule} from "./shared";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
+import {APP_BASE_HREF, PlatformLocation} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -38,11 +39,18 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
     BrowserAnimationsModule,
     MatSidenavModule,
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthHttpInterceptor,
-    multi: true,
-  }],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    },
+    {
+      provide: APP_BASE_HREF,
+      useFactory: (s: PlatformLocation) => s.getBaseHrefFromDOM(),
+      deps: [PlatformLocation]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
