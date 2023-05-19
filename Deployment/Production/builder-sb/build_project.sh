@@ -51,7 +51,7 @@ if [ "$ACTIVE" = "true" ]; then
   cd ./StreetbeatzLB_Frontend
   rm -rf ./node_modules
   npm install
-  ng build --base-href ./
+  ng build --base-href /streetbeatzlb/
   cp -R ./dist/streetbeatzlb ../Deployment/Builds/frontend
   cd ..
   echo "Frontend build finished"
