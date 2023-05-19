@@ -1,14 +1,14 @@
 @import "../../../../_palette.scss";
 
 .infoWrapper {
-  background-color: red;
+  //background-color: red;
   padding-left: 10px;
 
   .titleWrapper {
-    background-color: #45ff84;
+    //background-color: #45ff84;
     height: 4.5rem;
     .title {
-      background-color: #6e6fff;
+      //background-color: #6e6fff;
       color: map-get(map-get($primary, contrast), 500);
       font-size: 3rem;
       width: 50%;
@@ -16,7 +16,7 @@
     }
   }
   .textWrapper {
-    background-color: blue;
+    //background-color: blue;
     width: 100%;
     app-textbox {
       font-size: 0.7rem;
@@ -26,7 +26,7 @@
     height: 10%;
   }
   .dateWrapper{
-    background-color: #ff22ce;
+    //background-color: #ff22ce;
     padding-left: 10px;
   }
 }
