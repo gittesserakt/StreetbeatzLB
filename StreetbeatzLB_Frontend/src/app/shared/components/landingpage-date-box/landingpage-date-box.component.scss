@@ -4,7 +4,7 @@
   width: 15rem;
   height: 7rem;
   border: solid 4px white;
-  border-radius: 30px;
+  border-radius: 15px;
   background-color: map-get($primary, 50);
   h2{
     color: map-get(map-get($primary, contrast), 500);
@@ -14,9 +14,13 @@
   }
   .leftButton{
     color: map-get(map-get($primary, contrast), 500);
+    padding: 24px 20px;
+    border-radius: 20px;
   }
   .rightButton{
     color: map-get(map-get($primary, contrast), 500);
+    padding: 24px 20px;
+    border-radius: 20px;
   }
 }
 //region HandsetLandscape
@@ -32,9 +36,11 @@
     }
     .leftButton{
       font-size: 1rem;
+      padding: 24px 20px;
     }
     .rightButton{
       font-size: 1rem;
+      padding: 24px 20px;
     }
   }
 }
@@ -52,9 +58,11 @@
     }
     .leftButton{
       font-size: 1.7rem;
+      padding: 25px;
     }
     .rightButton{
       font-size: 1.7rem;
+      padding: 25px;
     }
   }
 }
@@ -72,9 +80,11 @@
     }
     .leftButton{
       font-size: 1.9rem;
+      padding: 25px;
     }
     .rightButton{
       font-size: 1.9rem;
+      padding: 25px;
     }
   }
 }
@@ -92,9 +102,11 @@
     }
     .leftButton{
       font-size: 1.9rem;
+      padding: 25px;
     }
     .rightButton{
       font-size: 1.9rem;
+      padding: 25px;
     }
   }
 }
