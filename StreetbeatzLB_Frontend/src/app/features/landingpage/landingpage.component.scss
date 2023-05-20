@@ -1,9 +1,14 @@
 .background{
-  background: url('/assets/design/landingpage_background.svg') no-repeat;
-  background-size: cover;
   width: 100%;
 }
 
-//.bla{
-//  height: 70px;
-//}
+.textbox{
+  padding-left: 20px;
+  width: 75%;
+
+  @media screen and (max-width: 600px) {
+    padding: 15px;
+    width: 90%;
+  }
+}
+
