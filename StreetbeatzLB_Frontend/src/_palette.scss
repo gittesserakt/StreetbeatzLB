@@ -13,7 +13,7 @@
 $primary: (
   50: #ffffff66, //Glass effect color
   100: #ffffff00, //If you need to make something transparent
-  200: #000000,
+  200: #54008099, //dark-violett for footer (linear-gradient: 100 -> 200)
   300: #000000,
   400: #000000,
   500: #FFC107, //Accent-color: amber
@@ -21,8 +21,8 @@ $primary: (
   700: #83f572ff, //Primary-color for performances: light green
   800: #000000, //Primary-color for vote:
   900: #000000, //Primary-color for admin:
-  A100: #ff22ceff, //Secondary-color for landing-page: magenta?
-  A200: #5e8df7ff, //Secondary-color for performances: light blur
+  A100: #ff22ceff, //Secondary-color for landing-page: magenta
+  A200: #5e8df7ff, //Secondary-color for performances: light blue
   A400: #000000, //Secondary-color for vote:
   A700: #000000, //Secondary-color for admin:
   contrast: (

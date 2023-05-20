@@ -1,3 +1,5 @@
+@import "../../../../_palette.scss";
+
 *{
   margin: 0;
   padding: 0;
@@ -5,7 +7,7 @@
 }
 
 .footer{
-  //background-color: var(--main-brand-color);
+  background: linear-gradient(to bottom, map-get($primary, 100), map-get($primary, 200));
   max-width: 100%;
   display: flex;
   flex-wrap: wrap;  //essential for mobile view
@@ -22,7 +24,7 @@ ul{
 
 .footer-col h4{
   font-size: 18px;
-  color: var(--text-color);
+  color: map-get(map-get($primary, contrast), 50);
   text-transform: capitalize;
   margin-bottom: 35px;
   position: relative;
@@ -46,7 +48,7 @@ ul{
 .footer-col ul li a{
   font-size: 16px;
   text-transform: capitalize;
-  color: var(--secondary-text-color);
+  color: map-get(map-get($primary, contrast), 50);
   text-decoration: none;
   display: block;
   transition: all 0.3s ease;
@@ -60,7 +62,7 @@ ul{
 
 .logInOut{
   text-decoration: underline;
-  color: blue;
+  color: map-get($primary, 500);
 }
 
 .smf{
@@ -86,10 +88,6 @@ ul{
 
 // region Media Query
 @media(max-width: 800px) {
-  .footer{
-    //border-top: 1px solid black;
-  }
-
   .footer-col{
     width: 100%;
     margin-bottom: 30px;
