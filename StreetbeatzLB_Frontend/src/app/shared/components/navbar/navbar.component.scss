@@ -1,5 +1,7 @@
+@import "../../../../_palette.scss";
+
 mat-toolbar {
-  height: var(--navbar-height) !important;
+  background-color: map-get($primary, 100);
 }
 
 .navbar{
@@ -18,7 +20,7 @@ mat-toolbar {
     .title{
       margin-left: 0.7rem;
       margin-top: 0.7rem;
-      color: white;
+      color: map-get(map-get($primary, contrast), 500);
     }
   }
 
@@ -28,6 +30,7 @@ mat-toolbar {
   .list {
     list-style: none;
     display: flex;
+    color: map-get(map-get($primary, contrast), 500);
     a {
       width: auto;
     }
