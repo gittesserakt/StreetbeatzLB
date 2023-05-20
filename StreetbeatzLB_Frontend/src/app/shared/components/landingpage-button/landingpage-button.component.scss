@@ -1,0 +1,49 @@
+@import "../../../../_palette.scss";
+
+mat-grid-list{
+  margin: 1rem;
+}
+
+mat-grid-tile{
+  //background-color: #cb0000;
+  button{
+    height: 100%;
+    width: 100%;
+    background-color: map-get($primary, 100);
+    color: map-get(map-get($primary, contrast), 100);
+    display: flex;
+    flex-direction: column-reverse;
+    border: solid map-get(map-get($primary, contrast), 100);
+    border-radius: 25px;
+  }
+  mat-icon{
+    //background-color: #000000;
+    height: 40%;
+    width: 100%;
+  }
+}
+
+.performanceTile{
+  button{
+    font-size: 2.6rem;
+  }
+  mat-icon{
+    font-size: 7rem;
+  }
+}
+.voteTile{
+  button{
+    font-size: 3rem;
+  }
+  mat-icon{
+    font-size: 7rem;
+  }
+}
+.mapTile{
+  button{
+    font-size: 3rem;
+  }
+  mat-icon{
+    font-size: 7rem;
+  }
+}

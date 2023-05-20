@@ -1,1 +1,22 @@
-<p>landingpage-button works!</p>
+<mat-grid-list cols="2"  rowHeight="50%" gutterSize="1rem">
+
+  <mat-grid-tile class="performanceTile" colspan="2">
+    <button mat-raised-button (click)="performanceButtonClick()">
+      Performances
+      <mat-icon>event_note</mat-icon>
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile class="voteTile" colspan="1">
+    <button mat-raised-button (click)="voteButtonClick()">
+      Vote
+      <mat-icon>how_to_vote</mat-icon>
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile class="mapTile" colspan="1">
+    <button mat-raised-button (click)="mapButtonClick()">
+      Map
+      <mat-icon>map</mat-icon>
+    </button>
+  </mat-grid-tile>
+
+</mat-grid-list>

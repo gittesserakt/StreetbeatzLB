@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-landingpage-button',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class LandingpageButtonComponent {
 
+  constructor(private router: Router) {
+  }
+  performanceButtonClick(){
+    this.router.navigate(['/performances']);
+  }
+  voteButtonClick(){
+    this.router.navigate(['/vote']);
+  }
+  mapButtonClick(){
+    this.router.navigate(['/map']);
+  }
 }
