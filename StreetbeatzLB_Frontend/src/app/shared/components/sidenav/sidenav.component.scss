@@ -1,13 +1,33 @@
-mat-nav-list {
-  text-align: right;
-}
+@import "../../../../_palette.scss";
 
-.iconWrapper {
+.background{
   width: 100%;
-  height: 64px;
+  height: 100%;
+  //background-color: map-get($primary, 500);
+  background-image: url('/assets/design/landingpage_background.svg');
+  background-size: cover;
+  mat-nav-list {
+    text-align: right;
+    p{
+      color: map-get(map-get($primary, contrast), 600);
+    }
+  }
 
-  .logo {
+  .iconWrapper {
+    padding-top: 1px;
     width: 100%;
-    height: 100%;
+    height: 60px;
+    text-align: center;
+
+    .title{
+      display: block;
+      font-size: 2rem;
+      color: map-get(map-get($primary, contrast), 600);
+    }
+
+    /*.logo {
+      width: 100%;
+      height: 100%;
+    }*/
   }
 }

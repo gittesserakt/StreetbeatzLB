@@ -33,6 +33,9 @@ mat-toolbar {
     color: map-get(map-get($primary, contrast), 500);
     a {
       width: auto;
+      p{
+      color: map-get(map-get($primary, contrast), 100);
+      }
     }
   }
 }

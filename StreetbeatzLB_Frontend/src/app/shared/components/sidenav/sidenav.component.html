@@ -1,17 +1,19 @@
-<div class="iconWrapper">
-  <mat-icon class="logo" svgIcon="streetbeatz"></mat-icon>
+<div class="background">
+  <div class="iconWrapper">
+    <h1 class="title">Menu</h1>
+  <!--  <mat-icon class="logo" svgIcon="streetbeatz"></mat-icon>-->
+  </div>
+
+  <mat-nav-list class="list">
+    <a mat-list-item routerLink="/"><p>Home</p></a>
+    <a mat-list-item routerLink="/performances"><p>Performances</p></a>
+    <a mat-list-item routerLink="/map"><p>Map</p></a>
+    <a mat-list-item routerLink="/vote"><p>Vote</p></a>
+    <ng-container *ngIf="isAuthenticated$ | async;">
+      <a mat-list-item routerLink="/admin-view">Admin</a>
+      <a mat-list-item>
+        <app-logout-button></app-logout-button>
+      </a>
+    </ng-container>
+  </mat-nav-list>
 </div>
-
-<mat-nav-list>
-  <a mat-list-item routerLink="/">Home</a>
-  <a mat-list-item routerLink="/performances">Performances</a>
-  <a mat-list-item routerLink="/map">Map</a>
-  <a mat-list-item routerLink="/vote">Vote</a>
-  <ng-container *ngIf="isAuthenticated$ | async;">
-    <a mat-list-item routerLink="/admin-view">Admin</a>
-    <a mat-list-item>
-      <app-logout-button></app-logout-button>
-    </a>
-  </ng-container>
-</mat-nav-list>
-
