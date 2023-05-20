@@ -1,5 +1,6 @@
 @import "../../../../_palette.scss";
 .wrapper{
+  padding: 5px;
   p{
     color: map-get(map-get($primary, contrast), 500);
   }
