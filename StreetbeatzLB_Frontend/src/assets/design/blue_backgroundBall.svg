@@ -7,7 +7,7 @@
    width="366.66666"
    height="366.66666"
    viewBox="0 0 366.66666 366.66666"
-   sodipodi:docname="8_backgroundBall.svg"
+   sodipodi:docname="blue_backgroundBall.svg"
    inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -60,11 +60,11 @@
      inkscape:deskcolor="#505050"
      showgrid="false"
      inkscape:zoom="2.2200001"
-     inkscape:cx="164.18918"
-     inkscape:cy="183.55855"
-     inkscape:window-width="1920"
-     inkscape:window-height="1001"
-     inkscape:window-x="-9"
+     inkscape:cx="141.89189"
+     inkscape:cy="184.009"
+     inkscape:window-width="2400"
+     inkscape:window-height="1271"
+     inkscape:window-x="2391"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="g10">
@@ -80,10 +80,6 @@
      inkscape:groupmode="layer"
      inkscape:label="Page 1"
      transform="matrix(1.3333333,0,0,-1.3333333,0,366.66667)">
-    <path
-       d="M 0,0 H 275 V 275 H 0 Z"
-       style="fill:#45ff84;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       id="path12" />
     <g
        id="g14">
       <g
