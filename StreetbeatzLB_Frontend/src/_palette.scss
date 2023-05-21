@@ -13,8 +13,8 @@
 $primary: (
   50: #ffffff66, //Glass effect color
   100: #ffffff00, //If you need to make something transparent
-  200: #54008099, //dark-violett for footer (linear-gradient: 100 -> 200)
-  300: #000000,
+  200: #540080CC, //dark-violett for footer (linear-gradient: 100 -> 200)
+  300: #54008055, //performance-tile color
   400: #000000,
   500: #FFC107, //Accent-color: amber
   600: #2d1df9ff, //Primary-color for landing-page: blue
@@ -28,8 +28,8 @@ $primary: (
   contrast: (
     50: #ffffff, //Text-color for the glass effect
     100: #E8E8E8, // Silver text-color
-    200: #000000,
-    300: #000000,
+    200: #D0D0D0, // Text-color for the performance-tile
+    300: #ff22ce, // Icon-color for the performance-tile
     400: #000000,
     500: #ffffff, //Text-color for the accent-color
     600: #ffffff, //Text-color for the primary-color of the landing-page
