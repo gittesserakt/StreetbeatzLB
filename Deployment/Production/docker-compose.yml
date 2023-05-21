@@ -42,7 +42,7 @@ services:
             - ${VOLUME_PATH}:/data
             - ${VOLUME_PATH}/StreetbeatzLB/Deployment/Builds/backend:/var/www/streetbeatzlb
         ports:
-            - ${TOMCAT_PORT}:8181
+            - ${TOMCAT_PORT}:8080
         networks:
             - streetbeatzlb_network
         depends_on:
