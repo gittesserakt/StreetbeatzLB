@@ -75,6 +75,7 @@ export class VerbosePerformanceService {
           const verbosePerformance = new VerbosePerformance();
           verbosePerformance.start_time = performance.start_time;
           verbosePerformance.end_time = performance.end_time;
+          verbosePerformance.performance_id = performance.performance_id;
 
           return forkJoin([
             this.stageService.getStageById(performance.stage_id).pipe(map(stageResponse => {

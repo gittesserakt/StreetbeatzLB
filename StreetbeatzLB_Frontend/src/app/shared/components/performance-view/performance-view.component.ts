@@ -85,7 +85,7 @@ export class PerformanceViewComponent implements OnInit{
     this.getFilteredPerformances(event);
   }
 
-  deleteMarkedPerformances():void {
+  deleteMarkedPerformances(): void {
 
   }
 }

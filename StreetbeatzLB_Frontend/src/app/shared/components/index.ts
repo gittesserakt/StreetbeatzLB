@@ -1,5 +1,4 @@
 import { DateTimePickerComponent } from "./date-time-picker/date-time-picker.component";
-import { EditPerformanceTileComponent } from "./edit-performance-tile/edit-performance-tile.component";
 import { FilterArtistselectorComponent } from "./filter/filter-artistselector/filter-artistselector.component";
 import { FilterComponent } from "./filter/filter.component";
 import { FilterDatepickerComponent } from "./filter/filter-datepicker/filter-datepicker.component";
@@ -25,7 +24,6 @@ import { VoteSnackbarComponent } from "./vote-snackbar/vote-snackbar.component";
 
 export const COMPONENTS = [
   DateTimePickerComponent,
-  EditPerformanceTileComponent,
   FilterArtistselectorComponent,
   FilterComponent,
   FilterDatepickerComponent,
