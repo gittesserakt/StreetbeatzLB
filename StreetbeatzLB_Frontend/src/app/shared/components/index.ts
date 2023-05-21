@@ -23,6 +23,7 @@ import {LandingpageDateBoxComponent} from "./landingpage-date-box/landingpage-da
 import {TextboxComponent} from "./textbox/textbox.component";
 import {LandingpageInfoComponent} from "./landingpage-info/landingpage-info.component";
 import {LandingpageButtonComponent} from "./landingpage-button/landingpage-button.component";
+import {LandingpageArtistsComponent} from "./landingpage-artists/landingpage-artists.component";
 
 
 export const COMPONENTS = [
@@ -53,6 +54,7 @@ export const COMPONENTS = [
   EditPerformanceTileComponent,
   VoteSnackbarComponent,
   SidenavComponent,
+  LandingpageArtistsComponent,
   LandingpageStartComponent,
   LandingpageSponsorComponent,
   LandingpageDateBoxComponent,
