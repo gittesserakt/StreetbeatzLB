@@ -31,7 +31,7 @@ server:
   error:
     whitelabel:
       enabled: false
-  port: 8443
+  port: 8181
   #ssl:
   #  enabled: true
   #  key-alias: hjetter
