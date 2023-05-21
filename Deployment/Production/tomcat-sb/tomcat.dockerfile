@@ -9,7 +9,7 @@ RUN apt-get update && \
 RUN mv webapps webapps2 && \
     mv webapps.dist webapps
 
-COPY tomcat-sb/server.xml /usr/local/tomcat/conf/server.xml
+#COPY tomcat-sb/server.xml /usr/local/tomcat/conf/server.xml
 COPY tomcat-sb/startTomcat.sh /usr/local/tomcat/startTomcat.sh
 RUN chmod +x /usr/local/tomcat/startTomcat.sh
 
