@@ -33,6 +33,27 @@ export class StageService {
     );
   };
 
+  getIdByStage = (stage: string): Observable<ApiResponseModel> => {
+    const config: RequestConfigModel = {
+      url: `${env.api.serverUrl}/stages/stageByName?stage=${stage}`,
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    };
+
+    return this.externalApiService.callExternalApi(config).pipe(
+      mergeMap((response) => {
+        const {data, error} = response;
+
+        return of({
+          data: data ? (data as Stage) : null,
+          error,
+        });
+      })
+    );
+  };
+
   getAllStages = (): Observable<ApiResponseModel> => {
     const config: RequestConfigModel = {
       url: `${env.api.serverUrl}/stages/all`,
@@ -53,6 +74,4 @@ export class StageService {
       })
     );
   };
-
-
 }

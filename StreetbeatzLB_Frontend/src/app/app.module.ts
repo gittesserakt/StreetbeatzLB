@@ -10,6 +10,9 @@ import {SharedModule} from "./shared";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import {MatToolbarModule} from "@angular/material/toolbar";
 import {APP_BASE_HREF, PlatformLocation} from "@angular/common";
 
 @NgModule({
@@ -38,6 +41,9 @@ import {APP_BASE_HREF, PlatformLocation} from "@angular/common";
     }),
     BrowserAnimationsModule,
     MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
   ],
   providers: [
     {

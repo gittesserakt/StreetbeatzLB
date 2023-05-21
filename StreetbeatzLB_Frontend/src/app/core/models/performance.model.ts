@@ -1,5 +1,5 @@
 export interface Performance {
-  performance_id: string;
+  performance_id: number;
   start_time: string;
   end_time: string;
   created_by: string;

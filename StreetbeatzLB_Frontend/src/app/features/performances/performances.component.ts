@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {VerbosePerformanceService} from "../../core";
 import {VerbosePerformance} from "../../core/models/verbosePerformance";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
@@ -78,4 +78,3 @@ export class PerformancesComponent implements OnInit {
     this.getFilteredPerformances(event);
   }
 }
-

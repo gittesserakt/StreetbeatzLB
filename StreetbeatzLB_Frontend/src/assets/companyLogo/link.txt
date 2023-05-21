@@ -1,11 +1,14 @@
 Sparda_Bank_logo: https://strassenmusikfestival.de/wp-content/uploads/2022/05/Sparda_Bank_2003_logo.png
-blueba_logo: 	https://strassenmusikfestival.de/wp-content/uploads/2017/04/600px-Logo_blueba.colored.png
-RZ_logo: 		https://strassenmusikfestival.de/wp-content/uploads/2021/05/RZ_pm_logo_cmyk_181211-02.png
-Energy_Logo: 	https://strassenmusikfestival.de/wp-content/uploads/2020/02/SMF20_Energy_Logo_300px-e1581329667471.png
-rothaus_logo: 	https://strassenmusikfestival.de/wp-content/uploads/2022/05/logos-03.png
+blueba_logo: 	    https://strassenmusikfestival.de/wp-content/uploads/2017/04/600px-Logo_blueba.colored.png
+RZ_logo: 		      https://strassenmusikfestival.de/wp-content/uploads/2021/05/RZ_pm_logo_cmyk_181211-02.png
+Energy_Logo: 	    https://strassenmusikfestival.de/wp-content/uploads/2020/02/SMF20_Energy_Logo_300px-e1581329667471.png
+rothaus_logo: 	  https://strassenmusikfestival.de/wp-content/uploads/2022/05/logos-03.png
 kreiszeitung_logo:https://strassenmusikfestival.de/wp-content/uploads/2022/05/logos-01.png
 Lautmacher_Logo: 	https://strassenmusikfestival.de/wp-content/uploads/2023/02/Lautmacher-Logo.png
 Go_Control_Logo: 	https://strassenmusikfestival.de/wp-content/uploads/2023/02/Go.Control-_Logo.png
-Facebook:		https://cdn-icons-png.flaticon.com/512/124/124010.png
-Instagram:		https://cdn-icons-png.flaticon.com/512/174/174855.png
-Last: 29.03.2023
+
+Facebook:		      https://cdn-icons-png.flaticon.com/512/124/124010.png
+Facebook_white:   https://icons8.de/icon/LL0Q6sp9VyLo/facebook
+Instagram:		    https://cdn-icons-png.flaticon.com/512/174/174855.png
+Instagram_white:  https://icons8.de/icon/32309/instagram
+Last: 21.05.2023

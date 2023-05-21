@@ -1,0 +1,12 @@
+<div class="infoWrapper" [ngStyle]="{'height': screenHeightPX + 'px', 'width': screenWidthPX + 'px'}">
+  <div class="titleWrapper">
+      <h1 class="title" [ngStyle]="{'font-family': 'Teko, sans-serif'}"><b>{{title}}</b></h1>
+  </div>
+  <div class="textWrapper">
+    <app-textbox [screenHeightPX]="screenHeightPX" [screenWidthPX]="screenWidthPX" [text]="text"></app-textbox>
+  </div>
+  <div class="spacer"></div>
+  <div class="dateWrapper">
+    <app-landingpage-date-box [screenHeightPX]="screenHeightPX" [screenWidthPX]="screenWidthPX"></app-landingpage-date-box>
+  </div>
+</div>

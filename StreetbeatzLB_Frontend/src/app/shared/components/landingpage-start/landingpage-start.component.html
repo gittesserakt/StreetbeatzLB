@@ -1,0 +1,9 @@
+<mat-grid-list [cols]="device === 'HandsetPortrait' || device === 'TabletPortrait' ? 1 : 2 "
+               [rowHeight]="device === 'HandsetPortrait' || device === 'TabletPortrait' ? 50 + '%' : 100 + '%' ">
+  <mat-grid-tile class="infoContainer">
+      <app-landingpage-info [screenHeightPX]="gridHeightPX" [screenWidthPX]="gridWidthPX" [text]="text"></app-landingpage-info>
+  </mat-grid-tile>
+  <mat-grid-tile class="animationContainer">
+
+  </mat-grid-tile>
+</mat-grid-list>

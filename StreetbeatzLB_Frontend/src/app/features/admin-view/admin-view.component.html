@@ -1,30 +1,17 @@
 <mat-tab-group>
   <mat-tab label="Performances">
-    <div class="performances-list">
+    <div class="performanceWrapper">
       <button mat-button color="primary" matTooltip="Add a performance" class="add-performance-button" (click)="addPerformance()">
         <mat-icon>add</mat-icon>
       </button>
-      <div *ngFor="let performance of verbosePerformances;">
-        <mat-divider vertical="false" [inset]></mat-divider>
-        <app-edit-performance-tile [performance]="performance"></app-edit-performance-tile>
-      </div>
+      <mat-divider vertical="false" [inset]></mat-divider>
+      <app-performance-view [isAdmin]="true"></app-performance-view>
       <mat-divider vertical="false" [inset]></mat-divider>
     </div>
   </mat-tab>
-  <!--<mat-tab label="Info-Center">
-    **  Arbeitsbereich Landingpage Infos bearbeiten  **
-  </mat-tab>
-  <mat-tab label="Map">
-    **  Arbeitsbereich Map bearbeiten  **
-  </mat-tab>-->
   <mat-tab label="Voting">
-    <div style="text-align:center;">
-      <label for="voting-toggle">Voting Funktion</label>
-      <br>
-      <label class="switch">
-        <input type="checkbox" id="voting-toggle">
-        <span class="slider round"></span>
-      </label>
+    <div class="votingWrapper">
+
     </div>
   </mat-tab>
 </mat-tab-group>

@@ -1,3 +1,6 @@
+@import "../../../../_palette.scss";
+
 a{
   cursor: pointer;
+  color: map-get(map-get($primary, contrast), 500);
 }

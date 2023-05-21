@@ -1,13 +1,28 @@
-<app-navbar></app-navbar>
-<mat-sidenav-container>
-  <mat-sidenav-content>
-<!-- Der Kommentierte Code ist dazu da, eine Ladesequenz/-seite zu laden/zeigen bis die richtige Seite geladen ist   -->
-    <!--<div class="page-layout" *ngIf="isAuth0Loading$ | async; else auth0Loaded">
-      <app-page-loader></app-page-loader>
+<mat-sidenav-container [ngStyle]="generateBackgroundImageStyles()">
+  <mat-sidenav mode="over" #sidenav position="end">
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <div class="navbar">
+      <div *ngIf="device === 'WebLandscape', else elseBlock" class="navbar-desktop">
+        <app-navbar></app-navbar>
+      </div>
+      <ng-template #elseBlock>
+        <mat-toolbar class="navbar-mobile" [ngClass]="{'mat-elevation-z5': true, 'sticky': isSticky}">
+          <a routerLink="/" class="logoWrapper">
+            <mat-icon class="logo" svgIcon="streetbeatz"></mat-icon>
+          </a>
+
+          <span class="example-spacer"></span>
+
+          <button mat-icon-button class="menuButton" (click)="sidenav.toggle()">
+            <mat-icon class="menu">menu</mat-icon>
+          </button>
+        </mat-toolbar>
+      </ng-template>
     </div>
-    <ng-template #auth0Loaded>
-      <router-outlet></router-outlet>
-    </ng-template>-->
+
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

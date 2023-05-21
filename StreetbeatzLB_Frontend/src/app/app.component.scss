@@ -1,4 +1,55 @@
-mat-sidenav-content {
-  // get height of navbar and set margin-top
-  margin-top: var(--navbar-height); // default height of navbar is 64px
+@import "../_palette.scss";
+
+mat-sidenav-container{
+  //height: 100%;
+}
+
+.content{
+  height: 100%;
+}
+
+mat-sidenav{
+  width: 50%;
+}
+
+.navbar{
+  width: 100%;
+  height: 64px;
+}
+app-navbar{
+  z-index: 4;
+}
+.navbar-mobile{
+  background-color: map-get($primary, 100);
+  height: 64px;
+  z-index: 100000;
+  .logoWrapper{
+    height: 100%;
+    width: 20%;
+    .logo{
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .example-spacer{
+    width: 80%;
+  }
+  .menuButton{
+    height: 100%;
+    width: 20%;
+    .menu{
+      height: 100%;
+      width: 100%;
+      font-size: 2.5rem;
+      color: map-get(map-get($primary, contrast), 500);
+    }
+  }
+}
+
+.mat-elevation-z5 {
+  position: relative;
+}
+.sticky {
+  position: fixed;
+  top: 0px;
 }
