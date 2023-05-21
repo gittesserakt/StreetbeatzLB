@@ -23,10 +23,7 @@ import { PerformancePopupComponent } from "./performance-popup/performance-popup
 import { PerformanceTileComponent } from "./performance-tile/performance-tile.component";
 import { VoteDialogComponent } from "./vote-dialog/vote-dialog.component";
 import { VoteSnackbarComponent } from "./vote-snackbar/vote-snackbar.component";
-import {EditPerformanceTileComponent} from "./edit-performance-tile/edit-performance-tile.component";
-import { NavbarMobileComponent } from "./navbar/navbar-mobile/navbar-mobile.component";
 import { PerformanceViewComponent } from "./performance-view/performance-view.component";
-import { NavbarDesktopComponent } from "./navbar/navbar-desktop/navbar-desktop.component";
 
 export const COMPONENTS = [
   NavbarComponent,
@@ -54,9 +51,6 @@ export const COMPONENTS = [
   LandingpageInfoComponent,
   LandingpageButtonComponent,
   TextboxComponent,
-  EditPerformanceTileComponent,
-  NavbarMobileComponent,
   PerformanceViewComponent,
-  NavbarDesktopComponent,
 ]
 

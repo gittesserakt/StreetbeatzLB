@@ -19,7 +19,6 @@ $mapicon-color: map-get(map-get($primary, contrast), 300);
   background-color: $tile-color;
   border-radius: 20px;
   border: $tile-color solid 4px;
-  overflow: hidden;
   margin-left: 10px;
   margin-right: 10px;
 
@@ -160,7 +159,6 @@ $mapicon-color: map-get(map-get($primary, contrast), 300);
 
     .change button {
       background-color: transparent;
-      color: $secondary-color;
       flex: 1;
       margin: 0 5px;
       height: 150%;
