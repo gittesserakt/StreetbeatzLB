@@ -21,6 +21,26 @@ mat-grid-tile{
     height: 40%;
     width: 100%;
   }
+
+  //region animation
+  .tileText {
+    transition: font-size 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .tileIcon {
+    transition: font-size 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  &:hover {
+    .tileText {
+      font-size: 3.5rem;
+    }
+
+    .tileIcon {
+      font-size: 8rem;
+    }
+  }
+  //endregion
 }
 
 .performanceTile{
@@ -29,6 +49,11 @@ mat-grid-tile{
   }
   mat-icon{
     font-size: 7rem;
+  }
+  &:hover { // performanceTile from font-size: 2.6 -> 3, other tiles from 3 -> 3.5
+    .tileText {
+      font-size: 3rem;
+    }
   }
 }
 .voteTile{
@@ -47,3 +72,4 @@ mat-grid-tile{
     font-size: 7rem;
   }
 }
+
