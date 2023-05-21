@@ -1,3 +1,5 @@
+@import "../../../../_palette.scss";
+
 // Funktion, um Hex-Code in RGBA umzuwandeln
 @function hex_rgba($hex, $alpha: 1) {
   $r: red($hex);
@@ -18,6 +20,7 @@ $secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent,
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background-color: map-get($primary, 50);
   min-height: 100px;
   height: 100px;
   max-height: 150px;
