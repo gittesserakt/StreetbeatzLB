@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Stage {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long stage_id;
     private String name;
     private double stage_size;

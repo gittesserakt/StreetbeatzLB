@@ -152,5 +152,19 @@ $mapicon-color: map-get(map-get($primary, contrast), 300);
       margin-right: 10px;
       box-shadow: none;
     }
+
+    .change {
+      display: flex;
+      justify-content: center;
+    }
+
+    .change button {
+      background-color: transparent;
+      color: $secondary-color;
+      flex: 1;
+      margin: 0 5px;
+      height: 150%;
+      box-shadow: none;
+    }
   }
 }
