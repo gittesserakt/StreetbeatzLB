@@ -1,52 +1,42 @@
-
+<div class="artistWrapper">
   <h1>Künstler</h1>
   <div class="artistContainer">
+    <div class="tab" *ngFor="let tab of artistTabs; let i = index" [class.active]="i === activeTab">
+      <div class="row-container">
+        <div class="row" *ngFor="let artist of tab.artists">
+          <div class="picture"></div>
+          <span>{{ artist.name }}</span>
+          <button mat-fab color="primary">
+            <mat-icon>expand_more</mat-icon>
+          </button>
+        </div>
+      </div>
 
-
-  <div class="leftSlider">
-    <button mat-fab color="primary" (click)="showArtist()">
-      <mat-icon>arrow_left</mat-icon>
-    </button>
-  </div>
-
-    <div class="artistContainerr">
-      <div class="row">
-        <img src="../../../../assets/künstler/alicerose.jpg" alt="Artist" class="picture">
-        <span>Alice Rose</span>
-        <button mat-fab color="primary" (click)="showArtist()">
-          <mat-icon>expand_more</mat-icon>
-        </button>
+      <!-- Platzhalter: Ist für den letzten Tab hardcoded, damit alle Tabs gleich lang sind. -->
+      <div class="row-container" *ngIf="i === artistTabs.length - 1">
+        <div class="invisible-row">
+          <div class="picture"></div>
+        </div>
       </div>
-      <div class="row">
-        <img src="../../../../assets/künstler/benjakob.jpg" alt="Artist" class="picture">    <span>BENJAKOB</span>
-        <button mat-fab color="primary" (click)="showArtist()">
-          <mat-icon>expand_more</mat-icon>
-        </button>
+      <div class="row-container" *ngIf="i === artistTabs.length - 1">
+        <div class="invisible-row">
+          <div class="picture"></div>
+        </div>
       </div>
-      <div class="row">
-        <img src="../../../../assets/künstler/haltMaKurz.png" alt="Artist" class="picture">    <span>HaltMaKurz</span>
-        <button mat-fab color="primary" (click)="showArtist()">
-          <mat-icon>expand_more</mat-icon>
-        </button>
-      </div>
-      <div class="row">
-        <img src="../../../../assets/künstler/alicerose.jpg" alt="Artist" class="picture">
-        <span>Alice Rose</span>
-        <button mat-fab color="primary" (click)="showArtist()">
-          <mat-icon>expand_more</mat-icon>
-        </button>
-      </div>
-      <div class="row">
-        <img src="../../../../assets/künstler/benjakob.jpg" alt="Artist" class="picture">    <span>BENJAKOB</span>
-        <button mat-fab color="primary" (click)="showArtist()">
-          <mat-icon>expand_more</mat-icon>
-        </button>
+      <div class="row-container" *ngIf="i === artistTabs.length - 1">
+        <div class="invisible-row">
+          <div class="picture"></div>
+        </div>
       </div>
     </div>
 
-  <div class="rightSlider">
-    <button mat-fab color="primary" (click)="showArtist()">
-      <mat-icon>arrow_right</mat-icon>
-    </button>
+    <div class="tabNavigation">
+      <button mat-icon-button class="aa" (click)="prevTab()">
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <button mat-icon-button class="aa" (click)="nextTab()">
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </div>
   </div>
 </div>
