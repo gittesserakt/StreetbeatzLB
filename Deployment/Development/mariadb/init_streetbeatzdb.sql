@@ -61,14 +61,33 @@ INSERT INTO `administrator` (identifier, email, firstname, surname, picture) VAL
 	('aGFydmV5QGdtYWlsLmNvbQ', 'harvey@gmail.com', 'Harvey', 'Mustermann', null);
 
 INSERT INTO `artist` (`name`, vote_count) VALUES
-	('Dominik Friedrich', 0),
 	('Alice Rose', 0),
-	('Der Katze & Die Hund', 0),
-	('Maxmaber Orkestar', 0),
-	('Nothing Concrete', 0),
-	('PHI', 0),
-	('Teresa Bergman', 0),
-	('The Busquitos', 0);
+    ('Bastik', 0),
+    ('BENJAKOB', 0),
+    ('Beranger', 0),
+    ('Borja Catanesi', 0),
+    ('Crobbs', 0),
+    ('HaltMaKurz', 0),
+    ('Ideal Forgery', 0),
+    ('Jivers', 0),
+    ('Jon Kenzie', 0),
+    ('Kuma', 0),
+    ('Lev Radagan', 0),
+    ('Maja Iris', 0),
+    ('Mario Parizek', 0),
+    ('MC Money and the Jazz Rats', 0),
+    ('Mirakolo', 0),
+    ('Moanzy', 0),
+    ('MT Head', 0),
+    ('Paolo Sgallini', 0),
+    ('Ramm Tamm Tilda', 0),
+    ('Roadstring Army', 0),
+    ('SISSOS', 0),
+    ('Sleepwalker’s Station', 0),
+    ('The Rich Man S Kitchen Orchestra', 0),
+    ('Toni Mogens', 0),
+    ('Walk Two Folk', 0),
+    ('YARA', 0);
 
 INSERT INTO `poi` (name, icon, poi_type, latitude, longitude) VALUES
 	('Haupteingang', '0', NULL, 48.89629356141575, 9.196231354904848),
