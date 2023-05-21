@@ -1,24 +1,24 @@
 @import "../../../../_palette.scss";
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.footer{
+.footer {
   background: linear-gradient(to bottom, map-get($primary, 100), map-get($primary, 200));
   max-width: 100%;
   display: flex;
   flex-wrap: wrap;  //essential for mobile view
 }
 
-.footer-col{
-  width: (100% / 4);
-  padding: 0 15px;
+.footer-col {
+
+  padding: 0 2%;
   margin-bottom: 5%;
 
-  h4{
+  h4 {
     font-size: 18px;
     color: map-get(map-get($primary, contrast), 50);
     text-transform: capitalize;
@@ -26,7 +26,7 @@
     position: relative;
   }
 
-  ul li a{
+  ul li a {
     font-size: 16px;
     text-transform: capitalize;
     color: map-get(map-get($primary, contrast), 50);
@@ -36,15 +36,15 @@
     cursor: pointer;
   }
 
-  ul{
+  ul {
     list-style: none;
   }
 
-  ul li a:hover{
+  ul li a:hover {
     color: map-get(map-get($primary, contrast), 50);  padding-left: 10px;
   }
 
-  ul li:not(:last-child){
+  ul li:not(:last-child) {
     margin-bottom: 10px;
   }
 
@@ -52,36 +52,46 @@
     width: 80%;
     margin-top: 50px;
     transition: all 0.2s ease-in-out;
-    &:hover{
+
+    &:hover {
       opacity: 0.7;
       transform: scale(1.1);
     }
   }
 
-  .logInOut{
+  .logInOut {
     text-decoration: underline;
     color: map-get($primary, 500);
   }
 
-  .icon{
+  .icon {
     margin-right: 20px;
     width: 32px;
     height: 32px;
     border-radius: 20%;
     transition: all 0.2s ease-in-out;
-    &:hover{
+    &:hover {
       transform: scale(1.2);
     }
   }
+  width: (100% / 11) * 2;
+}
+
+.bigger {
+  width: (100% / 11) * 3;
+}
+
+.placeholder {
+  width: (100% / 11) * 1;
 }
 
 @media(max-width: 800px) {
-  .footer-col{
+  .footer-col {
     width: 100%;
     margin-bottom: 30px;
     text-align: center;
 
-    h4{
+    h4 {
       margin-top: 35px;
       margin-bottom: 15px;
     }
