@@ -1,4 +1,4 @@
 export interface Artist {
-  group_id: number;
+  artist_id: number;
   name: string
 }

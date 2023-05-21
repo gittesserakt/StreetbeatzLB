@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Artist {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long artist_id;
     private String name;
     private Long vote_count;
