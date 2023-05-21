@@ -1,4 +1,3 @@
-import { DateTimePickerComponent } from "./date-time-picker/date-time-picker.component";
 import { FilterArtistselectorComponent } from "./filter/filter-artistselector/filter-artistselector.component";
 import { FilterComponent } from "./filter/filter.component";
 import { FilterDatepickerComponent } from "./filter/filter-datepicker/filter-datepicker.component";
@@ -20,10 +19,7 @@ import { PerformanceViewComponent } from "./performance-view/performance-view.co
 import { VoteDialogComponent } from "./vote-dialog/vote-dialog.component";
 import { VoteSnackbarComponent } from "./vote-snackbar/vote-snackbar.component";
 
-
-
 export const COMPONENTS = [
-  DateTimePickerComponent,
   FilterArtistselectorComponent,
   FilterComponent,
   FilterDatepickerComponent,
