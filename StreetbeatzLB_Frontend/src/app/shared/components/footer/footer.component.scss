@@ -13,90 +13,77 @@
   flex-wrap: wrap;  //essential for mobile view
 }
 
-ul{
-  list-style: none;
-}
-
 .footer-col{
   width: (100% / 4);
   padding: 0 15px;
-}
+  margin-bottom: 5%;
 
-.footer-col h4{
-  font-size: 18px;
-  color: map-get(map-get($primary, contrast), 50);
-  text-transform: capitalize;
-  margin-bottom: 35px;
-  position: relative;
-}
+  h4{
+    font-size: 18px;
+    color: map-get(map-get($primary, contrast), 50);
+    text-transform: capitalize;
+    margin-bottom: 35px;
+    position: relative;
+  }
 
-.footer-col h4::before{
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  background-color: var(--secondary-main-brand-color);
-  height: 2px;
-  width: 50px;
-  box-sizing: border-box;
-}
+  ul li a{
+    font-size: 16px;
+    text-transform: capitalize;
+    color: map-get(map-get($primary, contrast), 50);
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
 
-.footer-col ul li:not(:last-child){
-  margin-bottom: 10px;
-}
+  ul{
+    list-style: none;
+  }
 
-.footer-col ul li a{
-  font-size: 16px;
-  text-transform: capitalize;
-  color: map-get(map-get($primary, contrast), 50);
-  text-decoration: none;
-  display: block;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
+  ul li a:hover{
+    color: map-get(map-get($primary, contrast), 50);  padding-left: 10px;
+  }
 
-.footer-col ul li a:hover{
-  color: var(--text-color);
-  padding-left: 10px;
-}
+  ul li:not(:last-child){
+    margin-bottom: 10px;
+  }
 
-.logInOut{
-  text-decoration: underline;
-  color: map-get($primary, 500);
-}
-
-.smf{
-  width: 80%;
-  margin-top: 50px;
-  transition: all 0.2s ease-in-out;
+  .smf {
+    width: 80%;
+    margin-top: 50px;
+    transition: all 0.2s ease-in-out;
     &:hover{
       opacity: 0.7;
       transform: scale(1.1);
     }
-}
+  }
 
-.icon{
-  margin-right: 20px;
-  width: 32px;
-  height: 32px;
-  border-radius: 20%;
-  transition: all 0.2s ease-in-out;
+  .logInOut{
+    text-decoration: underline;
+    color: map-get($primary, 500);
+  }
+
+  .icon{
+    margin-right: 20px;
+    width: 32px;
+    height: 32px;
+    border-radius: 20%;
+    transition: all 0.2s ease-in-out;
     &:hover{
       transform: scale(1.2);
     }
+  }
 }
 
-// region Media Query
 @media(max-width: 800px) {
   .footer-col{
     width: 100%;
     margin-bottom: 30px;
     text-align: center;
-  }
 
-  .footer-col h4{
-    margin-top: 35px;
-    margin-bottom: 15px;
+    h4{
+      margin-top: 35px;
+      margin-bottom: 15px;
+    }
   }
 }
-//endregion
