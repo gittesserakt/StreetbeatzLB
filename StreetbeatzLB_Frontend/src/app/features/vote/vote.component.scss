@@ -1,7 +1,7 @@
 @import "../../../_palette.scss";
 
 .background {
-  background: linear-gradient(map-get($primary, 800), map-get($primary, A400));
+  //background: linear-gradient(map-get($primary, 800), map-get($primary, A400));
   overflow: hidden;
   display: flex;
   flex-direction: column;
