@@ -1,55 +1,72 @@
+@import "../../../_palette.scss";
+
 .background {
-  //background: linear-gradient(180deg, rgba(45, 29, 249, 1) 5%, rgba(255, 0, 254, 1) 100%);
+  background: linear-gradient(map-get($primary, 800), map-get($primary, A400));
   overflow: hidden;
   display: flex;
   flex-direction: column;
-}
 
-.voteTitle{
-  //background: radial-gradient(circle, rgba(255,255,255,0.5046219171262255) 0%, rgba(255,255,255,0.7007003484987745) 90%);
-  height: 5%;
-  display: flex;
-  align-self: center;
+  .voteTitle {
+    //background: radial-gradient(circle, rgba(255,255,255,0.5046219171262255) 0%, rgba(255,255,255,0.7007003484987745) 90%);
+    height: 5%;
+    display: flex;
+    justify-content: center;
 
-  a{
-    text-decoration: underline;
-    align-self: center;
-    padding-left: 5%;
+    a {
+      align-self: center;
+
+      color: #333333;
+      font-weight: bold;
+      font-size: large;
+    }
+
   }
-}
 
-.listContainer {
-  //background: radial-gradient(circle, rgba(255,255,255,0.5046219171262255) 0%, rgba(255,255,255,0.7007003484987745) 90%);
-  height: 85%;
+  .listContainer {
+    //background: radial-gradient(circle, rgba(255,255,255,0.5046219171262255) 0%, rgba(255,255,255,0.7007003484987745) 90%);
+    height: 80%;
+    align-self: center;
 
-  align-self: center;
+    .list {
+      height: 95%;
+      margin: 0.5rem 1rem 0 1rem;
+      overflow-y: scroll;
+      flex-grow: 1;
 
-  .list {
-    height: 95%;
-    margin: 5px;
-    overflow-y: scroll;
-    flex-grow: 1;
-    .radioGroup {
-      display: flex;
-      flex-direction: column;
+      .radioGroup {
+        display: flex;
+        flex-direction: column;
+
+        span {
+          color: #333333;
+          font-size: larger;
+          font-weight: bold;
+        }
+      }
     }
   }
-}
 
-.buttonContainer {
-  //background: radial-gradient(circle, rgba(255,255,255,0.5046219171262255) 0%, rgba(255,255,255,0.7007003484987745) 90%);
-  height: 10%;
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-
-  .voteButton {
-    margin-top: auto;
-    margin-bottom: auto;
+  .buttonContainer {
+    //background: radial-gradient(circle, rgba(255,255,255,0.5046219171262255) 0%, rgba(255,255,255,0.7007003484987745) 90%);
+    height: 10%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
     align-self: center;
-    height: 85%;
-    width: 85%;
-    max-height: 80px;
+
+    .voteButton {
+      margin-top: auto;
+      margin-bottom: auto;
+      align-self: center;
+      height: 85%;
+      width: 85%;
+      max-height: 80px;
+
+      background: map-get($primary, 50);
+      color: #333333;
+      font-weight: bold;
+      font-size: large;
+      border: solid 3px white;
+    }
   }
 }

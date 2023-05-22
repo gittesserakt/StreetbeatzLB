@@ -21,8 +21,7 @@ export interface DialogData {
   styleUrls: ['./vote.component.scss']
 })
 export class VoteComponent implements OnInit {
-  voteTitle: string = 'Please select the artist you want to vote for:';
-  voteButton: string = 'vote';
+  voteButton: string = 'Vote';
 
   screenHeightPX: number = 0;
   centerList?: number;
