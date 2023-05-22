@@ -19,12 +19,12 @@ $primary: (
   500: #FFC107,     // Accent-color: amber
   600: #2d1df9ff,   // Primary-color for landing-page: blue
   700: #83f572ff,   // Primary-color for performances: light green
-  800: #f94d4b,     // Primary-color for vote:
-  900: #000000,     // Primary-color for admin:
+  800: #f94d4b,     // Primary-color for vote: red
+  900: #83f572ff,     // Primary-color for admin: light green
   A100: #ff22ceff,  // Secondary-color for landing-page: magenta
   A200: #5e8df7ff,  // Secondary-color for performances: light blue
-  A400: #ffbd51,    // Secondary-color for vote:
-  A700: #000000,    // Secondary-color for admin:
+  A400: #ffbd51,    // Secondary-color for vote: yellow/orange
+  A700: #5e8df7ff,    // Secondary-color for admin: light blue
   contrast: (
     50: #ffffff,    // Text-color for the glass effect
     100: #E8E8E8,   // Silver text-color
