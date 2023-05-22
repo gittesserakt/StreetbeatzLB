@@ -4,8 +4,9 @@ import {interval, Subscription} from "rxjs";
 import {MatToolbar} from "@angular/material/toolbar";
 import {PoiService} from "../../core/services/poi.service";
 import {Poi} from "../../core/models/poi.model";
-import {LatLng} from "leaflet";
+import {control, LatLng} from "leaflet";
 import {Router, ActivatedRoute} from "@angular/router";
+import zoom = control.zoom;
 
 Leaflet.Icon.Default.imagePath = 'assets/'
 
@@ -255,7 +256,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
         if (data){
           var poi = data as Poi
           console.log('lat: ' + poi.latitude + ', long: ' + poi.longitude)
-          this.map.panTo([poi.latitude, poi.longitude]);
+          this.map.flyTo([poi.latitude, poi.longitude], 18);
         }
 
         if (error) {
