@@ -24,4 +24,22 @@ public class PoiController {
     public @ResponseBody Optional<Poi> getPOIByID(@RequestParam int poiID) {
         return poiRepository.findById(poiID);
     }
+
+    @GetMapping(path="/poiByName")
+    public @ResponseBody Optional<Poi> getPoiByName(@RequestParam String poi) {
+
+        Iterable<Poi> pois = poiRepository.findAll();
+
+        poi = "Stage " + poi;
+
+        int poiID = 0;
+
+        for(Poi currentPoi : pois) {
+            if(currentPoi.getName().equals(poi)){
+                poiID = Math.toIntExact(currentPoi.getPoi_id());
+                break;
+            }
+        }
+        return poiRepository.findById(poiID);
+    }
 }

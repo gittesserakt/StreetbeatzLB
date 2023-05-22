@@ -1,10 +1,11 @@
-import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, AfterViewInit, Renderer2, ViewChild} from '@angular/core';
 import * as Leaflet from 'leaflet';
 import {interval, Subscription} from "rxjs";
 import {MatToolbar} from "@angular/material/toolbar";
 import {PoiService} from "../../core/services/poi.service";
 import {Poi} from "../../core/models/poi.model";
 import {LatLng} from "leaflet";
+import {Router, ActivatedRoute} from "@angular/router";
 
 Leaflet.Icon.Default.imagePath = 'assets/'
 
@@ -13,7 +14,7 @@ Leaflet.Icon.Default.imagePath = 'assets/'
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit, OnDestroy {
+export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('toolbar', {static: true}) toolbar!: MatToolbar;
   contentHeight!: number;
@@ -211,7 +212,8 @@ export class MapComponent implements OnInit, OnDestroy {
 
   pois!: Poi[];
 
-  constructor(private renderer: Renderer2, private el: ElementRef, private poiService: PoiService) {
+  constructor(private renderer: Renderer2, private el: ElementRef, private poiService: PoiService,
+              private router: Router, private activatedRouter: ActivatedRoute) {
     this.deviceMarker = new Leaflet.Marker([0, 0], {icon: this.iconPerson});
     const source = interval(1000);
     this.subscription = source.subscribe(() => {
@@ -243,7 +245,25 @@ export class MapComponent implements OnInit, OnDestroy {
         }
       });
     })
+  }
 
+  private centerPoi(stageID: string): Promise<void> {
+    return new Promise<void>((resolve, reject) =>{
+      this.poiService.getPoiByName(stageID).subscribe((response) => {
+        const {data, error} = response;
+
+        if (data){
+          var poi = data as Poi
+          console.log('lat: ' + poi.latitude + ', long: ' + poi.longitude)
+          this.map.panTo([poi.latitude, poi.longitude]);
+        }
+
+        if (error) {
+          console.log(error);
+          reject();
+        }
+      });
+    })
   }
 
   initMarkers() {
@@ -255,6 +275,11 @@ export class MapComponent implements OnInit, OnDestroy {
         : Leaflet.marker(position);
 
       marker.addTo(this.map).bindPopup(`<b>${position.lat},  ${position.lng}</b>`);
+
+      marker.on('click', () => {
+        this.markerClicked(data.icon); // Call the markerClicked() method with the clicked marker data
+      });
+
       this.map.panTo(position);
       this.markers.push(marker);
     }
@@ -295,6 +320,14 @@ export class MapComponent implements OnInit, OnDestroy {
     this.getDeviceLocation();
   }
 
+  ngAfterViewInit() {
+    this.activatedRouter.queryParams.subscribe(params => {
+      if (params['stageId']) {
+        this.centerPoi(params['stageId']);
+      }
+    });
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
@@ -329,16 +362,16 @@ export class MapComponent implements OnInit, OnDestroy {
     console.log($event.latlng.lat, $event.latlng.lng);
   }
 
-  markerClicked($event: any, index: number) {
-    console.log($event.latlng.lat, $event.latlng.lng);
+  markerClicked(iconId: string) {
+    this.router.navigate([`/performances`], { queryParams: { stageId: iconId } });
   }
 
   markerDragEnd($event: any, index: number) {
     console.log($event.target.getLatLng());
   }
 
-  private getIcon(icondId: string) {
-    switch (icondId) {
+  getIcon(iconId: string) {
+    switch (iconId) {
       case "0":
         return this.iconEntrance;
       case "2":
