@@ -107,39 +107,45 @@ export class PerformancePopupComponent implements OnInit{
         alert("Please select a stage!")
       }
     } else {
-      if (this.data.functionName == "Edit Performance") {
-        this.verbosePerformanceService.editPerformance(this.data.performance_popup_id, new Date(startTimeDate), this.selectedArtistId, this.selectedStageId)
-          .subscribe(
-            (response: any) => {
-              const {data, error} = response;
 
-              if (error) {
-                console.log(error);
-              } else {
-                console.log("Performance updated successfully: ", data);
-                console.log("Please refresh the page to see updated entries!")
-                this.dialogRef.close();
-                location.reload();
-              }
-            }
-          );
-      } else {
-        this.verbosePerformanceService.addPerformance(new Date(startTimeDate), this.authSub, this.selectedArtistId, this.selectedStageId)
-          .subscribe(
-            (response: any) => {
-              const {data, error} = response;
+      const start_period = new Date('2023-05-26 18:00');
+      const end_period = new Date('2023-05-28 23:00');
 
-              if (error) {
-                console.log(error);
-              } else {
-                console.log("Performance added successfully: ", data);
-                console.log("Please refresh the page to see updated entries!")
-                this.dialogRef.close();
-                location.reload();
-              }
+      if (new Date(startTimeDate) >= start_period && new Date(startTimeDate) <= end_period) {
+            if (this.data.functionName == "Edit Performance") {
+              this.verbosePerformanceService.editPerformance(this.data.performance_popup_id, new Date(startTimeDate), this.selectedArtistId, this.selectedStageId)
+                .subscribe(
+                  (response: any) => {
+                    const {data, error} = response;
+
+                    if (error) {
+                      console.log(error);
+                    } else {
+                      console.log("Performance updated successfully: ", data);
+                      console.log("Please refresh the page to see updated entries!")
+                      this.dialogRef.close();
+                      location.reload();
+                    }
+                  }
+                );
+            } else {
+              this.verbosePerformanceService.addPerformance(new Date(startTimeDate), this.authSub, this.selectedArtistId, this.selectedStageId)
+                .subscribe(
+                  (response: any) => {
+                    const {data, error} = response;
+
+                    if (error) {
+                      console.log(error);
+                    } else {
+                      console.log("Performance added successfully: ", data);
+                      console.log("Please refresh the page to see updated entries!")
+                      this.dialogRef.close();
+                      location.reload();
+                    }
+                  }
+                );
             }
-          );
-      }
+      } else { alert('The date or time is outside the festival period and must be between 05/26/2023, 6:00 pm and 05/28/2023, 11:00 pm.'); }
     }
   }
 
