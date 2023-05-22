@@ -26,27 +26,28 @@ export class Filter {
   }
 
 
-  get timeDate(): Date | null{
-    if(this.timeInternal.getHours() !=0){
+  get timeDate(): Date | null {
+    if (this.timeInternal.getHours() != 0) {
       return this.timeInternal;
-    }else{
+    } else {
       return null;
     }
   }
 
   set timeDate(value: Date | null) {
-    if(value){
+    if (value) {
       this.timeInternal.setHours(value.getHours());
       this.timeInternal.setMinutes(value.getMinutes());
-    }else{
+    } else {
       this.timeInternal.setHours(0);
       this.timeInternal.setMinutes(0);
     }
   }
 
-  get dateDate():Date | null{
+  get dateDate(): Date | null {
     return this._dateDate
   }
+
   set dateDate(value: Date | null) {
     this._dateDate = value;
   }
@@ -67,7 +68,23 @@ export class Filter {
     this._stage = value;
   }
 
+  getTimeType(): Time | null {
+    return (this.timeInternal.getHours() == 0) ? null : {
+      hours: this.timeInternal.getHours(),
+      minutes: this.timeInternal.getMinutes()
+    }
+  }
 
+
+  setWithTimeType(time: Time | null) {
+    if (time) {
+      this.timeInternal.setHours(time.hours)
+      this.timeInternal.setMinutes(time.minutes)
+    } else {
+      this.timeInternal.setHours(0)
+      this.timeInternal.setMinutes(0)
+    }
+  }
 
   toString(): string {
     return "Date: " + (this._dateDate ? <string>this._dateDate?.toISOString() : "null") +
@@ -75,4 +92,5 @@ export class Filter {
       "| Artist: " + (this._artist ? this._artist! : "null") +
       "| Stage: " + (this._stage ? this._stage! : "null");
   }
+  //Time wird nicht richtig zurück gegeben
 }

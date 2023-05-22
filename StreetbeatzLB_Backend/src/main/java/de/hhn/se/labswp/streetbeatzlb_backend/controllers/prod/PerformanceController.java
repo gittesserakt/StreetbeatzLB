@@ -44,29 +44,39 @@ public class PerformanceController {
   }
 
   @GetMapping(path="/filteredByID")
-  public @ResponseBody Iterable<Performance> getFilteredPerformancesByID(@RequestParam String time,
-                                                                     @RequestParam int artist_id,
-                                                                         @RequestParam int stage_id) {
-    LocalDateTime newDateTime = null;
-    if(!time.equals("0")){
-      newDateTime = LocalDateTime.parse(time);
+  public @ResponseBody Iterable<Performance> getFilteredPerformancesByID(@RequestParam String dateString,
+                                                                         @RequestParam String timeString,
+                                                                         @RequestParam String artist_id,
+                                                                         @RequestParam String stage_id) {
+    LocalDateTime dateDate = null;
+    LocalDateTime timeDate = null;
+    if (!dateString.equals("0")) {
+      dateDate = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
+    }
+    if(!timeString.equals("0")){
+      timeDate = LocalDateTime.parse(timeString,DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
     }
 
     return sortPerformances(PerformanceFilter.filterPerformancesByID(performanceRepository,
-            newDateTime, artist_id, stage_id));
+            dateDate, timeDate, Integer.parseInt(artist_id), Integer.parseInt(stage_id)));
   }
 
   @GetMapping(path="/filteredByName")
-  public @ResponseBody Iterable<Performance> getFilteredPerformancesByName(@RequestParam String time,
-                                                                           @RequestParam String artist_id,
-                                                                           @RequestParam String stage_id) {
-    LocalDateTime newDateTime = null;
-    if (!time.equals("0")) {
-      newDateTime = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
+  public @ResponseBody Iterable<Performance> getFilteredPerformancesByName(@RequestParam String dateString,
+                                                                           @RequestParam String timeString,
+                                                                           @RequestParam String artistName,
+                                                                           @RequestParam String stageName) {
+    LocalDateTime dateDate = null;
+    LocalDateTime timeDate = null;
+    if (!dateString.equals("0")) {
+      dateDate = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
+    }
+    if(!timeString.equals("0")){
+      timeDate = LocalDateTime.parse(timeString,DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
     }
 
     return sortPerformances(PerformanceFilter.filterPerformancesByName(performanceRepository,
-            artistRepository, stageRepository, newDateTime, artist_id, stage_id));
+            artistRepository, stageRepository, dateDate, timeDate, artistName, stageName));
   }
 
   @GetMapping(path="/delete")
