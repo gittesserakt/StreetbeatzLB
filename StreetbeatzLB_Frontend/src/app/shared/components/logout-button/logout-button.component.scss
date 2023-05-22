@@ -2,4 +2,6 @@
 
 a{
   cursor: pointer;
+  color: map-get($primary, 500);
+  font-weight: bold;
 }

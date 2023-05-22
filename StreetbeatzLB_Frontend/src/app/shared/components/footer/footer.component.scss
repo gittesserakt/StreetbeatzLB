@@ -8,6 +8,7 @@
 
 .footer {
   background: linear-gradient(to bottom, map-get($primary, 100), map-get($primary, 200));
+  //background: map-get(map-get($primary, contrast), 50);
   max-width: 100%;
   display: flex;
   flex-wrap: wrap;  //essential for mobile view
