@@ -21,8 +21,7 @@ export interface DialogData {
   styleUrls: ['./vote.component.scss']
 })
 export class VoteComponent implements OnInit {
-  voteTitle: string = 'Please select the artist you want to vote for:';
-  voteButton: string = 'vote';
+  voteButton: string = 'Vote';
 
   screenHeightPX: number = 0;
   centerList?: number;
@@ -45,7 +44,6 @@ export class VoteComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private artistService: ArtistService, private  voteService: VoteService,
               private breakpointObserver: BreakpointObserver, private smfCookieService: SmfCookieService, private _snackbar: MatSnackBar) {
-    this.getBreakpoint(breakpointObserver);
     this.onResize();
   }
 
@@ -78,7 +76,7 @@ export class VoteComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event?: any) {
-    this.getBreakpoint(this.breakpointObserver);
+    this.getBreakpoint();
     this.screenHeightPX = window.innerHeight;
     if (this.device == 'HandsetPortrait'){
       this.centerList = 100;
@@ -121,8 +119,8 @@ export class VoteComponent implements OnInit {
     }
   }
 
-  getBreakpoint(breakpointObserver: BreakpointObserver){
-    breakpointObserver.observe([
+  getBreakpoint(){
+    this.breakpointObserver.observe([
       Breakpoints.HandsetPortrait,
       Breakpoints.HandsetLandscape,
       Breakpoints.TabletPortrait,

@@ -21,19 +21,20 @@ export class PerformanceTileComponent {
     this.isAdmin = false; //default value
   }
 
-  showLocation() {
-    alert("you see something");
-    this.router.navigate([`/map?stage=${this.performance.stage}`]);
+  showLocation(stageId: string){
+    console.log(stageId + ' is the stage id')
+    this.router.navigate([`/map`], { queryParams: { stageId: stageId} });
   }
 
   deletePerformance() {
     const date = new Date(this.performance.start_time);
-    const formattedDate = date.toLocaleDateString('de-DE', {
+    const formattedDate = date.toLocaleDateString('en-GB', {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit'
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
     }); // For the alert display.
 
     if (confirm("Do you really want to delete this performance by " + this.performance.artist + " on " + formattedDate + " on Stage "
