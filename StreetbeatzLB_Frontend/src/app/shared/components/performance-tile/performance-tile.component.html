@@ -18,7 +18,6 @@
       </div>
     </div>
   </div>
-  <div class="right-column">
     <ng-container *ngIf="isAdmin">
       <div class="change">
         <button mat-fab color="primary" matTooltip="Edit the performance" (click)="editPerformance()">
@@ -31,11 +30,10 @@
     </ng-container>
     <ng-container *ngIf="!isAdmin">
       <div class="navigate">
-        <button mat-fab color="primary" matTooltip="Show stage on the map" (click)="showLocation()">
+        <button mat-fab color="primary" matTooltip="Show stage on the map" (click)="showLocation(performance.stage)">
           <mat-icon>map</mat-icon>
           <mat-icon>chevron_right</mat-icon>
         </button>
       </div>
     </ng-container>
-  </div>
 </div>
