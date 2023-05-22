@@ -1,6 +1,7 @@
 import {Component, OnInit, HostListener} from '@angular/core';
 import {AuthService} from "@auth0/auth0-angular";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,11 @@ export class AppComponent implements OnInit {
   sizeBall2: number = 0;
   sizeBall3: number = 0;
 
+  backgroundURL: string = '';
+  backgroundBallURL: string = '';
+
+  currentURL: string = '';
+
   device: String = "Web";
   displayMap = new Map([
     [Breakpoints.HandsetPortrait, 'HandsetPortrait'],
@@ -37,11 +43,18 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getBreakpoint();
     this.switchBallSizeAndPosition();
+    this.switchBackground();
+    this.currentURL = this.router.url;
+    console.log(this.currentURL);
   }
 
-  constructor(private authService: AuthService, private breakpointObserver: BreakpointObserver) {
+
+
+  constructor(private authService: AuthService, private breakpointObserver: BreakpointObserver, private router: Router) {
     this.getBreakpoint();
     this.switchBallSizeAndPosition();
+    this.switchBackground();
+    this.currentURL = this.router.url;
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -98,18 +111,53 @@ export class AppComponent implements OnInit {
     }
   }
 
+  switchBackground(){
+    switch (this.currentURL){
+      case '/':
+        this.backgroundURL ='/assets/design/landingpage_blue-magenta-background.svg';
+        this.backgroundBallURL = '/assets/design/landingpage_blue-background_ball.svg';
+        break;
+      case '/performances':
+        this.backgroundURL ='/assets/design/performances-n-admin_green-background.svg';
+        this.backgroundBallURL = '/assets/design/performances-n-admin_green-background_ball.svg';
+        break;
+      case '/map':
+        this.backgroundURL ='/assets/design/map_background.svg';
+        break;
+      case '/vote':
+        this.backgroundURL ='/assets/design/vote_red-yellow-background.svg';
+        this.backgroundBallURL = '/assets/design/landingpage_blue-background_ball.svg';
+        break;
+      case '/admin-view':
+        this.backgroundURL ='/assets/design/performances-n-admin_green-background.svg';
+        break;
+    }
+  }
+
   generateBackgroundImageStyles(): any {
-    // this.switchBallSizeAndPosition();
     // console.log('Called: generateBackgroundImageStyles');
     // console.log(this.sizeBall1 + ',' + this.sizeBall2 + ',' + this.sizeBall3);
     // console.log(this.xPositionBall1 + ',' + this.yPositionBall1 + ',' + this.xPositionBall2 + ',' + this.yPositionBall2 + ',' + this.xPositionBall3 + ',' + this.yPositionBall3);
     // console.log(this.device);
-    return {
-      'background-image': `url('/assets/design/blue_backgroundBall.svg'), url('/assets/design/blue_backgroundBall.svg'), url('/assets/design/blue_backgroundBall.svg'), url('/assets/design/landingpage_background.svg')`,
-      'background-position': `${this.xPositionBall1}% ${this.yPositionBall1}%, ${this.xPositionBall2}% ${this.yPositionBall2}%, ${this.xPositionBall3}% ${this.yPositionBall3}%, 0% 0%`,
-      'background-size': `${this.sizeBall1}px, ${this.sizeBall2}px, ${this.sizeBall3}px, cover`,
-      'background-repeat': 'no-repeat',
-      'background-attachment': 'fixed',
+    switch(this.currentURL){
+      case '/map':
+        return {
+          'background-image': `url(${this.backgroundURL})`,
+          'background-position': `0% 0%`,
+          'background-size': `cover`,
+          'background-repeat': 'no-repeat',
+          'background-attachment': 'fixed',
+        }
+        break;
+      default:
+        return {
+          'background-image': `url(${this.backgroundBallURL}), url(${this.backgroundBallURL}), url(${this.backgroundBallURL}), url(${this.backgroundURL})`,
+          'background-position': `${this.xPositionBall1}% ${this.yPositionBall1}%, ${this.xPositionBall2}% ${this.yPositionBall2}%, ${this.xPositionBall3}% ${this.yPositionBall3}%, 0% 0%`,
+          'background-size': `${this.sizeBall1}px, ${this.sizeBall2}px, ${this.sizeBall3}px, cover`,
+          'background-repeat': 'no-repeat',
+          'background-attachment': 'fixed',
+        }
+        break;
     }
   }
 
