@@ -117,7 +117,13 @@ INSERT INTO `stage` (name, stage_size) VALUES
 	('D', 12.2),
 	('E', 10.9),
 	('F', 14.5),
-	('G', 8.8);
+	('G', 8.8),
+    ('H', 4.5),
+    ('I', 5.8),
+    ('K', 5.6),
+    ('L', 10.5),
+    ('M', 9),
+    ('S', 35);
 
 INSERT INTO `performance` (start_time, end_time, created_by, artist_id, stage_id) VALUES
 		 ('2023-05-28 08:00:00', '2023-05-28 08:30:00', '644e4e24dfb8300113c88833', 1, 1),
