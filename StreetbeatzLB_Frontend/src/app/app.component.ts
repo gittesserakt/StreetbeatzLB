@@ -1,7 +1,8 @@
-import {Component, OnInit, HostListener} from '@angular/core';
+import {Component, OnInit, HostListener, ViewChild} from '@angular/core';
 import {AuthService} from "@auth0/auth0-angular";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
+import {MatSidenav} from "@angular/material/sidenav";
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,15 @@ import {Router} from "@angular/router";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  @ViewChild("sidenav") sidenav!: MatSidenav;
   title = 'StreetbeatzLB_Frontend';
 
-  isSticky: boolean = false;
+  // isSticky: boolean = false;
+
+  backgroundImageStyles: any;
+
+  screenHeightPX: number = 0;
+  screenWidthPX: number = 0;
 
   xPositionBall1: number = 0;
   yPositionBall1: number = 0;
@@ -19,11 +26,9 @@ export class AppComponent implements OnInit {
   yPositionBall2: number = 0;
   xPositionBall3: number = 0;
   yPositionBall3: number = 0;
-
   sizeBall1: number = 0;
   sizeBall2: number = 0;
   sizeBall3: number = 0;
-
   backgroundURL: string = '';
   backgroundBallURL: string = '';
 
@@ -39,27 +44,53 @@ export class AppComponent implements OnInit {
     [Breakpoints.WebLandscape, 'WebLandscape'],
   ]);
 
-
   ngOnInit(): void {
-    this.getBreakpoint();
-    this.switchBallSizeAndPosition();
-    this.switchBackground();
-    this.currentURL = this.router.url;
-    console.log(this.currentURL);
+    this.init();
   }
-
-
 
   constructor(private authService: AuthService, private breakpointObserver: BreakpointObserver, private router: Router) {
-    this.getBreakpoint();
-    this.switchBallSizeAndPosition();
-    this.switchBackground();
-    this.currentURL = this.router.url;
+    this.init();
   }
 
-  @HostListener('window:scroll', ['$event'])
-  checkScroll() {
-    this.isSticky = window.scrollY >= 250;
+  @HostListener('window:resize', ['$event'])
+  onResize(event?: any) {
+    this.screenHeightPX = window.innerHeight - 64;
+    this.screenWidthPX = window.innerWidth;
+  }
+
+  // @HostListener('window:scroll', ['$event'])
+  // checkScroll() {
+  //   this.isSticky = window.scrollY >= 250;
+  // }
+
+  toggleSidenav(){
+    this.sidenav.toggle();
+  }
+
+  init(){
+    this.currentURL = this.router.url;
+    this.getBreakpoint();
+    this.switchBackground();
+    this.switchBallSizeAndPosition();
+  }
+
+  getBreakpoint(){
+    this.breakpointObserver.observe([
+      Breakpoints.HandsetPortrait,
+      Breakpoints.HandsetLandscape,
+      Breakpoints.TabletPortrait,
+      Breakpoints.TabletLandscape,
+      Breakpoints.WebPortrait,
+      Breakpoints.WebLandscape
+    ]).subscribe(result => {
+      for(const query of Object.keys(result.breakpoints)){
+        if(result.breakpoints[query]){
+          this.device = this.displayMap.get(query) as string;
+        }
+      }
+    })
+
+    // console.log('Breakpoint: ' + this.device)
   }
 
   setBallPosition(xPositionBall1: number, yPositionBall1: number, xPositionBall2: number, yPositionBall2: number, xPositionBall3: number, yPositionBall3: number) {
@@ -82,7 +113,6 @@ export class AppComponent implements OnInit {
   }
 
   switchBallSizeAndPosition(){
-    // this.getBreakpoint();
     switch (this.device) {
       case "WebLandscape":
         this.setBallPosition(70, 10, 17, 62, 110, 90);
@@ -118,7 +148,7 @@ export class AppComponent implements OnInit {
         this.backgroundBallURL = '/assets/design/landingpage_blue-background_ball.svg';
         break;
       case '/performances':
-        this.backgroundURL ='/assets/design/performances-n-admin_green-background.svg';
+        this.backgroundURL ='/assets/design/performances-n-admin_green-blue-background.svg';
         this.backgroundBallURL = '/assets/design/performances-n-admin_green-background_ball.svg';
         break;
       case '/map':
@@ -126,25 +156,22 @@ export class AppComponent implements OnInit {
         break;
       case '/vote':
         this.backgroundURL ='/assets/design/vote_red-yellow-background.svg';
-        this.backgroundBallURL = '/assets/design/landingpage_blue-background_ball.svg';
+        this.backgroundBallURL = '/assets/design/vote_red-yellow-background_ball.svg';
         break;
       case '/admin-view':
-        this.backgroundURL ='/assets/design/performances-n-admin_green-background.svg';
+        this.backgroundURL ='/assets/design/performances-n-admin_green-blue-background.svg';
+        this.backgroundBallURL = '/assets/design/performances-n-admin_green-background_ball.svg';
         break;
     }
   }
 
   generateBackgroundImageStyles(): any {
-    // console.log('Called: generateBackgroundImageStyles');
-    // console.log(this.sizeBall1 + ',' + this.sizeBall2 + ',' + this.sizeBall3);
-    // console.log(this.xPositionBall1 + ',' + this.yPositionBall1 + ',' + this.xPositionBall2 + ',' + this.yPositionBall2 + ',' + this.xPositionBall3 + ',' + this.yPositionBall3);
-    // console.log(this.device);
     switch(this.currentURL){
       case '/map':
         return {
           'background-image': `url(${this.backgroundURL})`,
           'background-position': `0% 0%`,
-          'background-size': `cover`,
+          'background-size':  'cover',
           'background-repeat': 'no-repeat',
           'background-attachment': 'fixed',
         }
@@ -161,22 +188,8 @@ export class AppComponent implements OnInit {
     }
   }
 
-  getBreakpoint(){
-    this.breakpointObserver.observe([
-      Breakpoints.HandsetPortrait,
-      Breakpoints.HandsetLandscape,
-      Breakpoints.TabletPortrait,
-      Breakpoints.TabletLandscape,
-      Breakpoints.WebPortrait,
-      Breakpoints.WebLandscape
-    ]).subscribe(result => {
-      for(const query of Object.keys(result.breakpoints)){
-        if(result.breakpoints[query]){
-          this.device = this.displayMap.get(query) as string;
-        }
-      }
-    })
-
-    // console.log('Breakpoint: ' + this.device)
+  changeBackgroundImageStyle(){
+    this.init();
+    this.backgroundImageStyles = this.generateBackgroundImageStyles();
   }
 }
