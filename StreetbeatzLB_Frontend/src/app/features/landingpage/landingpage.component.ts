@@ -21,19 +21,18 @@ export class LandingpageComponent {
     [Breakpoints.WebLandscape, 'WebLandscape'],
   ]);
   constructor(private breakpointObserver: BreakpointObserver) {
-    this.getBreakpoint(breakpointObserver);
     this.onResize();
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event?: any) {
-    this.screenHeightPX = window.innerHeight - 64;
+    this.screenHeightPX = window.innerHeight - 66;
     this.screenWidthPX = window.innerWidth;
-    this.getBreakpoint(this.breakpointObserver);
+    this.getBreakpoint();
   }
 
-  getBreakpoint(breakpointObserver: BreakpointObserver){
-    breakpointObserver.observe([
+  getBreakpoint(){
+    this.breakpointObserver.observe([
       Breakpoints.HandsetPortrait,
       Breakpoints.HandsetLandscape,
       Breakpoints.TabletPortrait,

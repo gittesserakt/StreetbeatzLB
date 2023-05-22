@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 544.9 704.61">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#Unbenannter_Verlauf_9-3);
+      }
+
+      .cls-2 {
+        fill: url(#Unbenannter_Verlauf_9-2);
+      }
+
+      .cls-3 {
+        fill: url(#Unbenannter_Verlauf_9);
+      }
+    </style>
+    <linearGradient id="Unbenannter_Verlauf_9" data-name="Unbenannter Verlauf 9" x1="204.13" y1="275" x2="204.13" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset=".03" stop-color="#38e150"/>
+      <stop offset=".96" stop-color="#a3ff90"/>
+    </linearGradient>
+    <linearGradient id="Unbenannter_Verlauf_9-2" data-name="Unbenannter Verlauf 9" x1="86" y1="451.37" x2="86" y2="279.37" xlink:href="#Unbenannter_Verlauf_9"/>
+    <linearGradient id="Unbenannter_Verlauf_9-3" data-name="Unbenannter Verlauf 9" x1="372.9" y1="704.61" x2="372.9" y2="360.61" xlink:href="#Unbenannter_Verlauf_9"/>
+  </defs>
+  <circle class="cls-3" cx="204.13" cy="137.5" r="137.5"/>
+  <circle class="cls-2" cx="86" cy="365.37" r="86"/>
+  <circle class="cls-1" cx="372.9" cy="532.61" r="172"/>
+</svg>

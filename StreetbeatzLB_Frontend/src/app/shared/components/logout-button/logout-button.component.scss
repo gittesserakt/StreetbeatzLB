@@ -2,5 +2,6 @@
 
 a{
   cursor: pointer;
-  color: map-get(map-get($primary, contrast), 500);
+  color: map-get($primary, 500);
+  font-weight: bold;
 }
