@@ -17,8 +17,8 @@ export class AppComponent implements OnInit {
 
   backgroundImageStyles: any;
 
-  screenHeightPX: number = 0;
-  screenWidthPX: number = 0;
+  // screenHeightPX: number = 0;
+  // screenWidthPX: number = 0;
 
   xPositionBall1: number = 0;
   yPositionBall1: number = 0;
@@ -52,11 +52,11 @@ export class AppComponent implements OnInit {
     this.init();
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event?: any) {
-    this.screenHeightPX = window.innerHeight - 64;
-    this.screenWidthPX = window.innerWidth;
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event?: any) {
+  //   this.screenHeightPX = window.innerHeight - 64;
+  //   this.screenWidthPX = window.innerWidth;
+  // }
 
   // @HostListener('window:scroll', ['$event'])
   // checkScroll() {

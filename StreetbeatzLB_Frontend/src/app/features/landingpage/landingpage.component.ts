@@ -27,7 +27,7 @@ export class LandingpageComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event?: any) {
-    this.screenHeightPX = window.innerHeight - 64;
+    this.screenHeightPX = window.innerHeight - 66;
     this.screenWidthPX = window.innerWidth;
     this.getBreakpoint(this.breakpointObserver);
   }
