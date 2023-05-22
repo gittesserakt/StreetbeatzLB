@@ -1,8 +1,9 @@
-import {Component, OnInit, HostListener, ViewChild} from '@angular/core';
+import {Component, OnInit, HostListener, ViewChild, Inject} from '@angular/core';
 import {AuthService} from "@auth0/auth0-angular";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
 import {MatSidenav} from "@angular/material/sidenav";
+import { APP_BASE_HREF } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -48,7 +49,8 @@ export class AppComponent implements OnInit {
     this.init();
   }
 
-  constructor(private authService: AuthService, private breakpointObserver: BreakpointObserver, private router: Router) {
+  constructor(private authService: AuthService, private breakpointObserver: BreakpointObserver,
+              private router: Router, @Inject(APP_BASE_HREF) public baseHref: string) {
     this.init();
   }
 
@@ -144,23 +146,23 @@ export class AppComponent implements OnInit {
   switchBackground(){
     switch (this.currentURL){
       case '/':
-        this.backgroundURL ='/assets/design/landingpage_blue-magenta-background.svg';
-        this.backgroundBallURL = '/assets/design/landingpage_blue-background_ball.svg';
+        this.backgroundURL = `${this.baseHref}assets/design/landingpage_blue-magenta-background.svg`;
+        this.backgroundBallURL = `${this.baseHref}assets/design/landingpage_blue-background_ball.svg`;
         break;
       case '/performances':
-        this.backgroundURL ='/assets/design/performances-n-admin_green-blue-background.svg';
-        this.backgroundBallURL = '/assets/design/performances-n-admin_green-background_ball.svg';
+        this.backgroundURL = `${this.baseHref}assets/design/performances-n-admin_green-blue-background.svg`;
+        this.backgroundBallURL = `${this.baseHref}assets/design/performances-n-admin_green-background_ball.svg`;
         break;
       case '/map':
-        this.backgroundURL ='/assets/design/map_background.svg';
+        this.backgroundURL = `${this.baseHref}assets/design/map_background.svg`;
         break;
       case '/vote':
-        this.backgroundURL ='/assets/design/vote_red-yellow-background.svg';
-        this.backgroundBallURL = '/assets/design/vote_red-yellow-background_ball.svg';
+        this.backgroundURL = `${this.baseHref}assets/design/vote_red-yellow-background.svg`;
+        this.backgroundBallURL = `${this.baseHref}assets/design/vote_red-yellow-background_ball.svg`;
         break;
       case '/admin-view':
-        this.backgroundURL ='/assets/design/performances-n-admin_green-blue-background.svg';
-        this.backgroundBallURL = '/assets/design/performances-n-admin_green-background_ball.svg';
+        this.backgroundURL = `${this.baseHref}assets/design/performances-n-admin_green-blue-background.svg`;
+        this.backgroundBallURL = `${this.baseHref}assets/design/performances-n-admin_green-background_ball.svg`;
         break;
     }
   }
