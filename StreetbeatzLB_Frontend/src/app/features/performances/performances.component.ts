@@ -4,6 +4,7 @@ import {VerbosePerformance} from "../../core/models/verbosePerformance";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Filter} from "../../core/models/filter.model";
 import {SmfCookieService} from "../../core/services/smfCookieService";
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-performances',
@@ -24,8 +25,8 @@ export class PerformancesComponent implements OnInit {
   screenHeightPX: number = 0;
   screenWidthPX: number = 0;
 
-  constructor(private verbosePerformanceService: VerbosePerformanceService,
-              private breakpointObserver: BreakpointObserver, private smfService: SmfCookieService) {
+  constructor(private verbosePerformanceService: VerbosePerformanceService, private activatedRoute: ActivatedRoute,
+              private route: Router, private breakpointObserver: BreakpointObserver, private smfService: SmfCookieService) {
     this.onResize();
   }
 
@@ -63,6 +64,15 @@ export class PerformancesComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("performances component init");
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params['stageId']) {
+        console.log("filter via map");
+        this.smfService.saveFilter(new Filter(null, null, params['stageId']));
+        this.getFilteredPerformances(new Filter(null, null, params['stageId']));
+      } else {
+        this.getAllPerformances();
+      }
+    });
   }
 
   filterChanged(event: Filter) {
