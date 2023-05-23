@@ -70,7 +70,8 @@ create or replace table performance
 
 # identifier is email encoded with Base64URL
 INSERT INTO `administrator` (identifier, email, admin_name, picture) VALUES
-	('644e4e24dfb8300113c88833', 'streetmusicfestivallb@gmail.com', 'streetmusicfestivallb', null);
+	('644e4e24dfb8300113c88833', 'streetmusicfestivallb@gmail.com', 'streetmusicfestivallb', null),
+    ('646cc9f12c53a205c4cd520f'), 'tester@test.de', 'tester', null);
     --"auth0|" is removed when reading the Id, leads to problems.
 
 INSERT INTO `artist` (`name`, vote_count) VALUES
