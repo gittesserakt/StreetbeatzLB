@@ -37,6 +37,10 @@ const routes: Routes = [
       import('./features/vote/vote.module').then((m) => m.VoteModule),
   },
   {
+    path: `streetbeatzlb/api`,
+    redirectTo: `https://hjetter.ddns.net/streetbeatzlb/api`,
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./features/not-found/not-found.module').then(
