@@ -9,6 +9,7 @@ public class ArtistInfo {
     private Long artist_id;
     @Lob
     private byte[] image;
+    private String smf;
     private String homepage;
     private String facebook;
     private String instagram;
@@ -30,6 +31,14 @@ public class ArtistInfo {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public String getSmfLink() {
+        return smf;
+    }
+
+    public void setSmflink(String smf) {
+        this.smf = smf;
     }
 
     public String getHomepage() {
