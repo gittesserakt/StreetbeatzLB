@@ -11,17 +11,13 @@ export class FilterMobileComponent implements OnInit {
   panelOpenState = false;
   filter: Filter = new Filter(null, null, null, null);
   filterTypes: string[] = []; // 'Date', 'Artist', 'Stage'
-  time: Time = this.filter.dateDate ? {
-    hours: this.filter.dateDate.getHours(),
-    minutes: this.filter.dateDate.getMinutes()
-  } : {hours: 0, minutes: 0}
   @Input() inFilter!: Filter; //Was macht dieser inFilter?
   @Output() outFilter = new EventEmitter<Filter>();
 
   ngOnInit() {
     if (this.inFilter) {
       this.filter = this.inFilter;
-      this.applyFilter()
+      this.applyFilter();
     }
   }
 
@@ -56,7 +52,9 @@ export class FilterMobileComponent implements OnInit {
     this.filter.dateDate = event;
 
     if (event) {
-      this.add('Date');
+      if (!this.filterTypes.includes('Date')) {
+        this.add('Date');
+      }
     } else {
       this.remove('Date');
     }
@@ -66,27 +64,30 @@ export class FilterMobileComponent implements OnInit {
     this.filter.artist = event;
 
     if (event) {
-      this.add('Artist');
+      if (!this.filterTypes.includes('Artist')) {
+        this.add('Artist');
+      }
     } else {
       this.remove('Artist');
     }
   }
 
   stageChangeEvent(event: string | null) {
-    this.filter.stage = event;
+    this.filter.stage = event
 
     if (event) {
-      this.add('Stage');
+      if (!this.filterTypes.includes('Stage')) {
+        this.add('Stage');
+      }
     } else {
       this.remove('Stage');
     }
   }
 
-  timeChangeEvent($event: Time | null) {
-    if ($event) {
-      this.time = $event
+  timeChangeEvent(event: Time | null) {
+    this.filter.setWithTimeType(event)
 
-      this.filter.setWithTimeType($event)
+    if (event) {
       if (!this.filterTypes.includes('Time')) {
         this.add('Time');
       }
@@ -98,10 +99,5 @@ export class FilterMobileComponent implements OnInit {
   applyFilter() {
     this.outFilter.emit(this.filter);
     this.panelOpenState = false;
-    console.log()
-  }
-
-  setTime(time: Time) {
-
   }
 }

@@ -69,8 +69,8 @@ export class PerformancesComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['stageId']) {
         console.log("filter via map");
-        this.smfService.saveFilter(new Filter(null, null, params['stageId']));
-        this.getFilteredPerformances(new Filter(null, null, params['stageId']));
+        this.smfService.saveFilter(new Filter(null, null, null, params['stageId']));
+        this.getFilteredPerformances(new Filter(null, null, null, params['stageId']));
       } else {
         this.getAllPerformances();
       }

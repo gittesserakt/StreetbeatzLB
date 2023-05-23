@@ -35,12 +35,13 @@ export class PerformanceService {
   };
 
   getFilteredPerformances = (dateDate: Date | null, timeDate: Date | null, artist: string | null, stage: string | null): Observable<ApiResponseModel> => {
+    console.log("new log: " + timeDate);
     const _dateDate = (dateDate === null) ? "0" : dateDate.toISOString();
-    const _timeDate = (timeDate === null) ? "0" : timeDate.toISOString();
+    const _timeDate = (timeDate == null) ? "0" : timeDate.toLocaleString();
     console.log("DateDate = " + _dateDate + "| TimeDate = " + _timeDate)
     const _artist = artist === null ? "0" : artist;
     const _stage = stage === null ? "0" : stage;
-    // console.log(_dateDate + "|_|" + _timeDate + "|_|Artist: " +_artist + "|_|Stage: " + _stage)
+    //console.log(_dateDate + "|_|" + _timeDate + "|_|Artist: " +_artist + "|_|Stage: " + _stage)
     const config: RequestConfigModel = {
       url: `${env.api.serverUrl}/performances/filteredByName?dateString=${_dateDate}&timeString=${_timeDate}&artistName=${_artist}&stageName=${_stage}`,
       method: 'GET',
