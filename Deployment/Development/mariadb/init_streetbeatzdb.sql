@@ -3,8 +3,7 @@ create or replace table administrator
     identifier varchar(255) not null
         primary key,
     email      varchar(255) not null,
-    firstname  varchar(255) null,
-    surname    varchar(255) null,
+    admin_name  varchar(255) null,
     picture    varchar(255) null,
     constraint administrator_pk2
         unique (email)
@@ -55,8 +54,8 @@ create or replace table performance
 );
 
 # identifier is email encoded with Base64URL
-INSERT INTO `administrator` (identifier, email, firstname, surname, picture) VALUES
-	('644e4e24dfb8300113c88833', 'streetmusicfestivallb@gmail.com', 'streetmusicfestivallb', 'surname', null);
+INSERT INTO `administrator` (identifier, email, admin_name, picture) VALUES
+	('644e4e24dfb8300113c88833', 'streetmusicfestivallb@gmail.com', 'streetmusicfestivallb', null);
     --"auth0|" is removed when reading the Id, leads to problems.
 
 INSERT INTO `artist` (`name`, vote_count) VALUES
