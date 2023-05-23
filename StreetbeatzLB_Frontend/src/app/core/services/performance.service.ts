@@ -37,7 +37,7 @@ export class PerformanceService {
   getFilteredPerformances = (dateDate: Date | null, timeDate: Date | null, artist: string | null, stage: string | null): Observable<ApiResponseModel> => {
     console.log("new log: " + timeDate);
     const _dateDate = (dateDate === null) ? "0" : dateDate.toISOString();
-    const _timeDate = (timeDate == null) ? "0" : timeDate.toLocaleString();
+    const _timeDate = (timeDate == null) ? "0" : timeDate.toISOString();
     console.log("DateDate = " + _dateDate + "| TimeDate = " + _timeDate)
     const _artist = artist === null ? "0" : artist;
     const _stage = stage === null ? "0" : stage;
