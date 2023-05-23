@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
+import java.util.*;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -79,28 +80,37 @@ public class PerformanceController {
             artistRepository, stageRepository, dateDate, timeDate, artistName, stageName));
   }
 
-  @GetMapping(path="/delete")
+  @DeleteMapping(path="/delete")
   public @ResponseBody void deletePerformance(@RequestParam int performanceID) {
     performanceRepository.deleteById(performanceID);
   }
 
-  @GetMapping(path="/add")
-  public @ResponseBody Performance addPerformance(@RequestParam String start_time, @RequestParam String end_dateTime,
+  @DeleteMapping(path="/bulkDelete")
+  public @ResponseBody void bulkDeletePerformances(@RequestParam String performanceIDs) {
+    String[] numbersArray = performanceIDs.split("_");
+
+    for (String s : numbersArray) {
+      performanceRepository.deleteById(Integer.parseInt(s));
+    }
+  }
+
+  @PostMapping(path="/add")
+  public @ResponseBody void addPerformance(@RequestParam String start_time, @RequestParam String end_time,
                                                   @RequestParam String created_by, @RequestParam Long artist_id,
                                                   @RequestParam Long stage_id) {
 
     Performance performance = new Performance();
     performance.setStart_time(LocalDateTime.parse(start_time));
-    performance.setEnd_time(LocalDateTime.parse(end_dateTime));
+    performance.setEnd_time(LocalDateTime.parse(end_time));
     performance.setCreated_by(created_by);
     performance.setArtist_id(artist_id);
     performance.setStage_id(stage_id);
 
-    return performanceRepository.save(performance);
+    performanceRepository.save(performance);
   }
 
-  @GetMapping(path="/edit")
-  public @ResponseBody Performance editPerformance(@RequestParam Integer performance_id,
+  @PutMapping(path="/edit")
+  public @ResponseBody void editPerformance(@RequestParam Integer performance_id,
                                                    @RequestParam String start_time, @RequestParam String end_time,
                                                    @RequestParam String artist_id, @RequestParam String stage_id) {
 
@@ -128,7 +138,7 @@ public class PerformanceController {
 
     if(!artist_id.equals("0")){
       for(Artist currentArtist : artists) {
-        if(currentArtist.getName().equals(artist_id)){
+        if(currentArtist.getArtist_id().toString().equals(artist_id)){
           performance.setArtist_id(currentArtist.getArtist_id());
           break;
         }
@@ -136,14 +146,14 @@ public class PerformanceController {
     }
     if(!stage_id.equals("0")){
       for(Stage currentStage : stages) {
-        if(currentStage.getName().equals(stage_id)){
+        if(currentStage.getStage_id().toString().equals(stage_id)){
           performance.setStage_id(currentStage.getStage_id());
           break;
         }
       }
     }
 
-    return performanceRepository.save(performance);
+    performanceRepository.save(performance);
   }
 
   private Iterable<Performance> sortPerformances(Iterable<Performance> performances){

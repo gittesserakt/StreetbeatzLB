@@ -1,0 +1,44 @@
+@use 'sass:map';
+
+//Black (#000000) are only placeholder for the time being.
+// They can be replace with the needed color but please comment for what the color is an what color.
+
+//All the colors in "contrast" are the colors for text.
+
+//To use one of those colors in the scss file of a component you have to import it with
+// '@import "*pathFromComponentToPalette*/_palette.scss";'.
+// After that use 'map-get($primary, *Number*);' for the color or
+// 'color: map-get(map-get($primary, contrast), *Number*);' for the contrast color of this color.
+
+$primary: (
+  50: #ffffff66,    // Glass effect color
+  100: #ffffff00,   // If you need to make something transparent
+  200: #000000,     //
+  300: #54008055,   // performance-tile color
+  400: #000000,
+  500: #FFC107,     // Accent-color: amber
+  600: #2d1df9ff,   // Primary-color for landing-page: blue
+  700: #83f572ff,   // Primary-color for performances: light green
+  800: #f94d4b,     // Primary-color for vote: red
+  900: #83f572ff,     // Primary-color for admin: light green
+  A100: #ff22ceff,  // Secondary-color for landing-page: magenta
+  A200: #5e8df7ff,  // Secondary-color for performances: light blue
+  A400: #ffbd51,    // Secondary-color for vote: yellow/orange
+  A700: #5e8df7ff,    // Secondary-color for admin: light blue
+  contrast: (
+    50: #ffffff,    // Text-color for the glass effect
+    100: #E8E8E8,   // Silver text-color
+    200: #D0D0D0,   // Text-color for the performance-tile
+    300: #ff22ce,   // Icon-color for the performance-tile
+    400: #000000,
+    500: #ffffff,   // Text-color for the accent-color
+    600: #ffffff,   // Text-color for the primary-color of the landing-page
+    700: #ffffff,   // Text-color for the primary-color of the performances
+    800: #ffffff,   // Text-color for the primary-color of the vote
+    900: #000000,   // Text-color for the primary-color of the admin
+    A100: #ffffff,  // Text-color for the secondary-color of the landing-page
+    A200: #000000,  // Text-color for the secondary-color of the performances
+    A400: #000000,  // Text-color for the secondary-color of the vote
+    A700: #000000,  // Text-color for the secondary-color of the admin
+  )
+);

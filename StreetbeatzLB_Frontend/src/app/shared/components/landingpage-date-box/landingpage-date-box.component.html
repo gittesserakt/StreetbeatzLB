@@ -1,0 +1,12 @@
+<div class="background">
+  <mat-grid-list cols="1" rowHeight="50%">
+    <mat-grid-tile>
+      <h2>{{startDay}}. - {{endDay}}. {{month}} {{year}}</h2>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-flat-button class="leftButton" color="primary" (click)="leftButtonClick()">{{leftButton}}</button>
+      <span class="spacer"></span>
+      <button mat-flat-button class="rightButton" color="primary" (click)="rightButtonClick()">{{rightButton}}</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

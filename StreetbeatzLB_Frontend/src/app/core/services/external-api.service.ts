@@ -10,6 +10,7 @@ export class ExternalApiService {
   constructor(private http: HttpClient) {}
 
   callExternalApi = (config: RequestConfigModel): Observable<ApiResponseModel> => {
+    console.log(`Making api request to url: ${config.url}`);
     return this.http
       .request<unknown>(config.method, config.url, {
         headers: { ...config.headers },

@@ -1,9 +1,10 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, HostListener, OnInit} from "@angular/core";
 import {VerbosePerformanceService} from "../../core";
 import {VerbosePerformance} from "../../core/models/verbosePerformance";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Filter} from "../../core/models/filter.model";
 import {SmfCookieService} from "../../core/services/smfCookieService";
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-performances',
@@ -21,21 +22,12 @@ export class PerformancesComponent implements OnInit {
 
   verbosePerformances?: VerbosePerformance[];
 
-  constructor(private verbosePerformanceService: VerbosePerformanceService,
-              private breakpointObserver: BreakpointObserver, private smfService: SmfCookieService) {
-    breakpointObserver.observe([
-      Breakpoints.Handset,
-      Breakpoints.Tablet,
-      Breakpoints.WebLandscape
-    ]).subscribe(result => {
-      //console.log(result);
-      for (const query of Object.keys(result.breakpoints)) {
-        if (result.breakpoints[query]) {
-          this.device = this.displayMap.get(query) as String;
-        }
-      }
-      //console.log(this.device);
-    })
+  screenHeightPX: number = 0;
+  screenWidthPX: number = 0;
+
+  constructor(private verbosePerformanceService: VerbosePerformanceService, private activatedRoute: ActivatedRoute,
+              private route: Router, private breakpointObserver: BreakpointObserver, private smfService: SmfCookieService) {
+    this.onResize();
   }
 
   getAllPerformances(): void {
@@ -74,10 +66,44 @@ export class PerformancesComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("performances component init");
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params['stageId']) {
+        console.log("filter via map");
+        this.smfService.saveFilter(new Filter(null, null, params['stageId']));
+        this.getFilteredPerformances(new Filter(null, null, params['stageId']));
+      } else {
+        this.getAllPerformances();
+      }
+    });
   }
 
   filterChanged(event: Filter) {
     this.getFilteredPerformances(event);
   }
-}
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event?: any) {
+    this.screenHeightPX = window.innerHeight - 66;
+    this.screenWidthPX = window.innerWidth;
+    this.getBreakpoint();
+  }
+
+  getBreakpoint(){
+    this.breakpointObserver.observe([
+      Breakpoints.HandsetPortrait,
+      Breakpoints.HandsetLandscape,
+      Breakpoints.TabletPortrait,
+      Breakpoints.TabletLandscape,
+      Breakpoints.WebPortrait,
+      Breakpoints.WebLandscape
+    ]).subscribe(result => {
+      for(const query of Object.keys(result.breakpoints)){
+        if(result.breakpoints[query]){
+          this.device = this.displayMap.get(query) as string;
+        }
+      }
+    })
+
+    console.log('Breakpoint: ' + this.device)
+  }
+}

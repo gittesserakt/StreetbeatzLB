@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Poi {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long poi_id;
     private String name;
     private String icon;

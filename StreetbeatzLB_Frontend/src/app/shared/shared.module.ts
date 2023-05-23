@@ -18,6 +18,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {RouterModule} from "@angular/router";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import {RouterModule} from "@angular/router";
     MatDialogModule,
     MatTooltipModule,
     RouterModule,
+    MatSnackBarModule,
+    MatTabsModule,
+    MatCheckboxModule,
   ],
   exports: [
     ...COMPONENTS
