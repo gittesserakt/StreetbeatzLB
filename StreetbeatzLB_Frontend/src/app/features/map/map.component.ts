@@ -364,7 +364,10 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   markerClicked(iconId: string) {
-    this.router.navigate([`/performances`], { queryParams: { stageId: iconId } });
+    if(iconId == "A" || iconId == "B" || iconId == "C" || iconId == "D" || iconId == "E" || iconId == "F" ||
+      iconId == "G" || iconId == "H" || iconId == "I" || iconId == "K" || iconId == "L" || iconId == "M" || iconId == "S") {
+      this.router.navigate([`/performances`], { queryParams: { stageId: iconId } });
+    }
   }
 
   markerDragEnd($event: any, index: number) {
