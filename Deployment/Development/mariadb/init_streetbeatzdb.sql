@@ -21,7 +21,8 @@ create or replace table artist
 create or replace table artistInfo
 (
     artist_id   int          not null,
-    image       BLOB         NULL,
+    image       blob         null,
+    smf         varchar(255) null,
     homepage    varchar(255) null,
     facebook    varchar(255) null,
     instagram   varchar(255) null,
@@ -107,17 +108,17 @@ INSERT INTO `artist` (`name`, vote_count) VALUES
     ('Walk Two Folk', 0),
     ('YARA', 0);
 
-INSERT INTO artistInfo (artist_id, image, homepage, facebook, instagram, youTube, spotify, genre) VALUES
-    (1, null, null, null, null, null, null, null),
-    (2, null, null, null, null, null, null, null),
-    (3, null, null, null, null, null, null, null),
-    (4, null, null, null, null, null, null, null),
-    (5, null, null, null, null, null, null, null),
-    (6, null, null, null, null, null, null, null),
-    (7, null, null, null, null, null, null, null),
-    (8, null, null, null, null, null, null, null),
-    (9, null, null, null, null, null, null, null),
-    (10, null, null, null, null, null, null, null),
+INSERT INTO artistInfo (artist_id, image, smf, homepage, facebook, instagram, youTube, spotify, genre) VALUES
+    (1, null, 'http://www.alicerosemusic.com/', 'https://www.facebook.com/alicerosemusic', 'https://www.instagram.com/alicerosemusic', 'https://www.instagram.com/alicerosemusic', null, 'Singer/Songwriter/Folk'),
+    (2, null, null, 'https://www.facebook.com/bayram.agusev', null, 'https://youtu.be/A2F9ZNjQcEU', null, 'Klezmer/Balkan'),
+    (3, null, 'http://www.bastikmusik.de/', null, 'https://www.instagram.com/bastikmusic/', 'https://www.youtube.com/channel/UCYiBQc7KO7oBQgr2kWmDExA', 'https://open.spotify.com/artist/3QHkNmUFDucSq7w4OnX8aY?si=CCxn2rY7TlStk7lVRIgDrg', 'Singer/Songwriter/Folk'),
+    (4, null, null, 'https://www.facebook.com/benjakobmusic/', null, 'https://www.youtube.com/channel/UCMDOTFE4HBbXaB1NErPgpSg', null, 'Singer/Songwriter/Folk'),
+    (5, null, 'https://www.berangerofficial.com/', 'https://www.facebook.com/Berangermusic/', 'https://www.instagram.com/beranger_gras/', 'https://www.youtube.com/channel/UCkWwWX6WoQ6cghh8_bNU8Xg', 'https://open.spotify.com/artist/3U2PbgNvT1a9HWZ8xB33NN?si=mIWaPB-MQuqKlICP9q6rsw', 'Rock/Indie/Blues'),
+    (6, null, 'https://blu12.de/', null, null, null, null, 'Singer/Songwriter/Folk'),
+    (7, null, null, 'https://www.facebook.com/borjacatanesi', 'https://www.instagram.com/borjacatanesi/', 'https://www.youtube.com/c/BorjaCatanesi', 'https://open.spotify.com/artist/1PpdFQpITesHZ8pON6SqKl?si=hD2p53zsRoybDRI_yYV8kw', 'Latin/Reggae/Cumbia'),
+    (8, null, null, 'https://www.facebook.com/CrobbsMusic', 'https://instagram.com/crobbsmusic?igshid=YmMyMTA2M2Y=', null, null, 'Instrumental'),
+    (9, null, 'https://www.haltmakurz.de/on-tour', null, null, null, null, 'cover'),
+    (10, null, null, null, null, 'https://youtu.be/s_94A3NZ904', null, null),
     (11, null, null, null, null, null, null, null),
     (12, null, null, null, null, null, null, null),
     (13, null, null, null, null, null, null, null),
