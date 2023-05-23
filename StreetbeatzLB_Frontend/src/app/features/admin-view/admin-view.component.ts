@@ -1,8 +1,9 @@
-import { Component } from "@angular/core";
+import {Component, HostListener} from "@angular/core";
 import { MatDialog } from '@angular/material/dialog';
 import { VerbosePerformanceService } from "../../core";
 import { VerbosePerformance } from "../../core/models/verbosePerformance";
 import { PerformancePopupComponent } from "../../shared/components/performance-popup/performance-popup.component";
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-admin-view',
@@ -11,6 +12,8 @@ import { PerformancePopupComponent } from "../../shared/components/performance-p
 })
 export class AdminViewComponent {
   verbosePerformances?: VerbosePerformance[];
+  screenHeightPX: number = 0;
+  screenWidthPX: number = 0;
 
   constructor(
     private verbosePerformanceService: VerbosePerformanceService,
@@ -23,4 +26,11 @@ export class AdminViewComponent {
       data: { functionName: 'Add Performance' }
     });
   }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?: any) {
+    this.screenHeightPX = window.innerHeight - 70;
+    this.screenWidthPX = window.innerWidth;
+  }
+
 }

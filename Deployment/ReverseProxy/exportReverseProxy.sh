@@ -13,6 +13,7 @@ files=(
   "downReverseProxy.sh"
   "certs"
   "index.html"
+  "maintenance.html"
 )
 
 mkdir reverse_proxy

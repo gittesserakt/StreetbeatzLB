@@ -210,7 +210,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   navHeight!: number;
-
+  trackPosition: boolean = false;
   pois!: Poi[];
 
   constructor(private renderer: Renderer2, private el: ElementRef, private poiService: PoiService,
@@ -218,14 +218,16 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     this.deviceMarker = new Leaflet.Marker([0, 0], {icon: this.iconPerson});
     const source = interval(1000);
     this.subscription = source.subscribe(() => {
-      this.getDeviceLocation();
-      if (this.position) {
-        this.deviceMarker?.setLatLng([this.position.coords.latitude, this.position.coords.longitude]);
-      }
-      this.setDeviceMarker();
-      this.deviceMarker?.addTo(this.map)
-      if (this.followPosition) {
-        this.panToDevicePosition();
+      if (this.trackPosition) {
+        this.getDeviceLocation();
+        if (this.position) {
+          this.deviceMarker?.setLatLng([this.position.coords.latitude, this.position.coords.longitude]);
+        }
+        this.setDeviceMarker();
+        this.deviceMarker?.addTo(this.map)
+        if (this.followPosition) {
+          this.panToDevicePosition();
+        }
       }
     });
   }
@@ -341,8 +343,9 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   getDeviceLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((x) => this.position = x,
-        () => alert("Denied access to your location"));
+      navigator.geolocation.getCurrentPosition(
+        (x) => {this.position = x; this.trackPosition = true;},
+        () => this.trackPosition = false);
     } else {
       alert("Geolocation is not supported by this browser.");
     }
@@ -364,7 +367,10 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   markerClicked(iconId: string) {
-    this.router.navigate([`/performances`], { queryParams: { stageId: iconId } });
+    if(iconId == "A" || iconId == "B" || iconId == "C" || iconId == "D" || iconId == "E" || iconId == "F" ||
+      iconId == "G" || iconId == "H" || iconId == "I" || iconId == "K" || iconId == "L" || iconId == "M" || iconId == "S") {
+      this.router.navigate([`/performances`], { queryParams: { stageId: iconId } });
+    }
   }
 
   markerDragEnd($event: any, index: number) {

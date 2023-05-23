@@ -14,7 +14,8 @@ create or replace table artist
 (
     artist_id  int auto_increment
         primary key,
-    name      varchar(255) not null
+    name      varchar(255) not null,
+	vote_count 	int null
 );
 
 create or replace table poi
@@ -53,14 +54,7 @@ create or replace table performance
         foreign key (stage_id) references stage (stage_id)
 );
 
-create or replace table vote
-(
-    email    varchar(255) not null
-        primary key,
-	artist_id int          not null,
-    constraint vote_ibfk_1
-        foreign key (artist_id) references artist (artist_id)
-);
-
-create or replace index artist_id
-    on vote (artist_id);
+# identifier is email encoded with Base64URL
+INSERT INTO `administrator` (identifier, email, firstname, surname, picture) VALUES
+	('644e4e24dfb8300113c88833', 'streetmusicfestivallb@gmail.com', 'streetmusicfestivallb', 'surname', null);
+    --"auth0|" is removed when reading the Id, leads to problems.

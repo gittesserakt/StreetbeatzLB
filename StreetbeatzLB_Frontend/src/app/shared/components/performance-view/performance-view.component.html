@@ -2,10 +2,10 @@
   <app-filter></app-filter>
   <mat-divider vertical="false" [inset]></mat-divider>
   <div *ngIf="isAdmin" class="markAllCheckbox">
-    <mat-checkbox class="checkbox"><strong>Mark all performances</strong></mat-checkbox>
+    <!--<mat-checkbox class="checkbox"><strong>Mark all performances</strong></mat-checkbox>
     <button mat-fab color="primary" matTooltip="Delete the marked performances" (click)="deleteMarkedPerformances()">
       <mat-icon>delete</mat-icon>
-    </button>
+    </button>-->
   </div>
   <div class="performances-list">
     <div *ngFor="let performance of verbosePerformances;">
@@ -20,10 +20,10 @@
     <mat-divider vertical="false" [inset]></mat-divider>
 
     <div *ngIf="isAdmin" class="markAllCheckbox">
-      <mat-checkbox class="checkbox"><strong>Mark all performances</strong></mat-checkbox>
+      <!--<mat-checkbox class="checkbox"><strong>Mark all performances</strong></mat-checkbox>
       <button mat-fab color="primary" matTooltip="Delete the marked performances" (click)="deleteMarkedPerformances()">
         <mat-icon>delete</mat-icon>
-      </button>
+      </button>-->
     </div>
     <div class="performances-list">
       <div *ngFor="let performance of verbosePerformances;">
