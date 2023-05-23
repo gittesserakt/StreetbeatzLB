@@ -18,6 +18,20 @@ create or replace table artist
 	vote_count 	int null
 );
 
+create or replace table artistInfo
+(
+    artist_id   int          not null,
+    image       BLOB         NULL,
+    homepage    varchar(255) null,
+    facebook    varchar(255) null,
+    instagram   varchar(255) null,
+    youTube     varchar(255) null,
+    spotify     varchar(255) null,
+    genre       varchar(255) null,
+    constraint artist_id_fk
+        foreign key (artist_id) references artist (artist_id)
+)
+
 create or replace table poi
 (
     poi_id    int auto_increment
@@ -61,32 +75,71 @@ INSERT INTO `administrator` (identifier, email, firstname, surname, picture) VAL
 
 INSERT INTO `artist` (`name`, vote_count) VALUES
 	('Alice Rose', 0),
+    ('Bajram Agushev Band', 0),
     ('Bastik', 0),
     ('BENJAKOB', 0),
     ('Beranger', 0),
+    ('blu12', 0),
     ('Borja Catanesi', 0),
     ('Crobbs', 0),
     ('HaltMaKurz', 0),
     ('Ideal Forgery', 0),
     ('Jivers', 0),
     ('Jon Kenzie', 0),
+    ('Karacan Kombo', 0),
     ('Kuma', 0),
+    ('Kustan Adam', 0),
+    ('Lavinia Hope', 0),
     ('Lev Radagan', 0),
+    ('Magdalena Ganter', 0),
     ('Maja Iris', 0),
     ('Mario Parizek', 0),
     ('MC Money and the Jazz Rats', 0),
     ('Mirakolo', 0),
     ('Moanzy', 0),
     ('MT Head', 0),
-    ('Paolo Sgallini', 0),
     ('Ramm Tamm Tilda', 0),
     ('Roadstring Army', 0),
     ('SISSOS', 0),
     ('Sleepwalker’s Station', 0),
-    ('The Rich Man S Kitchen Orchestra', 0),
+    ('Tjis Groen', 0),
     ('Toni Mogens', 0),
     ('Walk Two Folk', 0),
     ('YARA', 0);
+
+INSERT INTO artistInfo (artist_id, image, homepage, facebook, instagram, youTube, spotify, genre) VALUES
+    (1, null, null, null, null, null, null, null),
+    (2, null, null, null, null, null, null, null),
+    (3, null, null, null, null, null, null, null),
+    (4, null, null, null, null, null, null, null),
+    (5, null, null, null, null, null, null, null),
+    (6, null, null, null, null, null, null, null),
+    (7, null, null, null, null, null, null, null),
+    (8, null, null, null, null, null, null, null),
+    (9, null, null, null, null, null, null, null),
+    (10, null, null, null, null, null, null, null),
+    (11, null, null, null, null, null, null, null),
+    (12, null, null, null, null, null, null, null),
+    (13, null, null, null, null, null, null, null),
+    (14, null, null, null, null, null, null, null),
+    (15, null, null, null, null, null, null, null),
+    (16, null, null, null, null, null, null, null),
+    (17, null, null, null, null, null, null, null),
+    (18, null, null, null, null, null, null, null),
+    (19, null, null, null, null, null, null, null),
+    (20, null, null, null, null, null, null, null),
+    (21, null, null, null, null, null, null, null),
+    (22, null, null, null, null, null, null, null),
+    (23, null, null, null, null, null, null, null),
+    (24, null, null, null, null, null, null, null),
+    (25, null, null, null, null, null, null, null),
+    (26, null, null, null, null, null, null, null),
+    (27, null, null, null, null, null, null, null),
+    (28, null, null, null, null, null, null, null),
+    (29, null, null, null, null, null, null, null),
+    (30, null, null, null, null, null, null, null),
+    (31, null, null, null, null, null, null, null),
+    (32, null, null, null, null, null, null, null)
 
 INSERT INTO `poi` (name, icon, poi_type, latitude, longitude) VALUES
 	('Haupteingang', '0', NULL, 48.89629356141575, 9.196231354904848),
