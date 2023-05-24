@@ -37,11 +37,11 @@ export class LandingpageArtistsComponent implements OnInit {
   generateArtistTabs(): void {
     this.artistTabs = [];
 
-    const totalTabs = Math.ceil(this.artists.length / 5);
+    const totalTabs = Math.ceil(this.artists.length / 4);
 
     for (let i = 0; i < totalTabs; i++) {
-      const startIdx = i * 5;
-      const endIdx = startIdx + 5;
+      const startIdx = i * 4;
+      const endIdx = startIdx + 4;
       const artists = this.artists.slice(startIdx, endIdx);
       this.artistTabs.push({ artists });
     }
