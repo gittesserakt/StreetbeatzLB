@@ -17,12 +17,12 @@ export class SmfCookieService {
     console.log("Write Filter as Cookies, param = " + filter.toString())
     this.removeFilter()
     if (filter.dateDate) {
-      this.smfService.set("filterCookieDateDate", <string>filter.dateDate.toISOString())
+      this.smfService.set("filterCookieDateDate", <string>filter.dateDate.toLocaleString())
     } else {
       this.smfService.delete("filterCookieDateDate")
     }
     if (filter.timeDate) {
-      this.smfService.set("filterCookieTimeDate", <string>filter.timeDate.toISOString())
+      this.smfService.set("filterCookieTimeDate", <string>filter.timeDate.toLocaleString())
     } else {
       this.smfService.delete("filterCookieTimeDate")
     }

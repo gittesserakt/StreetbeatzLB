@@ -71,7 +71,7 @@ export class VerbosePerformanceService {
       .pipe(switchMap((performancesResponse) => {
           const performances = performancesResponse.data as Performance[];
 
-          const verbosePerformances$ = performances.map((performance) => {
+          const verbosePerformances$ = performances?.map((performance) => {
             const verbosePerformance = new VerbosePerformance();
             verbosePerformance.start_time = performance.start_time;
             verbosePerformance.end_time = performance.end_time;
