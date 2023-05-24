@@ -14,25 +14,34 @@ export class SmfCookieService {
   }
 
   saveFilter(filter: Filter) {
-    console.log("Write Filter as Cookies, param = " + filter.toString())
+    let newDate = filter.dateDate ? new Date(filter.dateDate.setDate(filter.dateDate.getDate() + 1)) : null;
+    let newTime = filter.timeDate ? new Date(filter.timeDate.setTime(filter.timeDate.getHours() + 1)) : null;
+
+    let filterInternal = new Filter(
+      newDate,
+      newTime,
+      filter.artist,
+      filter.stage
+    );
+    console.log("Write Filter as Cookies, param = " + filterInternal.toString())
     this.removeFilter()
-    if (filter.dateDate) {
-      this.smfService.set("filterCookieDateDate", <string>filter.dateDate.toISOString())
+    if (filterInternal.dateDate) {
+      this.smfService.set("filterCookieDateDate", <string>filterInternal.dateDate.toISOString())
     } else {
       this.smfService.delete("filterCookieDateDate")
     }
-    if (filter.timeDate) {
-      this.smfService.set("filterCookieTimeDate", <string>filter.timeDate.toISOString())
+    if (filterInternal.timeDate) {
+      this.smfService.set("filterCookieTimeDate", <string>filterInternal.timeDate.toISOString())
     } else {
       this.smfService.delete("filterCookieTimeDate")
     }
-    if (filter.artist) {
-      this.smfService.set("filterCookieArtist", <string>filter.artist.toString())
+    if (filterInternal.artist) {
+      this.smfService.set("filterCookieArtist", <string>filterInternal.artist.toString())
     } else {
       this.smfService.delete("filterCookieArtist")
     }
-    if (filter.stage) {
-      this.smfService.set("filterCookieStage", <string>filter.stage.toString())
+    if (filterInternal.stage) {
+      this.smfService.set("filterCookieStage", <string>filterInternal.stage.toString())
     } else {
       this.smfService.delete("filterCookieStage")
     }
