@@ -1,29 +1,39 @@
+# identifier is email encoded with Base64URL
+INSERT INTO `administrator` (identifier, email, admin_name, picture) VALUES
+	('644e4e24dfb8300113c88833', 'streetmusicfestivallb@gmail.com', 'streetmusicfestivallb', null),
+    ('646cc9f12c53a205c4cd520f', 'tester@test.de', 'tester', null);
+    --"auth0|" is removed when reading the Id, leads to problems.
 
 INSERT INTO `artist` (`name`, vote_count) VALUES
     ('Alice Rose', 0),
+    ('Bajram Agushev Band', 0),
     ('Bastik', 0),
     ('BENJAKOB', 0),
     ('Beranger', 0),
+    ('blu12', 0),
     ('Borja Catanesi', 0),
     ('Crobbs', 0),
     ('HaltMaKurz', 0),
     ('Ideal Forgery', 0),
     ('Jivers', 0),
     ('Jon Kenzie', 0),
+    ('Karacan Kombo', 0),
     ('Kuma', 0),
+    ('Kustan Adam', 0),
+    ('Lavinia Hope', 0),
     ('Lev Radagan', 0),
+    ('Magdalena Ganter', 0),
     ('Maja Iris', 0),
     ('Mario Parizek', 0),
     ('MC Money and the Jazz Rats', 0),
     ('Mirakolo', 0),
     ('Moanzy', 0),
     ('MT Head', 0),
-    ('Paolo Sgallini', 0),
     ('Ramm Tamm Tilda', 0),
     ('Roadstring Army', 0),
     ('SISSOS', 0),
     ('Sleepwalker’s Station', 0),
-    ('The Rich Man S Kitchen Orchestra', 0),
+    ('Tijs Groen', 0),
     ('Toni Mogens', 0),
     ('Walk Two Folk', 0),
     ('YARA', 0);
@@ -119,4 +129,5 @@ INSERT INTO `performance` (start_time, end_time, created_by, artist_id, stage_id
     ('2023-05-28 10:00:00', '2023-05-28 10:30:00', '644e4e24dfb8300113c88833', 8, 7),
     ('2023-05-28 11:00:00', '2023-05-28 11:30:00', '644e4e24dfb8300113c88833', 1, 2),
     ('2023-05-28 12:00:00', '2023-05-28 12:30:00', '644e4e24dfb8300113c88833', 2, 4),
-    ('2023-05-28 13:00:00', '2023-05-28 13:30:00', '644e4e24dfb8300113c88833', 5, 6);
+    ('2023-05-28 13:00:00', '2023-05-28 13:30:00', '644e4e24dfb8300113c88833', 5, 6),
+    ('2023-05-29 12:00:00', '2023-05-29 12:30:00', '644e4e24dfb8300113c88833', 2, 4);

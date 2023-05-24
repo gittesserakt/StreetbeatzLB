@@ -144,49 +144,40 @@ export class AppComponent implements OnInit {
   }
 
   switchBackground(){
-    switch (this.currentURL){
-      case '/':
-        this.backgroundURL = `${this.baseHref}assets/design/landingpage_blue-magenta-background.svg`;
-        this.backgroundBallURL = `${this.baseHref}assets/design/landingpage_blue-background_ball.svg`;
-        break;
-      case '/performances':
-        this.backgroundURL = `${this.baseHref}assets/design/performances-n-admin_green-blue-background.svg`;
-        this.backgroundBallURL = `${this.baseHref}assets/design/performances-n-admin_green-background_ball.svg`;
-        break;
-      case '/map':
-        this.backgroundURL = `${this.baseHref}assets/design/map_background.svg`;
-        break;
-      case '/vote':
-        this.backgroundURL = `${this.baseHref}assets/design/vote_red-yellow-background.svg`;
-        this.backgroundBallURL = `${this.baseHref}assets/design/vote_red-yellow-background_ball.svg`;
-        break;
-      case '/admin-view':
-        this.backgroundURL = `${this.baseHref}assets/design/performances-n-admin_green-blue-background.svg`;
-        this.backgroundBallURL = `${this.baseHref}assets/design/performances-n-admin_green-background_ball.svg`;
-        break;
+    if(this.currentURL == '/'){
+      this.backgroundURL = `${this.baseHref}assets/design/landingpage_blue-magenta-background.svg`;
+      this.backgroundBallURL = `${this.baseHref}assets/design/landingpage_blue-background_ball.svg`;
+    }else if(this.currentURL.includes('/performances')){
+      this.backgroundURL = `${this.baseHref}assets/design/performances-n-admin_green-blue-background.svg`;
+      this.backgroundBallURL = `${this.baseHref}assets/design/performances-n-admin_green-background_ball.svg`;
+    }else if(this.currentURL.includes('/map')){
+      this.backgroundURL = `${this.baseHref}assets/design/map_background.svg`;
+    }else if(this.currentURL.includes('/vote')){
+      this.backgroundURL = `${this.baseHref}assets/design/vote_red-yellow-background.svg`;
+      this.backgroundBallURL = `${this.baseHref}assets/design/vote_red-yellow-background_ball.svg`;
+    }else if(this.currentURL.includes('/admin-view')){
+      this.backgroundURL = `${this.baseHref}assets/design/performances-n-admin_green-blue-background.svg`;
+      this.backgroundBallURL = `${this.baseHref}assets/design/performances-n-admin_green-background_ball.svg`;
     }
   }
 
   generateBackgroundImageStyles(): any {
-    switch(this.currentURL){
-      case '/map':
-        return {
-          'background-image': `url(${this.backgroundURL})`,
-          'background-position': `0% 0%`,
-          'background-size':  'cover',
-          'background-repeat': 'no-repeat',
-          'background-attachment': 'fixed',
-        }
-        break;
-      default:
-        return {
-          'background-image': `url(${this.backgroundBallURL}), url(${this.backgroundBallURL}), url(${this.backgroundBallURL}), url(${this.backgroundURL})`,
-          'background-position': `${this.xPositionBall1}% ${this.yPositionBall1}%, ${this.xPositionBall2}% ${this.yPositionBall2}%, ${this.xPositionBall3}% ${this.yPositionBall3}%, 0% 0%`,
-          'background-size': `${this.sizeBall1}px, ${this.sizeBall2}px, ${this.sizeBall3}px, cover`,
-          'background-repeat': 'no-repeat',
-          'background-attachment': 'fixed',
-        }
-        break;
+    if(this.currentURL.includes('/map')){
+      return {
+        'background-image': `url(${this.backgroundURL})`,
+        'background-position': `0% 0%`,
+        'background-size':  'cover',
+        'background-repeat': 'no-repeat',
+        'background-attachment': 'fixed',
+      }
+    }else {
+      return {
+        'background-image': `url(${this.backgroundBallURL}), url(${this.backgroundBallURL}), url(${this.backgroundBallURL}), url(${this.backgroundURL})`,
+        'background-position': `${this.xPositionBall1}% ${this.yPositionBall1}%, ${this.xPositionBall2}% ${this.yPositionBall2}%, ${this.xPositionBall3}% ${this.yPositionBall3}%, 0% 0%`,
+        'background-size': `${this.sizeBall1}px, ${this.sizeBall2}px, ${this.sizeBall3}px, cover`,
+        'background-repeat': 'no-repeat',
+        'background-attachment': 'fixed',
+      }
     }
   }
 

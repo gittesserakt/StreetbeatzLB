@@ -84,22 +84,24 @@
 }
 
 @media(max-width: 800px) {
-  .footer {
-    height: 100vh;
+  .footer-col {
+    width: 100%;
+    margin-bottom: 30px;
+    text-align: center;
 
-    .footer-col {
-      width: 100%;
-      margin-bottom: 30px;
-      text-align: center;
-
-      h4 {
-        margin-top: 35px;
-        margin-bottom: 15px;
-      }
-
-      .left {
-        margin-left: 5%;
-      }
+    h4 {
+      margin-top: 35px;
+      margin-bottom: 15px;
     }
+
+    .left {
+      margin-left: 5%;
+    }
+  }
+}
+
+@media(min-height: 770px) {
+  .footer {
+    height: calc(100vh - 64px);
   }
 }
