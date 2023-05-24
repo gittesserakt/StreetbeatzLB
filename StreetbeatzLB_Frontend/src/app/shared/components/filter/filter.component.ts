@@ -10,8 +10,7 @@ import {SmfCookieService} from "../../../core/services/smfCookieService";
 })
 export class FilterComponent implements OnInit {
   device: String = "Web";
-  filter: Filter = new Filter(null, null, null);
-  dateTimeFilter: Filter = new Filter(null, null, null); // date and time will be combined into one filter
+  filter: Filter = new Filter(null, null, null, null);
   @Output() outFilter = new EventEmitter<Filter>();
 
   displayMap = new Map([
@@ -38,8 +37,9 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("ngOnInit in filter Component")
+    console.log("ngOnInit in filterComponent")
     this.filter = this.smfService.loadFilter();
+    console.log("Got following filter: " + this.filter.toString())
   }
 
   filterChanged(event: Filter) {
