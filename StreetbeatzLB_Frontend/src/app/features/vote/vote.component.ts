@@ -13,6 +13,7 @@ export interface DialogData {
   chosenArtist: Artist;
   hasChosen: boolean;
   hasCookie: boolean;
+  showThanks: boolean;
 }
 
 @Component({
@@ -22,6 +23,7 @@ export interface DialogData {
 })
 export class VoteComponent implements OnInit {
   voteButton: string = 'Vote';
+  voteTitle: string = "Please select the artist" + '\n' + " you want to vote for:";
 
   screenHeightPX: number = 0;
   centerList?: number;
@@ -29,6 +31,7 @@ export class VoteComponent implements OnInit {
   chosenArtist?: Artist;
   hasChosen: boolean = false;
   hasCookie: boolean = false;
+  showThanks: boolean = true;
 
   artists?: Artist[];
 
@@ -144,18 +147,25 @@ export class VoteComponent implements OnInit {
         chosenArtist: this.chosenArtist,
         hasChosen: this.hasChosen,
         hasCookie: this.hasCookie,
+        showThanks: this.showThanks,
       }
     });
 
-    if(!this.hasCookie){
+    if(!this.hasCookie && this.showThanks){
       dialogRef.afterClosed().subscribe(result => {
         if (result == true) {
-          this.hasChosen = result;
+          // this.hasChosen = result;
           this.voteForArtist(this.chosenArtist?.name)
+          if(this.showThanks){
+            this.showThanks = false;
+            this.openDialog();
+            this.hasChosen = result;
+          }
         } else {
           this.hasChosen = false;
         }
         console.log(this.chosenArtist?.name);
+        console.log(this.hasChosen);
       });
     }
   }
