@@ -1,10 +1,67 @@
 @import "../../../../_palette.scss";
 
-mat-grid-list {
-  width: 100%;
+//mat-grid-list {
+//  width: 100%;
+//
+//  .infoContainer {
+//    //background-color: black;
+//  }
+//  .dateContainer{
+//    //background-color: #FFC107;
+//    .dateWrapper{
+//      position: absolute;
+//      top: 0;
+//      //bottom: 70%;
+//      //background-color: red;
+//    }
+//  }
+//}
 
-  .infoContainer {
-    //background-color: black;
+.background{
+  //background-color: #FFC107;
+  .infoWrapper{
+    //background-color: #ff0000;
+    height: 40vh;
+  }
+  .dateWrapper{
+    //background-color: #1aff00;
+    height: 50%;
+    padding-left: 7%;
+    padding-top: 10%;
   }
 }
 
+//region HandsetPortrait
+@media screen and (max-width: 599.98px){
+
+}
+//endregion
+//region HandsetLandscape
+@media screen and (min-width: 600px) and (max-width: 959.98px){
+
+}
+//endregion
+//region TabletPortrait
+@media screen and (min-width: 600px) and (max-width: 839.98px){
+
+}
+//endregion
+//region TabletLandscape
+@media screen and (min-width: 960px) and (max-width: 1279.98px){
+
+}
+//endregion
+//region WebLandscape
+@media screen and (min-width: 1280px){
+  .background{
+    .infoWrapper{
+      height: 50%;
+    }
+    .dateWrapper{
+      height: 50%;
+      padding-left: 7%;
+      padding-top: 0;
+    }
+  }
+}
+//endregion
