@@ -70,18 +70,11 @@ public class PerformanceFilter {
                                           String timeString, int artist, int stage) {
     List<Performance> filteredPerformances = (List<Performance>) performances;
 
-    String[] patterns = {
-            "d.M.yyyy, HH:mm:ss",
-            "dd.MM.yyyy, HH:mm:ss",
-            "d.MM.yyyy, HH:mm:ss",
-            "dd.M.yyyy, HH:mm:ss"
-    };
-
     LocalDateTime date;
     LocalDateTime time;
 
     if (artist != 0) {
-      List<Performance> filteredPerformancesArtist = new ArrayList<Performance>();
+      List<Performance> filteredPerformancesArtist = new ArrayList<>();
       for (Performance performance : performances){
         if (performance.getArtist_id() == artist) {
           filteredPerformancesArtist.add(performance);
@@ -90,7 +83,7 @@ public class PerformanceFilter {
       filteredPerformances.retainAll(filteredPerformancesArtist);
     }
     if (stage != 0) {
-      List<Performance> filteredPerformancesStage = new ArrayList<Performance>();
+      List<Performance> filteredPerformancesStage = new ArrayList<>();
       for (Performance performance : performances){
         if (performance.getStage_id() == stage) {
           filteredPerformancesStage.add(performance);
@@ -99,38 +92,24 @@ public class PerformanceFilter {
       filteredPerformances.retainAll(filteredPerformancesStage);
     }
     if(!dateString.equals("0")) {
-      for (String pattern : patterns) {
-        try {
-          DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-          date = LocalDateTime.parse(dateString, formatter);
-          List<Performance> filteredPerformancesDate = new ArrayList<Performance>();
-          for (Performance performance : performances){
-            if (performance.getStart_time().toLocalDate().equals(date.toLocalDate())){
-              filteredPerformancesDate.add(performance);
-            }
-          }
-          filteredPerformances.retainAll(filteredPerformancesDate);
-          break;
-        } catch (Exception e) {
+      date = LocalDateTime.parse(dateString,DateTimeFormatter.ofPattern("dd/MM/yyyy,_HH:mm"));
+      List<Performance> filteredPerformancesDate = new ArrayList<>();
+      for (Performance performance : performances){
+        if (performance.getStart_time().toLocalDate().equals(date.toLocalDate())){
+          filteredPerformancesDate.add(performance);
         }
       }
+      filteredPerformances.retainAll(filteredPerformancesDate);
     }
     if(!timeString.equals("0")) {
-      for (String pattern : patterns) {
-        try {
-          List<Performance> filteredPerformancesTime = new ArrayList<Performance>();
-          DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-          time = LocalDateTime.parse(timeString, formatter);
-          for (Performance performance : performances){
-            if (performance.getStart_time().toLocalTime().equals(time.toLocalTime()) || performance.getStart_time().toLocalTime().isAfter(time.toLocalTime())){
-              filteredPerformancesTime.add(performance);
-            }
-          }
-          filteredPerformances.retainAll(filteredPerformancesTime);
-          break;
-        } catch (Exception e) {
+      time = LocalDateTime.parse(timeString,DateTimeFormatter.ofPattern("dd/MM/yyyy,_HH:mm"));
+      List<Performance> filteredPerformancesTime = new ArrayList<>();
+      for (Performance performance : performances){
+        if (performance.getStart_time().toLocalTime().equals(time.toLocalTime()) || performance.getStart_time().toLocalTime().isAfter(time.toLocalTime())){
+          filteredPerformancesTime.add(performance);
         }
       }
+      filteredPerformances.retainAll(filteredPerformancesTime);
     }
 
     return filteredPerformances;

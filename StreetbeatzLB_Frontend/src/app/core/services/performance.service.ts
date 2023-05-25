@@ -36,8 +36,22 @@ export class PerformanceService {
 
   getFilteredPerformances = (dateDate: Date | null, timeDate: Date | null, artist: string | null, stage: string | null): Observable<ApiResponseModel> => {
     console.log("new log: " + timeDate);
-    const _dateDate = (dateDate === null) ? "0" : dateDate.toLocaleString();
-    const _timeDate = (timeDate == null) ? "0" : timeDate.toLocaleString();
+    const _dateDate = (dateDate === null) ? "0" : dateDate.toLocaleDateString('en-GB', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    }).replace(' ', '_');
+    const _timeDate = (timeDate == null) ? "0" : timeDate.toLocaleDateString('en-GB', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    }).replace(' ', '_');
     console.log("DateDate = " + _dateDate + "| TimeDate = " + _timeDate)
     const _artist = artist === null ? "0" : artist;
     const _stage = stage === null ? "0" : stage;
