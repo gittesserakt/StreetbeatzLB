@@ -13,6 +13,8 @@ export class LandingpageArtistsComponent implements OnInit {
   artists: Artist[] = [];
   artistTabs: { artists: Artist[] }[] = [];
   activeTab: number = 0;
+  expanded: number = 0;
+
   isAdmin: boolean = false;
 
   constructor(private artistService: ArtistService, private router: Router, private authService: AuthService) {}
@@ -71,6 +73,14 @@ export class LandingpageArtistsComponent implements OnInit {
     } else {
       this.activeTab--;
     }
+  }
+
+  toggleExpand(artist_id: number) {
+    this.expanded = artist_id;
+  }
+
+  toggleExpandLess() {
+    this.expanded = 0;
   }
 
   filter(id: number) {
