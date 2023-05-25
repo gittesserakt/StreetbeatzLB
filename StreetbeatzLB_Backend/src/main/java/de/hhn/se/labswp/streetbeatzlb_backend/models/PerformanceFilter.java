@@ -68,48 +68,50 @@ public class PerformanceFilter {
    */
   private static List<Performance> filter(Iterable<Performance> performances, String dateString,
                                           String timeString, int artist, int stage) {
-    List<Performance> filteredPerformancesWithoutTime = new ArrayList<>();
-    List<Performance> filteredPerformances = new ArrayList<>();
-    LocalDateTime date = null;
-    LocalDateTime time = null;
+    List<Performance> filteredPerformances = (List<Performance>) performances;
 
-    for (Performance performance : performances) {
-      if (artist == 0 || performance.getArtist_id() == artist) {
-        if (stage == 0 || performance.getStage_id() == stage) {
-          filteredPerformancesWithoutTime.add(performance);
+    LocalDateTime date;
+    LocalDateTime time;
+
+    if (artist != 0) {
+      List<Performance> filteredPerformancesArtist = new ArrayList<>();
+      for (Performance performance : performances){
+        if (performance.getArtist_id() == artist) {
+          filteredPerformancesArtist.add(performance);
         }
       }
+      filteredPerformances.retainAll(filteredPerformancesArtist);
     }
-
-    // artist und stage
-
-    if(!dateString.equals("0") && !timeString.equals("0")) {
-      date = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
-      time = LocalDateTime.parse(timeString,DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
-      for (Performance performance : filteredPerformancesWithoutTime){
-        if (performance.getStart_time().toLocalDate().equals(date.toLocalDate())){
-          if (performance.getStart_time().toLocalTime().equals(time.toLocalTime()) || performance.getStart_time().toLocalTime().isAfter(time.toLocalTime())){
-            filteredPerformances.add(performance);
-          }
+    if (stage != 0) {
+      List<Performance> filteredPerformancesStage = new ArrayList<>();
+      for (Performance performance : performances){
+        if (performance.getStage_id() == stage) {
+          filteredPerformancesStage.add(performance);
         }
       }
-    } else if(!dateString.equals("0")) {
-      date = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
-      for (Performance performance : filteredPerformancesWithoutTime){
+      filteredPerformances.retainAll(filteredPerformancesStage);
+    }
+    if(!dateString.equals("0")) {
+      date = LocalDateTime.parse(dateString,DateTimeFormatter.ofPattern("dd/MM/yyyy,_HH:mm"));
+      List<Performance> filteredPerformancesDate = new ArrayList<>();
+      for (Performance performance : performances){
         if (performance.getStart_time().toLocalDate().equals(date.toLocalDate())){
-          filteredPerformances.add(performance);
+          filteredPerformancesDate.add(performance);
         }
       }
-    } else if (!timeString.equals("0")){
-      time = LocalDateTime.parse(timeString,DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
-      for (Performance performance : filteredPerformancesWithoutTime){
+      filteredPerformances.retainAll(filteredPerformancesDate);
+    }
+    if(!timeString.equals("0")) {
+      time = LocalDateTime.parse(timeString,DateTimeFormatter.ofPattern("dd/MM/yyyy,_HH:mm"));
+      List<Performance> filteredPerformancesTime = new ArrayList<>();
+      for (Performance performance : performances){
         if (performance.getStart_time().toLocalTime().equals(time.toLocalTime()) || performance.getStart_time().toLocalTime().isAfter(time.toLocalTime())){
-          filteredPerformances.add(performance);
+          filteredPerformancesTime.add(performance);
         }
       }
-    } else {
-      filteredPerformances = filteredPerformancesWithoutTime;
+      filteredPerformances.retainAll(filteredPerformancesTime);
     }
+
     return filteredPerformances;
   }
 }

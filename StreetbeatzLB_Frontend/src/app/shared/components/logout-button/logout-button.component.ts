@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {AuthService} from "@auth0/auth0-angular";
-import {DOCUMENT} from "@angular/common";
+import {APP_BASE_HREF, DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-logout-button',
@@ -10,13 +10,14 @@ import {DOCUMENT} from "@angular/common";
 export class LogoutButtonComponent {
   constructor(
     private auth: AuthService,
-    @Inject(DOCUMENT) private doc: Document
+    @Inject(DOCUMENT) private doc: Document,
+    @Inject(APP_BASE_HREF) public baseHref: string
   ) {}
 
   handleLogout(): void {
     this.auth.logout({
       logoutParams: {
-        returnTo: this.doc.location.origin,
+        returnTo: this.doc.location.origin + this.baseHref,
       },
     });
   }

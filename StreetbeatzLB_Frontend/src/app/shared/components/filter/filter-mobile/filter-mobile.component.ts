@@ -42,6 +42,7 @@ export class FilterMobileComponent implements OnInit {
     if (index >= 0) {
       this.filterTypes.splice(index, 1);
     }
+    this.applyFilter();
   }
 
   add(filterType: string): void {
