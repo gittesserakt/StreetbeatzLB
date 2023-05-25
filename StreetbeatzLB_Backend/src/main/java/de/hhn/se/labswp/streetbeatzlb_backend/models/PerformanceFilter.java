@@ -1,22 +1,26 @@
 package de.hhn.se.labswp.streetbeatzlb_backend.models;
 
+import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PerformanceFilter {
 
   public static List<Performance> filterPerformancesByID(PerformanceRepository performanceRepository,
-                                                         LocalDateTime dateTime, int artist, int stage) {
+                                                         String dateString, String timeString,
+                                                         int artist, int stage) {
     Iterable<Performance> performances = performanceRepository.findAll();
 
-    return filter(performances, dateTime, artist, stage);
+    return filter(performances, dateString, timeString, artist, stage);
   }
 
   public static List<Performance> filterPerformancesByName(PerformanceRepository performanceRepository,
                                                            ArtistRepository artistRepository,
                                                            StageRepository stageRepository,
-                                                           LocalDateTime dateTime, String artist, String stage) {
+                                                           String dateString, String timeString,
+                                                           String artist, String stage) {
     Iterable<Performance> performances = performanceRepository.findAll();
 
     Iterable<Artist> artists = artistRepository.findAll();
@@ -42,27 +46,69 @@ public class PerformanceFilter {
       }
     }
 
-    return filter(performances, dateTime, (int) artistID, (int) stageID);
+    return filter(performances, dateString, timeString, (int) artistID, (int) stageID);
   }
 
   /**
-   * @param dateTime enthält Uhrzeit und Datum die getrennt voneinander zu filtern sind.
+   * Die Zeit wird mit der StartZeit der Performance verglichen, die endzeit ist egal
+   *
+   * @param dateString enthält Uhrzeit und Datum die getrennt voneinander zu filtern sind.
    *                 Ist das Datum auf das Jahr 1970 gesetzt dann ist das Datum, also der Monat nicht relevant.
    *                 Selbes gilt, wenn die Uhrzeit auf 00:00 Uhr gesetzt ist, da das Festival nur bis 23 Uhr geht
+   * @param timeString enthält nur die Zeit also Stunden und Minuten das Datum ist irrelevant.
+   *
+   *                 LocalDateTime dateDate = null;
+   *     LocalDateTime timeDate = null;
+   *     if (!dateString.equals("0")) {
+   *       dateDate = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
+   *     }
+   *     if(!timeString.equals("0")){
+   *       timeDate = LocalDateTime.parse(timeString,DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
+   *     }
    */
-  private static List<Performance> filter(Iterable<Performance> performances, LocalDateTime dateTime, int artist, int stage) {
+  private static List<Performance> filter(Iterable<Performance> performances, String dateString,
+                                          String timeString, int artist, int stage) {
+    List<Performance> filteredPerformancesWithoutTime = new ArrayList<>();
     List<Performance> filteredPerformances = new ArrayList<>();
+    LocalDateTime date = null;
+    LocalDateTime time = null;
+
     for (Performance performance : performances) {
-      if ((dateTime.getYear() < 1972
-           || performance.getStart_time().getDayOfMonth() == dateTime.getDayOfMonth())
-          && (dateTime.getHour() == 0
-              || (performance.getStart_time().getHour() == dateTime.getHour()
-                  && performance.getStart_time().getMinute() == dateTime.getMinute())
-          )
-          && (performance.getArtist_id() == artist || artist == 0)
-          && (performance.getStage_id() == stage || stage == 0)) {
-        filteredPerformances.add(performance);
+      if (artist == 0 || performance.getArtist_id() == artist) {
+        if (stage == 0 || performance.getStage_id() == stage) {
+          filteredPerformancesWithoutTime.add(performance);
+        }
       }
+    }
+
+    // artist und stage
+
+    if(!dateString.equals("0") && !timeString.equals("0")) {
+      date = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
+      time = LocalDateTime.parse(timeString,DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
+      for (Performance performance : filteredPerformancesWithoutTime){
+        if (performance.getStart_time().toLocalDate().equals(date.toLocalDate())){
+          if (performance.getStart_time().toLocalTime().equals(time.toLocalTime()) || performance.getStart_time().toLocalTime().isAfter(time.toLocalTime())){
+            filteredPerformances.add(performance);
+          }
+        }
+      }
+    } else if(!dateString.equals("0")) {
+      date = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
+      for (Performance performance : filteredPerformancesWithoutTime){
+        if (performance.getStart_time().toLocalDate().equals(date.toLocalDate())){
+          filteredPerformances.add(performance);
+        }
+      }
+    } else if (!timeString.equals("0")){
+      time = LocalDateTime.parse(timeString,DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
+      for (Performance performance : filteredPerformancesWithoutTime){
+        if (performance.getStart_time().toLocalTime().equals(time.toLocalTime()) || performance.getStart_time().toLocalTime().isAfter(time.toLocalTime())){
+          filteredPerformances.add(performance);
+        }
+      }
+    } else {
+      filteredPerformances = filteredPerformancesWithoutTime;
     }
     return filteredPerformances;
   }

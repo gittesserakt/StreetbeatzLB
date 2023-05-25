@@ -66,7 +66,7 @@ export class PerformanceViewComponent implements OnInit{
   }
 
   getFilteredPerformances(filter: Filter): void {
-    this.verbosePerformanceService.getFilteredVerbosePerformances(filter.date, filter.artist, filter.stage)
+    this.verbosePerformanceService.getFilteredVerbosePerformances(filter.dateDate, filter.timeDate, filter.artist, filter.stage)
       .subscribe((response) => {
         const {data, error} = response;
         console.log('verbosePerformances', response);

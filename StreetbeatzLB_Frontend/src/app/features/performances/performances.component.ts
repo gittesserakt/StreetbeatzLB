@@ -47,13 +47,15 @@ export class PerformancesComponent implements OnInit {
   }
 
   getFilteredPerformances(filter: Filter): void {
-    this.verbosePerformanceService.getFilteredVerbosePerformances(filter.date, filter.artist, filter.stage)
+    this.verbosePerformanceService.getFilteredVerbosePerformances(
+      filter.dateDate, filter.timeDate,  filter.artist, filter.stage)
       .subscribe((response) => {
         const {data, error} = response;
         console.log('verbosePerformances', response);
 
         if (data) {
           this.verbosePerformances = data as VerbosePerformance[];
+          console.log("--____________________________"+this.verbosePerformances.length)
         }
 
         if (error) {
@@ -67,8 +69,8 @@ export class PerformancesComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['stageId']) {
         console.log("filter via map");
-        this.smfService.saveFilter(new Filter(null, null, params['stageId']));
-        this.getFilteredPerformances(new Filter(null, null, params['stageId']));
+        this.smfService.saveFilter(new Filter(null, null, null, params['stageId']));
+        this.getFilteredPerformances(new Filter(null, null, null, params['stageId']));
       } else {
         this.getAllPerformances();
       }
