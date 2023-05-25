@@ -1,10 +1,11 @@
-import {Component, ElementRef, OnDestroy, OnInit, AfterViewInit, Renderer2} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, AfterViewInit, Renderer2, Inject} from '@angular/core';
 import * as Leaflet from 'leaflet';
 import {interval, Subscription} from "rxjs";
 import {PoiService} from "../../core/services/poi.service";
 import {Poi} from "../../core/models/poi.model";
 import {LatLng} from "leaflet";
 import {Router, ActivatedRoute} from "@angular/router";
+import {APP_BASE_HREF} from "@angular/common";
 
 Leaflet.Icon.Default.imagePath = 'assets/';
 
@@ -49,7 +50,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   constructor(private renderer: Renderer2, private el: ElementRef, private poiService: PoiService,
-              private router: Router, private activatedRouter: ActivatedRoute) {
+              private router: Router, private activatedRouter: ActivatedRoute, @Inject(APP_BASE_HREF) private baseHref: string) {
 
     this.getPoiByName("User Icon").then((poi: Poi) => {
       const personIcon = this.createIcon(poi);
@@ -119,8 +120,8 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private createIcon(poi: Poi): Leaflet.Icon {
     return Leaflet.icon({
-      iconRetinaUrl: '/assets/map/' + poi.icon,
-      iconUrl: '/assets/map/' + poi.icon,
+      iconRetinaUrl: this.baseHref + '/assets/map/' + poi.icon,
+      iconUrl: this.baseHref + '/assets/map/' + poi.icon,
       iconSize: this.iconSize,
       iconAnchor: this.iconAnchor,
       popupAnchor: this.popupAnchor,
