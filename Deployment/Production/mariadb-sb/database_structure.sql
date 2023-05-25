@@ -23,7 +23,7 @@ create or replace table poi
         primary key,
     name      varchar(255) not null,
     icon      varchar(255) null,
-    poi_type  int          null,
+    poi_type  varchar(255) null,
     latitude  double       not null,
     longitude double       not null
 );
@@ -38,7 +38,7 @@ create or replace table stage
 
 create or replace table performance
 (
-    performance_id int auto_increment
+    performance_id  int auto_increment
         primary key,
     start_time      datetime     null,
 	end_time        datetime     null,

@@ -95,7 +95,7 @@ public class PerformanceFilter {
       date = LocalDateTime.parse(dateString,DateTimeFormatter.ofPattern("dd/MM/yyyy,_HH:mm"));
       List<Performance> filteredPerformancesDate = new ArrayList<>();
       for (Performance performance : performances){
-        if (performance.getStart_time().toLocalDate().equals(date.toLocalDate())){
+        if (performance.getStart_time().toLocalDate().equals(date.toLocalDate()) || performance.getStart_time().toLocalDate().isAfter(date.toLocalDate())){
           filteredPerformancesDate.add(performance);
         }
       }
