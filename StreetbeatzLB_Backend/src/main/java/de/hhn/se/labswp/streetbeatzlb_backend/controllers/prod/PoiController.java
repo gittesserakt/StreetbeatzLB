@@ -30,8 +30,6 @@ public class PoiController {
 
         Iterable<Poi> pois = poiRepository.findAll();
 
-        poi = "Stage " + poi;
-
         int poiID = 0;
 
         for(Poi currentPoi : pois) {

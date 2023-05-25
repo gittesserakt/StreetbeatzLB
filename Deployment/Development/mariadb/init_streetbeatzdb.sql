@@ -23,7 +23,7 @@ create or replace table poi
         primary key,
     name      varchar(255) not null,
     icon      varchar(255) null,
-    poi_type  int          null,
+    poi_type  varchar(255) null,
     latitude  double       not null,
     longitude double       not null
 );
@@ -94,26 +94,27 @@ INSERT INTO `artist` (`name`, vote_count) VALUES
     ('YARA', 0);
 
 INSERT INTO `poi` (name, icon, poi_type, latitude, longitude) VALUES
-	('Haupteingang', '0', NULL, 48.89629356141575, 9.196231354904848),
-	('Eingang Mömpelgardstraße', '0', NULL, 48.89885774762525, 9.197583035983675),
-	('Vorgarten', NULL, NULL, 48.89890437269485, 9.196007967518401),
-	('Barocke Broderie', NULL, NULL, 48.90163303471827, 9.195045750240379),
-	('Herzogschaukel/ Aktionshaus', NULL, NULL, 48.902251005875385, 9.199487247719524),
-	('Restaurant Parkcafé', '2', NULL, 48.89950208404342, 9.201831829700073),
-	('Eingang Hinterer Schlosshof', '0', NULL, 48.89982743592445, 9.197495485734656),
-	('Stage A', 'A', NULL, 48.898986, 9.195800),
-	('Stage B', 'B', NULL, 48.897815, 9.196530),
-	('Stage C', 'C', NULL, 48.896432, 9.196165),
-	('Stage D', 'D', NULL, 48.899091, 9.197302),
-	('Stage E', 'E', NULL, 48.900007, 9.201417),
-	('Stage F', 'F', NULL, 48.900457, 9.200464),
-	('Stage G', 'G', NULL, 48.900477, 9.198559),
-	('Stage H', 'H', NULL, 48.902243, 9.198940),
-	('Stage I', 'I', NULL, 48.901842, 9.197179),
-	('Stage K', 'K', NULL, 48.901475, 9.195543),
-	('Stage L', 'L', NULL, 48.901147, 9.196509),
-	('Stage M', 'M', NULL, 48.899800, 9.198606),
-	('Stage S', 'S', NULL, 48.900378, 9.195961);
+	('Haupteingang', 'entrance.svg', 'entrance', 48.89629356141575, 9.196231354904848),
+	('Eingang Mömpelgardstraße', 'entrance.svg', 'entrance', 48.89885774762525, 9.197583035983675),
+	('Vorgarten', NULL, 'spot', 48.89890437269485, 9.196007967518401),
+	('Barocke Broderie', NULL, 'spot', 48.90163303471827, 9.195045750240379),
+	('Herzogschaukel/ Aktionshaus', NULL, 'spot', 48.902251005875385, 9.199487247719524),
+	('Restaurant Parkcafé', 'food.svg', 'food', 48.89950208404342, 9.201831829700073),
+	('Eingang Hinterer Schlosshof', 'entrance.svg', 'entrance', 48.89982743592445, 9.197495485734656),
+	('User Icon', 'user_position.svg', NULL, 0, 0),
+	('Stage A', 'stage_A.svg', 'stage', 48.898986, 9.195800),
+	('Stage B', 'stage_B.svg', 'stage', 48.897815, 9.196530),
+	('Stage C', 'stage_C.svg', 'stage', 48.896432, 9.196165),
+	('Stage D', 'stage_D.svg', 'stage', 48.899091, 9.197302),
+	('Stage E', 'stage_E.svg', 'stage', 48.900007, 9.201417),
+	('Stage F', 'stage_F.svg', 'stage', 48.900457, 9.200464),
+	('Stage G', 'stage_G.svg', 'stage', 48.900477, 9.198559),
+	('Stage H', 'stage_H.svg', 'stage', 48.902243, 9.198940),
+	('Stage I', 'stage_I.svg', 'stage', 48.901842, 9.197179),
+	('Stage K', 'stage_K.svg', 'stage', 48.901475, 9.195543),
+	('Stage L', 'stage_L.svg', 'stage', 48.901147, 9.196509),
+	('Stage M', 'stage_M.svg', 'stage', 48.899800, 9.198606),
+	('Stage S', 'stage_S.svg', 'stage', 48.900378, 9.195961);
 
 INSERT INTO `stage` (name, stage_size) VALUES
 	('A', 25.6),
