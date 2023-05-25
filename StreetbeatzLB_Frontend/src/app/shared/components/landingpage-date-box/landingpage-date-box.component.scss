@@ -1,0 +1,113 @@
+@import "../../../../_palette.scss";
+
+.background{
+  width: 15rem;
+  height: 7rem;
+  border: solid 4px white;
+  border-radius: 15px;
+  background-color: map-get($primary, 50);
+  h2{
+    color: map-get(map-get($primary, contrast), 500);
+  }
+  .spacer{
+    width: 5%;
+  }
+  .leftButton{
+    color: map-get(map-get($primary, contrast), 500);
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+  .rightButton{
+    color: map-get(map-get($primary, contrast), 500);
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+}
+//region HandsetLandscape
+@media screen and (max-width: 959.98px){
+  .background{
+    width: 17rem;
+    height: 8rem;
+    h2{
+      font-size: 1.4rem;
+    }
+    .spacer{
+      width: 5%;
+    }
+    .leftButton{
+      font-size: 1rem;
+      padding: 24px 20px;
+    }
+    .rightButton{
+      font-size: 1rem;
+      padding: 24px 20px;
+    }
+  }
+}
+//endregion
+//region TabletPortrait
+@media screen and (min-width: 800px) and (max-width: 839.98px){
+  .background{
+    width: 27rem;
+    height: 12rem;
+    h2{
+      font-size: 2.7rem;
+    }
+    .spacer{
+      width: 9%;
+    }
+    .leftButton{
+      font-size: 1.7rem;
+      padding: 25px;
+    }
+    .rightButton{
+      font-size: 1.7rem;
+      padding: 25px;
+    }
+  }
+}
+//endregion
+//region TabletLandscape
+@media screen and (min-width: 960px) and (max-width: 1279.98px){
+  .background{
+    width: 28rem;
+    height: 13rem;
+    h2{
+      font-size: 2.9rem;
+    }
+    .spacer{
+      width: 9%;
+    }
+    .leftButton{
+      font-size: 1.9rem;
+      padding: 25px;
+    }
+    .rightButton{
+      font-size: 1.9rem;
+      padding: 25px;
+    }
+  }
+}
+//endregion
+//region WebLandscape
+@media screen and (min-width: 1280px){
+  .background{
+    width: 30rem;
+    height: 13rem;
+    h2{
+      font-size: 2.9rem;
+    }
+    .spacer{
+      width: 9%;
+    }
+    .leftButton{
+      font-size: 1.9rem;
+      padding: 25px;
+    }
+    .rightButton{
+      font-size: 1.9rem;
+      padding: 25px;
+    }
+  }
+}
+//endregion

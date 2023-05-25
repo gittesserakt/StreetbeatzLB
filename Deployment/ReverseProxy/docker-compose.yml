@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  reverse-proxy:
+    container_name: nginx-rp
+    restart: always
+    build:
+      context: .
+      dockerfile: nginx-rp.dockerfile
+    volumes:
+      - /var/snap/docker/common/var-lib-docker/volumes/ReverseProxy/_data/reverse_proxy:/data
+    ports:
+      - "80:80"
+      - "443:443"

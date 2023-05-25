@@ -21,9 +21,9 @@ export class PerformanceTileComponent {
     this.isAdmin = false; //default value
   }
 
-  showLocation() {
-    alert("you see something");
-    this.router.navigate([`/map?stage=${this.performance.stage}`]);
+  showLocation(stageId: string){
+    console.log(stageId + ' is the stage id')
+    this.router.navigate([`/map`], { queryParams: { stageId: stageId} });
   }
 
   deletePerformance() {

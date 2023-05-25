@@ -1,17 +1,10 @@
-// Funktion, um Hex-Code in RGBA umzuwandeln
-@function hex_rgba($hex, $alpha: 1) {
-  $r: red($hex);
-  $g: green($hex);
-  $b: blue($hex);
-  $a: $alpha;
-
-  @return rgba($r, $g, $b, $a);
-}
+@import "../../../../_palette.scss";
 
 // color palette from theme
-$primary-color: blue; //mat.get-color-from-palette($mat-light-theme, primary, 500);
-$primary-color-light: lightblue;
-$secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent, 500);
+$tile-color: map-get($primary, 300);
+$text-color: map-get(map-get($primary, contrast), 200);
+$stage-color: map-get(map-get($primary, contrast), 200);
+$mapicon-color: map-get(map-get($primary, contrast), 300);
 
 .performance-tile-wrapper {
   display: flex;
@@ -21,8 +14,13 @@ $secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent,
   min-height: 100px;
   height: 100px;
   max-height: 150px;
-  width: 100%;
+  max-width: 100%;
   overflow: hidden;
+  background-color: $tile-color;
+  border-radius: 20px;
+  border: $tile-color solid 4px;
+  margin-left: 10px;
+  margin-right: 10px;
 
   .left-column {
     margin-left: 10px;
@@ -31,13 +29,14 @@ $secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent,
     max-width: 100px;
     height: 100%;
     overflow: hidden;
+    background-color: transparent;
 
     @media screen and (max-width: 400px) {
       max-width: 60px;
     }
 
     .stage {
-      color: $secondary-color;
+      color: $stage-color;
       font-size: 20px;
       font-weight: bold;
       display: flex;
@@ -56,7 +55,7 @@ $secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent,
         text-orientation: mixed;
         font-size: 12px;
         font-weight: normal;
-        color: $secondary-color;
+        color: $stage-color;
       }
 
       @media screen and (max-width: 400px) {
@@ -74,6 +73,7 @@ $secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent,
   .middle-column {
     flex: 4;
     height: 100%;
+    color: $text-color;
 
     .description {
       display: flex;
@@ -147,7 +147,7 @@ $secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent,
 
     .navigate button {
       background-color: transparent;
-      color: $secondary-color;
+      color: $mapicon-color;
       margin-right: 10px;
       box-shadow: none;
     }
@@ -159,7 +159,6 @@ $secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent,
 
     .change button {
       background-color: transparent;
-      color: $secondary-color;
       flex: 1;
       margin: 0 5px;
       height: 150%;

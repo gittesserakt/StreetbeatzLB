@@ -1,15 +1,138 @@
 import {Time} from "@angular/common";
 
+/**
+ * Internally timeDate is always initialized with the value of the 1 of January 1970 this is to be ignored.
+ * To outside use this class will return null if timeDate has values for get(Hour && Minute) = 0
+ *
+ * The festival is between 18 and 23 o'clock
+ */
 export class Filter {
-  date: Date | null;
-  time: Time | null;
-  artist: string | null;
-  stage: string | null;
 
-  constructor(date: Date | null, time: Time | null, artist: string | null, stage: string | null) {
-    this.date = date;
-    this.time = time;
-    this.artist = artist;
-    this.stage = stage;
+  private timeInternal: Date = new Date()// Represents the time (Hours:Minutes)
+
+  /**
+   *
+   * @param _dateDate Represents the date (Day, month, Year)
+   * @param _timeDate Represents the time (Hours:Minutes)
+   * @param _artist
+   * @param _stage
+   */
+  constructor(private _dateDate: Date | null, private _timeDate: Date | null,
+              private _artist: string | null, private _stage: string | null) {
+    if (_timeDate) {
+      this.timeInternal.setHours(_timeDate.getHours());
+      this.timeInternal.setMinutes(_timeDate.getMinutes());
+    }
+  }
+
+
+  get timeDate(): Date | null {
+    if (this.timeInternal.getHours() != 0) {
+      return this.timeInternal;
+    } else {
+      return null;
+    }
+  }
+
+  set timeDate(value: Date | null) {
+    if (value) {
+      this.timeInternal.setHours(value.getHours());
+      this.timeInternal.setMinutes(value.getMinutes());
+    } else {
+      this.timeInternal.setHours(0);
+      this.timeInternal.setMinutes(0);
+    }
+  }
+
+  get dateDate(): Date | null {
+    return this._dateDate;
+  }
+
+  set dateDate(value: Date | null) {
+    this._dateDate = value;
+  }
+
+  get artist(): string | null {
+    return this._artist;
+  }
+
+  set artist(value: string | null) {
+    this._artist = value;
+  }
+
+  get stage(): string | null {
+    return this._stage;
+  }
+
+  set stage(value: string | null) {
+    this._stage = value;
+  }
+
+  getTimeType(): Time | null {
+    return (this.timeInternal.getHours() == 0) ? null : {
+      hours: this.timeInternal.getHours(),
+      minutes: this.timeInternal.getMinutes()
+    }
+  }
+
+
+  setWithTimeType(time: Time | null) {
+    if (time) {
+      this.timeInternal.setHours(time.hours)
+      this.timeInternal.setMinutes(time.minutes)
+    } else {
+      this.timeInternal.setHours(0)
+      this.timeInternal.setMinutes(0)
+    }
+  }
+
+  private static fromStringToDate(dateTimeString: string): Date {
+    const [datePart, timePart] = dateTimeString.split(',_');
+
+    const [day, month, year] = datePart.split('/').map(segment => parseInt(segment, 10));
+
+    const [hour, minute] = timePart.split(':').map(segment => parseInt(segment, 10));
+
+    var date = new Date();
+    date.setFullYear(year, month - 1, day);
+    date.setHours(hour, minute, 0, 0);
+    return date;
+  }
+
+  toJSON(): string {
+    return JSON.stringify({
+      dateDate: this._dateDate?.toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).replace(' ', '_'),
+      timeDate: this._timeDate?.toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).replace(' ', '_'),
+      artist: this._artist,
+      stage: this._stage
+    });
+  }
+
+  static fromJSON(json: string): Filter {
+    const { dateDate, timeDate, artist, stage } = JSON.parse(json);
+    return new Filter(
+      dateDate ? this.fromStringToDate(dateDate) : null,
+      timeDate ? this.fromStringToDate(timeDate) : null,
+      artist || null,
+      stage || null
+    );
+  }
+
+  toString(): string {
+    return this.toJSON();
   }
 }

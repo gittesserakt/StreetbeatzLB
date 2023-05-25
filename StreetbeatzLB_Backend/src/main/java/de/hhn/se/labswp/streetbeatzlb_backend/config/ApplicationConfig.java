@@ -8,6 +8,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 @RequiredArgsConstructor
@@ -15,21 +16,12 @@ public class ApplicationConfig { // implements WebMvcConfigurer
 
   private final ApplicationProperties applicationProps;
 
-
-  /*@Override
-  public void addCorsMappings(final CorsRegistry registry) {
-    registry.addMapping("/**")
-      .allowedOrigins("*")
-      .allowedHeaders(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE)
-      .allowedMethods(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.PUT.name(), HttpMethod.DELETE.name(), HttpMethod.OPTIONS.name())
-      .maxAge(86400);
-  }*/
-
   @Bean
   public CorsFilter corsFilter() {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
-    corsConfiguration.setAllowCredentials(true);
-    corsConfiguration.setAllowedOriginPatterns(Arrays.asList("http://localhost:4200", "http://localhost:8080", "http://localhost", "http://nginx-sb", "https://hjetter.ddns.net"));
+    corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));
+    //corsConfiguration.setAllowCredentials(true);
+    //corsConfiguration.setAllowedOriginPatterns(Arrays.asList("https://*.localhost:[*]", "https://*.hjetter.ddns.net:[*]"));
     corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
         "Accept", "Authorization", "Origin, Accept", "X-Requested-With",
         "Access-Control-Request-Method", "Access-Control-Request-Headers"));

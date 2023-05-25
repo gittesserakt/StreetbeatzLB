@@ -1,7 +1,9 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
+
+@use 'sass:map';
+@use "palette";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -12,7 +14,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$StreetbeatzLB_Frontend-primary: mat.define-palette(mat.$amber-palette);
+//$StreetbeatzLB_Frontend-primary: mat.define-palette(mat.$amber-palette);
+$StreetbeatzLB_Frontend-primary: mat.define-palette(palette.$primary);
 $StreetbeatzLB_Frontend-accent: mat.define-palette(mat.$light-blue-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -34,23 +37,6 @@ $StreetbeatzLB_Frontend-theme: mat.define-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($StreetbeatzLB_Frontend-theme);
-
-/*
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Teko:wght@300;400;500;600;700&display=swap');
-
-:root {
-  --main-brand-color:#f36f21;
-  --secondary-main-brand-color: #ffcb05;
-  --background-color: rgb(255, 255, 255);
-  --text-color: black;
-  --secondary-text-color: #3d3d3d;
-}
-
-body{
-  font-family: 'Open Sans', sans-serif;
-  padding: 0;
-  margin: 0;
-}*/
 
 html, body { height: 100%; /*scroll-behavior: smooth*/}
 body { margin: 0; font-family: "Open Sans", sans-serif; }

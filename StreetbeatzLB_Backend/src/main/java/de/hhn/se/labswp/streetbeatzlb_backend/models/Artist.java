@@ -9,6 +9,7 @@ public class Artist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long artist_id;
     private String name;
+    private Long vote_count;
 
     public Long getArtist_id() {
         return artist_id;
@@ -24,5 +25,13 @@ public class Artist {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getVote_count() {
+        return vote_count;
+    }
+
+    public void setVote_count(Long vote_count) {
+        this.vote_count = vote_count;
     }
 }

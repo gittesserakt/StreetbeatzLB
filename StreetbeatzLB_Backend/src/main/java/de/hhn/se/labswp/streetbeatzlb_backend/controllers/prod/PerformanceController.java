@@ -15,6 +15,9 @@ import java.util.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -42,25 +45,21 @@ public class PerformanceController {
   }
 
   @GetMapping(path="/filteredByID")
-  public @ResponseBody Iterable<Performance> getFilteredPerformancesByID(@RequestParam String time,
-                                                                     @RequestParam int artist_id, @RequestParam int stage_id) {
-    LocalDateTime newTime = null;
-    if(!time.equals("0")){
-      newTime = LocalDateTime.parse(time);
-    }
-
-    return sortPerformances(PerformanceFilter.filterPerformancesByID(performanceRepository, newTime, artist_id, stage_id));
+  public @ResponseBody Iterable<Performance> getFilteredPerformancesByID(@RequestParam String dateString,
+                                                                         @RequestParam String timeString,
+                                                                         @RequestParam String artist_id,
+                                                                         @RequestParam String stage_id) {
+    return sortPerformances(PerformanceFilter.filterPerformancesByID(performanceRepository,
+            dateString, timeString, Integer.parseInt(artist_id), Integer.parseInt(stage_id)));
   }
 
   @GetMapping(path="/filteredByName")
-  public @ResponseBody Iterable<Performance> getFilteredPerformancesByName(@RequestParam String time,
-                                                                           @RequestParam String artist_id, @RequestParam String stage_id) {
-    LocalDateTime newTime = null;
-    if (!time.equals("0")) {
-      newTime = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
-    }
-
-    return sortPerformances(PerformanceFilter.filterPerformancesByName(performanceRepository, artistRepository, stageRepository, newTime, artist_id, stage_id));
+  public @ResponseBody Iterable<Performance> getFilteredPerformancesByName(@RequestParam String dateString,
+                                                                           @RequestParam String timeString,
+                                                                           @RequestParam String artistName,
+                                                                           @RequestParam String stageName) {
+    return sortPerformances(PerformanceFilter.filterPerformancesByName(performanceRepository,
+            artistRepository, stageRepository, dateString, timeString, artistName, stageName));
   }
 
   @DeleteMapping(path="/delete")
