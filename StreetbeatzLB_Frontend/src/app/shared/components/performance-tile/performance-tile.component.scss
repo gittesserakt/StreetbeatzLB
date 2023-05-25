@@ -23,7 +23,8 @@ $mapicon-color: map-get(map-get($primary, contrast), 300);
   margin-right: 10px;
 
   .left-column {
-    margin-left: 10px;
+    margin-left: 7px;
+    margin-right: 8px;
     flex: 2;
     width: 20%;
     max-width: 100px;
@@ -49,7 +50,7 @@ $mapicon-color: map-get(map-get($primary, contrast), 300);
 
       &::before {
         content: 'STAGE';
-        margin-right: 6px;
+        margin-right: 4px;
         margin-left: 2px;
         writing-mode: vertical-rl;
         text-orientation: mixed;
@@ -86,14 +87,14 @@ $mapicon-color: map-get(map-get($primary, contrast), 300);
       .artist {
         font-size: $max-font-size; // Schriftgröße auf Maximum setzen
 
-        @if (calc($min-font-size * 1.5) > $max-font-size) { // falls die maximale Schriftgröße zu klein ist
+        @if (($min-font-size * 1.5) > $max-font-size) { // falls die maximale Schriftgröße zu klein ist
           font-size: $min-font-size; // Schriftgröße auf Minimum setzen
         }
         @else {
           $i: 1;
-          @while (calc(100% - $i * 10%) > 0) { // Schriftgröße in 10%-Schritten reduzieren, bis sie passt
-            $font-size: calc($max-font-size - $i * 2px);
-            @if (calc(100% - $i * 10%) < 0 or $font-size < $min-font-size) { // falls die Schriftgröße zu klein wird
+          @while ((100% - $i * 10%) > 0) { // Schriftgröße in 10%-Schritten reduzieren, bis sie passt
+            $font-size: ($max-font-size - $i * 2px);
+            @if ((100% - $i * 10%) < 0 or $font-size < $min-font-size) { // falls die Schriftgröße zu klein wird
               $font-size: $min-font-size;
                // Schleife beenden
             }
