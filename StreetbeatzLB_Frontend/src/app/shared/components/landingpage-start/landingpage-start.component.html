@@ -1,9 +1,20 @@
-<mat-grid-list [cols]="device === 'HandsetPortrait' || device === 'TabletPortrait' ? 1 : 2 "
+<!--<mat-grid-list [cols]="device === 'HandsetPortrait' || device === 'TabletPortrait' ? 1 : 2 "
                [rowHeight]="device === 'HandsetPortrait' || device === 'TabletPortrait' ? 50 + '%' : 100 + '%' ">
   <mat-grid-tile class="infoContainer">
       <app-landingpage-info [screenHeightPX]="gridHeightPX" [screenWidthPX]="gridWidthPX" [text]="text"></app-landingpage-info>
   </mat-grid-tile>
-  <mat-grid-tile class="animationContainer">
-
+  <mat-grid-tile class="dateContainer">
+    <div class="dateWrapper">
+      <app-landingpage-date-box [screenHeightPX]="screenHeightPX" [screenWidthPX]="screenWidthPX"></app-landingpage-date-box>
+    </div>
   </mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list>-->
+
+<div class="background" [ngStyle]="{'height': screenHeightPX + 'px', 'width': screenWidthPX + 'px'}">
+  <div class="infoWrapper">
+    <app-landingpage-info [screenHeightPX]="gridHeightPX" [screenWidthPX]="gridWidthPX" [text]="text"></app-landingpage-info>
+  </div>
+  <div class="dateWrapper">
+    <app-landingpage-date-box [screenHeightPX]="screenHeightPX" [screenWidthPX]="screenWidthPX"></app-landingpage-date-box>
+  </div>
+</div>

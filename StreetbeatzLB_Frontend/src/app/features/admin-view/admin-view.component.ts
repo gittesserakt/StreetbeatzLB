@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { VerbosePerformanceService } from "../../core";
 import { VerbosePerformance } from "../../core/models/verbosePerformance";
 import { PerformancePopupComponent } from "../../shared/components/performance-popup/performance-popup.component";
-import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-admin-view',

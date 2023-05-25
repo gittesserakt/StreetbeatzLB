@@ -12,8 +12,7 @@ export class LoginButtonComponent {
   handleLogin(): void {
     this.auth.loginWithRedirect({
       appState: {
-        // target: '/admin-view',
-        target: '',
+        target: '/admin-view',
       },
     });
   }
