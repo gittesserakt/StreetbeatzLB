@@ -3,7 +3,7 @@
   <p>{{text}}</p>
   <p *ngIf="data.chosenArtist != undefined"><b>{{data.chosenArtist.name}}</b></p>
 </div>
-<div mat-dialog-actions *ngIf="!this.data.hasCookie">
+<div mat-dialog-actions *ngIf="!this.data.hasCookie && this.data.showThanks">
   <button mat-flat-button (click)="onNoClick()" color="warn">{{noButton}}</button>
   <button mat-flat-button [mat-dialog-close]="data.hasChosen" color="primary"
           [disabled]="data.chosenArtist == undefined">{{yesButton}}</button>
