@@ -17,8 +17,8 @@ export class Filter {
    * @param _artist
    * @param _stage
    */
-  constructor(private _dateDate: Date | null, private _timeDate: Date | null, private _artist: string | null, private _stage: string | null) {
-    this.timeInternal.setTime(0);
+  constructor(private _dateDate: Date | null, private _timeDate: Date | null,
+              private _artist: string | null, private _stage: string | null) {
     if (_timeDate) {
       this.timeInternal.setHours(_timeDate.getHours());
       this.timeInternal.setMinutes(_timeDate.getMinutes());
@@ -45,7 +45,7 @@ export class Filter {
   }
 
   get dateDate(): Date | null {
-    return this._dateDate
+    return this._dateDate;
   }
 
   set dateDate(value: Date | null) {
@@ -86,11 +86,53 @@ export class Filter {
     }
   }
 
-  toString(): string {
-    return "Date: " + (this._dateDate ? <string>this._dateDate?.toISOString() : "null") +
-      "| Time: " + ((this.timeInternal.getHours() == 0) ? this.timeInternal.getHours() + ":" + this.timeInternal.getMinutes() : "null") +
-      "| Artist: " + (this._artist ? this._artist! : "null") +
-      "| Stage: " + (this._stage ? this._stage! : "null");
+  private static fromStringToDate(dateTimeString: string): Date {
+    const [datePart, timePart] = dateTimeString.split(',_');
+
+    const [day, month, year] = datePart.split('/').map(segment => parseInt(segment, 10));
+
+    const [hour, minute] = timePart.split(':').map(segment => parseInt(segment, 10));
+
+    var date = new Date();
+    date.setFullYear(year, month - 1, day);
+    date.setHours(hour, minute, 0, 0);
+    return date;
   }
-  //Time wird nicht richtig zurück gegeben
+
+  toJSON(): string {
+    return JSON.stringify({
+      dateDate: this._dateDate?.toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).replace(' ', '_'),
+      timeDate: this._timeDate?.toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).replace(' ', '_'),
+      artist: this._artist,
+      stage: this._stage
+    });
+  }
+
+  static fromJSON(json: string): Filter {
+    const { dateDate, timeDate, artist, stage } = JSON.parse(json);
+    return new Filter(
+      dateDate ? this.fromStringToDate(dateDate) : null,
+      timeDate ? this.fromStringToDate(timeDate) : null,
+      artist || null,
+      stage || null
+    );
+  }
+
+  toString(): string {
+    return this.toJSON();
+  }
 }
