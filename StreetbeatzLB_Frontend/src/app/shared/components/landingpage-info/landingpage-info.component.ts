@@ -10,5 +10,5 @@ export class LandingpageInfoComponent {
   @Input() screenWidthPX!:number;
   @Input() text!: string;
 
-  title : string = "Music in your park";
+  title : string = "Music in" + '\n' + "Ludwigsburg";
 }

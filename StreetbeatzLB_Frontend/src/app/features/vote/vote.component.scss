@@ -1,30 +1,47 @@
 @import "../../../_palette.scss";
 
+$bla: map-get(map-get($primary, contrast), 100);
+$bli: map-get($primary, A100);
+$blu: #333333;
+
+$ble: #4A0135;
+$ble1: #32014A;
+$ble2: #FFECF9;
+$blo: map-get($primary, A700);
+
 .background {
-  //background: linear-gradient(map-get($primary, 800), map-get($primary, A400));
   overflow: hidden;
   display: flex;
   flex-direction: column;
 
-  .voteTitle {
-    //background: radial-gradient(circle, rgba(255,255,255,0.5046219171262255) 0%, rgba(255,255,255,0.7007003484987745) 90%);
-    height: 5%;
-    display: flex;
-    justify-content: center;
+  //height: 100%;
 
-    a {
-      align-self: center;
+  .bla {
+    height: 7%;
+    padding: 0 15% 0 15%;
+    margin-bottom: 3%;
+    .voteTitle {
 
-      color: #333333;
-      font-weight: bold;
-      font-size: large;
+      display: flex;
+      justify-content: center;
+
+      background-color: $ble2;
+      border-radius: 20px;
+      padding-top: 2%;
+      padding-bottom: 2%;
+
+      a {
+        align-self: center;
+
+        color: $blu;
+        font-weight: bold;
+        font-size: large;
+      }
     }
-
   }
 
   .listContainer {
-    //background: radial-gradient(circle, rgba(255,255,255,0.5046219171262255) 0%, rgba(255,255,255,0.7007003484987745) 90%);
-    height: 80%;
+    height: 73%;
     align-self: center;
 
     .list {
@@ -47,7 +64,6 @@
   }
 
   .buttonContainer {
-    //background: radial-gradient(circle, rgba(255,255,255,0.5046219171262255) 0%, rgba(255,255,255,0.7007003484987745) 90%);
     height: 10%;
     width: 40%;
     display: flex;

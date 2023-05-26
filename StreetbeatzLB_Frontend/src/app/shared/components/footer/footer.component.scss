@@ -12,6 +12,7 @@
   max-width: 100%;
   display: flex;
   flex-wrap: wrap;  //essential for mobile view
+  padding-top: 8vh;
 }
 
 .footer-col {
@@ -40,7 +41,8 @@
   }
 
   ul li a:hover {
-    color: map-get(map-get($primary, contrast), 50);  padding-left: 10px;
+    color: map-get($primary, 500);
+    padding-left: 10px;
   }
 
   ul li:not(:last-child) {
