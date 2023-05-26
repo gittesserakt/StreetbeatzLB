@@ -1,82 +1,77 @@
 @import "../../../../_palette.scss";
 
 .infoWrapper {
-  //background-color: red;
-  padding-left: 10px;
-
+  //background-color: #01f3d6;
+  padding-top: 10%;
   .titleWrapper {
-    //background-color: #45ff84;
-    height: 4.5rem;
+    //background-color: #1e2067;
+    margin-left: 6%;
     .title {
       //background-color: #6e6fff;
       color: map-get(map-get($primary, contrast), 500);
-      font-size: 3rem;
-      width: 50%;
       line-height: 85%;
     }
   }
   .textWrapper {
     //background-color: blue;
-    width: 100%;
+    margin-left: 6%;
     app-textbox {
       font-size: 0.7rem;
     }
   }
-  .spacer{
-    height: 10%;
-  }
-  .dateWrapper{
-    //background-color: #ff22ce;
-    padding-left: 10px;
-  }
 }
-//region HandsetLandscape
-@media screen and (max-width: 959.98px){
+
+
+//region HandsetPortrait
+@media screen and (max-width: 599.98px){
   .infoWrapper {
     .titleWrapper {
-      height: 3.5rem;
+      height: 26vw;
       .title {
-        font-size: 2.6rem;
-        width: 200px;
+        font-size: 17vw;
       }
     }
     .textWrapper {
-      width: 100%;
+      width: 70vw;
       app-textbox {
-        font-size: 0.7rem;
+        font-size: 3.4vw;
       }
     }
-    .spacer{
-      height: 5%;
+  }
+}
+//endregion
+//region HandsetLandscape
+@media screen and (min-width: 600px) and (max-width: 959.98px){
+  .infoWrapper {
+    .titleWrapper {
+      height: 12vw;
+      .title {
+        font-size: 8.7vw;
+      }
     }
-    .dateWrapper{
-      padding-left: 10px;
+    .textWrapper {
+      width: 65vw;
+      app-textbox {
+        font-size: 1.7vw;
+      }
     }
   }
 }
 //endregion
 //region TabletPortrait
-@media screen and (min-width: 800px) and (max-width: 839.98px){
+@media screen and (min-width: 600px) and (max-width: 839.98px){
   .infoWrapper {
-    padding-left: 30px;
     .titleWrapper {
-      height: 5rem;
+      height: 22vw;
       .title {
-        font-size: 3.3rem;
-        width: 200px;
+        font-size: 15vw;
       }
     }
     .textWrapper {
-      width: 70%;
+      width: 65vw;
       app-textbox {
-        font-size: 0.9rem;
+        font-size: 3vw;
       }
-    }
-    .spacer{
-      height: 7%;
-    }
-    .dateWrapper{
-      padding-left: 10px;
     }
   }
 }
@@ -84,25 +79,17 @@
 //region TabletLandscape
 @media screen and (min-width: 960px) and (max-width: 1279.98px){
   .infoWrapper {
-    padding-left: 30px;
     .titleWrapper {
-      height: 5rem;
+      height: 12.5vw;
       .title {
-        font-size: 3.3rem;
-        width: 200px;
+        font-size: 8.4vw;
       }
     }
     .textWrapper {
-      width: 100%;
+      width: 75%;
       app-textbox {
-        font-size: 0.9rem;
+        font-size: 1.5vw;
       }
-    }
-    .spacer{
-      height: 7%;
-    }
-    .dateWrapper{
-      padding-left: 10px;
     }
   }
 }
@@ -110,25 +97,18 @@
 //region WebLandscape
 @media screen and (min-width: 1280px){
   .infoWrapper {
-    padding-left: 30px;
+    padding-top: 0;
     .titleWrapper {
-      height: 6rem;
+      height: 9vw;
       .title {
-        font-size: 4rem;
-        width: 250px;
+        font-size: 6vw;
       }
     }
     .textWrapper {
-      width: 70%;
+      width: 50%;
       app-textbox {
-        font-size: 1rem;
+        font-size: 1.2vw;
       }
-    }
-    .spacer{
-      height: 5%;
-    }
-    .dateWrapper{
-      padding-left: 10px;
     }
   }
 }

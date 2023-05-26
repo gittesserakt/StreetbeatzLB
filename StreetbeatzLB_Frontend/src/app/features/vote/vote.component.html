@@ -1,10 +1,9 @@
 <div class="background" [ngStyle]="{'height': screenHeightPX - 66 + 'px'}">
-  <div class="voteTitle" [ngStyle]="{'width': centerList + '%'}">
-    <a class="b">Please select the artist</a>
-  </div>
-
-  <div class="voteTitle" [ngStyle]="{'width': centerList + '%'}">
-    <a> you want to vote for:</a>
+<!-- [ngStyle]="{'height': screenHeightPX - 66 + 'px'}" -->
+  <div class="bla">
+    <div class="voteTitle" [ngStyle]="{'width': centerList + '%', 'white-space': 'pre-line'}">
+      <a>{{voteTitle}}</a>
+    </div>
   </div>
 
   <div class="listContainer" [ngStyle]="{'width': centerList + '%'}">
