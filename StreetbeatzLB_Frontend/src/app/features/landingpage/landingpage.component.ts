@@ -9,8 +9,8 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 export class LandingpageComponent {
   screenHeightPX: number = 0;
   screenWidthPX: number = 0;
-  appText: string = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores "; //200 letters
-  festivalText: string = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"; // 400 letters
+  appText: string = "Experience StreetbeatzLB: 3 days, 11 stages, 32 artists." + '\n' + "Join the festival starting Friday at 6 PM. Get all the info and be part of it!"; //200 letters
+  festivalText: string = "Get ready for an unforgettable festival weekend starting on Friday at 6 PM. With 3 days, 11 stages, and 32 talented artists, it's going to be epic. Don't miss the grand finale on Sunday at 9:30 PM on Main Stage A, featuring the top 3 voted artists. Get all the info you need and be part of the excitement. Download the app now!"; // 400 letters
   device: string = 'Web';
   displayMap = new Map([
     [Breakpoints.HandsetPortrait, 'HandsetPortrait'],
