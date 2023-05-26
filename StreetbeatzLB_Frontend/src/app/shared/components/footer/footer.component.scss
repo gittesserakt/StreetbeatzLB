@@ -41,7 +41,8 @@
   }
 
   ul li a:hover {
-    color: map-get(map-get($primary, contrast), 50);  padding-left: 10px;
+    color: map-get($primary, 500);
+    padding-left: 10px;
   }
 
   ul li:not(:last-child) {
