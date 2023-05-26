@@ -119,9 +119,10 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   //***************************
 
   private createIcon(poi: Poi): Leaflet.Icon {
+    const url = (this.baseHref === '/' ? '' : this.baseHref) + '/assets/map/' + poi.icon;
     return Leaflet.icon({
-      iconRetinaUrl: this.baseHref + '/assets/map/' + poi.icon,
-      iconUrl: this.baseHref + '/assets/map/' + poi.icon,
+      iconRetinaUrl: url,
+      iconUrl: url,
       iconSize: this.iconSize,
       iconAnchor: this.iconAnchor,
       popupAnchor: this.popupAnchor,
@@ -202,6 +203,24 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
     this.map = $event;
     this.map.on('drag', (event) => this.mapDragged(event));
     this.getAllPois().then(()=>{
+      Leaflet.polygon([
+        [48.896226027990714, 9.197766780853273],
+        [48.896274949922436, 9.19461250305176],
+        [48.90218164635024, 9.194167256355287],
+        [48.90231213853569, 9.195642471313478],
+        [48.902467284317844, 9.200749397277834],
+        [48.90223101842231, 9.200904965400698],
+        [48.90222045038363, 9.201495051383974],
+        [48.90206181408932, 9.20159697532654],
+        [48.90197366091056, 9.200663566589357],
+        [48.90128968346977, 9.200701117515566],
+        [48.901201421786666, 9.200159311294557],
+        [48.90067960800623, 9.200223684310915],
+        [48.90041503935959, 9.202498197555544],
+        [48.898891744823594, 9.202144145965578],
+        [48.89932213836174, 9.200067043648234],
+        [48.89933951040007, 9.197729229927065]
+      ], {color: 'rgba(152,18,18,0.5)'}).addTo(this.map);
       this.initMarkers();
       this.map.setView(this.festivalPosition);
     });
@@ -214,13 +233,6 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   mapClicked($event: any) {
     this.getDeviceLocation();
     console.log($event.latlng.lat, $event.latlng.lng);
-  }
-
-  markerClicked(iconId: string) {
-    if(iconId == "A" || iconId == "B" || iconId == "C" || iconId == "D" || iconId == "E" || iconId == "F" ||
-      iconId == "G" || iconId == "H" || iconId == "I" || iconId == "K" || iconId == "L" || iconId == "M" || iconId == "S") {
-      this.router.navigate([`/performances`], { queryParams: { stageId: iconId } });
-    }
   }
 
   private centerOnStage(stageID: string): void {
