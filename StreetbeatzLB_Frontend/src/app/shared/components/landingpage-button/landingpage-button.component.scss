@@ -78,11 +78,11 @@ mat-grid-tile{
   mat-grid-tile {
     &:hover {
       .tileText {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
 
       .tileIcon {
-        font-size: 6.5rem;
+        font-size: 6rem;
       }
     }
   }
@@ -96,24 +96,24 @@ mat-grid-tile{
     }
     &:hover {
       .tileText {
-        font-size: 2rem;
+        font-size: 1.6rem;
       }
     }
   }
   .voteTile{
     button{
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
     mat-icon{
-      font-size: 6rem;
+      font-size: 5.5rem;
     }
   }
   .mapTile{
     button{
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
     mat-icon{
-      font-size: 6rem;
+      font-size: 5.5rem;
     }
   }
 }
