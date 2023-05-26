@@ -119,9 +119,10 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   //***************************
 
   private createIcon(poi: Poi): Leaflet.Icon {
+    const url = (this.baseHref === '/' ? '' : this.baseHref) + '/assets/map/' + poi.icon;
     return Leaflet.icon({
-      iconRetinaUrl: this.baseHref + '/assets/map/' + poi.icon,
-      iconUrl: this.baseHref + '/assets/map/' + poi.icon,
+      iconRetinaUrl: url,
+      iconUrl: url,
       iconSize: this.iconSize,
       iconAnchor: this.iconAnchor,
       popupAnchor: this.popupAnchor,
