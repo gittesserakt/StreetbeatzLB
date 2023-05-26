@@ -2,6 +2,7 @@
 
 mat-grid-list{
   margin: 1rem;
+  max-height: 85%;
 }
 
 mat-grid-tile{
@@ -73,3 +74,46 @@ mat-grid-tile{
   }
 }
 
+@media (max-width: 345px) {
+  mat-grid-tile {
+    &:hover {
+      .tileText {
+        font-size: 2.5rem;
+      }
+
+      .tileIcon {
+        font-size: 6.5rem;
+      }
+    }
+  }
+
+  .performanceTile{
+    button{
+      font-size: 1.6rem;
+    }
+    mat-icon{
+      font-size: 6rem;
+    }
+    &:hover {
+      .tileText {
+        font-size: 2rem;
+      }
+    }
+  }
+  .voteTile{
+    button{
+      font-size: 2rem;
+    }
+    mat-icon{
+      font-size: 6rem;
+    }
+  }
+  .mapTile{
+    button{
+      font-size: 2rem;
+    }
+    mat-icon{
+      font-size: 6rem;
+    }
+  }
+}
