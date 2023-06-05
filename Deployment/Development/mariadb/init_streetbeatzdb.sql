@@ -124,7 +124,6 @@ INSERT INTO `poi` (name, icon, poi_type, latitude, longitude) VALUES
 	('Stage H', 'stage_H.svg', 'stage', 48.902213090729475, 9.19890554419226),
 	('Stage I', 'stage_I.svg', 'stage', 48.90176861891673, 9.197159877980996),
 	('Stage K', 'stage_K.svg', 'stage', 48.90158259620384, 9.195645484951458),
-	('Stage L', 'stage_L.svg', 'stage', 48.9010373601387, 9.196416997065173),
 	('Stage M', 'stage_M.svg', 'stage', 48.8998816112992, 9.198310214505911),
 	('Stage S', 'stage_S.svg', 'stage', 48.9005792479601, 9.195935465077127);
 
@@ -139,7 +138,6 @@ INSERT INTO `stage` (name, stage_size) VALUES
     ('H', 4.5),
     ('I', 5.8),
     ('K', 5.6),     -- 10
-    ('L', 10.5),
     ('M', 9),
     ('S', 35);      -- 13
 
