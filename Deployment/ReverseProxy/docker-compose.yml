@@ -6,8 +6,10 @@ services:
     build:
       context: .
       dockerfile: nginx-rp.dockerfile
+    env_file:
+      - ${PROJECT_PATH}/Environment/.env
     volumes:
-      - /var/snap/docker/common/var-lib-docker/volumes/ReverseProxy/_data/reverse_proxy:/data
+      - ${PROJECT_PATH}/Deployment/ReverseProxy/certs:/certs
     ports:
       - "80:80"
       - "443:443"
