@@ -59,6 +59,9 @@ function main {
 function init {
   cp $project_path/Deployment/Environment/env_template $project_path/Deployment/Environment/.env
 
+  # overwrite the first line in the .env file with PROJECT_PATH=$project_path
+  sed -i "1s/.*/PROJECT_PATH=$project_path/" $project_path/Deployment/Environment/.env
+
   log 2 "Please edit the .env file in the Environment folder"
 }
 
