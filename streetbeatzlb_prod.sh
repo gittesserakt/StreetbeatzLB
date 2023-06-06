@@ -1,70 +1,59 @@
 #!/bin/bash
 
-# Check if the script is not executed with sudo
-if [[ $EUID -ne 0 ]]; then
-  log 3 "Error: This script must be run with sudo."
-  exit 1
-fi
+function main {
+  # check if the script gets a parameter
+  if [ $# -eq 0 ]
+    then
+      echo $1
+      log 3 "No arguments supplied"
+      exit 1
+  fi
 
-# Check if the script is not executable
-if [[ ! -x "$0" ]]; then
-  # Set the executable permission on the script
-  chmod +x "$0"
-  # Run the script again with the updated permission
-  exec "$0" "$@"
-fi
+  # check if only one parameter is passed
+  if [ "$#" -gt 1 ]
+    then
+      log 3 "Only one argument is allowed"
+      exit 1
+  fi
 
-# check if the script gets a parameter
-if [ $# -eq 0 ]
-  then
-    log 3 "No arguments supplied"
+  # global variables
+  project_path=$PWD
+
+  # check which parameter is passed and call the appropriate function
+  if [ $1 == "init" ]
+    then
+      log 1 "Initializing"
+      log 1 "Project path: $project_path"
+      init
+  elif [ $1 == "build" ]
+    then
+      log 1 "Building"
+      log 1 "Project path: $project_path"
+      build
+  elif [ $1 == "start" ]
+    then
+      log 1 "Starting"
+      log 1 "Project path: $project_path"
+      start
+  elif [ $1 == "stop" ]
+    then
+      log 1 "Stopping"
+      log 1 "Project path: $project_path"
+      stop
+  elif [ $1 == "help" ]
+    then
+      echo "Usage: ./streetbeatzlb_prod.sh [init|build|start|stop]"
+      echo "  init: Initialize the project"
+      echo "  build: Build the project"
+      echo "  start: Start the project"
+      echo "  stop: Stop the project"
+      echo "  help: Show this help message"
+      echo "For more information, please check the README.md file"
+  else
+    log 3 "Invalid argument"
     exit 1
-fi
-
-# check if only one parameter is passed
-if [ $# -gt 1 ]
-  then
-    log 3 "Only one argument is allowed"
-    exit 1
-fi
-
-# global variables
-project_path=$PWD
-
-# check which parameter is passed and call the appropriate function
-if [ $1 == "init" ]
-  then
-    log 1 "Initializing"
-    log 1 "Project path: $project_path"
-    init
-elif [ $1 == "build" ]
-  then
-    log 1 "Building"
-    log 1 "Project path: $project_path"
-    build
-elif [ $1 == "start" ]
-  then
-    log 1 "Starting"
-    log 1 "Project path: $project_path"
-    start
-elif [ $1 == "stop" ]
-  then
-    log 1 "Stopping"
-    log 1 "Project path: $project_path"
-    stop
-elif [ $1 == "help"]
-  then
-    echo "Usage: ./streetbeatzlb_prod.sh [init|build|start|stop]"
-    echo "init: Initialize the project"
-    echo "build: Build the project"
-    echo "start: Start the project"
-    echo "stop: Stop the project"
-    echo "help: Show this help message"
-    echo "For more information, please check the README.md file"
-else
-  log 3 "Invalid argument"
-  exit 1
-fi
+  fi
+}
 
 # function to initialize the project
 function init {
@@ -158,10 +147,10 @@ function log {
       log_type="INFO"
       ;;
     2)
-      log_type="\e[33mWARNING\e[0m"  # Orange color for warnings
+      log_type="WARNING"
       ;;
     3)
-      log_type="\e[31mERROR\e[0m"  # Red color for errors
+      log_type="ERROR"
       ;;
     *)
       log_type="UNKNOWN"
@@ -172,3 +161,5 @@ function log {
 
   echo "$log_entry"
 }
+
+main $@
