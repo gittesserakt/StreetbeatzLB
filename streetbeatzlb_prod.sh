@@ -18,6 +18,10 @@ fi
 if [ $1 == "init" ]
   then
     echo "Initializing"
+    chmod +x ./Deployment/init.sh
+    chmod +x ./Deployment/build.sh
+    chmod +x ./Deployment/start.sh
+    chmod +x ./Deployment/stop.sh
     ./Deployment/init.sh
 elif [ $1 == "build" ]
   then

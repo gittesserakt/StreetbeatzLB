@@ -47,13 +47,18 @@ If one of the prerequisites is not met, the deployment will fail.
     git clone 
     ```
 
-2. Run the deployment script with the init argument (this will create the necessary files and folders):
+2. Make the deployment script executable:
+    ```bash
+    chmod +x streetbeatzlb_prod.sh
+    ```
+
+3. Run the deployment script with the init argument (this will create the necessary files and folders):
     ```bash
     ./streetbeatzlb_prod.sh init
     ```
 
-3. Edit the .env file in the generated Environment directory of the project and fill in the necessary values.
-4. Run the deployment script with the build argument (this creates a docker container that will build the application and copy the files to the necessary folders):
+4. Edit the .env file in the generated Environment directory of the project and fill in the necessary values.
+5. Run the deployment script with the build argument (this creates a docker container that will build the application and copy the files to the necessary folders):
     ```bash
     ./streetbeatzlb_prod.sh build
     ```
