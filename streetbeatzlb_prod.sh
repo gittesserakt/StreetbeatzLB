@@ -68,7 +68,7 @@ function init {
 # function to build the project
 function build {
   # check if .env file exists
-  if [ ! -f $prject_path/Deployment/Environment/.env ]; then
+  if [ ! -f $project_path/Deployment/Environment/.env ]; then
     log 3 "No .env file found"
     exit 1
   fi

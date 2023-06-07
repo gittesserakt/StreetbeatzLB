@@ -21,8 +21,8 @@ MYSQL_PASSWORD=<user password>
 
 # tomcat
 TOMCAT_HEALTHCHECK_URL=<tomcat healthcheck url> # $DOMAIN + $BASE_HREF + api/healthcheck
-TOMCAT_PORT=<tomcat port>
+TOMCAT_PORT=<tomcat port> default: 8181
 
 # nginx
 NGINX_HEALTHCHECK_URL=<nginx healthcheck url> # $DOMAIN + $BASE_HREF
-NGINX_PORT=<nginx port>
+NGINX_PORT=<nginx port> #default: 81
