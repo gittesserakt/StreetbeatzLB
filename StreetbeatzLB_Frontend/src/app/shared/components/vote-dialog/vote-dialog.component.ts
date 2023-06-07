@@ -19,7 +19,7 @@ export class VoteDialogComponent {
       this.text = "You have already voted for this artist:";
     }else if(!this.data.showThanks){
       this.voteTitle = "Thank you";
-      this.text = "You successfully vote for:";
+      this.text = "You successfully voted for:";
     }else {
       this.data.hasChosen = true;
     }
