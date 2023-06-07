@@ -48,14 +48,6 @@ public class PerformanceFilter {
     return filter(performances, dateString, timeString, (int) artistID, (int) stageID);
   }
 
-  /**
-   * Die Zeit wird mit der StartZeit der Performance verglichen, die endzeit ist egal
-   *
-   * @param dateString enthält Uhrzeit und Datum die getrennt voneinander zu filtern sind.
-   *                 Ist das Datum auf das Jahr 1970 gesetzt dann ist das Datum, also der Monat nicht relevant.
-   *                 Selbes gilt, wenn die Uhrzeit auf 00:00 Uhr gesetzt ist, da das Festival nur bis 23 Uhr geht
-   * @param timeString enthält nur die Zeit also Stunden und Minuten das Datum ist irrelevant.
-   */
   private static List<Performance> filter(Iterable<Performance> performances, String dateString,
                                           String timeString, int artist, int stage) {
     List<Performance> filteredPerformances = (List<Performance>) performances;

@@ -117,7 +117,7 @@ INSERT INTO `poi` (name, icon, poi_type, latitude, longitude) VALUES
 	('Stage A', 'stage_A.svg', 'stage', 48.89896468779835, 9.195871091978917),
 	('Stage B', 'stage_B.svg', 'stage', 48.89776526420298, 9.196562921088118),
 	('Stage C', 'stage_C.svg', 'stage', 48.896581345167945, 9.196201576260139),
-	('Stage D', 'stage_D.svg', 'stage', 48.89914521295719, 9.197031855583193),
+	('Stage D', 'stage_D.svg', 'stage', 48.898708480335756, 9.197428340394255),
 	('Stage E', 'stage_E.svg', 'stage', 48.8999102584826, 9.201413440260355),
 	('Stage F', 'stage_F.svg', 'stage', 48.9004941786723, 9.200307164347237),
 	('Stage G', 'stage_G.svg', 'stage', 48.90062901392297, 9.198286767768879),
@@ -139,7 +139,7 @@ INSERT INTO `stage` (name, stage_size) VALUES
     ('I', 5.8),
     ('K', 5.6),     -- 10
     ('M', 9),
-    ('S', 35);      -- 13
+    ('S', 35);      -- 12
 
 INSERT INTO `performance` (start_time, end_time, created_by, artist_id, stage_id) VALUES
     -- Spielzeiten:
