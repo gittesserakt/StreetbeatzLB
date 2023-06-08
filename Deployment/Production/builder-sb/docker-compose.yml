@@ -1,4 +1,5 @@
 version: "3.9"
+name: sb-builder
 services:
     builder:
         container_name: builder-sb

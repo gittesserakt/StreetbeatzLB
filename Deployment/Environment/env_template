@@ -4,6 +4,7 @@ DATABASE_STORAGE_PATH=<path to directory> # where the database files will be sto
 DOMAIN=<domain name> # example: https://streetbeatzlb.com (https:// is required)
 BASE_HREF=<base href> # example: / or /streetbeatzlb/
 USE_PROXY=<true|false>
+SERVER_LAN_IP=<server lan ip> # example: 192.168.0.50
 
 # ssl cert paths (only if USE_PROXY is true)
 PATH_SSL_CERT_PEM=<path to ssl cert .pem>

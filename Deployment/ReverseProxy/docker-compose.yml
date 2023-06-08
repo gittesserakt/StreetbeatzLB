@@ -1,4 +1,5 @@
 version: "3.9"
+name: sb-reverseproxy
 services:
   reverse-proxy:
     container_name: nginx-rp

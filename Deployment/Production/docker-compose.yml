@@ -1,4 +1,5 @@
 version: "3.9"
+name: sb-production
 services:
     mariadb:
         container_name: mariadb-sb
