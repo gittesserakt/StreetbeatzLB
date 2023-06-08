@@ -5,7 +5,7 @@ services:
         restart: "no"
         build:
             context: .
-            dockerfile: builder-sb/builder.dockerfile
+            dockerfile: builder.dockerfile
         env_file:
             - ${PROJECT_PATH}/Deployment/Environment/.env
         volumes:
