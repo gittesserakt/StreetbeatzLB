@@ -26,7 +26,7 @@ fi
 echo "Building backend"
 
 chmod +x /data/StreetbeatzLB_Backend/gradlew
-/data/StreetbeatzLB_Backend/gradlew clean bootWar /data/StreetbeatzLB_Backend
+/data/StreetbeatzLB_Backend/gradlew -f /data/StreetbeatzLB_Backend clean bootWar
 cp /data/StreetbeatzLB_Backend/build/libs/*.war /data/Deployment/Builds/backend/StreetbeatzLB_Backend.war
 
 echo "Backend build finished"
