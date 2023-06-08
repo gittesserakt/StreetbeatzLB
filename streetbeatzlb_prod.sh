@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# global variables
+project_path=$PWD
+
 function main {
   # check if the script gets a parameter
   if [ $# -eq 0 ]
@@ -16,8 +19,12 @@ function main {
       exit 1
   fi
 
-  # global variables
-  project_path=$PWD
+  # check if project path is not empty
+  if [ -z "$project_path" ]
+    then
+      log 3 "Project path is empty"
+      exit 1
+  fi
 
   # check which parameter is passed and call the appropriate function
   if [ $1 == "init" ]
