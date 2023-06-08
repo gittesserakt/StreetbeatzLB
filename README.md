@@ -38,7 +38,7 @@ If one of the prerequisites is not met, the deployment will fail.
 
 ### First time installation and building the application
 
-1. Clone the repository on the server:
+1. Clone the repository to the server and change into the directory of the project:
     ```bash
     # clone from github
     git clone https://github.com/gittesserakt/StreetbeatzLB.git
@@ -76,14 +76,6 @@ If one of the prerequisites is not met, the deployment will fail.
     ```bash
     ./streetbeatzlb_prod.sh stop
     ```
-
-### Updating the application
-
-1. Stop the application (see above)
-2. Pull the latest version of the repository
-3. Run the deployment script with the build argument (see above)
-4. Start the application (see above)
-5. If you have your own reverse proxy in front of the application, you might need to restart it as well
 
 ### Uninstalling the application
 

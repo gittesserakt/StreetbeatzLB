@@ -1,1 +1,1 @@
-envsubst < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf
+env | grep -o '\${[^}]*}' default.conf | sed -e 's/\${\([^}]*\)}/\1/g' | while read -r var; do sed -i "s|\${$var}|${!var}|g" default.conf; done
