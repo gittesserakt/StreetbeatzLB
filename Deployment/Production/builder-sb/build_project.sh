@@ -26,7 +26,7 @@ fi
 echo "Building backend"
 
 chmod +x /data/StreetbeatzLB_Backend/gradlew
-/data/StreetbeatzLB_Backend/gradlew clean bootWar
+/data/StreetbeatzLB_Backend/gradlew clean bootWar /data/StreetbeatzLB_Backend
 cp /data/StreetbeatzLB_Backend/build/libs/*.war /data/Deployment/Builds/backend/StreetbeatzLB_Backend.war
 
 echo "Backend build finished"
@@ -34,6 +34,7 @@ echo "Backend build finished"
 # build frontend
 echo "Building frontend"
 
+cd /data/StreetbeatzLB_Frontend
 # check if node_modules folder exists
 if [ -d /data/StreetbeatzLB_Frontend/node_modules ]; then
   echo "Deleting old node_modules folder"
