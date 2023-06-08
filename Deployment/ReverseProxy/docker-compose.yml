@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: nginx-rp.dockerfile
     env_file:
-      - ${PROJECT_PATH}/Environment/.env
+      - ${PROJECT_PATH}/Deployment/Environment/.env
     volumes:
       - ${PROJECT_PATH}/Deployment/ReverseProxy/certs:/certs
     ports:

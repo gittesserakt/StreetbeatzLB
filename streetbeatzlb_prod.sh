@@ -99,6 +99,8 @@ function build {
   if [ ! "$(ls -A $project_path/Deployment/Builds/frontend)" ] || [ ! "$(ls -A $project_path/Deployment/Builds/backend)" ]; then
     log 3 "Project build failed"
     exit 1
+  else
+    log 1 "Project build succeeded"
   fi
 
   # check if directory certs already exists
@@ -125,6 +127,8 @@ function build {
     key_path=$(grep -E "^PATH_SSL_CERT_KEY=" $project_path/Deployment/Environment/.env | cut -d '=' -f2)
     ln -s key_path $project_path/Deployment/ReverseProxy/certs/ssl_cert.key
   fi
+
+  log 1 "Building complete"
 }
 
 # function to start the project
@@ -136,7 +140,7 @@ function start {
   fi
 
   log 1 "Starting project"
-  docker-compose --env-file $project_path/Deployment/Environment/.env up --detach --build
+  docker-compose --file $project_path/Deployment/Production/docker-compose.yml --env-file $project_path/Deployment/Environment/.env up --detach --build
 }
 
 # function to stop the project
@@ -148,7 +152,7 @@ function stop {
   fi
 
   log 1 "Stopping project"
-  docker-compose --env-file $project_path/Deployment/Environment/.env down --rmi all
+  docker-compose --file $project_path/Deployment/Production/docker-compose.yml --env-file $project_path/Deployment/Environment/.env down --rmi all
 }
 
 # function to log messages to a console

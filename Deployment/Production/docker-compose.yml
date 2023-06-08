@@ -7,7 +7,7 @@ services:
             context: .
             dockerfile: mariadb-sb/mariadb.dockerfile
         env_file:
-            - ${PROJECT_PATH}/Environment/.env
+            - ${PROJECT_PATH}/Deployment/Environment/.env
         volumes:
             - ${PROJECT_PATH}/Deployment/Production/mariadb-sb/sql-entrypoint:/docker-entrypoint-initdb.d/
             - ${DATABASE_STORAGE_PATH}:/var/lib/mysql
@@ -24,7 +24,7 @@ services:
             context: .
             dockerfile: tomcat-sb/tomcat.dockerfile
         env_file:
-            - ${PROJECT_PATH}/Environment/.env
+            - ${PROJECT_PATH}/Deployment/Environment/.env
         volumes:
             - ${PROJECT_PATH}:/data
             - ${PROJECT_PATH}/Deployment/Builds/backend:/var/www/streetbeatzlb
@@ -46,7 +46,7 @@ services:
             context: .
             dockerfile: nginx-sb/nginx.dockerfile
         env_file:
-            - ${PROJECT_PATH}/Environment/.env
+            - ${PROJECT_PATH}/Deployment/Environment/.env
         volumes:
             - ${PROJECT_PATH}/Deployment/Builds/frontend:/usr/share/nginx
         ports:
