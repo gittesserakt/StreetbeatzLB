@@ -115,17 +115,17 @@ function build {
     rm -rf $project_path/Deployment/ReverseProxy/certs/*
   fi
 
-  # check if USE_PROXY in ./Environment/.env file is set to true, if so, create link to certs
+  # check if USE_PROXY in ./Environment/.env file is set to true, if so, copy certs to certs folder
   if [ "$(grep -E "^USE_PROXY=true$" $project_path/Deployment/Environment/.env)" ]; then
     log 1 "Creating links to certs"
 
-    # get absolute path to .pem cert from .env file (PATH_SSL_CERT_PEM) and create link to it
+    # get absolute path to .pem cert from .env file (PATH_SSL_CERT_PEM) and copy it to certs folder
     pem_path=$(grep -E "^PATH_SSL_CERT_PEM=" $project_path/Deployment/Environment/.env | cut -d '=' -f2)
-    ln -s pem_path $project_path/Deployment/ReverseProxy/certs/ssl_cert.pem
+    cp $pem_path $project_path/Deployment/ReverseProxy/certs/ssl_cert.pem
 
-    # get absolute path to .key cert from .env file (PATH_SSL_CERT_KEY) and create link to it
+    # get absolute path to .key cert from .env file (PATH_SSL_CERT_KEY) and copy it to certs folder
     key_path=$(grep -E "^PATH_SSL_CERT_KEY=" $project_path/Deployment/Environment/.env | cut -d '=' -f2)
-    ln -s key_path $project_path/Deployment/ReverseProxy/certs/ssl_cert.key
+    cp $key_path $project_path/Deployment/ReverseProxy/certs/ssl_cert.key
   fi
 
   log 1 "Building complete"
