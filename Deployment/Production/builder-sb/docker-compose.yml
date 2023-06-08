@@ -7,6 +7,6 @@ services:
             context: .
             dockerfile: builder-sb/builder.dockerfile
         env_file:
-            - ${PROJECT_PATH}/Environment/.env
+            - ${PROJECT_PATH}/Deployment/Environment/.env
         volumes:
             - ${PROJECT_PATH}:/data

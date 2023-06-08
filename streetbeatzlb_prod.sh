@@ -101,6 +101,12 @@ function build {
     exit 1
   fi
 
+  # check if directory certs already exists
+  if [ ! -d $project_path/Deployment/ReverseProxy/certs ]; then
+    log 1 "Creating certs folder"
+    mkdir $project_path/Deployment/ReverseProxy/certs
+  fi
+
   # check if certs folder already has links to certs, if so, delete them
   if [ "$(ls -A $project_path/Deployment/ReverseProxy/certs)" ]; then
     log 1 "Deleting links to certs"
@@ -108,16 +114,15 @@ function build {
   fi
 
   # check if USE_PROXY in ./Environment/.env file is set to true, if so, create link to certs
-  if [ "$(grep -E "^USE_PROXY=true$" $prject_path/Deployment/Environment/.env)" ]; then
+  if [ "$(grep -E "^USE_PROXY=true$" $project_path/Deployment/Environment/.env)" ]; then
     log 1 "Creating links to certs"
-    mkdir $project_path/Deployment/ReverseProxy/certs
 
     # get absolute path to .pem cert from .env file (PATH_SSL_CERT_PEM) and create link to it
-    pem_path=$(grep -E "^PATH_SSL_CERT_PEM=" $prject_path/Deployment/Environment/.env | cut -d '=' -f2)
+    pem_path=$(grep -E "^PATH_SSL_CERT_PEM=" $project_path/Deployment/Environment/.env | cut -d '=' -f2)
     ln -s pem_path $project_path/Deployment/ReverseProxy/certs/ssl_cert.pem
 
     # get absolute path to .key cert from .env file (PATH_SSL_CERT_KEY) and create link to it
-    key_path=$(grep -E "^PATH_SSL_CERT_KEY=" $prject_path/Deployment/Environment/.env | cut -d '=' -f2)
+    key_path=$(grep -E "^PATH_SSL_CERT_KEY=" $project_path/Deployment/Environment/.env | cut -d '=' -f2)
     ln -s key_path $project_path/Deployment/ReverseProxy/certs/ssl_cert.key
   fi
 }
