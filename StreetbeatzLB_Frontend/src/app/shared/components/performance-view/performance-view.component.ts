@@ -3,6 +3,8 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {VerbosePerformance} from "../../../core/models/verbosePerformance";
 import {VerbosePerformanceService} from "../../../core";
 import {Filter} from "../../../core/models/filter.model";
+import {ActivatedRoute, Router} from '@angular/router';
+import {SmfCookieService} from "../../../core/services/smfCookieService";
 
 @Component({
   selector: 'app-performance-view',
@@ -24,6 +26,9 @@ export class PerformanceViewComponent implements OnInit{
 
   constructor(
     private verbosePerformanceService: VerbosePerformanceService,
+    private activatedRoute: ActivatedRoute,
+    private route: Router,
+    private smfService: SmfCookieService,
     private breakpointObserver: BreakpointObserver
   ) {
     breakpointObserver.observe([
@@ -46,7 +51,19 @@ export class PerformanceViewComponent implements OnInit{
   ngOnInit(): void {
     console.log(this.isAdmin ? "performance-view component (as admin) init":
       "performance-view component init");
-    this.getAllPerformances();
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params['stageId']) {
+        console.log("filter via map");
+        this.smfService.saveFilter(new Filter(null, null, null, params['stageId']));
+        this.getFilteredPerformances(new Filter(null, null, null, params['stageId']));
+      } else if (params['artistId']) {
+        console.log("filter via landingpage artist");
+        this.smfService.saveFilter(new Filter(null, null, params['artistId'], null));
+        this.getFilteredPerformances(new Filter(null, null, params['artistId'], null));
+      } else {
+        this.getAllPerformances();
+      }
+    });
   }
 
   getAllPerformances(): void {

@@ -71,8 +71,12 @@ export class PerformancesComponent implements OnInit {
         console.log("filter via map");
         this.smfService.saveFilter(new Filter(null, null, null, params['stageId']));
         this.getFilteredPerformances(new Filter(null, null, null, params['stageId']));
+      } else if (params['artistId']) {
+        console.log("filter via landingpage artist");
+        this.smfService.saveFilter(new Filter(null, null, params['artistId'], null));
+        this.getFilteredPerformances(new Filter(null, null, params['artistId'], null));
       } else {
-        this.getAllPerformances();
+         this.getAllPerformances();
       }
     });
   }

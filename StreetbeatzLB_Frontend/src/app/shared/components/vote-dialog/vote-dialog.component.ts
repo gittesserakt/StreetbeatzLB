@@ -17,11 +17,14 @@ export class VoteDialogComponent {
   constructor(public dialogRef: MatDialogRef<VoteDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData,){
     if (this.data.hasCookie){
       this.text = "You have already voted for this artist:";
+    }else if(!this.data.showThanks){
+      this.voteTitle = "Thank you";
+      this.text = "You successfully voted for:";
     }else {
       this.data.hasChosen = true;
     }
-    console.log("Dialog: ");
-    console.log(this.data);
+    // console.log("Dialog: ");
+    // console.log(this.data);
   }
 
   onNoClick(): void{

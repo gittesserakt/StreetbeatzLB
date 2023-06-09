@@ -1,12 +1,12 @@
-<div class="background" [ngStyle]="{'height': screenHeightPX + 'px'}">
+<div class="background" [ngStyle]="{'height': screenHeightPX + 'px', 'width': screenWidthPX + 'px'}">
   <app-landingpage-start [device]="device" [screenHeightPX]="screenHeightPX" [screenWidthPX]="screenWidthPX" [text]="appText"></app-landingpage-start>
   <div class="textbox">
     <app-textbox [text]="festivalText"></app-textbox>
   </div>
   <div class="spacer"></div>
-  <app-landingpage-button></app-landingpage-button>
-  <div class="spacer"></div>
   <app-landingpage-artists></app-landingpage-artists>
+  <div class="spacer"></div>
+  <app-landingpage-button></app-landingpage-button>
   <div class="spacer"></div>
   <app-landingpage-sponsor></app-landingpage-sponsor>
   <div class="spacer"></div>

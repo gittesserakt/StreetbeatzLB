@@ -49,9 +49,6 @@ public class PerformanceController {
                                                                          @RequestParam String timeString,
                                                                          @RequestParam String artist_id,
                                                                          @RequestParam String stage_id) {
-    LocalDateTime dateDate = null;
-    LocalDateTime timeDate = null;
-
     return sortPerformances(PerformanceFilter.filterPerformancesByID(performanceRepository,
             dateString, timeString, Integer.parseInt(artist_id), Integer.parseInt(stage_id)));
   }
