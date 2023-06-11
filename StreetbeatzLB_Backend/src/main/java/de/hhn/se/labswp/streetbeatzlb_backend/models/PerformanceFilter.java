@@ -1,6 +1,5 @@
 package de.hhn.se.labswp.streetbeatzlb_backend.models;
 
-import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -49,23 +48,6 @@ public class PerformanceFilter {
     return filter(performances, dateString, timeString, (int) artistID, (int) stageID);
   }
 
-  /**
-   * Die Zeit wird mit der StartZeit der Performance verglichen, die endzeit ist egal
-   *
-   * @param dateString enthält Uhrzeit und Datum die getrennt voneinander zu filtern sind.
-   *                 Ist das Datum auf das Jahr 1970 gesetzt dann ist das Datum, also der Monat nicht relevant.
-   *                 Selbes gilt, wenn die Uhrzeit auf 00:00 Uhr gesetzt ist, da das Festival nur bis 23 Uhr geht
-   * @param timeString enthält nur die Zeit also Stunden und Minuten das Datum ist irrelevant.
-   *
-   *                 LocalDateTime dateDate = null;
-   *     LocalDateTime timeDate = null;
-   *     if (!dateString.equals("0")) {
-   *       dateDate = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
-   *     }
-   *     if(!timeString.equals("0")){
-   *       timeDate = LocalDateTime.parse(timeString,DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"));
-   *     }
-   */
   private static List<Performance> filter(Iterable<Performance> performances, String dateString,
                                           String timeString, int artist, int stage) {
     List<Performance> filteredPerformances = (List<Performance>) performances;
@@ -95,7 +77,7 @@ public class PerformanceFilter {
       date = LocalDateTime.parse(dateString,DateTimeFormatter.ofPattern("dd/MM/yyyy,_HH:mm"));
       List<Performance> filteredPerformancesDate = new ArrayList<>();
       for (Performance performance : performances){
-        if (performance.getStart_time().toLocalDate().equals(date.toLocalDate()) || performance.getStart_time().toLocalDate().isAfter(date.toLocalDate())){
+        if (performance.getStart_time().toLocalDate().equals(date.toLocalDate())){
           filteredPerformancesDate.add(performance);
         }
       }
@@ -105,7 +87,8 @@ public class PerformanceFilter {
       time = LocalDateTime.parse(timeString,DateTimeFormatter.ofPattern("dd/MM/yyyy,_HH:mm"));
       List<Performance> filteredPerformancesTime = new ArrayList<>();
       for (Performance performance : performances){
-        if (performance.getStart_time().toLocalTime().equals(time.toLocalTime()) || performance.getStart_time().toLocalTime().isAfter(time.toLocalTime())){
+        if (performance.getStart_time().toLocalTime().equals(time.toLocalTime()) || performance.getStart_time().toLocalTime().isAfter(time.toLocalTime())
+                || performance.getEnd_time().toLocalTime().equals(time.toLocalTime()) || performance.getEnd_time().toLocalTime().isAfter(time.toLocalTime())){
           filteredPerformancesTime.add(performance);
         }
       }
