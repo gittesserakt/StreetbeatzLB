@@ -9,6 +9,7 @@ import {Time} from "@angular/common";
 export class Filter {
 
   private timeInternal: Date = new Date()// Represents the time (Hours:Minutes)
+  private dateInternal: Date = new Date()
 
   /**
    *
@@ -23,8 +24,10 @@ export class Filter {
       this.timeInternal.setHours(_timeDate.getHours());
       this.timeInternal.setMinutes(_timeDate.getMinutes());
     }
+    if (_dateDate) {
+      this.dateInternal.setMonth(_dateDate.getMonth(), _dateDate.getDate());
+    }
   }
-
 
   get timeDate(): Date | null {
     if (this.timeInternal.getHours() != 0) {
@@ -45,11 +48,20 @@ export class Filter {
   }
 
   get dateDate(): Date | null {
-    return this._dateDate;
+    if (this.dateInternal.getDate() != 0) {
+      return this.dateInternal;
+    } else {
+      return null;
+    }
   }
 
   set dateDate(value: Date | null) {
-    this._dateDate = value;
+    if (value) {
+      this.dateInternal.setMonth(value.getMonth(), value.getDate());
+      console.log('date: ' + this.dateInternal.getMonth());
+    } else {
+      this.dateInternal.setDate(0);
+    }
   }
 
   get artist(): string | null {
