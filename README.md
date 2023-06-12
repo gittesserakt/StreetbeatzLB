@@ -44,7 +44,7 @@ If one of the prerequisites is not met, the deployment will fail.
     git clone https://github.com/gittesserakt/StreetbeatzLB.git
     
     # or clone from bitbucket (university repository not available to the public)
-    git clone 
+    git clone https://bitbucket-student.it.hs-heilbronn.de/scm/swpbuga23strm/smf.git
     ```
 
 2. Make the deployment script executable:
