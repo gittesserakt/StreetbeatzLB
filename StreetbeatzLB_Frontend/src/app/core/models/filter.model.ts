@@ -113,7 +113,7 @@ export class Filter {
 
   toJSON(): string {
     return JSON.stringify({
-      dateDate: this._dateDate?.toLocaleDateString('en-GB', {
+      dateDate: this.dateInternal?.toLocaleDateString('en-GB', {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
@@ -121,7 +121,7 @@ export class Filter {
         minute: '2-digit',
         hour12: false
       }).replace(' ', '_'),
-      timeDate: this._timeDate?.toLocaleDateString('en-GB', {
+      timeDate: this.timeInternal?.toLocaleDateString('en-GB', {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
