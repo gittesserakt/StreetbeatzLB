@@ -8,17 +8,21 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatListModule} from "@angular/material/list";
 import {FormsModule} from "@angular/forms";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatIconModule} from "@angular/material/icon";
 @NgModule({
   declarations: [VoteComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterModule.forChild([{path: '', component: VoteComponent}]),
-    MatGridListModule,
-    MatButtonModule,
-    MatRadioModule,
-    MatListModule,
-    FormsModule,
-  ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        RouterModule.forChild([{path: '', component: VoteComponent}]),
+        MatGridListModule,
+        MatButtonModule,
+        MatRadioModule,
+        MatListModule,
+        FormsModule,
+        MatCheckboxModule,
+        MatIconModule,
+    ],
 })
 export class VoteModule {}
