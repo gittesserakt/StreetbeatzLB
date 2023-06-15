@@ -4,7 +4,7 @@
     <app-sidenav (toggleSidenav)="toggleSidenav()"></app-sidenav>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content class="navbar-content">
     <div class="navbar" >
 <!--      [ngClass]="{'mat-elevation-z5': true, 'sticky': isSticky}"-->
       <div *ngIf="device === 'WebLandscape', else elseBlock" class="navbar-desktop">

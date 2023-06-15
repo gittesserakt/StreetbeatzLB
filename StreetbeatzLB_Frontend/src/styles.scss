@@ -38,6 +38,6 @@ $StreetbeatzLB_Frontend-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($StreetbeatzLB_Frontend-theme);
 
-html, body { height: 100%; /*scroll-behavior: smooth*/}
+html, body { height: 100svh; /*scroll-behavior: smooth*/}
 body { margin: 0; font-family: "Open Sans", sans-serif; }
 @import "~leaflet/dist/leaflet.css";
