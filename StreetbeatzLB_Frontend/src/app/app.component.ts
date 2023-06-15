@@ -137,8 +137,8 @@ export class AppComponent implements OnInit {
         this.setBallSize(200, 105, 250);
         break;
       case "HandsetPortrait":
-        this.setBallPosition(70, 10, 12, 55, 190, 90);
-        this.setBallSize(200, 105, 250);
+        this.setBallPosition(70, 20, 9, 61, 340, 95);
+        this.setBallSize(70, 50, 85);
         break;
     }
   }
@@ -174,7 +174,7 @@ export class AppComponent implements OnInit {
       return {
         'background-image': `url(${this.backgroundBallURL}), url(${this.backgroundBallURL}), url(${this.backgroundBallURL}), url(${this.backgroundURL})`,
         'background-position': `${this.xPositionBall1}% ${this.yPositionBall1}%, ${this.xPositionBall2}% ${this.yPositionBall2}%, ${this.xPositionBall3}% ${this.yPositionBall3}%, 0% 0%`,
-        'background-size': `${this.sizeBall1}px, ${this.sizeBall2}px, ${this.sizeBall3}px, cover`,
+        'background-size': `${this.sizeBall1}%, ${this.sizeBall2}%, ${this.sizeBall3}%, cover`,
         'background-repeat': 'no-repeat',
         'background-attachment': 'fixed',
       }
