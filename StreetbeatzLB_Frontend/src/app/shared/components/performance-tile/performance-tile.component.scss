@@ -2,9 +2,9 @@
 
 // color palette from theme
 $tile-color: map-get($primary, 300);
-$text-color: map-get(map-get($primary, contrast), 200);
-$stage-color: map-get(map-get($primary, contrast), 200);
-$mapicon-color: map-get(map-get($primary, contrast), 300);
+$border-color: map-get($primary, 200);
+$text-color: map-get(map-get($primary, contrast), 50);
+$stage-color: map-get(map-get($primary, contrast), 50);
 
 .performance-tile-wrapper {
   display: flex;
@@ -18,9 +18,9 @@ $mapicon-color: map-get(map-get($primary, contrast), 300);
   overflow: hidden;
   background-color: $tile-color;
   border-radius: 20px;
-  border: $tile-color solid 4px;
-  margin-left: 10px;
-  margin-right: 10px;
+  border: $border-color solid 4px;
+  margin: 0 10px;
+  padding-top: 10px;
 
   .left-column {
     margin-left: 7px;
@@ -81,35 +81,9 @@ $mapicon-color: map-get(map-get($primary, contrast), 300);
       flex-direction: column;
       justify-content: center;
       overflow: hidden;
-      $min-font-size: 12px;
-      $max-font-size: 24px;
 
       .artist {
-        font-size: $max-font-size; // Schriftgröße auf Maximum setzen
-
-        @if (($min-font-size * 1.5) > $max-font-size) { // falls die maximale Schriftgröße zu klein ist
-          font-size: $min-font-size; // Schriftgröße auf Minimum setzen
-        }
-        @else {
-          $i: 1;
-          @while ((100% - $i * 10%) > 0) { // Schriftgröße in 10%-Schritten reduzieren, bis sie passt
-            $font-size: ($max-font-size - $i * 2px);
-            @if ((100% - $i * 10%) < 0 or $font-size < $min-font-size) { // falls die Schriftgröße zu klein wird
-              $font-size: $min-font-size;
-               // Schleife beenden
-            }
-            .text {
-              font-size: $font-size;
-            }
-            $i: $i + 1;
-          }
-        }
-      }
-
-      @media screen and (max-width: 400px) {
-        .artist {
-          font-size: 1.2rem;
-        }
+        font-size: 19px;
       }
 
       .time {
@@ -148,7 +122,6 @@ $mapicon-color: map-get(map-get($primary, contrast), 300);
 
     .navigate button {
       background-color: transparent;
-      color: $mapicon-color;
       margin-right: 10px;
       box-shadow: none;
     }

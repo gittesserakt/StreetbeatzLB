@@ -18,22 +18,22 @@
       </div>
     </div>
   </div>
-    <ng-container *ngIf="isAdmin">
-      <div class="change" style="padding-right: 5px" >
-        <button mat-fab style="margin-right: 5px" color="primary" matTooltip="Edit the performance" (click)="editPerformance()">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-fab color="primary" matTooltip="Delete the performance" (click)="deletePerformance()">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-    </ng-container>
-    <ng-container *ngIf="!isAdmin">
-      <div class="navigate" style="padding-right: 0.7rem">
-        <button mat-fab color="primary" matTooltip="Show stage on the map" (click)="showLocation(performance.stage)">
-          <mat-icon>map</mat-icon>
-          <mat-icon>chevron_right</mat-icon>
-        </button>
-      </div>
-    </ng-container>
+  <ng-container *ngIf="isAdmin">
+    <div class="change" style="padding-right: 1rem; color: orange">
+      <button mat-fab color="primary" style="margin-right: 0.7rem; color: white;" matTooltip="Edit the performance" (click)="editPerformance()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-fab color="primary" style="color: white" matTooltip="Delete the performance" (click)="deletePerformance()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!isAdmin">
+    <div class="navigate" style="padding-right: 1rem; color: orange">
+      <button mat-fab color="primary" style="color: white" matTooltip="Show stage on the map" (click)="showLocation(performance.stage)">
+        <mat-icon>map</mat-icon>
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </ng-container>
 </div>
