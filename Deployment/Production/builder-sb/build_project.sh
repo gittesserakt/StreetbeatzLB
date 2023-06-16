@@ -4,15 +4,15 @@ set -e
 
 # replace username for mariadb with the one in the .env file
 echo "Replacing username for mariadb"
-env | grep -o '\${[^}]*}' $project_path/Deployment/Production/mariadb-sb/sql-entrypoint/privileges.sql | sed -e 's/\${\([^}]*\)}/\1/g' | while read -r var; do sed -i "s|\${$var}|${!var}|g" $project_path/Deployment/Production/mariadb-sb/sql-entrypoint/privileges.sql; done
+env | grep -o '\${[^}]*}' /data/Deployment/Production/mariadb-sb/sql-entrypoint/privileges.sql | sed -e 's/\${\([^}]*\)}/\1/g' | while read -r var; do sed -i "s|\${$var}|${!var}|g" /data/Deployment/Production/mariadb-sb/sql-entrypoint/privileges.sql; done
 
 # replace variables in the backend config file with values from the .env file
 echo "Replacing variables in the backend config file"
-env | grep -o '\${[^}]*}' $project_path/StreetbeatzLB_Backend/src/main/resources/application-prod.yml | sed -e 's/\${\([^}]*\)}/\1/g' | while read -r var; do sed -i "s|\${$var}|${!var}|g" $project_path/StreetbeatzLB_Backend/src/main/resources/application-prod.yml; done
+env | grep -o '\${[^}]*}' /data/StreetbeatzLB_Backend/src/main/resources/application-prod.yml | sed -e 's/\${\([^}]*\)}/\1/g' | while read -r var; do sed -i "s|\${$var}|${!var}|g" /data/StreetbeatzLB_Backend/src/main/resources/application-prod.yml; done
 
 # replace variables in the frontend config file with values from the .env file
 echo "Replacing variables in the frontend config file"
-env | grep -o '\${[^}]*}' $project_path/StreetbeatzLB_Frontend/src/environments/environment.ts | sed -e 's/\${\([^}]*\)}/\1/g' | while read -r var; do sed -i "s|\${$var}|${!var}|g" $project_path/StreetbeatzLB_Frontend/src/environments/environment.ts; done
+env | grep -o '\${[^}]*}' /data/StreetbeatzLB_Frontend/src/environments/environment.ts | sed -e 's/\${\([^}]*\)}/\1/g' | while read -r var; do sed -i "s|\${$var}|${!var}|g" /data/StreetbeatzLB_Frontend/src/environments/environment.ts; done
 
 # rebuild database
 if [ "$REBUILD_DB" = "true" ]; then
