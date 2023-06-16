@@ -80,15 +80,6 @@ function build {
     exit 1
   fi
 
-  # replace username for mariadb with the one in the .env file
-  env | grep -o '\${[^}]*}' $project_path/Deployment/Production/mariadb-sb/sql-entrypoint/privileges.sql | sed -e 's/\${\([^}]*\)}/\1/g' | while read -r var; do sed -i "s|\${$var}|${!var}|g" $project_path/Deployment/Production/mariadb-sb/sql-entrypoint/privileges.sql; done
-
-  # replace variables in the backend config file with values from the .env file
-  env | grep -o '\${[^}]*}' $project_path/StreetbeatzLB_Backend/src/main/resources/application-prod.yml | sed -e 's/\${\([^}]*\)}/\1/g' | while read -r var; do sed -i "s|\${$var}|${!var}|g" $project_path/StreetbeatzLB_Backend/src/main/resources/application-prod.yml; done
-
-  # replace variables in the frontend config file with values from the .env file
-  env | grep -o '\${[^}]*}' $project_path/StreetbeatzLB_Frontend/src/environments/environment.ts | sed -e 's/\${\([^}]*\)}/\1/g' | while read -r var; do sed -i "s|\${$var}|${!var}|g" $project_path/StreetbeatzLB_Frontend/src/environments/environment.ts; done
-
   # clear the frontend and backend folders if they have content
   if [ "$(ls -A $project_path/Deployment/Builds/frontend)" ]; then
     log 1 "Clearing frontend folder"
