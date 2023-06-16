@@ -1,4 +1,6 @@
 #!/bin/bash
+set -x
+set -e
 
 # global variables
 project_path=$PWD

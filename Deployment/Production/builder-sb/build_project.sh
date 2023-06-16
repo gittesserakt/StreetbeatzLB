@@ -14,6 +14,12 @@ env | grep -o '\${[^}]*}' /data/StreetbeatzLB_Backend/src/main/resources/applica
 echo "Replacing variables in the frontend config file"
 env | grep -o '\${[^}]*}' /data/StreetbeatzLB_Frontend/src/environments/environment.ts | sed -e 's/\${\([^}]*\)}/\1/g' | while read -r var; do sed -i "s|\${$var}|${!var}|g" /data/StreetbeatzLB_Frontend/src/environments/environment.ts; done
 
+# if reverse proxy is enabled, replace variables in the nginx server config with values from the .env file
+if [ "$REVERSE_PROXY" = "true" ]; then
+  echo "Replacing variables in the nginx server config"
+  env | grep -o '\${[^}]*}' /data/StreetbeatzLB/Deployment/ReverseProxy/nginx-rp.conf | sed -e 's/\${\([^}]*\)}/\1/g' | while read -r var; do sed -i "s|\${$var}|${!var}|g" /data/StreetbeatzLB/Deployment/ReverseProxy/nginx-rp.conf; done
+fi
+
 # rebuild database
 if [ "$REBUILD_DB" = "true" ]; then
   echo "Rebuilding database"
