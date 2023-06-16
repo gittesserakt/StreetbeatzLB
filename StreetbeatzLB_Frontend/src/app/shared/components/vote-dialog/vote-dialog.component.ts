@@ -34,8 +34,6 @@ export class VoteDialogComponent {
         this.data.voteCount = 1;
       }
     }
-    // console.log("Dialog: ");
-    // console.log(this.data);
   }
 
   onNoClick(): void{
