@@ -1,6 +1,4 @@
 #!/bin/bash
-set -x
-set -e
 
 # replace username for mariadb with the one in the .env file
 echo "Replacing username for mariadb"
