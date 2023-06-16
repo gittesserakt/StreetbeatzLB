@@ -33,9 +33,9 @@ export class PoiService {
     );
   };
 
-  getPoiByName = (poi_id: string): Observable<ApiResponseModel> => {
+  getPoiByName = (name: string): Observable<ApiResponseModel> => {
     const config: RequestConfigModel = {
-      url: `${env.api.serverUrl}/pois/poiByName?poi=${poi_id}`,
+      url: `${env.api.serverUrl}/pois/poiByName?poi=${name}`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

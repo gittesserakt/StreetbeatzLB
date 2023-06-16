@@ -11,12 +11,6 @@ const routes: Routes = [
       import('./features/landingpage/landingpage.module').then((m) => m.LandingpageModule),
   },
   {
-    path: 'messages',
-    loadChildren: () =>
-      import('./features/messages/messages.module').then((m) => m.MessagesModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'performances',
     loadChildren: () =>
       import('./features/performances/performances.module').then((m) => m.PerformancesModule),

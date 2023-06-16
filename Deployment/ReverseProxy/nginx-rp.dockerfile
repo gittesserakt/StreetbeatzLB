@@ -1,10 +1,10 @@
 FROM nginx:latest
 
-VOLUME /data
+VOLUME /certs
 
 RUN apt-get update && \
     apt-get install -y bash
 
 COPY nginx-rp.conf /etc/nginx/conf.d/default.conf
-COPY index.html /usr/share/nginx/html/index.html
-COPY maintenance.html /usr/share/nginx/html/maintenance/maintenance.html
+COPY start_nginx.sh /docker-entrypoint.d/start_nginx.sh
+RUN chmod +x /docker-entrypoint.d/start_nginx.sh

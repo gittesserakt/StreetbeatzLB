@@ -1,6 +1,6 @@
 {
-  "name": "StreetbeatzLB_Frontend",
-  "short_name": "StreetbeatzLB_Frontend",
+  "name": "StreetbeatzLB",
+  "short_name": "StreetbeatzLB",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
