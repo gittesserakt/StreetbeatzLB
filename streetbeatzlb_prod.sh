@@ -116,7 +116,7 @@ function build {
   fi
 
   # check if USE_PROXY in ./Environment/.env file is set to true, if so, copy certs to certs folder
-  if [ "$(grep -E "^USE_PROXY=true$" $project_path/Deployment/Environment/.env)" ]; then
+  if [ "$(grep -E "^USE_PROXY=true*" $project_path/Deployment/Environment/.env)" ]; then
     log 1 "Copying certs to certs folder"
 
     # get absolute path to .pem cert from .env file (PATH_SSL_CERT_PEM) and copy it to certs folder
@@ -134,7 +134,7 @@ function build {
 # function to start the project
 function start {
   # check if USE_PROXY in ./Environment/.env file is set to true, if so, start proxy
-  if [ "$(grep -E "^USE_PROXY=true$" $project_path/Deployment/Environment/.env)" ]; then
+  if [ "$(grep -E "^USE_PROXY=true*" $project_path/Deployment/Environment/.env)" ]; then
     log 1 "Starting proxy"
     docker-compose --file $project_path/Deployment/ReverseProxy/docker-compose.yml --env-file $project_path/Deployment/Environment/.env up --build --detach
   fi
@@ -146,7 +146,7 @@ function start {
 # function to stop the project
 function stop {
   # check if USE_PROXY in ./Environment/.env file is set to true, if so, stop proxy
-  if [ "$(grep -E "^USE_PROXY=true$" $project_path/Deployment/Environment/.env)" ]; then
+  if [ "$(grep -E "^USE_PROXY=true*" $project_path/Deployment/Environment/.env)" ]; then
     log 1 "Stopping proxy"
     docker-compose --file $project_path/Deployment/ReverseProxy/docker-compose.yml --env-file $project_path/Deployment/Environment/.env down --rmi all
   fi
