@@ -32,7 +32,7 @@ export class VoteComponent implements OnInit {
   //region displayVariables
   voteButton: string = 'Vote';
   remainingVotes: number = 2;
-  voteTitle: string = "Please select up to 2 artist you want to vote for:";
+  voteTitle: string = "You can vote for up to 2 artists!";
   //endregion
 
 
@@ -180,7 +180,9 @@ export class VoteComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result != undefined) {
           this.voteCount = result;
-          this.remainingVotes -= this.voteCount;
+
+          this.remainingVotes = (2 - this.voteCount);
+
           this.voteForArtist();
           if (this.showThanks) {
             this.showThanks = false;
@@ -198,6 +200,7 @@ export class VoteComponent implements OnInit {
         }
       });
     }
+    this.showThanks = true;
   }
 
   limitCheckbox(event: MatCheckboxChange): void {
