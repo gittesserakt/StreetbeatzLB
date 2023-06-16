@@ -1,0 +1,63 @@
+.background{
+  height: 100%;
+  padding: 0 5% 0 5%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+
+  .link{
+    margin-bottom: 5%;
+  }
+}
+
+//region HandsetPortrait
+@media screen and (max-width: 599.98px){
+  span{
+    font-size: 6vw;
+  }
+  .link{
+    font-size: 6vw;
+  }
+}
+//endregion
+//region HandsetLandscape
+@media screen and (min-width: 600px) and (max-width: 959.98px){
+  span{
+    font-size: 3vw;
+  }
+  .link{
+    font-size: 3vw;
+  }
+}
+//endregion
+//region TabletPortrait
+@media screen and (min-width: 600px) and (max-width: 839.98px){
+  span{
+    font-size: 3vw;
+  }
+  .link{
+    font-size: 3vw;
+  }
+}
+//endregion
+//region TabletLandscape
+@media screen and (min-width: 960px) and (max-width: 1279.98px){
+  span{
+    font-size: 2.3vw;
+  }
+  .link{
+    font-size: 2.3vw;
+  }
+}
+//endregion
+//region WebLandscape
+@media screen and (min-width: 1280px){
+  span{
+    font-size: 1.3vw;
+  }
+  .link{
+    font-size: 1.3vw;
+  }
+}
+//endregion
