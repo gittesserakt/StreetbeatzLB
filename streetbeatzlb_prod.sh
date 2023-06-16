@@ -80,6 +80,9 @@ function build {
     exit 1
   fi
 
+  # replace username for mariadb with the one in the .env file
+  env | grep -o '\${[^}]*}' $project_path/Deployment/Production/mariadb-sb/sql-entrypoint/privileges.sql | sed -e 's/\${\([^}]*\)}/\1/g' | while read -r var; do sed -i "s|\${$var}|${!var}|g" $project_path/Deployment/Production/mariadb-sb/sql-entrypoint/privileges.sql; done
+
   # clear the frontend and backend folders if they have content
   if [ "$(ls -A $project_path/Deployment/Builds/frontend)" ]; then
     log 1 "Clearing frontend folder"
@@ -117,7 +120,7 @@ function build {
 
   # check if USE_PROXY in ./Environment/.env file is set to true, if so, copy certs to certs folder
   if [ "$(grep -E "^USE_PROXY=true$" $project_path/Deployment/Environment/.env)" ]; then
-    log 1 "Creating links to certs"
+    log 1 "Copying certs to certs folder"
 
     # get absolute path to .pem cert from .env file (PATH_SSL_CERT_PEM) and copy it to certs folder
     pem_path=$(grep -E "^PATH_SSL_CERT_PEM=" $project_path/Deployment/Environment/.env | cut -d '=' -f2)
