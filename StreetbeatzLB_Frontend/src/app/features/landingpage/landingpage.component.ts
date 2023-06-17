@@ -1,5 +1,7 @@
 import {Component, HostListener} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {MatIconRegistry} from "@angular/material/icon";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-landingpage',
@@ -20,7 +22,8 @@ export class LandingpageComponent {
     [Breakpoints.WebPortrait, 'WebPortrait'],
     [Breakpoints.WebLandscape, 'WebLandscape'],
   ]);
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private breakpointObserver: BreakpointObserver) {
+    iconRegistry.addSvgIcon('scroll-Icon', sanitizer.bypassSecurityTrustResourceUrl('./assets/design/scrollable_icon.svg'));
     this.onResize();
   }
 
