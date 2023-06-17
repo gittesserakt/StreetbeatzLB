@@ -8,16 +8,14 @@ mat-divider {
   border-color: transparent;
 }
 
+.desktop-centering-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .performances-wrapper-desktop {
   display: flex;
   flex-direction: column;
-
-  app-filter {
-    flex: 1;
-  }
-
-  .performances-list {
-    flex: 2;
-    border: rgba(0,0,0,0.12) solid 3px;
-  }
+  max-width: (100svw / 3) * 2;
 }
