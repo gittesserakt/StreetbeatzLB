@@ -4,12 +4,12 @@ FROM node:alpine
 VOLUME /data
 
 # install dependencies
-RUN apk add --update openjdk17-jdk bash git # wget unzip xz
+RUN apk add --update openjdk17-jdk bash
 
 # install angular cli
 RUN npm install -g @angular/cli
 
-COPY builder-sb/build_project.sh /usr/local/build_project.sh
+COPY build_project.sh /usr/local/build_project.sh
 RUN chmod +x /usr/local/build_project.sh
 
 ENTRYPOINT /usr/local/build_project.sh

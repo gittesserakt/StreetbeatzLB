@@ -1,47 +1,32 @@
 @import "../../../_palette.scss";
 
-$bla: map-get(map-get($primary, contrast), 100);
-$bli: map-get($primary, A100);
-$blu: #333333;
-
-$ble: #4A0135;
-$ble1: #32014A;
-$ble2: #FFECF9;
-$blo: map-get($primary, A700);
+$text-color: map-get(map-get($primary, contrast), 50);
 
 .background {
   overflow: hidden;
   display: flex;
   flex-direction: column;
 
-  //height: 100%;
+  height: 100%;
 
-  .bla {
-    height: 7%;
-    padding: 0 15% 0 15%;
-    margin-bottom: 3%;
-    .voteTitle {
+  .titleBackgroundContainer {
+    padding: 0 15%;
 
-      display: flex;
-      justify-content: center;
-
-      background-color: $ble2;
-      border-radius: 20px;
-      padding-top: 2%;
-      padding-bottom: 2%;
-
-      a {
-        align-self: center;
-
-        color: $blu;
-        font-weight: bold;
-        font-size: large;
+    app-glass-effect-box{
+      .titleContainer{
+        padding: 0 10px;
+        a{
+          font-weight: bold;
+          font-size: 4.5vw;
+          color: $text-color;
+        }
       }
     }
   }
 
   .listContainer {
-    height: 73%;
+    width: 100%;
+    margin-top: 2%;
     align-self: center;
 
     .list {
@@ -50,39 +35,267 @@ $blo: map-get($primary, A700);
       overflow-y: scroll;
       flex-grow: 1;
 
-      .radioGroup {
+      .checkboxGroup {
         display: flex;
         flex-direction: column;
 
         span {
-          color: #333333;
-          font-size: larger;
+          color: $text-color;
+          font-size: 4.7vw;
           font-weight: bold;
         }
       }
     }
+
+    mat-icon{
+      height: 5%;
+      width: 20%;
+      color: $text-color;
+      font-size: 15vw;
+      position: fixed;
+      left: 42%;
+      bottom: 10%;
+
+    }
   }
 
-  .buttonContainer {
-    height: 10%;
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    align-self: center;
+  .buttonContainer{
+    padding: 5px;
 
-    .voteButton {
-      margin-top: auto;
-      margin-bottom: auto;
-      align-self: center;
-      height: 85%;
-      width: 85%;
-      max-height: 80px;
-
-      background: map-get($primary, 50);
-      color: #333333;
-      font-weight: bold;
-      font-size: large;
-      border: solid 3px white;
+    app-glass-effect-box{
+      .voteButton{
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0);
+        font-size: 8vw;
+        color: $text-color;
+      }
     }
   }
 }
+
+//region HandsetPortrait
+@media screen and (max-width: 599.98px){
+  .background {
+    .titleBackgroundContainer {
+      height: 9%;
+      app-glass-effect-box{
+        .titleContainer{
+          a{
+            font-size: 4.5vw;
+          }
+        }
+      }
+    }
+
+    .listContainer {
+      height: 80%;
+      .list {
+        .checkboxGroup {
+          span {
+            font-size: 4.7vw;
+          }
+        }
+      }
+
+      mat-icon{
+        height: 5%;
+        width: 20%;
+        font-size: 15vw;
+        left: 42%;
+        bottom: 10%;
+
+      }
+    }
+
+    .buttonContainer{
+      height: 11%;
+      app-glass-effect-box{
+        .voteButton{
+          font-size: 8vw;
+        }
+      }
+    }
+  }
+}
+//endregion
+//region HandsetLandscape
+@media screen and (min-width: 600px) and (max-width: 959.98px){
+  .background {
+    .titleBackgroundContainer {
+      height: 10%;
+      app-glass-effect-box{
+        .titleContainer{
+          a{
+            font-size: 5vh;
+          }
+        }
+      }
+    }
+
+    .listContainer {
+      height: 70%;
+      .list {
+        .checkboxGroup {
+          span {
+            font-size: 5vh;
+          }
+        }
+      }
+
+      mat-icon{
+        height: 10%;
+        width: 5%;
+        font-size: 10vh;
+        left: 47%;
+        bottom: 10%;
+
+      }
+    }
+
+    .buttonContainer{
+      height: 20%;
+      app-glass-effect-box{
+        .voteButton{
+          font-size: 7vh;
+        }
+      }
+    }
+  }
+}
+//endregion
+//region TabletPortrait
+@media screen and (min-width: 600px) and (max-width: 839.98px){
+  .background {
+    .titleBackgroundContainer {
+      height: 9%;
+      app-glass-effect-box{
+        .titleContainer{
+          a{
+            font-size: 3.3vw;
+          }
+        }
+      }
+    }
+
+    .listContainer {
+      height: 80%;
+      .list {
+        .checkboxGroup {
+          span {
+            font-size: 3.5vw;
+          }
+        }
+      }
+
+      mat-icon{
+        height: 9%;
+        width: 9%;
+        font-size: 10vw;
+        left: 42%;
+        bottom: 10%;
+      }
+    }
+
+    .buttonContainer{
+      height: 11%;
+      app-glass-effect-box{
+        .voteButton{
+          font-size: 6vw;
+        }
+      }
+    }
+  }
+}
+//endregion
+//region TabletLandscape
+@media screen and (min-width: 960px) and (max-width: 1279.98px){
+  .background {
+    .titleBackgroundContainer {
+      height: 12%;
+      app-glass-effect-box{
+        .titleContainer{
+          a{
+            font-size: 3.7vh;
+          }
+        }
+      }
+    }
+
+    .listContainer {
+      height: 73%;
+      .list {
+        .checkboxGroup {
+          span {
+            font-size: 4vh;
+          }
+        }
+      }
+
+      mat-icon{
+        height: 9%;
+        width: 9%;
+        font-size: 10vh;
+        left: 42%;
+        bottom: 15%;
+      }
+    }
+
+    .buttonContainer{
+      height: 15%;
+      app-glass-effect-box{
+        .voteButton{
+          font-size: 6vh;
+        }
+      }
+    }
+  }
+}
+//endregion
+//region WebLandscape
+@media screen and (min-width: 1280px){
+  .background {
+    margin-left: 15%;
+    width: 70%;
+    .titleBackgroundContainer {
+      height: 9%;
+      app-glass-effect-box{
+        .titleContainer{
+          a{
+            font-size: 1.6vw;
+          }
+        }
+      }
+    }
+
+    .listContainer {
+      height: 80%;
+      .list {
+        .checkboxGroup {
+          span {
+            font-size: 1.6vw;
+          }
+        }
+      }
+
+      mat-icon{
+        height: 1%;
+        width: 1%;
+        font-size: 1vw;
+        left: 1%;
+        bottom: 1%;
+        color: rgba(0, 0, 0, 0);
+      }
+    }
+
+    .buttonContainer{
+      height: 10%;
+      app-glass-effect-box{
+        .voteButton{
+          font-size: 2.6vw;
+        }
+      }
+    }
+  }
+}
+//endregion

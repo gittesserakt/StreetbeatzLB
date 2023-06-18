@@ -24,30 +24,45 @@ export class SmfCookieService {
     return filter;
   }
 
-  setVoteCookies(artist: Artist | null | undefined, hasChosen: boolean){
+  setVoteCookies(artist1: Artist | null | undefined, artist2: Artist | null | undefined, voteCount: number,
+                 hasVoted: boolean){
     console.log("Write Vote as Cookies")
 
-    if (hasChosen && artist != undefined) {
-      this.smfService.set("hasChosen", "chosen")
-      this.smfService.set("chosenArtist", artist.name)
+    if (hasVoted && artist1 && artist2 != undefined) {
+      this.smfService.set("voteCount", voteCount.toString());
+      this.smfService.set("hasVoted", "voted");
+      this.smfService.set("chosenArtist1", artist1.name);
+      this.smfService.set("chosenArtist2", artist2.name);
+    } else if(artist1 != undefined){
+      this.smfService.set("voteCount", voteCount.toString());
+        this.smfService.set("chosenArtist1", artist1.name);
+        this.smfService.delete("chosenArtist2");
     } else {
-      this.smfService.delete("hasChosen")
-      this.smfService.delete("chosenArtist")
+      this.smfService.delete("voteCount");
+      this.smfService.delete("hasVoted");
+      this.smfService.delete("chosenArtist1");
+      this.smfService.delete("chosenArtist2");
     }
-    console.log(artist)
+    console.log(artist1);
+    console.log(artist2);
   }
 
-  getVoteCookies(): string {
-    console.log("Get Vote from Cookies")
+  getVoteCookies(): string[] {
+    console.log("Get Vote from Cookies");
 
-    let artistName: string = ""
-    if(this.smfService.check("hasChosen")){
-      const chosenArtist = this.smfService.get("chosenArtist");
-      if (chosenArtist && chosenArtist.trim() !== '') {
-        artistName = chosenArtist.replace("%20", " ");
+    let artistName:string[] = ["",""];
+    if(this.smfService.check("voteCount")){
+      const chosenArtist1 = this.smfService.get("chosenArtist1");
+      const chosenArtist2 = this.smfService.get("chosenArtist2");
+      console.log(chosenArtist1, chosenArtist2);
+      if (chosenArtist1 && chosenArtist1.trim() !== '') {
+        artistName[0] = chosenArtist1.replace("%20", " ");
+      }
+      if (chosenArtist2 && chosenArtist2.trim() !== '') {
+        artistName[1] = chosenArtist2.replace("%20", " ");
       }
     }
-    console.log("HALLO=" + artistName)
+    console.log("HALLO=" + artistName[0] + ", " + artistName[1]);
     return artistName;
   }
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
-import {AdminViewModule} from "./features/admin-view/admin-view.module";
 
 const routes: Routes = [
   {
@@ -29,6 +28,11 @@ const routes: Routes = [
     path: 'vote',
     loadChildren: () =>
       import('./features/vote/vote.module').then((m) => m.VoteModule),
+  },
+  {
+    path: 'imprint',
+    loadChildren: () =>
+      import('./features/imprint/imprint.module').then((m) => m.ImprintModule),
   },
   {
     path: `streetbeatzlb/api`,

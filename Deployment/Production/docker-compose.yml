@@ -1,15 +1,6 @@
 version: "3.9"
+name: sb-production
 services:
-    builder:
-        container_name: builder-sb
-        restart: "no"
-        build:
-            context: .
-            dockerfile: builder-sb/builder.dockerfile
-        env_file:
-            - ${VOLUME_PATH}/Environment/.env.prod
-        volumes:
-            - ${VOLUME_PATH}:/data
     mariadb:
         container_name: mariadb-sb
         restart: always
@@ -17,15 +8,12 @@ services:
             context: .
             dockerfile: mariadb-sb/mariadb.dockerfile
         env_file:
-            - ${VOLUME_PATH}/Environment/.env.prod
+            - ${PROJECT_PATH}/Deployment/Environment/.env
         volumes:
-            - ${VOLUME_PATH}/StreetbeatzLB/Deployment/Production/mariadb-sb/sql-entrypoint:/docker-entrypoint-initdb.d/
-            - ${VOLUME_PATH}/database:/var/lib/mysql
+            - ${PROJECT_PATH}/Deployment/Production/mariadb-sb/sql-entrypoint:/docker-entrypoint-initdb.d/
+            - ${DATABASE_STORAGE_PATH}:/var/lib/mysql
         networks:
             - streetbeatzlb_network
-        depends_on:
-            builder:
-                condition: service_completed_successfully
         healthcheck:
             test: [ "CMD", "mysqladmin" ,"ping", "-h", "mariadb" ]
             timeout: 20s
@@ -37,21 +25,19 @@ services:
             context: .
             dockerfile: tomcat-sb/tomcat.dockerfile
         env_file:
-            - ${VOLUME_PATH}/Environment/.env.prod
+            - ${PROJECT_PATH}/Deployment/Environment/.env
         volumes:
-            - ${VOLUME_PATH}:/data
-            - ${VOLUME_PATH}/StreetbeatzLB/Deployment/Builds/backend:/var/www/streetbeatzlb
+            - ${PROJECT_PATH}:/data
+            - ${PROJECT_PATH}/Deployment/Builds/backend:/var/www/streetbeatzlb
         ports:
             - ${TOMCAT_PORT}:8080
         networks:
             - streetbeatzlb_network
         depends_on:
-            builder:
-                condition: service_completed_successfully
             mariadb:
                 condition: service_healthy
         healthcheck:
-            test: [ "CMD", "curl", "-f", 'https://hjetter.ddns.net/streetbeatzlb/api/healthcheck' ]
+            test: curl -f $$TOMCAT_HEALTHCHECK_URL #[ "CMD", "curl", "-f", 'https://hjetter.ddns.net/streetbeatzlb/api/healthcheck' ]
             timeout: 20s
             retries: 10
     nginx:
@@ -61,21 +47,18 @@ services:
             context: .
             dockerfile: nginx-sb/nginx.dockerfile
         env_file:
-            - ${VOLUME_PATH}/Environment/.env.prod
+            - ${PROJECT_PATH}/Deployment/Environment/.env
         volumes:
-            - ${VOLUME_PATH}:/data
-            - ${VOLUME_PATH}/StreetbeatzLB/Deployment/Builds/frontend:/usr/share/nginx
+            - ${PROJECT_PATH}/Deployment/Builds/frontend:/usr/share/nginx
         ports:
-            - ${NGINX_PORT}:81
+            - ${NGINX_PORT}:80
         networks:
             - streetbeatzlb_network
         depends_on:
-            builder:
-                condition: service_completed_successfully
             tomcat:
                 condition: service_healthy
         healthcheck:
-            test: [ "CMD", "curl", "-f", 'https://hjetter.ddns.net/streetbeatzlb' ]
+            test: curl -f $$NGINX_HEALTHCHECK_URL #[ "CMD", "curl", "-f", 'https://hjetter.ddns.net/streetbeatzlb' ]
             timeout: 20s
             retries: 10
 networks:

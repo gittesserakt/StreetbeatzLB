@@ -1,10 +1,11 @@
 <h1 mat-dialog-title>{{voteTitle}}</h1>
 <div mat-dialog-content>
   <p>{{text}}</p>
-  <p *ngIf="data.chosenArtist != undefined"><b>{{data.chosenArtist.name}}</b></p>
+  <p *ngIf="data.chosenArtist1 != undefined"><b>1. {{data.chosenArtist1.name}}</b></p>
+  <p *ngIf="data.chosenArtist2 != undefined"><b>2. {{data.chosenArtist2.name}}</b></p>
+  <p *ngIf="!this.data.showThanks">{{text2}} <b>{{remainingVotes}}</b></p>
 </div>
-<div mat-dialog-actions *ngIf="!this.data.hasCookie && this.data.showThanks">
+<div mat-dialog-actions *ngIf="this.data.showThanks && !this.data.hasCookie">
   <button mat-flat-button (click)="onNoClick()" color="warn">{{noButton}}</button>
-  <button mat-flat-button [mat-dialog-close]="data.hasChosen" color="primary"
-          [disabled]="data.chosenArtist == undefined">{{yesButton}}</button>
+  <button mat-flat-button [mat-dialog-close]="data.voteCount" color="primary">{{yesButton}}</button>
 </div>

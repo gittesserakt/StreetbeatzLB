@@ -1,4 +1,4 @@
-<div class="background" [ngStyle]="{'height': screenHeightPX + 'px', 'width': screenWidthPX + 'px'}">
+<div class="background">
   <app-landingpage-start [device]="device" [screenHeightPX]="screenHeightPX" [screenWidthPX]="screenWidthPX" [text]="appText"></app-landingpage-start>
   <div class="textbox">
     <app-textbox [text]="festivalText"></app-textbox>
@@ -11,4 +11,8 @@
   <app-landingpage-sponsor></app-landingpage-sponsor>
   <div class="spacer"></div>
   <app-footer></app-footer>
+
+  <div class="scrollIcon" *ngIf="device !== 'WebLandscape'">
+    <mat-icon svgIcon="scroll-Icon"></mat-icon>
+  </div>
 </div>

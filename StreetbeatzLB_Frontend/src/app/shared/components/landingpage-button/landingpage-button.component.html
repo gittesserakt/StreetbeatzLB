@@ -1,4 +1,4 @@
-<mat-grid-list cols="2"  rowHeight="50%" gutterSize="1rem">
+<mat-grid-list cols="2"  rowHeight="30%" gutterSize="1rem">
 
   <mat-grid-tile class="performanceTile" colspan="2">
     <button mat-raised-button (click)="performanceButtonClick()">
@@ -16,6 +16,11 @@
     <button mat-raised-button (click)="mapButtonClick()">
       <span class="tileText">Map</span>
       <mat-icon class="tileIcon">map</mat-icon>
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile class="ticketTile" colspan="2">
+    <button mat-raised-button (click)="ticketButtonClick()">
+      <span class="tileText">Tickets</span>
     </button>
   </mat-grid-tile>
 

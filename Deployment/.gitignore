@@ -1,8 +1,4 @@
 # only folder structure of Builds folder will be kept
 /Builds/
 
-# never add the Environment folder to git!!! (it contains sensitive data)
 /Environment/
-
-# build file for the server
-/streetbeatzlb_server.tar.gz
