@@ -64,7 +64,15 @@ function main {
 
 # function to initialize the project
 function init {
-  cp $project_path/Deployment/Environment/env_template $project_path/Deployment/Environment/.env
+  cp $project_path/Deployment/Environment/templates/env_template $project_path/Deployment/Environment/.env
+
+  # copy all config files where environment variables are used to templates folder
+  # so that a new build can reset the config files
+  log 1 "Copying config files to templates folder"
+  cp $project_path/Deployment/ReverseProxy/nginx-rp.conf $project_path/Deployment/Environment/templates/nginx-rp.conf
+  cp $project_path/Deployment/Production/mariadb-sb/sql-entrypoint/privileges.sql $project_path/Deployment/Environment/templates/privileges.sql
+  cp $project_path/StreetbeatzLB_Backend/src/main/resources/application-prod.yml $project_path/Deployment/Environment/templates/application-prod.yml
+  cp $project_path/StreetbeatzLB_Frontend/src/environments/environment.ts $project_path/Deployment/Environment/templates/environment.ts
 
   # overwrite the first line in the .env file with PROJECT_PATH=$project_path
   sed -i "2s|.*|PROJECT_PATH=$project_path|" "$project_path/Deployment/Environment/.env"
@@ -79,6 +87,13 @@ function build {
     log 3 "No .env file found"
     exit 1
   fi
+
+  # copy all config files from templates folder to their original folder so that a new build can start with reset config files
+  log 1 "Copying config files from templates folder"
+  cp $project_path/Deployment/Environment/templates/nginx-rp.conf $project_path/Deployment/ReverseProxy/nginx-rp.conf
+  cp $project_path/Deployment/Environment/templates/privileges.sql $project_path/Deployment/Production/mariadb-sb/sql-entrypoint/privileges.sql
+  cp $project_path/Deployment/Environment/templates/application-prod.yml $project_path/StreetbeatzLB_Backend/src/main/resources/application-prod.yml
+  cp $project_path/Deployment/Environment/templates/environment.ts $project_path/StreetbeatzLB_Frontend/src/environments/environment.ts
 
   # clear the frontend and backend folders if they have content
   if [ "$(ls -A $project_path/Deployment/Builds/frontend)" ]; then
