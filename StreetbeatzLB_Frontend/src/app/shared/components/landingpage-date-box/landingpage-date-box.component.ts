@@ -41,7 +41,7 @@ export class LandingpageDateBoxComponent implements OnInit {
   }
 
   getStringMonth(date: Date): string {
-    let day = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Julie", "August", "September", "Oktober", "November", "Dezember"];
+    let day = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     return  day[date.getMonth()];
   }
 
