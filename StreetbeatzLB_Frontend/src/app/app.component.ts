@@ -117,24 +117,24 @@ export class AppComponent implements OnInit {
   switchBallSizeAndPosition(){
     switch (this.device) {
       case "WebLandscape":
-        this.setBallPosition(70, 10, 17, 62, 110, 90);
-        this.setBallSize(270, 350, 310);
+        this.setBallPosition(65, 10, 37, 75, 110, 150);
+        this.setBallSize(20, 15, 30);
         break;
       case "WebPortrait":
         this.setBallPosition(70, 10, 17, 62, 110, 90);
         this.setBallSize(270, 350, 310);
         break;
       case "TabletLandscape":
-        this.setBallPosition(70, 10, 12, 55, 125, 90);
-        this.setBallSize(270, 200, 310);
+        this.setBallPosition(70, 10, 25, 65, 130, 90);
+        this.setBallSize(25, 17, 40);
         break;
       case "TabletPortrait":
-        this.setBallPosition(70, 10, 12, 55, 125, 90);
-        this.setBallSize(270, 200, 310);
+        this.setBallPosition(70, 10, 20, 55, 200, 100);
+        this.setBallSize(40, 25, 65);
         break;
       case "HandsetLandscape":
-        this.setBallPosition(70, 10, 12, 55, 190, 90);
-        this.setBallSize(200, 105, 250);
+        this.setBallPosition(70, 10, 30, 65, 120, 170);
+        this.setBallSize(20, 15, 30);
         break;
       case "HandsetPortrait":
         this.setBallPosition(70, 20, 9, 61, 340, 95);
