@@ -4,18 +4,20 @@
   overflow-x: hidden;
 }
 
-.textbox{
-  padding-left: 20px;
-  width: 75%;
-
-  @media screen and (max-width: 600px) {
-    padding: 15px;
-    width: 90%;
-  }
-}
-
 .spacer{
   height: 64px;
 }
 
+.textbox{
+  padding-left: 7%;
+  padding-right: 5%;
+}
 
+//region WebLandscape
+@media screen and (min-width: 1280px){
+  .textbox{
+    width: 60%;
+    padding-left: 3%;
+  }
+}
+//endregion

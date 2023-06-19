@@ -1,7 +1,5 @@
 import {Component, HostListener} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
-import {MatIconRegistry} from "@angular/material/icon";
-import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-landingpage',
@@ -11,8 +9,8 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class LandingpageComponent {
   screenHeightPX: number = 0;
   screenWidthPX: number = 0;
-  appText: string = "Experience StreetbeatzLB: 3 days, 11 stages, 32 artists." + '\n' + "Join the festival starting Friday at 6 PM. Get all the info and be part of it!"; //200 letters
-  festivalText: string = "Get ready for an unforgettable festival weekend starting on Friday at 6 PM. With 3 days, 11 stages, and 32 talented artists, it's going to be epic. Don't miss the grand finale on Sunday at 9:30 PM on Main Stage A, featuring the top 3 voted artists. Get all the info you need and be part of the excitement. Download the app now!"; // 400 letters
+  appText: string = "Experience StreetbeatzLB: 3 days, 11 stages, 32 artists." + '\n' + "Join the festival starting Friday at 6 PM. Get all the info and be part of it!";
+  festivalText: string = "Get ready for an unforgettable festival weekend starting on Friday at 6 PM. With 3 days, 11 stages, and 32 talented artists, it's going to be epic. Don't miss the grand finale on Sunday at 9:30 PM on Main Stage A, featuring the top 3 voted artists. Get all the info you need and be part of the excitement. Download the app now!";
   device: string = 'Web';
   displayMap = new Map([
     [Breakpoints.HandsetPortrait, 'HandsetPortrait'],
@@ -22,8 +20,7 @@ export class LandingpageComponent {
     [Breakpoints.WebPortrait, 'WebPortrait'],
     [Breakpoints.WebLandscape, 'WebLandscape'],
   ]);
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private breakpointObserver: BreakpointObserver) {
-    iconRegistry.addSvgIcon('scroll-Icon', sanitizer.bypassSecurityTrustResourceUrl('./assets/design/scrollable_icon.svg'));
+  constructor(private breakpointObserver: BreakpointObserver) {
     this.onResize();
   }
 

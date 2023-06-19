@@ -5,11 +5,11 @@
   position: relative;
   .infoWrapper{
     //background-color: #ff0000;
-    height: 40vh;
+    max-height: 50vh;
   }
   .dateWrapper{
     //background-color: #1aff00;
-    height: 50%;
+    //height: 50%;
     padding-left: 7%;
     padding-top: 10%;
   }
@@ -51,6 +51,7 @@
 //region WebLandscape
 @media screen and (min-width: 1280px){
   .background{
+    padding-top: 5%;
     .infoWrapper{
       height: 50%;
     }
