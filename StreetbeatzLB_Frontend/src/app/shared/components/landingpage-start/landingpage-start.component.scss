@@ -1,24 +1,8 @@
 @import "../../../../_palette.scss";
 
-//mat-grid-list {
-//  width: 100%;
-//
-//  .infoContainer {
-//    //background-color: black;
-//  }
-//  .dateContainer{
-//    //background-color: #FFC107;
-//    .dateWrapper{
-//      position: absolute;
-//      top: 0;
-//      //bottom: 70%;
-//      //background-color: red;
-//    }
-//  }
-//}
-
 .background{
   //background-color: #FFC107;
+  position: relative;
   .infoWrapper{
     //background-color: #ff0000;
     height: 40vh;
@@ -28,6 +12,19 @@
     height: 50%;
     padding-left: 7%;
     padding-top: 10%;
+  }
+
+  .scrollIcon{
+    height: 9%;
+    width: 9%;
+    position: absolute;
+    bottom: 1%;
+    right: 46%;
+
+    mat-icon{
+      height: 100%;
+      width: 100%;;
+    }
   }
 }
 
