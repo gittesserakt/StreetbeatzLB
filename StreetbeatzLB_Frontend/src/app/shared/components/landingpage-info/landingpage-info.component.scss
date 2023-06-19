@@ -1,14 +1,11 @@
 @import "../../../../_palette.scss";
 
 .infoWrapper {
-  //background-color: #01f3d6;
   padding-top: 10%;
   max-height: 30vh;
   .titleWrapper {
-    //background-color: #1e2067;
     margin-left: 6%;
     .title {
-      //background-color: #6e6fff;
       color: map-get(map-get($primary, contrast), 500);
       line-height: 85%;
     }
