@@ -1,4 +1,7 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Inject, Input, OnInit} from '@angular/core';
+import {APP_BASE_HREF} from "@angular/common";
+import {MatIconRegistry} from "@angular/material/icon";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-landingpage-start',
@@ -12,6 +15,10 @@ export class LandingpageStartComponent implements OnInit{
   @Input() text!: string;
   gridWidthPX!: number;
   gridHeightPX!: number;
+
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, @Inject(APP_BASE_HREF) public baseHref: string) {
+    iconRegistry.addSvgIcon('scroll-Icon', sanitizer.bypassSecurityTrustResourceUrl(baseHref + 'assets/design/scrollable_icon.svg'));
+  }
 
   ngOnInit(): void {
     this.getGridWidthAndHeight();
