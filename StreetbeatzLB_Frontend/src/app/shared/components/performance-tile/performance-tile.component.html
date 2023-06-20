@@ -4,13 +4,13 @@
   </ng-container>
   <div class="left-column">
     <div class="stage">
-      <p><strong>{{ performance.stage }}</strong></p>
+      <p><strong>{{ performance.stage_id }}</strong></p>
     </div>
   </div>
   <div class="middle-column">
     <div class="description">
       <div class="artist">
-        <strong>{{ performance.artist }}</strong>
+        <strong>{{ performance.artist_id }}</strong>
       </div>
       <div class="time">
         <p>{{ performance.start_time | date: 'EEEE, dd.MM.yy' }}</p>
@@ -30,7 +30,7 @@
     </ng-container>
     <ng-container *ngIf="!isAdmin">
       <div class="navigate" style="padding-right: 0.7rem">
-        <button mat-fab color="primary" matTooltip="Show stage on the map" (click)="showLocation(performance.stage)">
+        <button mat-fab color="primary" matTooltip="Show stage on the map" (click)="showLocation(performance.stage_id)">
           <mat-icon>map</mat-icon>
           <mat-icon>chevron_right</mat-icon>
         </button>

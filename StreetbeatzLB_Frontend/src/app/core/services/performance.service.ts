@@ -15,7 +15,7 @@ export class PerformanceService {
 
   getAllPerformances = (): Observable<ApiResponseModel> => {
     const config: RequestConfigModel = {
-      url: `${env.api.serverUrl}/performances/all`,
+      url: `${env.api.serverUrl}/performances/all?id=0`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

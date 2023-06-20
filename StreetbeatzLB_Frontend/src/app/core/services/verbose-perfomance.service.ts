@@ -1,11 +1,10 @@
 import { environment as env } from "../../../environments/environment";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { catchError, forkJoin, map, mergeMap, Observable, of, switchMap } from "rxjs";
+import {catchError, forkJoin, from, map, mergeMap, Observable, of, switchMap} from "rxjs";
 import { ExternalApiService } from "./external-api.service";
-import { ApiResponseModel, AppErrorModel, Performance, RequestConfigModel } from "../models";
+import { ApiResponseModel, AppErrorModel, RequestConfigModel } from "../models";
 import { VerbosePerformance } from "../models/verbosePerformance";
-import { PerformanceService } from "./performance.service";
 import { ArtistService } from "./artist.service";
 import { Artist } from "../models/artist.model";
 import { StageService } from "./stage.service";
@@ -17,7 +16,6 @@ import { Stage } from "../models/stage.model";
 export class VerbosePerformanceService {
   constructor(
     public externalApiService: ExternalApiService,
-    private performanceService: PerformanceService,
     private artistService: ArtistService,
     private stageService: StageService,
     private http: HttpClient,
@@ -27,34 +25,11 @@ export class VerbosePerformanceService {
   errorFlag: boolean = false;
 
   getAllVerbosePerformances = (): Observable<ApiResponseModel> => {
-    return this.performanceService.getAllPerformances().pipe(
+    return this.getAllPerformances().pipe(
       switchMap((performancesResponse) => {
-        const performances = performancesResponse.data as Performance[];
+        const performances = performancesResponse.data as VerbosePerformance[];
 
-        const verbosePerformances$ = performances.map((performance) => {
-          const verbosePerformance = new VerbosePerformance();
-          verbosePerformance.start_time = performance.start_time;
-          verbosePerformance.end_time = performance.end_time;
-          verbosePerformance.performance_id = performance.performance_id;
-
-          return forkJoin([
-            this.stageService.getStageById(performance.stage_id).pipe(map(stageResponse => {
-              const stageName = stageResponse.data ? (stageResponse.data as Stage).name : '';
-              verbosePerformance.stage = stageName;
-            })),
-            this.artistService.getArtistById(performance.artist_id).pipe(map(artistResponse => {
-              const artistName = artistResponse.data ? (artistResponse.data as Artist).name : '';
-              verbosePerformance.artist = artistName;
-            }))
-          ]).pipe(map(() => verbosePerformance));
-        });
-
-        return forkJoin(verbosePerformances$).pipe(
-          map((verbosePerformances) => ({
-            data: verbosePerformances,
-            error: this.errorFlag ? this.error : null,
-          }))
-        );
+        return [{ data: performances, error: this.errorFlag ? this.error : null }];
       }),
       catchError((error) => {
         console.log(error);
@@ -67,32 +42,11 @@ export class VerbosePerformanceService {
   };
 
   getFilteredVerbosePerformances = (dateDate: Date | null, timeDate: Date | null, artist: string | null, stage: string | null): Observable<ApiResponseModel> => {
-    return this.performanceService.getFilteredPerformances(dateDate, timeDate, artist, stage)
+    return this.getFilteredPerformances(dateDate, timeDate, artist, stage)
       .pipe(switchMap((performancesResponse) => {
-          const performances = performancesResponse.data as Performance[];
+          const performances = performancesResponse.data as VerbosePerformance[];
 
-          const verbosePerformances$ = performances?.map((performance) => {
-            const verbosePerformance = new VerbosePerformance();
-            verbosePerformance.start_time = performance.start_time;
-            verbosePerformance.end_time = performance.end_time;
-          verbosePerformance.performance_id = performance.performance_id;
-
-            return forkJoin([
-              this.stageService.getStageById(performance.stage_id).pipe(map(stageResponse => {
-                verbosePerformance.stage = stageResponse.data ? (stageResponse.data as Stage).name : '';
-              })),
-              this.artistService.getArtistById(performance.artist_id).pipe(map(artistResponse => {
-                verbosePerformance.artist = artistResponse.data ? (artistResponse.data as Artist).name : '';
-              }))
-            ]).pipe(map(() => verbosePerformance));
-          });
-
-          return forkJoin(verbosePerformances$).pipe(
-            map((verbosePerformances) => ({
-              data: verbosePerformances,
-              error: this.errorFlag ? this.error : null,
-            }))
-          );
+          return [{ data: performances, error: this.errorFlag ? this.error : null }];
         }),
         catchError((error) => {
           console.log(error);
@@ -151,6 +105,68 @@ export class VerbosePerformanceService {
     return this.externalApiService.callExternalApi(config).pipe(
       mergeMap((response) => {
         const { data, error } = response;
+
+        return of({
+          data: data ? (data as Performance[]) : null,
+          error,
+        });
+      })
+    );
+  };
+
+  getAllPerformances = (): Observable<ApiResponseModel> => {
+    const config: RequestConfigModel = {
+      url: `${env.api.serverUrl}/verbose_performances/all`,
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    };
+
+    return this.externalApiService.callExternalApi(config).pipe(
+      mergeMap((response) => {
+        const {data, error} = response;
+
+        return of({
+          data: data ? (data as VerbosePerformance[]) : null,
+          error,
+        });
+      })
+    );
+  };
+  getFilteredPerformances = (dateDate: Date | null, timeDate: Date | null, artist: string | null, stage: string | null): Observable<ApiResponseModel> => {
+    console.log("new log: " + timeDate);
+    const _dateDate = (dateDate === null) ? "0" : dateDate.toLocaleDateString('en-GB', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    }).replace(' ', '_');
+    const _timeDate = (timeDate == null) ? "0" : timeDate.toLocaleDateString('en-GB', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    }).replace(' ', '_');
+    console.log("DateDate = " + _dateDate + "| TimeDate = " + _timeDate)
+    const _artist = artist === null ? "0" : artist;
+    const _stage = stage === null ? "0" : stage;
+    //console.log(_dateDate + "|_|" + _timeDate + "|_|Artist: " +_artist + "|_|Stage: " + _stage)
+    const config: RequestConfigModel = {
+      url: `${env.api.serverUrl}/verbose_performances/filteredByName?dateString=${_dateDate}&timeString=${_timeDate}&artistName=${_artist}&stageName=${_stage}`,
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    };
+
+    return this.externalApiService.callExternalApi(config).pipe(
+      mergeMap((response) => {
+        const {data, error} = response;
 
         return of({
           data: data ? (data as Performance[]) : null,

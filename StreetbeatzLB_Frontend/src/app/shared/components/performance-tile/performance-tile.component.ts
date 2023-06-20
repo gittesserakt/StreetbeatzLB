@@ -18,6 +18,7 @@ export class PerformanceTileComponent {
     private router: Router,
     private dialog: MatDialog,
     private verbosePerformanceService: VerbosePerformanceService) {
+    console.log(this.performance);
     this.isAdmin = false; //default value
   }
 
@@ -37,8 +38,8 @@ export class PerformanceTileComponent {
       hour12: true
     }); // For the alert display.
 
-    if (confirm("Do you really want to delete this performance by " + this.performance.artist + " on " + formattedDate + " on Stage "
-            + this.performance.stage + "?")) {
+    if (confirm("Do you really want to delete this performance by " + this.performance.artist_id + " on " + formattedDate + " on Stage "
+            + this.performance.stage_id + "?")) {
       this.verbosePerformanceService.deletePerformance(this.performance.performance_id)
         .subscribe({
           next: () => {
@@ -58,8 +59,8 @@ export class PerformanceTileComponent {
       data: {
         functionName: 'Edit Performance',
         performance_popup_id: this.performance.performance_id,
-        p_artist: this.performance.artist,
-        p_stage: this.performance.stage,
+        p_artist: this.performance.artist_id,
+        p_stage: this.performance.stage_id,
         p_time: this.performance.start_time
       }
     });
