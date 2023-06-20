@@ -9,7 +9,6 @@ import de.hhn.se.labswp.streetbeatzlb_backend.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +34,8 @@ public class PerformanceController {
   private StageRepository stageRepository;
 
   @GetMapping(path="/all")
-  public @ResponseBody Iterable<Performance> getAllPerformances() {
-    return sortPerformances(performanceRepository.findAll());
+  public @ResponseBody Iterable<Performance> getAllPerformances(@RequestParam Integer id) {
+    return sortPerformances(performanceRepository.findAll(), id);
   }
 
   @GetMapping(path="/performanceByID")
@@ -48,18 +47,23 @@ public class PerformanceController {
   public @ResponseBody Iterable<Performance> getFilteredPerformancesByID(@RequestParam String dateString,
                                                                          @RequestParam String timeString,
                                                                          @RequestParam String artist_id,
-                                                                         @RequestParam String stage_id) {
-    return sortPerformances(PerformanceFilter.filterPerformancesByID(performanceRepository,
-            dateString, timeString, Integer.parseInt(artist_id), Integer.parseInt(stage_id)));
+                                                                         @RequestParam String stage_id,
+                                                                         @RequestParam Integer id) {
+    Iterable<Performance> performances = performanceRepository.findAll();
+
+    return sortPerformances(PerformanceFilter.filterPerformancesByID(performances,
+            dateString, timeString, Integer.parseInt(artist_id), Integer.parseInt(stage_id)), id);
   }
 
   @GetMapping(path="/filteredByName")
   public @ResponseBody Iterable<Performance> getFilteredPerformancesByName(@RequestParam String dateString,
                                                                            @RequestParam String timeString,
                                                                            @RequestParam String artistName,
-                                                                           @RequestParam String stageName) {
-    return sortPerformances(PerformanceFilter.filterPerformancesByName(performanceRepository,
-            artistRepository, stageRepository, dateString, timeString, artistName, stageName));
+                                                                           @RequestParam String stageName,
+                                                                           @RequestParam Integer id) {
+    Iterable<Performance> performances = performanceRepository.findAll();
+    return sortPerformances(PerformanceFilter.filterPerformancesByName(performances,
+            artistRepository, stageRepository, dateString, timeString, artistName, stageName), id);
   }
 
   @DeleteMapping(path="/delete")
@@ -138,15 +142,35 @@ public class PerformanceController {
     performanceRepository.save(performance);
   }
 
-  private Iterable<Performance> sortPerformances(Iterable<Performance> performances){
+  private Iterable<Performance> sortPerformances(Iterable<Performance> performances, int amountPreviouslyLoaded){
     List<Artist> artists = (List<Artist>) artistRepository.findAll();
 
     Map<Long, String> artistNameMap = artists.stream()
             .collect(Collectors.toMap(Artist::getArtist_id, Artist::getName));
 
-    return StreamSupport.stream(performances.spliterator(), false)
+    Iterable<Performance> sortedPerformances = StreamSupport.stream(performances.spliterator(), false)
             .sorted(Comparator.comparing(Performance::getStart_time)
                     .thenComparing(p -> artistNameMap.getOrDefault(p.getArtist_id(), "")))
             .collect(Collectors.toList());
+
+    List<Performance> cutSortedPerformances = new ArrayList<>();
+
+    int addedPerformances = 0;
+    int skippedPerformances = 0;
+
+    for (Performance performance : sortedPerformances) {
+      if (skippedPerformances >= amountPreviouslyLoaded) {
+        if (addedPerformances < 20){
+          cutSortedPerformances.add(performance);
+          addedPerformances++;
+        } else {
+          break;
+        }
+      } else {
+        skippedPerformances++;
+      }
+    }
+
+    return cutSortedPerformances;
   }
 }

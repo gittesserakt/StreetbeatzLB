@@ -24,6 +24,11 @@ export class SmfCookieService {
     return filter;
   }
 
+  filterSet(): boolean {
+    const filter = Filter.fromJSON((this.smfService.get("filterCookies")));
+    return !(filter.dateDate != null && filter.timeDate != null && filter.artist != null && filter.stage != null);
+  }
+
   setVoteCookies(artist1: Artist | null | undefined, artist2: Artist | null | undefined, voteCount: number,
                  hasVoted: boolean){
     console.log("Write Vote as Cookies")

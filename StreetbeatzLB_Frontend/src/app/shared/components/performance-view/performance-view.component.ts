@@ -60,6 +60,8 @@ export class PerformanceViewComponent implements OnInit{
         console.log("filter via landingpage artist");
         this.smfService.saveFilter(new Filter(null, null, params['artistId'], null));
         this.getFilteredPerformances(new Filter(null, null, params['artistId'], null));
+      } else if (this.smfService.filterSet()){
+        this.getFilteredPerformances(this.smfService.loadFilter());
       } else {
         this.getAllPerformances();
       }
@@ -90,6 +92,7 @@ export class PerformanceViewComponent implements OnInit{
 
         if (data) {
           this.verbosePerformances = data as VerbosePerformance[];
+          console.log(this.verbosePerformances);
         }
 
         if (error) {
