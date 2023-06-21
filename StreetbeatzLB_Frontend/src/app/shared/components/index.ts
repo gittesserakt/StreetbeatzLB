@@ -26,6 +26,7 @@ import { VoteSnackbarComponent } from "./vote-snackbar/vote-snackbar.component";
 import { PerformanceViewComponent } from "./performance-view/performance-view.component";
 import {GlassEffectBoxComponent} from "./glass-effect-box/glass-effect-box.component";
 import {AdminVoteComponent} from "./admin-vote/admin-vote.component";
+import {MapDialogComponent} from "./map-dialog/map-dialog.component";
 
 export const COMPONENTS = [
   NavbarComponent,
@@ -56,5 +57,6 @@ export const COMPONENTS = [
   PerformanceViewComponent,
   GlassEffectBoxComponent,
   AdminVoteComponent,
+  MapDialogComponent,
 ]
 

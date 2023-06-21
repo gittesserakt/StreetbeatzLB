@@ -23,12 +23,10 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
-import { MapDialogComponent } from './components/map-dialog/map-dialog.component';
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
-    MapDialogComponent,
   ],
   imports: [
     CommonModule,

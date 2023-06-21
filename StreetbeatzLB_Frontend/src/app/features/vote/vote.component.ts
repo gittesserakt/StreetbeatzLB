@@ -1,11 +1,10 @@
-import {Component, HostListener, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {VoteDialogComponent} from "../../shared/components/vote-dialog/vote-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ArtistService} from "../../core/services/artist.service";
 import {VoteService} from "../../core/services/vote.service";
 import {SmfCookieService} from "../../core/services/smfCookieService";
 import {Artist} from "../../core/models/artist.model";
-import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {VoteSnackbarComponent} from "../../shared/components/vote-snackbar/vote-snackbar.component";
 import {MatCheckbox, MatCheckboxChange} from "@angular/material/checkbox";
