@@ -1,4 +1,6 @@
-<mat-tab-group>
+<mat-tab-group >
+<!--  [ngStyle]="{'height': 100 + '%'}"-->
+
   <mat-tab label="Performances">
     <div class="performanceWrapper">
       <button mat-button matTooltip="Add a performance" class="add-performance-button"
@@ -12,7 +14,7 @@
   </mat-tab>
   <mat-tab label="Voting">
     <div class="votingWrapper">
-
+      <app-admin-vote></app-admin-vote>
     </div>
   </mat-tab>
 </mat-tab-group>
