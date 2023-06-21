@@ -232,7 +232,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   mapClicked($event: any) {
     this.getDeviceLocation();
-    console.log($event.latlng.lat, $event.latlng.lng);
+    // console.log($event.latlng.lat, $event.latlng.lng);
   }
 
   private centerOnStage(stageID: string): void {
@@ -241,7 +241,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
       if (data){
         var poi = data as Poi
-        console.log('lat: ' + poi.latitude + ', long: ' + poi.longitude)
+        // console.log('lat: ' + poi.latitude + ', long: ' + poi.longitude)
         this.map.flyTo([poi.latitude, poi.longitude], 18);
       }
 

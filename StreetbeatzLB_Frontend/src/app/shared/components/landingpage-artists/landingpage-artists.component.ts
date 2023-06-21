@@ -80,7 +80,7 @@ export class LandingpageArtistsComponent implements OnInit {
       if (data) {
         this.artists = data as Artist[];
         this.generateArtistTabs();
-        console.log(this.artists);
+        // console.log(this.artists);
       }
       if (error) {
         console.log(error);

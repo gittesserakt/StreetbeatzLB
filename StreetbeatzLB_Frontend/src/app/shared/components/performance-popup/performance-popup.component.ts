@@ -121,8 +121,8 @@ export class PerformancePopupComponent implements OnInit{
                     if (error) {
                       console.log(error);
                     } else {
-                      console.log("Performance updated successfully: ", data);
-                      console.log("Please refresh the page to see updated entries!")
+                      // console.log("Performance updated successfully: ", data);
+                      // console.log("Please refresh the page to see updated entries!")
                       this.dialogRef.close();
                       location.reload();
                     }
@@ -137,8 +137,8 @@ export class PerformancePopupComponent implements OnInit{
                     if (error) {
                       console.log(error);
                     } else {
-                      console.log("Performance added successfully: ", data);
-                      console.log("Please refresh the page to see updated entries!")
+                      // console.log("Performance added successfully: ", data);
+                      // console.log("Please refresh the page to see updated entries!")
                       this.dialogRef.close();
                       location.reload();
                     }

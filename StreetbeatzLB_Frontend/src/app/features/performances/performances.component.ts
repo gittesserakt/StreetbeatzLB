@@ -75,8 +75,8 @@ export class PerformancesComponent implements OnInit {
         console.log("filter via landingpage artist");
         this.smfService.saveFilter(new Filter(null, null, params['artistId'], null));
         this.getFilteredPerformances(new Filter(null, null, params['artistId'], null));
-      } else {
-         this.getAllPerformances();
+      } else if (this.smfService.filterSet()){
+        this.getFilteredPerformances(this.smfService.loadFilter());
       }
     });
   }

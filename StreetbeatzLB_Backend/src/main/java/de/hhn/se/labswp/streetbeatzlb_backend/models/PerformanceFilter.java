@@ -7,53 +7,55 @@ import java.util.List;
 
 public class PerformanceFilter {
 
-  public static List<Performance> filterPerformancesByID(PerformanceRepository performanceRepository,
+  public static Iterable<Performance> filterPerformancesByID(Iterable<Performance> performances,
                                                          String dateString, String timeString,
                                                          int artist, int stage) {
-    Iterable<Performance> performances = performanceRepository.findAll();
-
     return filter(performances, dateString, timeString, artist, stage);
   }
 
-  public static List<Performance> filterPerformancesByName(PerformanceRepository performanceRepository,
+  public static Iterable<Performance> filterPerformancesByName(Iterable<Performance> performances,
                                                            ArtistRepository artistRepository,
                                                            StageRepository stageRepository,
                                                            String dateString, String timeString,
                                                            String artist, String stage) {
-    Iterable<Performance> performances = performanceRepository.findAll();
 
     Iterable<Artist> artists = artistRepository.findAll();
 
     Iterable<Stage> stages = stageRepository.findAll();
 
-    artist = artist.replace('_', ' ');
-
     long artistID = 0;
     long stageID = 0;
 
-    for (Artist currentArtist : artists) {
-      if (currentArtist.getName().equals(artist)) {
-        artistID = currentArtist.getArtist_id();
-        break;
+    if (!artist.equals("0")){
+      artist = artist.replace('_', ' ');
+
+      for (Artist currentArtist : artists) {
+        if (currentArtist.getName().equals(artist)) {
+          artistID = currentArtist.getArtist_id();
+          break;
+        }
       }
     }
 
-    for (Stage currentStage : stages) {
-      if (currentStage.getName().equals(stage)) {
-        stageID = currentStage.getStage_id();
-        break;
+    if (!stage.equals("0")) {
+      for (Stage currentStage : stages) {
+        if (currentStage.getName().equals(stage)) {
+          stageID = currentStage.getStage_id();
+          break;
+        }
       }
     }
 
     return filter(performances, dateString, timeString, (int) artistID, (int) stageID);
   }
 
-  private static List<Performance> filter(Iterable<Performance> performances, String dateString,
+  private static Iterable<Performance> filter(Iterable<Performance> performances, String dateString,
                                           String timeString, int artist, int stage) {
     List<Performance> filteredPerformances = (List<Performance>) performances;
 
     LocalDateTime date;
     LocalDateTime time;
+
 
     if (artist != 0) {
       List<Performance> filteredPerformancesArtist = new ArrayList<>();
