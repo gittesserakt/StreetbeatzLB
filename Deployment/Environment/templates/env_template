@@ -3,8 +3,13 @@ PROJECT_PATH=<path to directory>                            # where the project 
 DATABASE_STORAGE_PATH=<path to directory>                   # where the database files will be stored on the host machine (example: /home/user/StreetbeatzLB/database)
 DOMAIN=<domain name>                                        # example: https://streetbeatzlb.com (https:// is required)
 BASE_HREF=<base href>                                       # example: / or /streetbeatzlb/
-USE_PROXY=<true|false>
 SERVER_LAN_IP=<server lan ip>                               # example: 192.168.0.50
+
+# reverse proxy settings
+USE_PROXY=<true|false>                                      # if true, the reverse proxy will be used
+PROXY_PORT_HTTP=<proxy port http>                           #default: 80
+PROXY_PORT_HTTPS=<proxy port https>                         #default: 443
+PROXY_PORT_DB=<proxy port db>                               #default: 3306
 
 # ssl cert paths (only if USE_PROXY is true)
 PATH_SSL_CERT_PEM=<path to ssl cert .pem>
@@ -15,6 +20,8 @@ REBUILD_DB=<true|false>                                     # if true, the datab
 DB_SAMPLE_DATA=<true|false>                                 # if true, the database will be filled with sample data
 
 # database settings
+PUBLIC_DB_ACCESS=<true|false>                               # if true and if USE_PROXY true, the database will be added to reverse proxy and therefore accessible from the internet
+DB_PORT=<db port>                                           #default: 3307
 MYSQL_DATABASE=<database name>
 MYSQL_ROOT_PASSWORD=<root password>
 MYSQL_USER=<user name>

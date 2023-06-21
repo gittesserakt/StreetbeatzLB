@@ -64,7 +64,15 @@ function main {
 
 # function to initialize the project
 function init {
-  cp $project_path/Deployment/Environment/env_template $project_path/Deployment/Environment/.env
+  cp $project_path/Deployment/Environment/templates/env_template $project_path/Deployment/Environment/.env
+
+  # copy all config files where environment variables are used to templates folder
+  # so that a new build can reset the config files
+  log 1 "Copying config files to templates folder"
+  cp $project_path/Deployment/ReverseProxy/nginx-rp.conf $project_path/Deployment/Environment/templates/nginx-rp.conf
+  cp $project_path/Deployment/Production/mariadb-sb/sql-entrypoint/privileges.sql $project_path/Deployment/Environment/templates/privileges.sql
+  cp $project_path/StreetbeatzLB_Backend/src/main/resources/application-prod.yml $project_path/Deployment/Environment/templates/application-prod.yml
+  cp $project_path/StreetbeatzLB_Frontend/src/environments/environment.ts $project_path/Deployment/Environment/templates/environment.ts
 
   # overwrite the first line in the .env file with PROJECT_PATH=$project_path
   sed -i "2s|.*|PROJECT_PATH=$project_path|" "$project_path/Deployment/Environment/.env"
@@ -79,6 +87,13 @@ function build {
     log 3 "No .env file found"
     exit 1
   fi
+
+  # copy all config files from templates folder to their original folder so that a new build can start with reset config files
+  log 1 "Copying config files from templates folder"
+  cp $project_path/Deployment/Environment/templates/nginx-rp.conf $project_path/Deployment/ReverseProxy/nginx-rp.conf
+  cp $project_path/Deployment/Environment/templates/privileges.sql $project_path/Deployment/Production/mariadb-sb/sql-entrypoint/privileges.sql
+  cp $project_path/Deployment/Environment/templates/application-prod.yml $project_path/StreetbeatzLB_Backend/src/main/resources/application-prod.yml
+  cp $project_path/Deployment/Environment/templates/environment.ts $project_path/StreetbeatzLB_Frontend/src/environments/environment.ts
 
   # clear the frontend and backend folders if they have content
   if [ "$(ls -A $project_path/Deployment/Builds/frontend)" ]; then
@@ -116,8 +131,8 @@ function build {
   fi
 
   # check if USE_PROXY in ./Environment/.env file is set to true, if so, copy certs to certs folder
-  if [ "$(grep -E "^USE_PROXY=true$" $project_path/Deployment/Environment/.env)" ]; then
-    log 1 "Creating links to certs"
+  if [ "$(grep -E "^USE_PROXY=true*" $project_path/Deployment/Environment/.env)" ]; then
+    log 1 "Copying certs to certs folder"
 
     # get absolute path to .pem cert from .env file (PATH_SSL_CERT_PEM) and copy it to certs folder
     pem_path=$(grep -E "^PATH_SSL_CERT_PEM=" $project_path/Deployment/Environment/.env | cut -d '=' -f2)
@@ -134,7 +149,7 @@ function build {
 # function to start the project
 function start {
   # check if USE_PROXY in ./Environment/.env file is set to true, if so, start proxy
-  if [ "$(grep -E "^USE_PROXY=true$" $project_path/Deployment/Environment/.env)" ]; then
+  if [ "$(grep -E "^USE_PROXY=true*" $project_path/Deployment/Environment/.env)" ]; then
     log 1 "Starting proxy"
     docker-compose --file $project_path/Deployment/ReverseProxy/docker-compose.yml --env-file $project_path/Deployment/Environment/.env up --build --detach
   fi
@@ -146,7 +161,7 @@ function start {
 # function to stop the project
 function stop {
   # check if USE_PROXY in ./Environment/.env file is set to true, if so, stop proxy
-  if [ "$(grep -E "^USE_PROXY=true$" $project_path/Deployment/Environment/.env)" ]; then
+  if [ "$(grep -E "^USE_PROXY=true*" $project_path/Deployment/Environment/.env)" ]; then
     log 1 "Stopping proxy"
     docker-compose --file $project_path/Deployment/ReverseProxy/docker-compose.yml --env-file $project_path/Deployment/Environment/.env down --rmi all
   fi

@@ -1,4 +1,4 @@
-FROM mariadb:latest
+FROM mariadb:10.11.4
 
 ADD mariadb/init_streetbeatzdb.sql /docker-entrypoint-initdb.d/ddl.sql
 COPY mariadb/privileges.sql /docker-entrypoint-initdb.d/

@@ -12,5 +12,6 @@ services:
     volumes:
       - ${PROJECT_PATH}/Deployment/ReverseProxy/certs:/certs
     ports:
-      - "80:80"
-      - "443:443"
+      - "${PROXY_PORT_HTTP}:80"
+      - "${PROXY_PORT_HTTPS}:443"
+      - "${PROXY_PORT_DB}:3306"
