@@ -4,12 +4,13 @@
       <span>{{slideToggleText}}</span>
     </mat-slide-toggle>
   </div>
-  <div class="result">
+  <div class="result" *ngIf="!voteStatus">
     <div *ngFor="let artist of topArtists, let i = index">
-      <mat-divider vertical="false" [inset] *ngIf="i < 3"></mat-divider>
-      <app-glass-effect-box *ngIf="i < 3">
+      <mat-divider vertical="false" [inset] *ngIf="i < limit"></mat-divider>
+      <app-glass-effect-box *ngIf="i < limit">
         <span >{{artist.name}}: {{artist.vote_count}}</span>
       </app-glass-effect-box>
     </div>
+    <button mat-flat-button (click)="toggleList()" color="primary">{{listButtonText}}</button>
   </div>
 </div>

@@ -14,6 +14,9 @@ export class AdminVoteComponent implements OnInit{
   artists?: Artist[];
   topArtists?: Artist[];
 
+  limit:number = 3;
+  listButtonText: string = "All artists";
+
   constructor( private artistService: ArtistService, private voteService: VoteService) {
     this.getAllArtist();
     this.getVoteStatus();
@@ -30,7 +33,6 @@ export class AdminVoteComponent implements OnInit{
     if(!this.voteStatus){
       console.log("Open vote");
       this.voteService.openVoting().then(() =>{
-        this.topArtists = undefined;
         this.voteStatus = true;
         this.slideToggleText ="Vote is open!";
       });
@@ -77,5 +79,15 @@ export class AdminVoteComponent implements OnInit{
   showWinner(){
     this.topArtists = this.artists;
     this.topArtists?.sort(({vote_count:a},{vote_count:b}) => b - a);
+  }
+
+  toggleList(){
+    if(this.limit == 3){
+      this.limit = 50;
+      this.listButtonText = "Top 3 artist";
+    }else {
+      this.limit = 3;
+      this.listButtonText = "All artists";
+    }
   }
 }

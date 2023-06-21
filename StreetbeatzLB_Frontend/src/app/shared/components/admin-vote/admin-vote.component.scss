@@ -1,30 +1,31 @@
 @import "../../../../_palette.scss";
 
-$text-color: map-get(map-get($primary, contrast), 50 );
+$text-color: map-get(map-get($primary, contrast), 50);
 $glassEffect: map-get($primary, 50);
 
-.background{
+.background {
   display: flex;
   flex-direction: column;
 
-  .toggleButton{
+  .toggleButton {
     overflow-y: hidden;
     align-self: center;
-    .button{
-      span{
-        //color: $text-color;
-        font-size: 5.5vw;
-      }
-    }
+    margin-top: 2%;
   }
-  .result{
+
+  .result {
     background-color: $glassEffect;
     margin: 5%;
 
-    app-glass-effect-box{
-      span{
+    app-glass-effect-box {
+      span {
         margin: 5%;
       }
+    }
+
+    button{
+      margin-top: 1%;
+      width: 100%;
     }
   }
 }
@@ -33,3 +34,88 @@ mat-divider {
   border-top-width: 5px;
   max-height: 5px;
 }
+
+//region HandsetPortrait
+@media screen and (max-width: 599.98px) {
+  .background {
+    .toggleButton {
+      .button {
+        span {
+          font-size: 5.5vw;
+        }
+      }
+    }
+    .result {
+      button{
+        margin-top: 3%;
+      }
+    }
+  }
+}
+//endregion
+//region HandsetLandscape
+@media screen and (min-width: 600px) and (max-width: 959.98px) {
+  .background {
+    .toggleButton {
+      .button {
+        span {
+          font-size: 3vw;
+        }
+      }
+    }
+  }
+}
+
+//endregion
+//region TabletPortrait
+@media screen and (min-width: 600px) and (max-width: 839.98px) {
+  .background {
+    .toggleButton {
+      .button {
+        span {
+          font-size: 3vw;
+        }
+      }
+    }
+  }
+}
+
+//endregion
+//region TabletLandscape
+@media screen and (min-width: 960px) and (max-width: 1279.98px) {
+  .background {
+    .toggleButton {
+      .button {
+        span {
+          font-size: 2vw;
+        }
+      }
+    }
+  }
+}
+//endregion
+//region WebLandscape
+@media screen and (min-width: 1280px) {
+  .background {
+    .toggleButton {
+      .button {
+        span {
+          font-size: 1.5vw;
+        }
+      }
+    }
+    .result {
+      margin-top: 2%;
+      margin-left: 20%;
+      margin-right: 20%;
+
+      app-glass-effect-box {
+        span {
+          margin: 2%;
+          font-size: 1.5vw;
+        }
+      }
+    }
+  }
+}
+//endregion

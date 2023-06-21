@@ -3,7 +3,7 @@
   <p>{{text}}</p>
   <p *ngIf="data.chosenArtist1 != undefined"><b>1. {{data.chosenArtist1.name}}</b></p>
   <p *ngIf="data.chosenArtist2 != undefined"><b>2. {{data.chosenArtist2.name}}</b></p>
-  <p *ngIf="!this.data.showThanks">{{text2}} <b>{{remainingVotes}}</b></p>
+  <p *ngIf="!this.data.showThanks || !this.data.voteStatus">{{text2}} <b>{{remainingVotes}}</b></p>
 </div>
 <div mat-dialog-actions *ngIf="this.data.showThanks && !this.data.hasCookie">
   <button mat-flat-button (click)="onNoClick()" color="warn">{{noButton}}</button>
