@@ -3,13 +3,13 @@
 $transparent: map-get($primary, 100);
 $text-color: map-get(map-get($primary, contrast), 100);
 
-mat-grid-list{
+mat-grid-list {
   margin: 2rem;
   max-height: 90%;
 }
 
 mat-grid-tile{
-  button{
+  button {
     height: 100%;
     width: 100%;
     background-color: $transparent;
@@ -19,214 +19,113 @@ mat-grid-tile{
     border: solid $text-color;
     border-radius: 25px;
   }
-  mat-icon{
+  mat-icon {
     height: 40%;
     width: 100%;
   }
 }
 
-//region animation
-mat-grid-tile{
-  .tileText {
-    transition: font-size 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .tileIcon {
-    transition: font-size 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  &:hover {
-    .tileText {
-      font-size: 3.5rem;
-    }
-
-    .tileIcon {
-      font-size: 8rem;
-    }
-  }
-}
-
-.performanceTile{
-  &:hover { // performanceTile from font-size: 2.6 -> 3, other tiles from 3 -> 3.5
-    .tileText {
-      font-size: 3rem;
-    }
-  }
-}
-
-.ticketTile{
-  &:hover { // performanceTile from font-size: 2.6 -> 3, other tiles from 3 -> 3.5
-    .tileText {
-      font-size: 3rem;
-    }
-  }
-}
-//endregion
-
 //region HandsetPortrait
-@media screen and (max-width: 599.98px){
-  .performanceTile{
-    .tileText{
+@media screen and (max-width: 599.98px) {
+  .performanceTile, .ticketTile {
+    .tileText {
       font-size: 9vw;
     }
-    .tileIcon{
+    .tileIcon {
       font-size: 20vw;
     }
   }
-  .voteTile{
-    .tileText{
+
+  .voteTile, .mapTile {
+    .tileText {
       font-size: 7vw;
     }
-    .tileIcon{
-      font-size: 15vw;
-    }
-  }
-  .mapTile{
-    .tileText{
-      font-size: 7vw;
-    }
-    .tileIcon{
-      font-size: 15vw;
-    }
-  }
-  .ticketTile{
-    .tileText{
+
+    .tileIcon {
       font-size: 15vw;
     }
   }
 }
 //endregion
 //region HandsetLandscape
-@media screen and (min-width: 600px) and (max-width: 959.98px){
-  .performanceTile{
-    .tileText{
+@media screen and (min-width: 600px) and (max-width: 959.98px) {
+  .performanceTile, .ticketTile {
+    .tileText {
       font-size: 7vh;
     }
-    .tileIcon{
+    .tileIcon {
       font-size: 10vh;
     }
   }
-  .voteTile{
-    .tileText{
+  .voteTile, .mapTile {
+    .tileText {
       font-size: 7vh;
     }
-    .tileIcon{
-      font-size: 10vh;
-    }
-  }
-  .mapTile{
-    .tileText{
-      font-size: 7vh;
-    }
-    .tileIcon{
-      font-size: 10vh;
-    }
-  }
-  .ticketTile{
-    .tileText{
+    .tileIcon {
       font-size: 10vh;
     }
   }
 }
 //endregion
 //region TabletPortrait
-@media screen and (min-width: 600px) and (max-width: 839.98px){
-  .performanceTile{
-    .tileText{
+@media screen and (min-width: 600px) and (max-width: 839.98px) {
+  .performanceTile, .ticketTile {
+    .tileText {
       font-size: 7vw;
     }
-    .tileIcon{
+    .tileIcon {
       font-size: 15vw;
     }
   }
-  .voteTile{
-    .tileText{
+  .voteTile, .mapTile {
+    .tileText {
       font-size: 7vw;
     }
-    .tileIcon{
+    .tileIcon {
       font-size: 15vw;
-    }
-  }
-  .mapTile{
-    .tileText{
-      font-size: 7vw;
-    }
-    .tileIcon{
-      font-size: 15vw;
-    }
-  }
-  .ticketTile{
-    .tileText{
-      font-size: 10vw;
     }
   }
 }
 //endregion
 //region TabletLandscape
-@media screen and (min-width: 960px) and (max-width: 1279.98px){
-  .performanceTile{
-    .tileText{
+@media screen and (min-width: 960px) and (max-width: 1279.98px) {
+  .performanceTile, .ticketTile {
+    .tileText {
       font-size: 7vh;
     }
-    .tileIcon{
+    .tileIcon {
       font-size: 10vh;
     }
   }
-  .voteTile{
-    .tileText{
+  .voteTile, .mapTile {
+    .tileText {
       font-size: 7vh;
     }
-    .tileIcon{
-      font-size: 10vh;
-    }
-  }
-  .mapTile{
-    .tileText{
-      font-size: 7vh;
-    }
-    .tileIcon{
-      font-size: 10vh;
-    }
-  }
-  .ticketTile{
-    .tileText{
+    .tileIcon {
       font-size: 10vh;
     }
   }
 }
 //endregion
 //region WebLandscape
-@media screen and (min-width: 1280px){
-  mat-icon{
+@media screen and (min-width: 1280px) {
+  mat-icon {
     height: 60%;
   }
-  .performanceTile{
-    .tileText{
+  .performanceTile, .ticketTile {
+    .tileText {
       font-size: 3vw;
     }
-    .tileIcon{
+    .tileIcon {
       font-size: 5vw;
     }
   }
-  .voteTile{
-    .tileText{
+  .voteTile, .mapTile {
+    .tileText {
       font-size: 3vw;
     }
-    .tileIcon{
+    .tileIcon {
       font-size: 4vw;
-    }
-  }
-  .mapTile{
-    .tileText{
-      font-size: 3vw;
-    }
-    .tileIcon{
-      font-size: 4vw;
-    }
-  }
-  .ticketTile{
-    .tileText{
-      font-size: 5vw;
     }
   }
 }
