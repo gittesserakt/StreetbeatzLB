@@ -130,7 +130,6 @@ export class VerbosePerformanceService {
     );
   };
   getFilteredPerformances = (dateDate: Date | null, timeDate: Date | null, artist: string | null, stage: string | null, id: string | null): Observable<ApiResponseModel> => {
-    console.log("new log: " + timeDate);
     const _dateDate = (dateDate === null) ? "0" : dateDate.toLocaleDateString('en-GB', {
       year: 'numeric',
       month: '2-digit',
@@ -147,11 +146,9 @@ export class VerbosePerformanceService {
       minute: '2-digit',
       hour12: false
     }).replace(' ', '_');
-    console.log("DateDate = " + _dateDate + "| TimeDate = " + _timeDate)
     const _artist = artist === null ? "0" : artist;
     const _stage = stage === null ? "0" : stage;
     const _id = id === null ? "0" : id;
-    //console.log(_dateDate + "|_|" + _timeDate + "|_|Artist: " +_artist + "|_|Stage: " + _stage)
     const config: RequestConfigModel = {
       url: `${env.api.serverUrl}/verbose_performances/filteredByName?dateString=${_dateDate}&timeString=${_timeDate}&artistName=${_artist}&stageName=${_stage}&id=${_id}`,
       method: 'GET',

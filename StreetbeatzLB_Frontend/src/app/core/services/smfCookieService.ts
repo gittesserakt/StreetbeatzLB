@@ -13,14 +13,11 @@ export class SmfCookieService {
   }
 
   saveFilter(filter: Filter) {
-    // console.log("Write Filter as Cookies, param = " + filter.toString());
     this.smfService.set("filterCookie", filter.toJSON());
   }
 
   loadFilter(): Filter {
-    // console.log("Get Filter from Cookies");
     const filter = Filter.fromJSON(this.smfService.get("filterCookie"));
-    // console.log("after load: " + filter.toString());
     return filter;
   }
 
@@ -30,8 +27,6 @@ export class SmfCookieService {
 
   setVoteCookies(artist1: Artist | null | undefined, artist2: Artist | null | undefined, voteCount: number,
                  hasVoted: boolean){
-    // console.log("Write Vote as Cookies")
-
     if (hasVoted && artist1 && artist2 != undefined) {
       this.smfService.set("voteCount", voteCount.toString());
       this.smfService.set("hasVoted", "voted");
@@ -50,12 +45,10 @@ export class SmfCookieService {
   }
 
   getVoteCookies(): string[] {
-    // console.log("Get Vote from Cookies");
     let artistName:string[] = ["",""];
     if(this.smfService.check("voteCount")){
       const chosenArtist1 = this.smfService.get("chosenArtist1");
       const chosenArtist2 = this.smfService.get("chosenArtist2");
-      console.log(chosenArtist1, chosenArtist2);
       if (chosenArtist1 && chosenArtist1.trim() !== '') {
         artistName[0] = chosenArtist1.replace("%20", " ");
       }

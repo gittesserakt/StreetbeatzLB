@@ -56,7 +56,6 @@ export class PerformancePopupComponent implements OnInit{
     this.authService.user$.pipe(take(1)).subscribe({
       next: (user) => {
         this.authSub = user?.sub || ""; // Hier wird der auth0 user sub der variable authSub zugewiesen.
-        //console.log(user);  //Benutzerdaten in console ausgeben, zum manuellen Hinzufügen von Admins.
       },
       error: (error) => {
         console.log(error);
@@ -68,7 +67,6 @@ export class PerformancePopupComponent implements OnInit{
     this.artistService.getAllArtists()
       .subscribe((response) => {
         const {data, error} = response;
-        console.log('artists', response);
 
         if (data) {
           this.artists = data as Artist[];
@@ -84,7 +82,6 @@ export class PerformancePopupComponent implements OnInit{
     this.stageService.getAllStages()
       .subscribe((response) => {
         const {data, error} = response;
-        console.log('stages', response)
 
         if (data) {
           this.stages = data as Stage[];
@@ -121,8 +118,6 @@ export class PerformancePopupComponent implements OnInit{
                     if (error) {
                       console.log(error);
                     } else {
-                      // console.log("Performance updated successfully: ", data);
-                      // console.log("Please refresh the page to see updated entries!")
                       this.dialogRef.close();
                       location.reload();
                     }
@@ -137,8 +132,6 @@ export class PerformancePopupComponent implements OnInit{
                     if (error) {
                       console.log(error);
                     } else {
-                      // console.log("Performance added successfully: ", data);
-                      // console.log("Please refresh the page to see updated entries!")
                       this.dialogRef.close();
                       location.reload();
                     }

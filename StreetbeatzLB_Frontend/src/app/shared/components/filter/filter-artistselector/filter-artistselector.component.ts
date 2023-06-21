@@ -24,7 +24,6 @@ export class FilterArtistselectorComponent implements OnInit {
     this.artistService.getAllArtists()
       .subscribe((response) => {
         const {data, error} = response;
-        console.log('artists', response);
 
         if (data) {
           this.artists = data as Artist[];

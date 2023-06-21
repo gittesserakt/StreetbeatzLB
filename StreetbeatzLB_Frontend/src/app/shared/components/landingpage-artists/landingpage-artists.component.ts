@@ -33,12 +33,10 @@ export class LandingpageArtistsComponent implements OnInit {
   getAllArtists(): void {
     this.artistService.getAllArtists().subscribe((response) => {
       const { data, error } = response;
-      console.log('artist', response);
 
       if (data) {
         this.artists = data as Artist[];
         this.generateArtistTabs();
-        // console.log(this.artists);
       }
       if (error) {
         console.log(error);

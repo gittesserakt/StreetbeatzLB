@@ -24,7 +24,6 @@ export class FilterStageselectorComponent implements OnInit {
     this.stageService.getAllStages()
       .subscribe((response) => {
         const {data, error} = response;
-        console.log('stages', response);
 
         if (data) {
           this.stages = data as Stage[];

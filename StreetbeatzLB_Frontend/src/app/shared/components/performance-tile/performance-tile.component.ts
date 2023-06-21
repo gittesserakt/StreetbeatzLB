@@ -18,12 +18,10 @@ export class PerformanceTileComponent {
     private router: Router,
     private dialog: MatDialog,
     private verbosePerformanceService: VerbosePerformanceService) {
-    console.log(this.performance);
     this.isAdmin = false; //default value
   }
 
   showLocation(stageId: string){
-    console.log(stageId + ' is the stage id')
     this.router.navigate([`/map`], { queryParams: { stageId: stageId} });
   }
 
@@ -43,7 +41,6 @@ export class PerformanceTileComponent {
       this.verbosePerformanceService.deletePerformance(this.performance.performance_id)
         .subscribe({
           next: () => {
-            console.log(`Performance with ID ${this.performance.performance_id} deleted.`);
             location.reload();
           },
           error: (error : any) => {

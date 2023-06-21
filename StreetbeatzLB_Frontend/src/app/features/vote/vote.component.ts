@@ -54,17 +54,13 @@ export class VoteComponent implements OnInit {
   }
 
   initCheckBoxList(): void {
-    // console.log("check cache");
     if (this.smfCookieService.getVoteCookies()[0] != "" && this.smfCookieService.getVoteCookies()[1] != "") {
-      // console.log("two votes found");
 
       this.getArtistByNamePromise(this.smfCookieService.getVoteCookies()[0]).then((artist1) => {
         this.chosenArtist1 = artist1 as Artist;
-        console.log(this.chosenArtist1);
 
         this.getArtistByNamePromise(this.smfCookieService.getVoteCookies()[1]).then((artist2) => {
           this.chosenArtist2 = artist2 as Artist;
-          console.log(this.chosenArtist2);
 
           this.getAllArtists();
 
@@ -73,7 +69,6 @@ export class VoteComponent implements OnInit {
             this.selectedCount = 2;
             this.hasVoted = true;
             this.hasCookie = true;
-            // console.log("open dialog");
             this.openDialog();
           }, 100);
 
@@ -88,7 +83,6 @@ export class VoteComponent implements OnInit {
         console.log(error);
       });
     } else if (this.smfCookieService.getVoteCookies()[0] != "") {
-      // console.log("one vote found");
 
       this.getArtistByNamePromise(this.smfCookieService.getVoteCookies()[0]).then((artist) => {
         this.chosenArtist1 = artist as Artist;
@@ -125,7 +119,6 @@ export class VoteComponent implements OnInit {
 
       if (data) {
         this.artists = data as Artist[];
-        // console.log(this.artists);
       }
       if (error) {
         console.log(error);
@@ -138,7 +131,6 @@ export class VoteComponent implements OnInit {
       this.artistService.getArtistByName(name).subscribe((response) => {
         const {data, error} = response;
         if (data) {
-          // console.log(data);
           resolve(data);
         }
         if (error) {
@@ -223,7 +215,6 @@ export class VoteComponent implements OnInit {
         if (this.selectedCount == 2) {
           this.artistService.getArtistByName(event.source.value).subscribe((response) => {
             const {data, error} = response
-            console.log('artist', response);
             if (data) {
               this.chosenArtist2 = data as Artist;
             }
@@ -252,7 +243,6 @@ export class VoteComponent implements OnInit {
   }
 
   checkAndDisableCheckbox(name: string | undefined): void {
-    // console.log('Check Disable', name);
     this.checkbox.forEach(box => {
       if (box.value === name) {
         box.checked = true;
