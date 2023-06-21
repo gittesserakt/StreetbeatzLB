@@ -21,7 +21,6 @@ export class AdminVoteComponent {
     this.getAllArtist();
     this.getVoteStatus().then((voteStatus) => {
       this.voteStatus = voteStatus as boolean;
-      console.log("Vote Status: " + voteStatus)
 
       if(!this.voteStatus){
         this.showWinner();
@@ -52,11 +51,9 @@ export class AdminVoteComponent {
   getAllArtist(){
     this.artistService.getAllArtists().subscribe((response) => {
       const {data, error} = response;
-      console.log(response);
 
       if (data) {
         this.artists = data as Artist[];
-        // console.log(this.artists);
       }
       if (error) {
         console.log(error);
@@ -71,7 +68,6 @@ export class AdminVoteComponent {
 
         if (data !== null) {
           const voteStatus: boolean = data as boolean;
-          console.log("Vote Status:" + voteStatus);
           resolve(voteStatus);
         }
         if (error) {
