@@ -1,27 +1,28 @@
 @import "../../../../_palette.scss";
 
+$text-color: map-get(map-get($primary, contrast), 50 );
+$glassEffect: map-get($primary, 50);
+
 .background{
-  //height: 100%;
   display: flex;
   flex-direction: column;
 
   .toggleButton{
-    //background-color: white;
     overflow-y: hidden;
     align-self: center;
     .button{
-      font-size: 3vw;
+      span{
+        //color: $text-color;
+        font-size: 5.5vw;
+      }
     }
   }
   .result{
-    background-color: map-get($primary, 50);
+    background-color: $glassEffect;
     margin: 5%;
 
     app-glass-effect-box{
-      //background-color: #FFC107;
-      //margin: 1px;
       span{
-        //background-color: #E8E8E8;
         margin: 5%;
       }
     }
