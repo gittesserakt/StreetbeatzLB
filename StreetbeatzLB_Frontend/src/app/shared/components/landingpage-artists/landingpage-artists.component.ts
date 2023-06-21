@@ -125,11 +125,7 @@ export class LandingpageArtistsComponent implements OnInit {
     this.expanded = 0;
   }
 
-  filter(id: number) {
-    if (this.isAdmin) {
-      this.router.navigate([`/admin-view`], { queryParams: { artistId: id } });
-    } else {
-      this.router.navigate([`/performances`], { queryParams: { artistId: id } });
-    }
+  navigateToArtist(artistName: String) {
+    this.router.navigate(['/artist', artistName]);
   }
 }
