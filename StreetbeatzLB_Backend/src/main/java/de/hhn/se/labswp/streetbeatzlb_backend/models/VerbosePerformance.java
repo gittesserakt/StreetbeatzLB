@@ -6,10 +6,8 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@Entity
 public class VerbosePerformance {
 
-    @Id
     private Long performance_id;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private String start_time;

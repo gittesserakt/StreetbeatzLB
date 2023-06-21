@@ -77,8 +77,6 @@ export class PerformancesComponent implements OnInit {
         this.getFilteredPerformances(new Filter(null, null, params['artistId'], null));
       } else if (this.smfService.filterSet()){
         this.getFilteredPerformances(this.smfService.loadFilter());
-      } else {
-        this.getAllPerformances();
       }
     });
   }
