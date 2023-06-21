@@ -38,4 +38,47 @@ mat-divider {
 
 .centered-text {
   text-align: center;
+  @media screen and (max-width: 599.98px){
+    font-size: 4.5vw;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 959.98px){
+    font-size: 3.4vw;
+  }
+
+  @media screen and (min-width: 960px) and (max-width: 1279.98px){
+    font-size: 3vw;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 1.6vw;
+  }
+}
+
+.loadButton{
+  @media screen and (max-width: 599.98px){
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 94%;
+    font-size: 4.5vw;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 959.98px){
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 94%;
+    font-size: 3.4vw;
+  }
+
+  @media screen and (min-width: 960px) and (max-width: 1279.98px){
+    margin-left: 2%;
+    width: 96%;
+    font-size: 3vw;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-left: 1%;
+    width: 98%;
+    font-size: 1.6vw;
+  }
 }

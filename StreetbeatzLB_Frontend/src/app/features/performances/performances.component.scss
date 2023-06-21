@@ -22,6 +22,21 @@ mat-divider {
 
 .centered-text {
   text-align: center;
+  @media screen and (max-width: 599.98px){
+    font-size: 4.5vw;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 959.98px){
+    font-size: 3.4vw;
+  }
+
+  @media screen and (min-width: 960px) and (max-width: 1279.98px){
+    font-size: 3vw;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 1.6vw;
+  }
 }
 
 .loadButton{

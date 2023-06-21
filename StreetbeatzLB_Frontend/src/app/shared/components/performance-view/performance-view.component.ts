@@ -27,6 +27,7 @@ export class PerformanceViewComponent implements OnInit{
   loadedPerformances: string = "0";
 
   isTextVisible: boolean = false;
+  isButtonVisible: boolean = false;
 
   constructor(
     private verbosePerformanceService: VerbosePerformanceService,
@@ -99,12 +100,15 @@ export class PerformanceViewComponent implements OnInit{
         const {data, error} = response;
         console.log('verbosePerformances', response);
 
+        let newLoadedPerformances: VerbosePerformance[] = [];
+
         if (data) {
+          newLoadedPerformances = data as VerbosePerformance[];
           if (this.verbosePerformances.length === 0){
-            this.verbosePerformances = data as VerbosePerformance[];
+            this.verbosePerformances = newLoadedPerformances;
             console.log("--____________________________"+this.verbosePerformances.length)
           } else {
-            this.verbosePerformances = this.verbosePerformances.concat(data as VerbosePerformance[]);
+            this.verbosePerformances = this.verbosePerformances.concat(newLoadedPerformances);
             console.log("--____________________________"+this.verbosePerformances.length);
           }
           this.loadedPerformances = "" + this.verbosePerformances.length;
@@ -112,8 +116,10 @@ export class PerformanceViewComponent implements OnInit{
         }
 
         this.isTextVisible = this.loadedPerformances === "0";
+        this.isButtonVisible = newLoadedPerformances.length === 20;
 
         console.log("text visible " + this.isTextVisible);
+        console.log("button visible " + this.isButtonVisible);
 
         if (error) {
           console.log(error);
