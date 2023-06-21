@@ -10,7 +10,8 @@ import {Artist} from "../models/artist.model";
 })
 
 export class VoteService {
-  constructor(public externalApiService: ExternalApiService) {}
+  constructor(public externalApiService: ExternalApiService) {
+  }
 
   voteForArtist = async (artist: string): Promise<void> => {
     console.log(artist);
@@ -45,4 +46,19 @@ export class VoteService {
       })
     );
   };
+
+  closeVoting = async (): Promise<void> => {
+    const response = await fetch(`${env.api.serverUrl}/voting/closeVoting`, {
+      method: 'PUT',
+    });
+    const responseData = await response.text();
+  };
+
+  openVoting = async (): Promise<void> => {
+    const response = await fetch(`${env.api.serverUrl}/voting/openVoting`, {
+      method: 'PUT',
+    });
+    const responseData = await response.text();
+  };
+
 }

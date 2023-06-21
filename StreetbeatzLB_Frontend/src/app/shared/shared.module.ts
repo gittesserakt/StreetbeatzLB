@@ -21,6 +21,8 @@ import {RouterModule} from "@angular/router";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatSnackBarModule,
     MatTabsModule,
     MatCheckboxModule,
+    MatButtonToggleModule,
+    MatSlideToggleModule,
   ],
   exports: [
     ...COMPONENTS
