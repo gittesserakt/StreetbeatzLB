@@ -83,6 +83,32 @@
   font-family: "Open Sans";
 }
 
+.legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 120px;
+}
+
+.legend mat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 20px;
+}
+
+.legend span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-family: "Open Sans";
+}
+
 .follow {
   background-color: map-get($primary, 250);
 }
