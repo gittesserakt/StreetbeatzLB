@@ -34,7 +34,7 @@ if [ "$REBUILD_DB" = "true" ]; then
   # if files in folder exist, delete them
   if [ -d $DATABASE_STORAGE_PATH ]; then
     echo "Deleting old database files"
-    rm -r $DATABASE_STORAGE_PATH/*
+    rm -rf $DATABASE_STORAGE_PATH/*
   fi
 
   if [ "$DB_SAMPLE_DATA" = "true" ]; then

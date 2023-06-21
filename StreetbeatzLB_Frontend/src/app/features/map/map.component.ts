@@ -6,6 +6,8 @@ import {Poi} from "../../core/models/poi.model";
 import {LatLng} from "leaflet";
 import {Router, ActivatedRoute} from "@angular/router";
 import {APP_BASE_HREF} from "@angular/common";
+import {MatDialog} from "@angular/material/dialog";
+import {MapDialogComponent} from "../../shared/components/map-dialog/map-dialog.component";
 
 Leaflet.Icon.Default.imagePath = 'assets/';
 
@@ -30,6 +32,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   trackPosition: boolean = false;
   position?: GeolocationPosition;
   followPosition: boolean = false;
+  showLegend : boolean = false;
   locationUpdateTimer = interval(1000);
   locationTrackingSubscription!: Subscription;
 
@@ -50,7 +53,8 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   constructor(private renderer: Renderer2, private el: ElementRef, private poiService: PoiService,
-              private router: Router, private activatedRouter: ActivatedRoute, @Inject(APP_BASE_HREF) private baseHref: string) {
+              private router: Router, private activatedRouter: ActivatedRoute,
+              @Inject(APP_BASE_HREF) private baseHref: string, public dialog: MatDialog) {
 
     this.getPoiByName("User Icon").then((poi: Poi) => {
       const personIcon = this.createIcon(poi);
@@ -232,7 +236,6 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   mapClicked($event: any) {
     this.getDeviceLocation();
-    // console.log($event.latlng.lat, $event.latlng.lng);
   }
 
   private centerOnStage(stageID: string): void {
@@ -241,7 +244,6 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
       if (data){
         var poi = data as Poi
-        // console.log('lat: ' + poi.latitude + ', long: ' + poi.longitude)
         this.map.flyTo([poi.latitude, poi.longitude], 18);
       }
 
@@ -261,6 +263,13 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   togglePositionButtonChanged(): void {
     this.followPosition = !this.followPosition;
+  }
+
+  toggleLegend(): void {
+    const dialogRef = this.dialog.open(MapDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }
 

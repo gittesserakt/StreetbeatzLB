@@ -12,14 +12,9 @@ import { APP_BASE_HREF } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   @ViewChild("sidenav") sidenav!: MatSidenav;
-  title = 'StreetbeatzLB_Frontend';
-
-  // isSticky: boolean = false;
+  title = 'StreetbeatzLB';
 
   backgroundImageStyles: any;
-
-  // screenHeightPX: number = 0;
-  // screenWidthPX: number = 0;
 
   xPositionBall1: number = 0;
   yPositionBall1: number = 0;
@@ -54,17 +49,6 @@ export class AppComponent implements OnInit {
     this.init();
   }
 
-  // @HostListener('window:resize', ['$event'])
-  // onResize(event?: any) {
-  //   this.screenHeightPX = window.innerHeight - 64;
-  //   this.screenWidthPX = window.innerWidth;
-  // }
-
-  // @HostListener('window:scroll', ['$event'])
-  // checkScroll() {
-  //   this.isSticky = window.scrollY >= 250;
-  // }
-
   toggleSidenav(){
     this.sidenav.toggle();
   }
@@ -92,7 +76,7 @@ export class AppComponent implements OnInit {
       }
     })
 
-    // console.log('Breakpoint: ' + this.device)
+    console.log('Breakpoint: ' + this.device)
   }
 
   setBallPosition(xPositionBall1: number, yPositionBall1: number, xPositionBall2: number, yPositionBall2: number, xPositionBall3: number, yPositionBall3: number) {
@@ -102,16 +86,12 @@ export class AppComponent implements OnInit {
     this.yPositionBall2 = yPositionBall2;
     this.xPositionBall3 = xPositionBall3;
     this.yPositionBall3 = yPositionBall3;
-    // console.log(xPositionBall1 + ',' + yPositionBall1 + ',' + xPositionBall2 + ',' + yPositionBall2 + ',' + xPositionBall3 + ',' + yPositionBall3);
-    // console.log(this.xPositionBall1 + ',' + this.yPositionBall1 + ',' + this.xPositionBall2 + ',' + this.yPositionBall2 + ',' + this.xPositionBall3 + ',' + this.yPositionBall3);
   }
 
   setBallSize(sizeBall1: number, sizeBall2: number, sizeBall3: number) {
     this.sizeBall1 = sizeBall1;
     this.sizeBall2 = sizeBall2;
     this.sizeBall3 = sizeBall3;
-    // console.log(sizeBall1 + ',' + sizeBall2 + ',' + sizeBall3);
-    // console.log(this.sizeBall1 + ',' + this.sizeBall2 + ',' + this.sizeBall3);
   }
 
   switchBallSizeAndPosition(){

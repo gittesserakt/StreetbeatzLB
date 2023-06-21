@@ -33,8 +33,8 @@ public class VerbosePerformanceController {
     private StageRepository stageRepository;
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<VerbosePerformance> getAllPerformances() {
-        return sortPerformances(performanceRepository.findAll());
+    public @ResponseBody Iterable<VerbosePerformance> getAllPerformances(@RequestParam Integer id) {
+        return sortPerformances(performanceRepository.findAll(), id);
     }
 
     @GetMapping(path="/performanceByID")
@@ -51,23 +51,25 @@ public class VerbosePerformanceController {
     public @ResponseBody Iterable<VerbosePerformance> getFilteredPerformancesByID(@RequestParam String dateString,
                                                                                   @RequestParam String timeString,
                                                                                   @RequestParam String artist_id,
-                                                                                  @RequestParam String stage_id) {
+                                                                                  @RequestParam String stage_id,
+                                                                                  @RequestParam Integer id) {
         Iterable<Performance> performances = performanceRepository.findAll();
         return sortPerformances(PerformanceFilter.filterPerformancesByID(performances,
-                dateString, timeString, Integer.parseInt(artist_id), Integer.parseInt(stage_id)));
+                dateString, timeString, Integer.parseInt(artist_id), Integer.parseInt(stage_id)), id);
     }
 
     @GetMapping(path="/filteredByName")
     public @ResponseBody Iterable<VerbosePerformance> getFilteredPerformancesByName(@RequestParam String dateString,
                                                                                     @RequestParam String timeString,
                                                                                     @RequestParam String artistName,
-                                                                                    @RequestParam String stageName) {
+                                                                                    @RequestParam String stageName,
+                                                                                    @RequestParam Integer id) {
         Iterable<Performance> performances = performanceRepository.findAll();
         return sortPerformances(PerformanceFilter.filterPerformancesByName(performances,
-                artistRepository, stageRepository, dateString, timeString, artistName, stageName));
+                artistRepository, stageRepository, dateString, timeString, artistName, stageName), id);
     }
 
-    private Iterable<VerbosePerformance> sortPerformances(Iterable<Performance> performances){
+    private Iterable<VerbosePerformance> sortPerformances(Iterable<Performance> performances, Integer amountPreviouslyLoaded){
         List<Artist> artists = (List<Artist>) artistRepository.findAll();
 
         Map<Long, String> artistNameMap = artists.stream()
@@ -80,20 +82,20 @@ public class VerbosePerformanceController {
 
         List<VerbosePerformance> sortedVerbosePerformances = new ArrayList<>();
 
-        //int addedPerformances = 0;
-        //int skippedPerformances = 0;
+        int addedPerformances = 0;
+        int skippedPerformances = 0;
 
         for (Performance performance : sortedPerformances) {
-            //if (skippedPerformances >= amountPreviouslyLoaded) {
-            //    if (addedPerformances < 20){
+            if (skippedPerformances >= amountPreviouslyLoaded) {
+                if (addedPerformances < 20){
                     sortedVerbosePerformances.add(performanceToVerbosePerformance(performance));
-                    //addedPerformances++;
-            //    } else {
-            //        break;
-            //    }
-            //} else {
-            //    skippedPerformances++;
-            //}
+                    addedPerformances++;
+                } else {
+                    break;
+                }
+            } else {
+                skippedPerformances++;
+            }
         }
 
         return sortedVerbosePerformances;

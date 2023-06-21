@@ -9,7 +9,6 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {VoteSnackbarComponent} from "../../shared/components/vote-snackbar/vote-snackbar.component";
 import {MatCheckbox, MatCheckboxChange} from "@angular/material/checkbox";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 
 export interface DialogData {
   chosenArtist1: Artist;
@@ -60,11 +59,9 @@ export class VoteComponent implements OnInit {
 
       this.getArtistByNamePromise(this.smfCookieService.getVoteCookies()[0]).then((artist1) => {
         this.chosenArtist1 = artist1 as Artist;
-        console.log(this.chosenArtist1);
 
         this.getArtistByNamePromise(this.smfCookieService.getVoteCookies()[1]).then((artist2) => {
           this.chosenArtist2 = artist2 as Artist;
-          console.log(this.chosenArtist2);
 
           this.getAllArtists();
 

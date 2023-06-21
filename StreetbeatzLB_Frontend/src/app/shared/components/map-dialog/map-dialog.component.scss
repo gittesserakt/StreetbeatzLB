@@ -1,0 +1,30 @@
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  height: 50%;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Media query for desktop views with a minimum width of 1400px */
+@media screen and (min-width: 1400px) {
+  .image-wrapper {
+    height: auto;
+    max-height: 50vh;
+    max-width: 30vh;
+  }
+}
+
+.image-wrapper img {
+  height: 100%; //this line needs to stay at 100% to completely fill the container
+  width: 100%; //this line needs to stay at 100% to completely fill the container
+  object-fit: fill;
+}

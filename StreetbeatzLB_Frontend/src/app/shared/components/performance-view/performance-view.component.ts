@@ -22,7 +22,12 @@ export class PerformanceViewComponent implements OnInit{
     [Breakpoints.WebLandscape, 'Web']
   ])
 
-  verbosePerformances?: VerbosePerformance[];
+  verbosePerformances: VerbosePerformance[] = [];
+
+  loadedPerformances: string = "0";
+
+  isTextVisible: boolean = false;
+  isButtonVisible: boolean = false;
 
   constructor(
     private verbosePerformanceService: VerbosePerformanceService,
@@ -36,64 +41,50 @@ export class PerformanceViewComponent implements OnInit{
       Breakpoints.Tablet,
       Breakpoints.WebLandscape
     ]).subscribe(result =>{
-      //console.log(result);
       for(const query of Object.keys(result.breakpoints)){
         if(result.breakpoints[query]){
           this.device = this.displayMap.get(query) as String;
         }
       }
-      //console.log(this.device);
+      console.log(this.device);
     })
 
     this.isAdmin = false; //default value
   }
 
   ngOnInit(): void {
-    /*console.log(this.isAdmin ? "performance-view component (as admin) init":
-      "performance-view component init");*/
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['stageId']) {
-        // console.log("filter via map");
         this.smfService.saveFilter(new Filter(null, null, null, params['stageId']));
-        this.getFilteredPerformances(new Filter(null, null, null, params['stageId']));
+        this.getFilteredPerformances(new Filter(null, null, null, params['stageId']), null);
       } else if (params['artistId']) {
-        // console.log("filter via landingpage artist");
         this.smfService.saveFilter(new Filter(null, null, params['artistId'], null));
-        this.getFilteredPerformances(new Filter(null, null, params['artistId'], null));
+        this.getFilteredPerformances(new Filter(null, null, params['artistId'], null), null);
       } else if (this.smfService.filterSet()){
-        this.getFilteredPerformances(this.smfService.loadFilter());
-      } else {
-        this.getAllPerformances();
+        this.getFilteredPerformances(this.smfService.loadFilter(), null);
       }
     });
   }
 
-  getAllPerformances(): void {
-    this.verbosePerformanceService.getAllVerbosePerformances()
+  getFilteredPerformances(filter: Filter, id: string | null): void {
+    this.verbosePerformanceService.getFilteredVerbosePerformances(filter.dateDate, filter.timeDate, filter.artist, filter.stage, id)
       .subscribe((response) => {
         const {data, error} = response;
-        console.log('verbosePerformances', response);
+
+        let newLoadedPerformances: VerbosePerformance[] = [];
 
         if (data) {
-          this.verbosePerformances = data as VerbosePerformance[];
+          newLoadedPerformances = data as VerbosePerformance[];
+          if (this.verbosePerformances.length === 0){
+            this.verbosePerformances = newLoadedPerformances;
+          } else {
+            this.verbosePerformances = this.verbosePerformances.concat(newLoadedPerformances);
+          }
+          this.loadedPerformances = "" + this.verbosePerformances.length;
         }
 
-        if (error) {
-          console.log(error);
-        }
-      });
-  }
-
-  getFilteredPerformances(filter: Filter): void {
-    this.verbosePerformanceService.getFilteredVerbosePerformances(filter.dateDate, filter.timeDate, filter.artist, filter.stage)
-      .subscribe((response) => {
-        const {data, error} = response;
-        console.log('verbosePerformances', response);
-
-        if (data) {
-          this.verbosePerformances = data as VerbosePerformance[];
-          // console.log(this.verbosePerformances);
-        }
+        this.isTextVisible = this.loadedPerformances === "0";
+        this.isButtonVisible = newLoadedPerformances.length === 20;
 
         if (error) {
           console.log(error);
@@ -102,7 +93,12 @@ export class PerformanceViewComponent implements OnInit{
   }
 
   filtersChanged(event: Filter) {
-    this.getFilteredPerformances(event);
+    this.verbosePerformances = [];
+    this.getFilteredPerformances(event, null);
+  }
+
+  loadMorePerformances() {
+    this.getFilteredPerformances(this.smfService.loadFilter(), this.loadedPerformances);
   }
 
   deleteMarkedPerformances(): void {

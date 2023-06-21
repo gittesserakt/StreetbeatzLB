@@ -58,7 +58,6 @@ export class Filter {
   set dateDate(value: Date | null) {
     if (value) {
       this.dateInternal.setMonth(value.getMonth(), value.getDate());
-      console.log('date: ' + this.dateInternal.getMonth());
     } else {
       this.dateInternal.setDate(0);
     }

@@ -25,25 +25,20 @@ export class FilterComponent implements OnInit {
       Breakpoints.Tablet,
       Breakpoints.WebLandscape
     ]).subscribe(result => {
-      //console.log(result);
       for (const query of Object.keys(result.breakpoints)) {
         if (result.breakpoints[query]) {
           this.device = this.displayMap.get(query) as String;
         }
       }
-      //console.log(this.device);
+      console.log(this.device);
     })
-    console.log("Contructor Filtercomponent")
   }
 
   ngOnInit() {
-    // console.log("ngOnInit in filterComponent")
     this.filter = this.smfService.loadFilter();
-    // console.log("Got following filter: " + this.filter.toString())
   }
 
   filterChanged(event: Filter) {
-    // console.log("Filter changed and new filter = " + event.toString())
     this.filter = event;
     this.smfService.saveFilter(this.filter);
     this.outFilter.emit(this.filter);
