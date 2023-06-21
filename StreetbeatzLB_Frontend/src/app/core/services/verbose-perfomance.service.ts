@@ -83,7 +83,7 @@ export class VerbosePerformanceService {
         const { data, error } = response;
 
         return of({
-          data: data ? (data as Performance[]) : null,
+          data: data ? (data as VerbosePerformance[]) : null,
           error,
         });
       })
@@ -107,7 +107,7 @@ export class VerbosePerformanceService {
         const { data, error } = response;
 
         return of({
-          data: data ? (data as Performance[]) : null,
+          data: data ? (data as VerbosePerformance[]) : null,
           error,
         });
       })
@@ -169,7 +169,7 @@ export class VerbosePerformanceService {
         const {data, error} = response;
 
         return of({
-          data: data ? (data as Performance[]) : null,
+          data: data ? (data as VerbosePerformance[]) : null,
           error,
         });
       })

@@ -47,6 +47,27 @@ export class VoteService {
     );
   };
 
+  getVoteStatus = (): Observable<ApiResponseModel> => {
+    const config: RequestConfigModel = {
+      url: `${env.api.serverUrl}/voting/voteStatus`,
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    };
+
+    return this.externalApiService.callExternalApi(config).pipe(
+      mergeMap((response) => {
+        const {data, error} = response;
+
+        return of({
+          data: data ? (data as boolean) : null,
+          error,
+        });
+      })
+    );
+  }
+
   closeVoting = async (): Promise<void> => {
     const response = await fetch(`${env.api.serverUrl}/voting/closeVoting`, {
       method: 'PUT',
@@ -60,5 +81,4 @@ export class VoteService {
     });
     const responseData = await response.text();
   };
-
 }
