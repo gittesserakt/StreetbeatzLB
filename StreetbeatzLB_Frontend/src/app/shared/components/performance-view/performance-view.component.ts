@@ -49,15 +49,15 @@ export class PerformanceViewComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log(this.isAdmin ? "performance-view component (as admin) init":
-      "performance-view component init");
+    /*console.log(this.isAdmin ? "performance-view component (as admin) init":
+      "performance-view component init");*/
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['stageId']) {
-        console.log("filter via map");
+        // console.log("filter via map");
         this.smfService.saveFilter(new Filter(null, null, null, params['stageId']));
         this.getFilteredPerformances(new Filter(null, null, null, params['stageId']));
       } else if (params['artistId']) {
-        console.log("filter via landingpage artist");
+        // console.log("filter via landingpage artist");
         this.smfService.saveFilter(new Filter(null, null, params['artistId'], null));
         this.getFilteredPerformances(new Filter(null, null, params['artistId'], null));
       } else if (this.smfService.filterSet()){
@@ -92,7 +92,7 @@ export class PerformanceViewComponent implements OnInit{
 
         if (data) {
           this.verbosePerformances = data as VerbosePerformance[];
-          console.log(this.verbosePerformances);
+          // console.log(this.verbosePerformances);
         }
 
         if (error) {
