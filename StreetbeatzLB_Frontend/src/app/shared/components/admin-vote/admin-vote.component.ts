@@ -28,12 +28,14 @@ export class AdminVoteComponent implements OnInit{
 
   onToggleClick():void{
     if(!this.voteStatus){
+      console.log("Open vote");
       this.voteService.openVoting().then(() =>{
         this.topArtists = undefined;
         this.voteStatus = true;
         this.slideToggleText ="Vote is open!";
       });
     }else{
+      console.log("close vote")
       this.voteService.closeVoting().then(() => {
         this.showWinner();
         this.voteStatus = false;
@@ -64,7 +66,7 @@ export class AdminVoteComponent implements OnInit{
 
       if (data) {
         this.voteStatus = data as boolean;
-        // console.log("Vote Status:" + this.voteStatus);
+        console.log("Vote Status:" + this.voteStatus);
       }
       if (error) {
         console.log(error);

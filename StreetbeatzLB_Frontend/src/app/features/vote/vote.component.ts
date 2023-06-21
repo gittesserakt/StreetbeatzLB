@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, HostListener, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {VoteDialogComponent} from "../../shared/components/vote-dialog/vote-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ArtistService} from "../../core/services/artist.service";
@@ -17,6 +17,7 @@ export interface DialogData {
   hasVoted: boolean;
   hasCookie: boolean;
   showThanks: boolean;
+  voteStatus: boolean;
 }
 
 @Component({
@@ -43,7 +44,7 @@ export class VoteComponent implements OnInit {
   hasVoted: boolean = false;
   hasCookie: boolean = false;
   showThanks: boolean = true;
-
+  voteStatus: boolean = true;
   //endregion
 
   constructor(public dialog: MatDialog, private artistService: ArtistService, private voteService: VoteService,
@@ -51,6 +52,7 @@ export class VoteComponent implements OnInit {
 
   ngOnInit(): void {
     this.initCheckBoxList();
+
   }
 
   initCheckBoxList(): void {
@@ -80,6 +82,7 @@ export class VoteComponent implements OnInit {
           setTimeout(() => {
             this.checkAndDisableCheckbox(this.chosenArtist1?.name);
             this.checkAndDisableCheckbox(this.chosenArtist2?.name);
+            this.getVoteStatus();
           }, 100);
         }).catch((error) => {
           console.log(error);
@@ -100,12 +103,14 @@ export class VoteComponent implements OnInit {
 
         setTimeout(() => {
           this.checkAndDisableCheckbox(this.chosenArtist1?.name);
+          this.getVoteStatus();
         }, 100);
       }).catch((error) => {
         console.log(error);
       });
     } else {
       this.getAllArtists();
+      this.getVoteStatus();
     }
   }
 
@@ -164,6 +169,21 @@ export class VoteComponent implements OnInit {
     }
   }
 
+  getVoteStatus(){
+    this.voteService.getVoteStatus().subscribe((response) => {
+      const {data, error} = response;
+      console.log(response);
+
+      if (data) {
+        this.voteStatus = data as boolean;
+        // console.log("Vote Status:" + this.voteStatus);
+      }
+      if (error) {
+        console.log(error);
+      }
+    });
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(VoteDialogComponent, {
       data: {
@@ -173,6 +193,7 @@ export class VoteComponent implements OnInit {
         hasVoted: this.hasVoted,
         hasCookie: this.hasCookie,
         showThanks: this.showThanks,
+        voteStatus: this.voteStatus,
       }
     });
 

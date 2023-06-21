@@ -72,13 +72,13 @@ export class VoteService {
     const response = await fetch(`${env.api.serverUrl}/voting/closeVoting`, {
       method: 'PUT',
     });
-    const responseData = await response.text();
+    console.log(response);
   };
 
   openVoting = async (): Promise<void> => {
     const response = await fetch(`${env.api.serverUrl}/voting/openVoting`, {
       method: 'PUT',
     });
-    const responseData = await response.text();
+    console.log(response);
   };
 }
