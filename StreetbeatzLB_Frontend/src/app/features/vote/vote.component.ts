@@ -9,6 +9,7 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {VoteSnackbarComponent} from "../../shared/components/vote-snackbar/vote-snackbar.component";
 import {MatCheckbox, MatCheckboxChange} from "@angular/material/checkbox";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 export interface DialogData {
   chosenArtist1: Artist;
@@ -51,8 +52,7 @@ export class VoteComponent implements OnInit {
               private smfCookieService: SmfCookieService, private _snackbar: MatSnackBar) {}
 
   ngOnInit(): void {
-    this.initCheckBoxList();
-
+    this.checkVoteStatus()
   }
 
   initCheckBoxList(): void {
@@ -82,7 +82,6 @@ export class VoteComponent implements OnInit {
           setTimeout(() => {
             this.checkAndDisableCheckbox(this.chosenArtist1?.name);
             this.checkAndDisableCheckbox(this.chosenArtist2?.name);
-            this.getVoteStatus();
           }, 100);
         }).catch((error) => {
           console.log(error);
@@ -103,14 +102,15 @@ export class VoteComponent implements OnInit {
 
         setTimeout(() => {
           this.checkAndDisableCheckbox(this.chosenArtist1?.name);
-          this.getVoteStatus();
         }, 100);
       }).catch((error) => {
         console.log(error);
       });
     } else {
       this.getAllArtists();
-      this.getVoteStatus();
+      if(!this.voteStatus){
+        this.openDialog();
+      }
     }
   }
 
@@ -174,7 +174,7 @@ export class VoteComponent implements OnInit {
       const {data, error} = response;
       console.log(response);
 
-      if (data) {
+      if (data != null) {
         this.voteStatus = data as boolean;
         // console.log("Vote Status:" + this.voteStatus);
       }
@@ -279,6 +279,29 @@ export class VoteComponent implements OnInit {
         box.checked = true;
         box.disabled = true;
       }
+    });
+  }
+
+  checkVoteStatus(): void{
+    new Promise((resolve, reject) => {
+      this.voteService.getVoteStatus().subscribe((response) => {
+        const {data, error} = response;
+        console.log(response);
+
+        if (data != null) {
+          resolve(data);
+        }
+        if (error) {
+          console.log(error);
+          reject(error);
+        }
+      });
+    }).then((checkedStatus) => {
+      this.voteStatus = checkedStatus as boolean;
+      console.log(this.voteStatus)
+      this.initCheckBoxList();
+    }).catch((error) => {
+      console.log(error);
     });
   }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Artist} from "../../../core/models/artist.model";
 import {ArtistService} from "../../../core/services/artist.service";
 import {VoteService} from "../../../core/services/vote.service";
@@ -8,7 +8,7 @@ import {VoteService} from "../../../core/services/vote.service";
   templateUrl: './admin-vote.component.html',
   styleUrls: ['./admin-vote.component.scss']
 })
-export class AdminVoteComponent implements OnInit{
+export class AdminVoteComponent {
   voteStatus: boolean = true;
   slideToggleText:string ="Vote is open!";
   artists?: Artist[];
@@ -22,16 +22,14 @@ export class AdminVoteComponent implements OnInit{
     this.getVoteStatus().then((voteStatus) => {
       this.voteStatus = voteStatus as boolean;
       console.log("Vote Status: " + voteStatus)
+
+      if(!this.voteStatus){
+        this.showWinner();
+        this.slideToggleText = "Vote is closed!";
+      }
     }).catch((error) => {
       console.log("Vote Status Error: " + error);
     });
-  }
-
-  ngOnInit(): void {
-    if(!this.voteStatus){
-      this.showWinner();
-      this.slideToggleText = "Vote is closed!";
-    }
   }
 
   onToggleClick():void{

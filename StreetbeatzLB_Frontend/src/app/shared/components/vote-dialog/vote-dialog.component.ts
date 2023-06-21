@@ -19,6 +19,7 @@ export class VoteDialogComponent {
   constructor(public dialogRef: MatDialogRef<VoteDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData,){
     console.log("VoteStatus: " + this.data.voteStatus);
     if(!this.data.voteStatus){
+      this.voteTitle = "Vote ended!"
       this.text = "The voting period has ended!";
     }else {
       if (this.data.hasCookie) {
