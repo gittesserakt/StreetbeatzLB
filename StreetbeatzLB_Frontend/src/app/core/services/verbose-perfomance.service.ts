@@ -1,14 +1,10 @@
 import { environment as env } from "../../../environments/environment";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import {catchError, forkJoin, from, map, mergeMap, Observable, of, switchMap} from "rxjs";
+import {catchError, mergeMap, Observable, of, switchMap} from "rxjs";
 import { ExternalApiService } from "./external-api.service";
 import { ApiResponseModel, AppErrorModel, RequestConfigModel } from "../models";
 import { VerbosePerformance } from "../models/verbosePerformance";
-import { ArtistService } from "./artist.service";
-import { Artist } from "../models/artist.model";
-import { StageService } from "./stage.service";
-import { Stage } from "../models/stage.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +12,14 @@ import { Stage } from "../models/stage.model";
 export class VerbosePerformanceService {
   constructor(
     public externalApiService: ExternalApiService,
-    private artistService: ArtistService,
-    private stageService: StageService,
     private http: HttpClient,
   ) {}
 
   error: AppErrorModel = {message: "verbosePerformanceService error"};
   errorFlag: boolean = false;
 
-  getAllVerbosePerformances = (): Observable<ApiResponseModel> => {
-    return this.getAllPerformances().pipe(
+  getAllVerbosePerformances = (id: string | null): Observable<ApiResponseModel> => {
+    return this.getAllPerformances(id).pipe(
       switchMap((performancesResponse) => {
         const performances = performancesResponse.data as VerbosePerformance[];
 
@@ -41,8 +35,8 @@ export class VerbosePerformanceService {
     );
   };
 
-  getFilteredVerbosePerformances = (dateDate: Date | null, timeDate: Date | null, artist: string | null, stage: string | null): Observable<ApiResponseModel> => {
-    return this.getFilteredPerformances(dateDate, timeDate, artist, stage)
+  getFilteredVerbosePerformances = (dateDate: Date | null, timeDate: Date | null, artist: string | null, stage: string | null, id: string | null): Observable<ApiResponseModel> => {
+    return this.getFilteredPerformances(dateDate, timeDate, artist, stage, id)
       .pipe(switchMap((performancesResponse) => {
           const performances = performancesResponse.data as VerbosePerformance[];
 
@@ -114,9 +108,10 @@ export class VerbosePerformanceService {
     );
   };
 
-  getAllPerformances = (): Observable<ApiResponseModel> => {
+  getAllPerformances = (id: string | null): Observable<ApiResponseModel> => {
+    const _id = id === null ? "0" : id;
     const config: RequestConfigModel = {
-      url: `${env.api.serverUrl}/verbose_performances/all`,
+      url: `${env.api.serverUrl}/verbose_performances/allid=${_id}`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -134,7 +129,7 @@ export class VerbosePerformanceService {
       })
     );
   };
-  getFilteredPerformances = (dateDate: Date | null, timeDate: Date | null, artist: string | null, stage: string | null): Observable<ApiResponseModel> => {
+  getFilteredPerformances = (dateDate: Date | null, timeDate: Date | null, artist: string | null, stage: string | null, id: string | null): Observable<ApiResponseModel> => {
     console.log("new log: " + timeDate);
     const _dateDate = (dateDate === null) ? "0" : dateDate.toLocaleDateString('en-GB', {
       year: 'numeric',
@@ -155,9 +150,10 @@ export class VerbosePerformanceService {
     console.log("DateDate = " + _dateDate + "| TimeDate = " + _timeDate)
     const _artist = artist === null ? "0" : artist;
     const _stage = stage === null ? "0" : stage;
+    const _id = id === null ? "0" : id;
     //console.log(_dateDate + "|_|" + _timeDate + "|_|Artist: " +_artist + "|_|Stage: " + _stage)
     const config: RequestConfigModel = {
-      url: `${env.api.serverUrl}/verbose_performances/filteredByName?dateString=${_dateDate}&timeString=${_timeDate}&artistName=${_artist}&stageName=${_stage}`,
+      url: `${env.api.serverUrl}/verbose_performances/filteredByName?dateString=${_dateDate}&timeString=${_timeDate}&artistName=${_artist}&stageName=${_stage}&id=${_id}`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

@@ -20,24 +20,33 @@ export class PerformancesComponent implements OnInit {
     [Breakpoints.WebLandscape, 'Web']
   ])
 
-  verbosePerformances?: VerbosePerformance[];
+  verbosePerformances: VerbosePerformance[] = [];
 
   screenHeightPX: number = 0;
   screenWidthPX: number = 0;
+
+  loadedPerformances: string = "0";
 
   constructor(private verbosePerformanceService: VerbosePerformanceService, private activatedRoute: ActivatedRoute,
               private route: Router, private breakpointObserver: BreakpointObserver, private smfService: SmfCookieService) {
     this.onResize();
   }
 
-  getAllPerformances(): void {
-    this.verbosePerformanceService.getAllVerbosePerformances()
+  getAllPerformances(id: string | null): void {
+    this.verbosePerformanceService.getAllVerbosePerformances(id)
       .subscribe((response) => {
         const {data, error} = response;
         console.log('verbosePerformances', response);
 
         if (data) {
-          this.verbosePerformances = data as VerbosePerformance[];
+          if (this.verbosePerformances.length === 0){
+            this.verbosePerformances = data as VerbosePerformance[];
+            console.log("--____________________________"+this.verbosePerformances.length)
+          } else {
+            this.verbosePerformances = this.verbosePerformances.concat(data as VerbosePerformance[]);
+            console.log("--____________________________"+this.verbosePerformances.length);
+          }
+          this.loadedPerformances = "" + this.verbosePerformances.length;
         }
 
         if (error) {
@@ -46,16 +55,22 @@ export class PerformancesComponent implements OnInit {
       });
   }
 
-  getFilteredPerformances(filter: Filter): void {
+  getFilteredPerformances(filter: Filter, id: string | null): void {
     this.verbosePerformanceService.getFilteredVerbosePerformances(
-      filter.dateDate, filter.timeDate,  filter.artist, filter.stage)
+      filter.dateDate, filter.timeDate,  filter.artist, filter.stage, id)
       .subscribe((response) => {
         const {data, error} = response;
         console.log('verbosePerformances', response);
 
         if (data) {
-          this.verbosePerformances = data as VerbosePerformance[];
-          console.log("--____________________________"+this.verbosePerformances.length)
+          if (this.verbosePerformances.length === 0){
+            this.verbosePerformances = data as VerbosePerformance[];
+            console.log("--____________________________"+this.verbosePerformances.length)
+          } else {
+            this.verbosePerformances = this.verbosePerformances.concat(data as VerbosePerformance[]);
+            console.log("--____________________________"+this.verbosePerformances.length);
+          }
+          this.loadedPerformances = "" + this.verbosePerformances.length;
         }
 
         if (error) {
@@ -70,19 +85,24 @@ export class PerformancesComponent implements OnInit {
       if (params['stageId']) {
         console.log("filter via map");
         this.smfService.saveFilter(new Filter(null, null, null, params['stageId']));
-        this.getFilteredPerformances(new Filter(null, null, null, params['stageId']));
+        this.getFilteredPerformances(new Filter(null, null, null, params['stageId']), null);
       } else if (params['artistId']) {
         console.log("filter via landingpage artist");
         this.smfService.saveFilter(new Filter(null, null, params['artistId'], null));
-        this.getFilteredPerformances(new Filter(null, null, params['artistId'], null));
+        this.getFilteredPerformances(new Filter(null, null, params['artistId'], null), null);
       } else if (this.smfService.filterSet()){
-        this.getFilteredPerformances(this.smfService.loadFilter());
+        this.getFilteredPerformances(this.smfService.loadFilter(), null);
       }
     });
   }
 
   filterChanged(event: Filter) {
-    this.getFilteredPerformances(event);
+    this.verbosePerformances = [];
+    this.getFilteredPerformances(event, null);
+  }
+
+  loadMorePerformances() {
+    this.getFilteredPerformances(this.smfService.loadFilter(), this.loadedPerformances);
   }
 
   @HostListener('window:resize', ['$event'])
