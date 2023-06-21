@@ -8,6 +8,7 @@
           <app-performance-tile [performance]="performance"></app-performance-tile>
           <mat-divider vertical="false" [inset]></mat-divider>
         </div>
+        <button mat-flat-button class="loadButton" (click)="loadMorePerformances()" color="primary">Load more Performances.</button>
       </div>
     </div>
   </div>
@@ -22,6 +23,7 @@
         <app-performance-tile [performance]="performance"></app-performance-tile>
         <mat-divider vertical="false" [inset]></mat-divider>
       </div>
+      <button mat-flat-button class="loadButton" (click)="loadMorePerformances()" color="primary">Load more Performances.</button>
     </div>
   </div>
 </ng-template>
