@@ -13,20 +13,24 @@ export class SmfCookieService {
   }
 
   saveFilter(filter: Filter) {
-    console.log("Write Filter as Cookies, param = " + filter.toString());
+    // console.log("Write Filter as Cookies, param = " + filter.toString());
     this.smfService.set("filterCookie", filter.toJSON());
   }
 
   loadFilter(): Filter {
-    console.log("Get Filter from Cookies");
+    // console.log("Get Filter from Cookies");
     const filter = Filter.fromJSON(this.smfService.get("filterCookie"));
-    console.log("after load: " + filter.toString());
+    // console.log("after load: " + filter.toString());
     return filter;
+  }
+
+  filterSet(): boolean {
+    return (this.smfService.check("filterCookies"));
   }
 
   setVoteCookies(artist1: Artist | null | undefined, artist2: Artist | null | undefined, voteCount: number,
                  hasVoted: boolean){
-    console.log("Write Vote as Cookies")
+    // console.log("Write Vote as Cookies")
 
     if (hasVoted && artist1 && artist2 != undefined) {
       this.smfService.set("voteCount", voteCount.toString());
@@ -43,13 +47,10 @@ export class SmfCookieService {
       this.smfService.delete("chosenArtist1");
       this.smfService.delete("chosenArtist2");
     }
-    console.log(artist1);
-    console.log(artist2);
   }
 
   getVoteCookies(): string[] {
-    console.log("Get Vote from Cookies");
-
+    // console.log("Get Vote from Cookies");
     let artistName:string[] = ["",""];
     if(this.smfService.check("voteCount")){
       const chosenArtist1 = this.smfService.get("chosenArtist1");
@@ -62,7 +63,6 @@ export class SmfCookieService {
         artistName[1] = chosenArtist2.replace("%20", " ");
       }
     }
-    console.log("HALLO=" + artistName[0] + ", " + artistName[1]);
     return artistName;
   }
 }

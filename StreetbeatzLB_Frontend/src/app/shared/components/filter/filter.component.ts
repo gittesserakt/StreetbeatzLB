@@ -37,13 +37,13 @@ export class FilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("ngOnInit in filterComponent")
+    // console.log("ngOnInit in filterComponent")
     this.filter = this.smfService.loadFilter();
-    console.log("Got following filter: " + this.filter.toString())
+    // console.log("Got following filter: " + this.filter.toString())
   }
 
   filterChanged(event: Filter) {
-    console.log("Filter changed and new filter = " + event.toString())
+    // console.log("Filter changed and new filter = " + event.toString())
     this.filter = event;
     this.smfService.saveFilter(this.filter);
     this.outFilter.emit(this.filter);

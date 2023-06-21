@@ -1,2 +1,2 @@
-GRANT ALL PRIVILEGES ON *.* TO 'streetbeatzlb_mariadb_admin'@'%';
+GRANT ALL PRIVILEGES ON *.* TO '${MYSQL_USER}'@'%';
 FLUSH PRIVILEGES;

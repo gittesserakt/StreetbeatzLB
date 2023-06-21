@@ -12,6 +12,8 @@ services:
         volumes:
             - ${PROJECT_PATH}/Deployment/Production/mariadb-sb/sql-entrypoint:/docker-entrypoint-initdb.d/
             - ${DATABASE_STORAGE_PATH}:/var/lib/mysql
+        ports:
+            - ${DB_PORT}:3306
         networks:
             - streetbeatzlb_network
         healthcheck:
