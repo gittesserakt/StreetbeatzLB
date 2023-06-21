@@ -27,6 +27,8 @@ export class PerformancesComponent implements OnInit {
 
   loadedPerformances: string = "0";
 
+  isTextVisible: boolean = false;
+
   constructor(private verbosePerformanceService: VerbosePerformanceService, private activatedRoute: ActivatedRoute,
               private route: Router, private breakpointObserver: BreakpointObserver, private smfService: SmfCookieService) {
     this.onResize();
@@ -71,7 +73,12 @@ export class PerformancesComponent implements OnInit {
             console.log("--____________________________"+this.verbosePerformances.length);
           }
           this.loadedPerformances = "" + this.verbosePerformances.length;
+          console.log("loaded performances " + this.loadedPerformances);
         }
+
+        this.isTextVisible = this.loadedPerformances === "0";
+
+        console.log("text visible " + this.isTextVisible);
 
         if (error) {
           console.log(error);
