@@ -19,7 +19,12 @@ export class AdminVoteComponent implements OnInit{
 
   constructor( private artistService: ArtistService, private voteService: VoteService) {
     this.getAllArtist();
-    this.getVoteStatus();
+    this.getVoteStatus().then((voteStatus) => {
+      this.voteStatus = voteStatus as boolean;
+      console.log("Vote Status: " + voteStatus)
+    }).catch((error) => {
+      console.log("Vote Status Error: " + error);
+    });
   }
 
   ngOnInit(): void {
@@ -61,18 +66,21 @@ export class AdminVoteComponent implements OnInit{
     });
   }
 
-  getVoteStatus(){
-    this.voteService.getVoteStatus().subscribe((response) => {
-      const {data, error} = response;
-      console.log(response);
+  getVoteStatus() {
+    return new Promise((resolve, reject) => {
+      this.voteService.getVoteStatus().subscribe((response) => {
+        const { data, error } = response;
 
-      if (data) {
-        this.voteStatus = data as boolean;
-        console.log("Vote Status:" + this.voteStatus);
-      }
-      if (error) {
-        console.log(error);
-      }
+        if (data !== null) {
+          const voteStatus: boolean = data as boolean;
+          console.log("Vote Status:" + voteStatus);
+          resolve(voteStatus);
+        }
+        if (error) {
+          console.log(error);
+          reject(error);
+        }
+      });
     });
   }
 

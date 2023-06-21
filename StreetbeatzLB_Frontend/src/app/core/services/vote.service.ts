@@ -61,7 +61,7 @@ export class VoteService {
         const {data, error} = response;
 
         return of({
-          data: data ? (data as boolean) : null,
+          data: data !== null ? (data as boolean) : null,
           error,
         });
       })
