@@ -1,0 +1,15 @@
+<div class="background">
+  <div class="toggleButton">
+    <mat-slide-toggle class="button" [ngModel]="isClosed" (click)="onToggleClick()" color="warn">
+      {{slideToggleText}}
+    </mat-slide-toggle>
+  </div>
+  <div class="result">
+    <div *ngFor="let artist of topArtists, let i = index">
+      <mat-divider vertical="false" [inset] *ngIf="i < 3"></mat-divider>
+      <app-glass-effect-box *ngIf="i < 3">
+        <span >{{artist.name}}: {{artist.vote_count}}</span>
+      </app-glass-effect-box>
+    </div>
+  </div>
+</div>
