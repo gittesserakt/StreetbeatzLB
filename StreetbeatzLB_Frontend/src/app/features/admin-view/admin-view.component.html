@@ -1,18 +1,46 @@
-<mat-tab-group>
-  <mat-tab label="Performances">
-    <div class="performanceWrapper">
-      <button mat-button matTooltip="Add a performance" class="add-performance-button"
-              (click)="addPerformance()">
-        <mat-icon>add</mat-icon>
-      </button>
-      <mat-divider vertical="false" [inset]></mat-divider>
-      <app-performance-view [isAdmin]="true"></app-performance-view>
-      <mat-divider vertical="false" [inset]></mat-divider>
-    </div>
-  </mat-tab>
-  <mat-tab label="Voting">
-    <div class="votingWrapper">
+<div *ngIf="device === 'Web', else elseBlock">
+  <div class="desktop-centering-wrapper">
+    <div class="performances-wrapper-desktop" [ngStyle]="{'height': screenHeightPX + 'px'}">
+      <mat-tab-group>
+        <mat-tab label="Performances">
+          <div class="performanceWrapper">
+            <button mat-button matTooltip="Add a performance" class="add-performance-button"
+                    (click)="addPerformance()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <mat-divider vertical="false" [inset]></mat-divider>
+            <app-performance-view [isAdmin]="true"></app-performance-view>
+            <mat-divider vertical="false" [inset]></mat-divider>
+          </div>
+        </mat-tab>
+        <mat-tab label="Voting">
+          <div class="votingWrapper">
 
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </div>
-  </mat-tab>
-</mat-tab-group>
+  </div>
+</div>
+<ng-template #elseBlock>
+  <div [ngStyle]="{'height': screenHeightPX + 'px'}">
+    <mat-tab-group>
+      <mat-tab label="Performances">
+        <div class="performanceWrapper">
+          <button mat-button matTooltip="Add a performance" class="add-performance-button"
+                  (click)="addPerformance()">
+            <mat-icon>add</mat-icon>
+          </button>
+          <mat-divider vertical="false" [inset]></mat-divider>
+          <app-performance-view [isAdmin]="true"></app-performance-view>
+          <mat-divider vertical="false" [inset]></mat-divider>
+        </div>
+      </mat-tab>
+      <mat-tab label="Voting">
+        <div class="votingWrapper">
+
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</ng-template>

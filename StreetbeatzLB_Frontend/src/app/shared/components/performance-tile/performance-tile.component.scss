@@ -135,14 +135,12 @@ $button-color: orange;
     .change {
       display: flex;
       justify-content: center;
-      padding-right: 1rem;
+      padding-right: 0.5rem;
       color: $button-color;
 
       button {
         color: $text-color;
-        flex: 1;
-        margin: 0 5px;
-        height: 150%;
+        margin-right: 10px;
         box-shadow: none;
 
         .leftButton {
