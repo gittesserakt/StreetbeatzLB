@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import { Artist } from "../../../core/models/artist.model";
 import { ArtistService } from "../../../core/services/artist.service";
 import { AuthService } from "@auth0/auth0-angular";
 import { Router } from "@angular/router";
+import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-landingpage-artists',
@@ -16,8 +17,23 @@ export class LandingpageArtistsComponent implements OnInit {
   expanded: number = 0;
 
   isAdmin: boolean = false;
+  device: String = "Web";
+  screenHeightPX: number = 0;
+  screenWidthPX: number = 0;
 
-  constructor(private artistService: ArtistService, private router: Router, private authService: AuthService) {}
+  displayMap = new Map([
+    [Breakpoints.Handset, 'Handset'],
+    [Breakpoints.Tablet, 'Tablet'],
+    [Breakpoints.WebLandscape, 'Web']
+  ])
+
+  constructor(
+    private artistService: ArtistService,
+    private router: Router,
+    private authService: AuthService,
+    private breakpointObserver: BreakpointObserver) {
+    this.onResize();
+  }
 
   ngOnInit(): void {
     this.getAllArtists();
@@ -28,6 +44,32 @@ export class LandingpageArtistsComponent implements OnInit {
         this.isAdmin = true;
       }
     });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?: any) {
+    this.screenHeightPX = window.innerHeight - 66;
+    this.screenWidthPX = window.innerWidth;
+    this.getBreakpoint();
+  }
+
+  getBreakpoint(){
+    this.breakpointObserver.observe([
+      Breakpoints.HandsetPortrait,
+      Breakpoints.HandsetLandscape,
+      Breakpoints.TabletPortrait,
+      Breakpoints.TabletLandscape,
+      Breakpoints.WebPortrait,
+      Breakpoints.WebLandscape
+    ]).subscribe(result => {
+      for(const query of Object.keys(result.breakpoints)){
+        if(result.breakpoints[query]){
+          this.device = this.displayMap.get(query) as string;
+        }
+      }
+    })
+
+    console.log('Breakpoint: ' + this.device)
   }
 
   getAllArtists(): void {

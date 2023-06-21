@@ -1,5 +1,55 @@
 @import "../../../../_palette.scss";
 
+.desktop-centering-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.performances-wrapper-desktop {
+  display: flex;
+  flex-direction: column;
+  max-width: (100svw / 3) * 2;
+
+  .artistWrapper {
+    .artistContainer {
+      width: (100svw / 3) * 2;
+      .tab {
+        .row-container {
+          width: (100svw / 3) * 2;
+        }
+        .row {
+          width: (100svw / 3) * 2;
+
+          .left-column, .right-column {
+            width: 100px;
+
+            .picture {
+              min-width: 100px;
+              min-height: 100px;
+              border-radius: 50%;
+              margin-right: 1rem;
+              background-color: gray;
+
+              @media (max-width: 300px) {
+                min-width: 70px;
+                min-height: 70px;
+              }
+            }
+
+            button {
+              background-color: transparent;
+              color: white;
+              margin-right: 10px;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .artistWrapper {
   h1 {
     color: map-get(map-get($primary, contrast), 600);
@@ -18,20 +68,25 @@
         display: flex;
         flex-wrap: wrap;
 
-        width: 100%;
+        width: 100%;;
       }
 
       .row {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 100%;
+        width: 100%;;
         margin: 0 1rem 1rem;
 
         background-color: map-get($primary, 50);
         border: solid 3px white;
         padding: 10px;
         border-radius: 15px;
+
+        span {
+          color: map-get(map-get($primary, contrast), 50);
+          font-weight: bold;
+        }
 
         .picture {
           min-width: 100px;
@@ -44,11 +99,6 @@
             min-width: 70px;
             min-height: 70px;
           }
-        }
-
-        span {
-          color: map-get(map-get($primary, contrast), 50);
-          font-weight: bold;
         }
 
         button {
