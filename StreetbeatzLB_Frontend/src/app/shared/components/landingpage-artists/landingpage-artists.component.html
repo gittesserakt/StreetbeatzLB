@@ -1,42 +1,78 @@
-<div class="artistWrapper">
-  <h1>Artists</h1>
-  <div class="artistContainer">
-    <div class="tab" *ngFor="let tab of artistTabs; let i = index" [class.active]="i === activeTab">
-      <div class="row-container">
-        <div class="row" *ngFor="let artist of tab.artists">
+<div *ngIf="device === 'Web', else elseBlock">
+  <div class="desktop-centering-wrapper">
+    <div class="performances-wrapper-desktop" [ngStyle]="{'height': screenHeightPX + 'px'}">
+      <div class="artistWrapper">
+        <h1>Artists</h1>
+        <div class="artistContainer">
+          <div class="tab" *ngFor="let tab of artistTabs; let i = index" [class.active]="i === activeTab">
+            <div class="row-container">
+              <div class="row" *ngFor="let artist of tab.artists">
+                <div class="left-column">
+                  <div class="picture"></div>
+                </div>
+                <span>{{ artist.name }}</span>
+                <div class="right-column">
+                  <button mat-fab color="primary" (click)="navigateToArtist(artist.name)">
+                    <mat-icon>chevron_right</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
 
-          <div class="picture"></div>
-          <span>{{ artist.name }}</span>
-          <button mat-fab color="primary" (click)="filter(artist.artist_id)">
-            <mat-icon>filter_alt</mat-icon>
-            <mat-icon>chevron_right</mat-icon>
-          </button>
+            <!-- Platzhalter: Ist für den letzten Tab hardcoded, damit alle Tabs gleich lang sind. -->
+            <!-- <div class="row-container" *ngIf="i === artistTabs.length - 1">
+              <div class="invisible-row">
+                <div class="picture"></div>
+              </div>
+            </div> -->
+          </div>
 
-          <!-- <div class="picture"></div>
-          <span>{{ artist.name }}</span>
-          <button mat-fab color="primary" (click)="artist.artist_id === expanded ? toggleExpandLess() : toggleExpand(artist.artist_id)">
-            <mat-icon>{{ artist.artist_id === expanded ? 'expand_less' : 'expand_more' }}</mat-icon>
-          </button>
-          <div class="details" *ngIf="artist.artist_id === expanded"></div>-->
-
+          <div class="tabNavigation">
+            <button mat-icon-button class="aa" (click)="prevTab()">
+              <mat-icon>navigate_before</mat-icon>
+            </button>
+            <button mat-icon-button class="aa" (click)="nextTab()">
+              <mat-icon>navigate_next</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
-
-      <!-- Platzhalter: Ist für den letzten Tab hardcoded, damit alle Tabs gleich lang sind. -->
-      <div class="row-container" *ngIf="i === artistTabs.length - 1">
-        <div class="invisible-row">
-          <div class="picture"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tabNavigation">
-      <button mat-icon-button class="aa" (click)="prevTab()">
-        <mat-icon>navigate_before</mat-icon>
-      </button>
-      <button mat-icon-button class="aa" (click)="nextTab()">
-        <mat-icon>navigate_next</mat-icon>
-      </button>
     </div>
   </div>
 </div>
+<ng-template #elseBlock>
+  <div [ngStyle]="{'height': screenHeightPX + 'px'}">
+    <div class="artistWrapper">
+      <h1>Artists</h1>
+      <div class="artistContainer">
+        <div class="tab" *ngFor="let tab of artistTabs; let i = index" [class.active]="i === activeTab">
+          <div class="row-container">
+            <div class="row" *ngFor="let artist of tab.artists">
+              <div class="picture"></div>
+              <span>{{ artist.name }}</span>
+              <button mat-fab color="primary" (click)="navigateToArtist(artist.name)">
+                <mat-icon>chevron_right</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <!-- Platzhalter: Ist für den letzten Tab hardcoded, damit alle Tabs gleich lang sind. -->
+          <!-- <div class="row-container" *ngIf="i === artistTabs.length - 1">
+            <div class="invisible-row">
+              <div class="picture"></div>
+            </div>
+          </div> -->
+        </div>
+
+        <div class="tabNavigation">
+          <button mat-icon-button class="aa" (click)="prevTab()">
+            <mat-icon>navigate_before</mat-icon>
+          </button>
+          <button mat-icon-button class="aa" (click)="nextTab()">
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

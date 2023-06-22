@@ -5,6 +5,7 @@ $tile-color: map-get($primary, 300);
 $border-color: map-get($primary, 200);
 $text-color: map-get(map-get($primary, contrast), 50);
 $stage-color: map-get(map-get($primary, contrast), 50);
+$button-color: orange;
 
 .performance-tile-wrapper {
   display: flex;
@@ -120,23 +121,32 @@ $stage-color: map-get(map-get($primary, contrast), 50);
     justify-content: flex-end;
     height: 100%;
 
-    .navigate button {
-      background-color: transparent;
-      margin-right: 10px;
-      box-shadow: none;
+    .navigate {
+      padding-right: 1rem;
+      color: $button-color;
+
+      button {
+        color: $text-color;
+        margin-right: 10px;
+        box-shadow: none;
+      }
     }
 
     .change {
       display: flex;
       justify-content: center;
-    }
+      padding-right: 0.5rem;
+      color: $button-color;
 
-    .change button {
-      background-color: transparent;
-      flex: 1;
-      margin: 0 5px;
-      height: 150%;
-      box-shadow: none;
+      button {
+        color: $text-color;
+        margin-right: 10px;
+        box-shadow: none;
+
+        .leftButton {
+          margin-right: 0.7rem;
+        }
+      }
     }
   }
 }

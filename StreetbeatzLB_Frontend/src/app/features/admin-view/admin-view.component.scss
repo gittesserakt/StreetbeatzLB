@@ -26,6 +26,19 @@ mat-divider {
   border-top-width: 5px;
 }
 
+.desktop-centering-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.performances-wrapper-desktop {
+  display: flex;
+  flex-direction: column;
+  max-width: (100svw / 3) * 2;
+  overflow: hidden;
+}
+
 .votingWrapper{
   //height: 100%;
 }

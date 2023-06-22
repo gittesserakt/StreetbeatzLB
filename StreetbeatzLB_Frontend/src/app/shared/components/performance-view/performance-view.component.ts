@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {VerbosePerformance} from "../../../core/models/verbosePerformance";
 import {VerbosePerformanceService} from "../../../core";
@@ -29,6 +29,9 @@ export class PerformanceViewComponent implements OnInit{
   isTextVisible: boolean = false;
   isButtonVisible: boolean = false;
 
+  screenHeightPX: number = 0;
+  screenWidthPX: number = 0;
+
   constructor(
     private verbosePerformanceService: VerbosePerformanceService,
     private activatedRoute: ActivatedRoute,
@@ -36,18 +39,7 @@ export class PerformanceViewComponent implements OnInit{
     private smfService: SmfCookieService,
     private breakpointObserver: BreakpointObserver
   ) {
-    breakpointObserver.observe([
-      Breakpoints.Handset,
-      Breakpoints.Tablet,
-      Breakpoints.WebLandscape
-    ]).subscribe(result =>{
-      for(const query of Object.keys(result.breakpoints)){
-        if(result.breakpoints[query]){
-          this.device = this.displayMap.get(query) as String;
-        }
-      }
-      console.log(this.device);
-    })
+    this.onResize();
 
     this.isAdmin = false; //default value
   }
@@ -64,6 +56,32 @@ export class PerformanceViewComponent implements OnInit{
         this.getFilteredPerformances(this.smfService.loadFilter(), null);
       }
     });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?: any) {
+    this.screenHeightPX = window.innerHeight - 66;
+    this.screenWidthPX = window.innerWidth;
+    this.getBreakpoint();
+  }
+
+  getBreakpoint(){
+    this.breakpointObserver.observe([
+      Breakpoints.HandsetPortrait,
+      Breakpoints.HandsetLandscape,
+      Breakpoints.TabletPortrait,
+      Breakpoints.TabletLandscape,
+      Breakpoints.WebPortrait,
+      Breakpoints.WebLandscape
+    ]).subscribe(result => {
+      for(const query of Object.keys(result.breakpoints)){
+        if(result.breakpoints[query]){
+          this.device = this.displayMap.get(query) as string;
+        }
+      }
+    })
+
+    console.log('Breakpoint: ' + this.device)
   }
 
   getFilteredPerformances(filter: Filter, id: string | null): void {
