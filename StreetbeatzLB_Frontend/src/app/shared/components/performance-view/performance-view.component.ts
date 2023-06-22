@@ -118,8 +118,4 @@ export class PerformanceViewComponent implements OnInit{
   loadMorePerformances() {
     this.getFilteredPerformances(this.smfService.loadFilter(), this.loadedPerformances);
   }
-
-  deleteMarkedPerformances(): void {
-
-  }
 }
