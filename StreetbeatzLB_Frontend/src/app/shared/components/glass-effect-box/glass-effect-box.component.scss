@@ -1,0 +1,15 @@
+@import "../../../../_palette.scss";
+
+$glassEffect: map-get($primary, 50);
+
+.background {
+  border: solid 4px white;
+  border-radius: 15px;
+  background-color: $glassEffect;
+  //margin: 4px;
+
+  ng-content{
+    height: 100%;
+    width: 100%;
+  }
+}

@@ -9,19 +9,15 @@ import {Time} from "@angular/common";
 })
 export class FilterMobileComponent implements OnInit {
   panelOpenState = false;
-  filter: Filter = new Filter(null, null, null);
+  filter: Filter = new Filter(null, null, null, null);
   filterTypes: string[] = []; // 'Date', 'Artist', 'Stage'
-  time: Time = this.filter.date ? {
-    hours: this.filter.date.getHours(),
-    minutes: this.filter.date.getMinutes()
-  } : {hours: 0, minutes: 0}
   @Input() inFilter!: Filter; //Was macht dieser inFilter?
   @Output() outFilter = new EventEmitter<Filter>();
 
   ngOnInit() {
     if (this.inFilter) {
       this.filter = this.inFilter;
-      this.applyFilter()
+      this.applyFilter();
     }
   }
 
@@ -30,10 +26,10 @@ export class FilterMobileComponent implements OnInit {
 
     switch (filterType) {
       case 'Date':
-        this.filter.date = null;
+        this.filter.dateDate = null;
         break;
       case 'Time':
-        this.filter.setTime(0,0)
+        this.filter.timeDate = null;
         break;
       case 'Artist':
         this.filter.artist = null;
@@ -46,6 +42,7 @@ export class FilterMobileComponent implements OnInit {
     if (index >= 0) {
       this.filterTypes.splice(index, 1);
     }
+    this.applyFilter();
   }
 
   add(filterType: string): void {
@@ -53,10 +50,12 @@ export class FilterMobileComponent implements OnInit {
   }
 
   dateChangeEvent(event: Date | null) {
-    this.filter.date = event;
+    this.filter.dateDate = event;
 
     if (event) {
-      this.add('Date');
+      if (!this.filterTypes.includes('Date')) {
+        this.add('Date');
+      }
     } else {
       this.remove('Date');
     }
@@ -66,27 +65,30 @@ export class FilterMobileComponent implements OnInit {
     this.filter.artist = event;
 
     if (event) {
-      this.add('Artist');
+      if (!this.filterTypes.includes('Artist')) {
+        this.add('Artist');
+      }
     } else {
       this.remove('Artist');
     }
   }
 
   stageChangeEvent(event: string | null) {
-    this.filter.stage = event;
+    this.filter.stage = event
 
     if (event) {
-      this.add('Stage');
+      if (!this.filterTypes.includes('Stage')) {
+        this.add('Stage');
+      }
     } else {
       this.remove('Stage');
     }
   }
 
-  timeChangeEvent($event: Time | null) {
-    if ($event) {
-      this.time = $event
+  timeChangeEvent(event: Time | null) {
+    this.filter.setWithTimeType(event)
 
-      this.filter.setTime($event.hours, $event.minutes)
+    if (event) {
       if (!this.filterTypes.includes('Time')) {
         this.add('Time');
       }

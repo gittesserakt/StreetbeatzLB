@@ -1,0 +1,138 @@
+@import "../../../../_palette.scss";
+
+$glassEffect: map-get($primary, 50);
+$textColor:map-get(map-get($primary, contrast), 500);
+
+.background{
+  width: 15rem;
+  height: 7rem;
+  border: solid 4px white;
+  border-radius: 15px;
+  background-color: $glassEffect;
+  h2{
+    color: $textColor;
+  }
+  .spacer{
+    width: 5%;
+  }
+  .leftButton{
+    color: $textColor;
+    //padding: 24px 20px;
+    border-radius: 20px;
+  }
+  .rightButton{
+    color: $textColor;
+    //padding: 24px 20px;
+    border-radius: 20px;
+  }
+}
+
+
+//region HandsetPortrait
+@media screen and (max-width: 599.98px){
+  .background{
+    width: 77vw;
+    height: 37vw;
+    h2{
+      font-size: 8vw;
+    }
+    .spacer{
+      width: 5%;
+    }
+    .leftButton{
+      font-size: 5vw;
+    }
+    .rightButton{
+      font-size: 5vw;
+    }
+  }
+}
+//endregion
+//region HandsetLandscape
+@media screen and (min-width: 600px) and (max-width: 959.98px){
+  .background{
+    width: 17rem;
+    height: 8rem;
+    h2{
+      font-size: 1.4rem;
+    }
+    .spacer{
+      width: 5%;
+    }
+    .leftButton{
+      font-size: 1rem;
+      padding: 24px 20px;
+    }
+    .rightButton{
+      font-size: 1rem;
+      padding: 24px 20px;
+    }
+  }
+}
+//endregion
+//region TabletPortrait
+@media screen and (min-width: 600px) and (max-width: 839.98px){
+  .background{
+    width: 27rem;
+    height: 12rem;
+    h2{
+      font-size: 2.7rem;
+    }
+    .spacer{
+      width: 9%;
+    }
+    .leftButton{
+      font-size: 1.7rem;
+      padding: 25px;
+    }
+    .rightButton{
+      font-size: 1.7rem;
+      padding: 25px;
+    }
+  }
+}
+//endregion
+//region TabletLandscape
+@media screen and (min-width: 960px) and (max-width: 1279.98px){
+  .background{
+    width: 28rem;
+    height: 13rem;
+    h2{
+      font-size: 2.9rem;
+    }
+    .spacer{
+      width: 9%;
+    }
+    .leftButton{
+      font-size: 1.9rem;
+      padding: 25px;
+    }
+    .rightButton{
+      font-size: 1.9rem;
+      padding: 25px;
+    }
+  }
+}
+//endregion
+//region WebLandscape
+@media screen and (min-width: 1280px){
+  .background{
+    width: 30rem;
+    height: 13rem;
+    h2{
+      font-size: 2.9rem;
+    }
+    .spacer{
+      width: 9%;
+    }
+    .leftButton{
+      font-size: 1.9rem;
+      padding: 25px;
+    }
+    .rightButton{
+      font-size: 1.9rem;
+      padding: 25px;
+    }
+  }
+}
+//endregion

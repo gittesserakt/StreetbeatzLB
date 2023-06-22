@@ -50,4 +50,9 @@ public class VoteController {
     public  @ResponseBody void openVoting(){
         voteOpen = true;
     }
+
+    @GetMapping(path = "/voteStatus")
+    public @ResponseBody boolean voteStatus(){
+        return voteOpen;
+    }
 }

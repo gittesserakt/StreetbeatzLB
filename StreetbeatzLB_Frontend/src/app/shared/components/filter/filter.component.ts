@@ -10,8 +10,7 @@ import {SmfCookieService} from "../../../core/services/smfCookieService";
 })
 export class FilterComponent implements OnInit {
   device: String = "Web";
-  filter: Filter = new Filter(null, null, null);
-  dateTimeFilter: Filter = new Filter(null, null, null); // date and time will be combined into one filter
+  filter: Filter = new Filter(null, null, null, null);
   @Output() outFilter = new EventEmitter<Filter>();
 
   displayMap = new Map([
@@ -26,24 +25,20 @@ export class FilterComponent implements OnInit {
       Breakpoints.Tablet,
       Breakpoints.WebLandscape
     ]).subscribe(result => {
-      //console.log(result);
       for (const query of Object.keys(result.breakpoints)) {
         if (result.breakpoints[query]) {
           this.device = this.displayMap.get(query) as String;
         }
       }
-      //console.log(this.device);
+      console.log(this.device);
     })
-    console.log("Contructor Filtercomponent")
   }
 
   ngOnInit() {
-    console.log("ngOnInit in filter Component")
     this.filter = this.smfService.loadFilter();
   }
 
   filterChanged(event: Filter) {
-    console.log("Filter changed and new filter = " + event.toString())
     this.filter = event;
     this.smfService.saveFilter(this.filter);
     this.outFilter.emit(this.filter);

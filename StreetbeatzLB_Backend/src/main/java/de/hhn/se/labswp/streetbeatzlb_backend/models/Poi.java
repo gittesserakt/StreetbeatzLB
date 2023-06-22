@@ -9,11 +9,11 @@ import jakarta.persistence.Id;
 public class Poi {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long poi_id;
     private String name;
     private String icon;
-    private Long poi_type;
+    private String poi_type;
     private double latitude;
     private double longitude;
 
@@ -41,11 +41,11 @@ public class Poi {
         this.icon = icon;
     }
 
-    public Long getPoi_type() {
+    public String getPoi_type() {
         return poi_type;
     }
 
-    public void setPoi_type(Long poi_type) {
+    public void setPoi_type(String poi_type) {
         this.poi_type = poi_type;
     }
 

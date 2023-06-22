@@ -1,0 +1,12 @@
+<div class="background" [ngStyle]="{'height': screenHeightPX + 'px', 'width': screenWidthPX + 'px'}">
+  <div class="infoWrapper">
+    <app-landingpage-info [screenHeightPX]="gridHeightPX" [screenWidthPX]="gridWidthPX" [text]="text"></app-landingpage-info>
+  </div>
+  <div class="dateWrapper">
+    <app-landingpage-date-box [screenHeightPX]="screenHeightPX" [screenWidthPX]="screenWidthPX"></app-landingpage-date-box>
+  </div>
+
+  <div class="scrollIcon" *ngIf="device !== 'WebLandscape'">
+    <mat-icon svgIcon="scroll-Icon"></mat-icon>
+  </div>
+</div>

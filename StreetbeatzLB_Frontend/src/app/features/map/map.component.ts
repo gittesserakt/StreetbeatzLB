@@ -1,27 +1,43 @@
-import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, AfterViewInit, Renderer2, Inject} from '@angular/core';
 import * as Leaflet from 'leaflet';
 import {interval, Subscription} from "rxjs";
-import {MatToolbar} from "@angular/material/toolbar";
 import {PoiService} from "../../core/services/poi.service";
 import {Poi} from "../../core/models/poi.model";
 import {LatLng} from "leaflet";
+import {Router, ActivatedRoute} from "@angular/router";
+import {APP_BASE_HREF} from "@angular/common";
+import {MatDialog} from "@angular/material/dialog";
+import {MapDialogComponent} from "../../shared/components/map-dialog/map-dialog.component";
 
-Leaflet.Icon.Default.imagePath = 'assets/'
+Leaflet.Icon.Default.imagePath = 'assets/';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit, OnDestroy {
+export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  @ViewChild('toolbar', {static: true}) toolbar!: MatToolbar;
-  contentHeight!: number;
+  festivalPosition: Leaflet.LatLngExpression = [48.89869508277576, 9.198711550016014];
 
+  pois: Poi[] = [];
+
+  // Leaflet Markers
+  iconSize: Leaflet.PointExpression = [35, 51];
+  iconAnchor: Leaflet.PointExpression = [12, 41];
+  popupAnchor: Leaflet.PointExpression = [1, -34];
+  tooltipAnchor: Leaflet.PointExpression = [16, -28];
+  shadowSize: Leaflet.PointExpression = [41, 41];
+
+  trackPosition: boolean = false;
   position?: GeolocationPosition;
-  subscription: Subscription;
   followPosition: boolean = false;
+  showLegend : boolean = false;
+  locationUpdateTimer = interval(1000);
+  locationTrackingSubscription!: Subscription;
+
   map!: Leaflet.Map;
+  stageLayer: Leaflet.Layer = new Leaflet.Layer();
   markers: Leaflet.Marker[] = [];
   deviceMarker?: Leaflet.Marker;
   options = {
@@ -30,202 +46,42 @@ export class MapComponent implements OnInit, OnDestroy {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       })
     ],
-    zoom: 16,
-    center: {lat: 48.90163303471827, lng: 9.195045750240379}
+    zoom: 15,
+    center: this.festivalPosition,
+    doubleClickZoom: false,
+    zoomControl: false,
   }
-  iconPerson = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/adjust_black_24dp.svg',
-    iconUrl: 'assets/map/adjust_black_24dp.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
 
-  iconFoodTruck = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/foodtruck_black_24dp.svg',
-    iconUrl: 'assets/map/foodtruck_black_24dp.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
+  constructor(private renderer: Renderer2, private el: ElementRef, private poiService: PoiService,
+              private router: Router, private activatedRouter: ActivatedRoute,
+              @Inject(APP_BASE_HREF) private baseHref: string, public dialog: MatDialog) {
 
-  iconToilet = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/wc_black_24dp.svg',
-    iconUrl: 'assets/map/wc_black_24dp.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
+    this.getPoiByName("User Icon").then((poi: Poi) => {
+      const personIcon = this.createIcon(poi);
+      this.deviceMarker = new Leaflet.Marker([0, 0], {icon: personIcon});
+      this.activateLocationTracking();
+    })
+  }
 
-  iconEntrance = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/entrance_black_24dp.svg',
-    iconUrl: 'assets/map/entrance_black_24dp.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
+  ngOnInit(): void {
+    this.getDeviceLocation();
+  }
 
-  IconStageA = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_A.svg',
-    iconUrl: 'assets/map/stage_A.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-  IconStageB = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_B.svg',
-    iconUrl: 'assets/map/stage_B.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-  IconStageC = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_C.svg',
-    iconUrl: 'assets/map/stage_C.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-  IconStageD = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_D.svg',
-    iconUrl: 'assets/map/stage_D.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-  IconStageE = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_E.svg',
-    iconUrl: 'assets/map/stage_E.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-  IconStageF = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_F.svg',
-    iconUrl: 'assets/map/stage_F.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-  IconStageG = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_G.svg',
-    iconUrl: 'assets/map/stage_G.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-  IconStageH = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_H.svg',
-    iconUrl: 'assets/map/stage_H.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-  IconStageI = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_I.svg',
-    iconUrl: 'assets/map/stage_I.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-  IconStageK = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_K.svg',
-    iconUrl: 'assets/map/stage_K.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-
-  IconStageL = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_L.svg',
-    iconUrl: 'assets/map/stage_L.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-
-  IconStageM = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_M.svg',
-    iconUrl: 'assets/map/stage_M.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-
-  IconStageS = Leaflet.icon({
-    iconRetinaUrl: 'assets/map/stage_S.svg',
-    iconUrl: 'assets/map/stage_S.svg',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
-  });
-
-
-  navHeight!: number;
-
-  pois!: Poi[];
-
-  constructor(private renderer: Renderer2, private el: ElementRef, private poiService: PoiService) {
-    this.deviceMarker = new Leaflet.Marker([0, 0], {icon: this.iconPerson});
-    const source = interval(1000);
-    this.subscription = source.subscribe(() => {
-      this.getDeviceLocation();
-      if (this.position) {
-        this.deviceMarker?.setLatLng([this.position.coords.latitude, this.position.coords.longitude]);
-      }
-      this.setDeviceMarker();
-      this.deviceMarker?.addTo(this.map)
-      if (this.followPosition) {
-        this.panToDevicePosition();
+  ngAfterViewInit() {
+    this.activatedRouter.queryParams.subscribe(params => {
+      if (params['stageId']) {
+        this.centerOnStage(params['stageId']);
       }
     });
   }
+
+  ngOnDestroy(): void {
+    this.locationTrackingSubscription.unsubscribe();
+  }
+
+  //***************************
+  // API Calls
+  //***************************
 
   private getAllPois(): Promise<void>{
     return new Promise<void>((resolve, reject) =>{
@@ -243,60 +99,89 @@ export class MapComponent implements OnInit, OnDestroy {
         }
       });
     })
+  }
 
+  private getPoiByName(name: string): Promise<Poi>{
+    return new Promise<Poi>((resolve, reject) =>{
+      this.poiService.getPoiByName(name).subscribe((response) => {
+        const {data, error} = response;
+
+        if (data) {
+          resolve(data as Poi);
+        }
+
+        if (error) {
+          console.log(error);
+          reject();
+        }
+      });
+    });
+  }
+
+  //***************************
+  // Icon & Marker Creation
+  //***************************
+
+  private createIcon(poi: Poi): Leaflet.Icon {
+    const url = (this.baseHref === '/' ? '' : this.baseHref) + '/assets/map/' + poi.icon;
+    return Leaflet.icon({
+      iconRetinaUrl: url,
+      iconUrl: url,
+      iconSize: this.iconSize,
+      iconAnchor: this.iconAnchor,
+      popupAnchor: this.popupAnchor,
+      tooltipAnchor: this.tooltipAnchor,
+      shadowSize: this.shadowSize
+    })
   }
 
   initMarkers() {
     for (let index = 0; index < this.pois.length; index++) {
       const data = this.pois[index];
-      const position = new LatLng(data.latitude, data.longitude);
-      const marker = data.icon ?
-        Leaflet.marker(position, {icon: this.getIcon(data.icon)})
-        : Leaflet.marker(position);
 
-      marker.addTo(this.map).bindPopup(`<b>${position.lat},  ${position.lng}</b>`);
-      this.map.panTo(position);
-      this.markers.push(marker);
+      if (data.icon) {
+        const position: Leaflet.LatLng = new LatLng(data.latitude, data.longitude);
+        const icon: Leaflet.Icon = this.createIcon(data);
+        const marker: Leaflet.Marker = Leaflet.marker(position, {icon});
+
+        marker.addTo(this.map).bindPopup(`<b>${position.lat},  ${position.lng}</b>`);
+        marker.setPopupContent(data.name);
+        marker.on('click', () => {
+          if (data.poi_type == 'stage') {
+            this.router.navigate([`/performances`], { queryParams: { stageId: data.name.substring(data.name.length - 1) } });
+          }
+          marker.openPopup();
+        });
+
+        this.map.panTo(position);
+        this.markers.push(marker);
+      }
     }
   }
 
-  onMapReady($event: Leaflet.Map) {
-    this.map = $event;
-    this.map.on('drag', (event) => this.mapDragged(event));
-    this.getAllPois().then(()=>{
-      this.initMarkers();
+  //***************************
+  // Location Tracking
+  //***************************
+  private activateLocationTracking() {
+    this.locationTrackingSubscription = this.locationUpdateTimer.subscribe(() => {
+      if (this.trackPosition) {
+        this.getDeviceLocation();
+        if (this.position) {
+          this.deviceMarker?.setLatLng([this.position.coords.latitude, this.position.coords.longitude]);
+        }
+        this.setDeviceMarker();
+        this.deviceMarker?.addTo(this.map)
+        if (this.followPosition) {
+          this.panToDevicePosition();
+        }
+      }
     });
-  }
-
-  ngAfterContentViewInit() {
-    this.navHeight = this.toolbar._elementRef.nativeElement.offsetHeight;
-    this.contentHeight = window.innerHeight - this.navHeight;
-    /*
-     [style.height.px]="contentHeight"
-     [style.margin-top.px]="navHeight"
-     */
-  }
-
-  getButtonColor(): "accent" | "primary" {
-    return this.followPosition ? 'accent' : 'primary';
-  }
-
-  toggleButtonChanged(): void {
-    this.followPosition = !this.followPosition;
   }
 
   private setDeviceMarker() {
     if (this.position) {
       this.deviceMarker?.setLatLng([this.position.coords.latitude, this.position.coords.longitude]);
     }
-  }
-
-  ngOnInit(): void {
-    this.getDeviceLocation();
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   panToDevicePosition() {
@@ -307,18 +192,43 @@ export class MapComponent implements OnInit, OnDestroy {
 
   getDeviceLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((x) => this.position = x,
-        () => alert("Denied access to your location"));
+      navigator.geolocation.getCurrentPosition(
+        (x) => {this.position = x; this.trackPosition = true;},
+        () => this.trackPosition = false);
     } else {
       alert("Geolocation is not supported by this browser.");
     }
   }
 
-  // generateMarker(data: any, index: number) {
-  //   return Leaflet.marker(data.position, {draggable: data.draggable})
-  //     .on('click', (event) => this.markerClicked(event, index))
-  //     .on('dragend', (event) => this.markerDragEnd(event, index));
-  // }
+  //***************************
+  // Map Events
+  //***************************
+  onMapReady($event: Leaflet.Map) {
+    this.map = $event;
+    this.map.on('drag', (event) => this.mapDragged(event));
+    this.getAllPois().then(()=>{
+      Leaflet.polygon([
+        [48.896226027990714, 9.197766780853273],
+        [48.896274949922436, 9.19461250305176],
+        [48.90218164635024, 9.194167256355287],
+        [48.90231213853569, 9.195642471313478],
+        [48.902467284317844, 9.200749397277834],
+        [48.90223101842231, 9.200904965400698],
+        [48.90222045038363, 9.201495051383974],
+        [48.90206181408932, 9.20159697532654],
+        [48.90197366091056, 9.200663566589357],
+        [48.90128968346977, 9.200701117515566],
+        [48.901201421786666, 9.200159311294557],
+        [48.90067960800623, 9.200223684310915],
+        [48.90041503935959, 9.202498197555544],
+        [48.898891744823594, 9.202144145965578],
+        [48.89932213836174, 9.200067043648234],
+        [48.89933951040007, 9.197729229927065]
+      ], {color: 'rgba(152,18,18,0.5)'}).addTo(this.map);
+      this.initMarkers();
+      this.map.setView(this.festivalPosition);
+    });
+  }
 
   mapDragged($event: any) {
     this.followPosition = false;
@@ -326,53 +236,40 @@ export class MapComponent implements OnInit, OnDestroy {
 
   mapClicked($event: any) {
     this.getDeviceLocation();
-    console.log($event.latlng.lat, $event.latlng.lng);
   }
 
-  markerClicked($event: any, index: number) {
-    console.log($event.latlng.lat, $event.latlng.lng);
+  private centerOnStage(stageID: string): void {
+    this.poiService.getPoiByName('Stage ' + stageID.toUpperCase()).subscribe((response) => {
+      const {data, error} = response;
+
+      if (data){
+        var poi = data as Poi
+        this.map.flyTo([poi.latitude, poi.longitude], 18);
+      }
+
+      if (error) {
+        console.log(error);
+      }
+    });
   }
 
-  markerDragEnd($event: any, index: number) {
-    console.log($event.target.getLatLng());
+  //***************************
+  // Buttons for the map
+  //***************************
+  centerOnFestival(): void {
+    this.map.flyTo(this.festivalPosition, 15);
+    this.followPosition = false;
   }
 
-  private getIcon(icondId: string) {
-    switch (icondId) {
-      case "0":
-        return this.iconEntrance;
-      case "2":
-        return this.iconFoodTruck;
-      case "3":
-        return this.iconToilet;
-      case "A":
-        return this.IconStageA;
-      case "B":
-        return this.IconStageB;
-      case "C":
-        return this.IconStageC;
-      case "D":
-        return this.IconStageD;
-      case "E":
-        return this.IconStageE;
-      case "F":
-        return this.IconStageF;
-      case "G":
-        return this.IconStageG;
-      case "H":
-        return this.IconStageH;
-      case "I":
-        return this.IconStageI;
-      case "K":
-        return this.IconStageK;
-      case "L":
-        return this.IconStageL;
-      case "M":
-        return this.IconStageM;
-      case "S":
-        return this.IconStageS;
-    }
-    return this.IconStageA;
+  togglePositionButtonChanged(): void {
+    this.followPosition = !this.followPosition;
+  }
+
+  toggleLegend(): void {
+    const dialogRef = this.dialog.open(MapDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }
 

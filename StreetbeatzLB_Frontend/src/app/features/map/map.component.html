@@ -4,8 +4,19 @@
      (leafletMapReady)="onMapReady($event)"
      (leafletClick)="mapClicked($event)">
   <div class="map-overlay" *ngIf="map">
-    <button (click)="toggleButtonChanged()" mat-fab [color]="getButtonColor()">
+    <button class="backToFestivalLocation" (click)="centerOnFestival()">
+      <mat-icon>center_focus_strong</mat-icon>
+      <span>TO FESTIVAL</span>
+    </button>
+    <div class="spacer"></div>
+    <button class="toggleOwnLocation {{followPosition ? 'follow' : 'noFollow'}}" (click)="togglePositionButtonChanged()">
       <mat-icon>{{ followPosition ? 'gps_fixed' : 'gps_not_fixed' }}</mat-icon>
+      <span>MY POSITION</span>
+    </button>
+    <div class="spacer"></div>
+    <button class="legend" (click)="toggleLegend()">
+      <mat-icon>info</mat-icon>
+      <span>LEGEND</span>
     </button>
   </div>
 </div>

@@ -8,6 +8,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatButtonModule } from "@angular/material/button";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [AdminViewComponent],
@@ -19,7 +20,8 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     MatIconModule,
     MatTabsModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCheckboxModule,
   ],
 })
 export class AdminViewModule {}

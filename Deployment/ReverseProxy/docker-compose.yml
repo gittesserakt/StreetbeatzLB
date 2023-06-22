@@ -1,12 +1,17 @@
 version: "3.9"
+name: sb-reverseproxy
 services:
-  nginx:
+  reverse-proxy:
     container_name: nginx-rp
     restart: always
     build:
       context: .
       dockerfile: nginx-rp.dockerfile
+    env_file:
+      - ${PROJECT_PATH}/Deployment/Environment/.env
     volumes:
-      - /var/snap/docker/common/var-lib-docker/volumes/ReverseProxy/_data/reverse_proxy/certs:/certs
+      - ${PROJECT_PATH}/Deployment/ReverseProxy/certs:/certs
     ports:
-      - "443:443"
+      - "${PROXY_PORT_HTTP}:80"
+      - "${PROXY_PORT_HTTPS}:443"
+      - "${PROXY_PORT_DB}:3306"

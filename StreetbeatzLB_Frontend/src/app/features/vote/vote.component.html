@@ -1,20 +1,31 @@
-<div class="background" [ngStyle]="{'height': screenHeightPX - 64 + 'px'}">
-  <div class="voteTitle" [ngStyle]="{'width': centerList + '%'}">
-    <a>{{voteTitle}}</a>
+<div class="background">
+  <div class="titleBackgroundContainer">
+    <app-glass-effect-box [width]="100" [height]="90" [unit]="'%'">
+      <div class="titleContainer">
+        <a>{{voteTitle}}</a>
+      </div>
+    </app-glass-effect-box>
   </div>
 
-  <div class="listContainer" [ngStyle]="{'width': centerList + '%'}">
+  <div class="listContainer" >
     <mat-list class="list">
-      <mat-radio-group class="radioGroup" [(ngModel)]="chosenArtist">
-        <mat-radio-button class="radioButton" [disabled]="hasChosen" *ngFor="let artist of artists"
-                          [value]="artist" [checked]="artist.name === chosenArtist?.name">{{artist.name}}</mat-radio-button>
-      </mat-radio-group>
+      <section class="checkboxGroup">
+        <mat-checkbox class="checkbox" #checkbox (change)="limitCheckbox($event)"
+                      [disabled]="hasVoted"
+                      *ngFor="let artist of artists"
+                      [value]="artist.name">
+          <span>{{artist.name}}</span>
+        </mat-checkbox>
+      </section>
     </mat-list>
+    <mat-icon>keyboard_arrow_down</mat-icon>
   </div>
 
-  <div class="buttonContainer" [ngStyle]="{'width': centerList + '%'}">
-    <button mat-flat-button class="voteButton" (click)="onClick()" color="primary" [disabled]="hasChosen">
-      {{voteButton}}
-    </button>
+  <div class="buttonContainer">
+    <app-glass-effect-box [width]="98" [height]="90" [unit]="'%'">
+      <button mat-flat-button class="voteButton" (click)="onClick()" [disabled]="hasVoted">
+        {{voteButton}} ({{remainingVotes.toString()}})
+      </button>
+    </app-glass-effect-box>
   </div>
 </div>

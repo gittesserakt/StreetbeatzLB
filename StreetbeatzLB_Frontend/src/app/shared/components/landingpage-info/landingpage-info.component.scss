@@ -1,0 +1,113 @@
+@import "../../../../_palette.scss";
+
+.infoWrapper {
+  padding-top: 10%;
+  max-height: 30vh;
+  .titleWrapper {
+    margin-left: 6%;
+    .title {
+      color: map-get(map-get($primary, contrast), 500);
+      line-height: 85%;
+    }
+  }
+  .textWrapper {
+    //background-color: blue;
+    margin-left: 6%;
+    app-textbox {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+
+//region HandsetPortrait
+@media screen and (max-width: 599.98px){
+  .infoWrapper {
+    .titleWrapper {
+      height: 26vw;
+      .title {
+        font-size: 17vw;
+      }
+    }
+    .textWrapper {
+      width: 70vw;
+      app-textbox {
+        font-size: 3.4vw;
+      }
+    }
+  }
+}
+//endregion
+//region HandsetLandscape
+@media screen and (min-width: 600px) and (max-width: 959.98px){
+  .infoWrapper {
+    .titleWrapper {
+      height: 12vw;
+      .title {
+        font-size: 8.7vw;
+      }
+    }
+    .textWrapper {
+      width: 65vw;
+      app-textbox {
+        font-size: 1.7vw;
+      }
+    }
+  }
+}
+//endregion
+//region TabletPortrait
+@media screen and (min-width: 600px) and (max-width: 839.98px){
+  .infoWrapper {
+    .titleWrapper {
+      height: 22vw;
+      .title {
+        font-size: 15vw;
+      }
+    }
+    .textWrapper {
+      width: 65vw;
+      app-textbox {
+        font-size: 3vw;
+      }
+    }
+  }
+}
+//endregion
+//region TabletLandscape
+@media screen and (min-width: 960px) and (max-width: 1279.98px){
+  .infoWrapper {
+    .titleWrapper {
+      height: 12.5vw;
+      .title {
+        font-size: 8.4vw;
+      }
+    }
+    .textWrapper {
+      width: 75%;
+      app-textbox {
+        font-size: 1.5vw;
+      }
+    }
+  }
+}
+//endregion
+//region WebLandscape
+@media screen and (min-width: 1280px){
+  .infoWrapper {
+    padding-top: 0;
+    .titleWrapper {
+      height: 9vw;
+      .title {
+        font-size: 6vw;
+      }
+    }
+    .textWrapper {
+      width: 50%;
+      app-textbox {
+        font-size: 1.2vw;
+      }
+    }
+  }
+}
+//endregion

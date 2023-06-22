@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="520"
+   height="1125.3333"
+   viewBox="0 0 520 1125.3333"
+   sodipodi:docname="landingpage_blue-magenta-background.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath20">
+      <path
+         d="M 0,0 H 390 V 844 H 0 Z"
+         id="path18" />
+    </clipPath>
+    <linearGradient
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0,844,844,0,195,0)"
+       spreadMethod="pad"
+       id="linearGradient34">
+      <stop
+         style="stop-color:#ff24cc;stop-opacity:1;"
+         offset="0"
+         id="stop26" />
+      <stop
+         style="stop-color:#ff24cc;stop-opacity:1;"
+         offset="0.0006533"
+         id="stop28" />
+      <stop
+         style="stop-color:#251ff9;stop-opacity:1;"
+         offset="0.999349"
+         id="stop30" />
+      <stop
+         style="stop-color:#251ff9;stop-opacity:1;"
+         offset="1"
+         id="stop32" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     showgrid="false"
+     inkscape:zoom="0.72334132"
+     inkscape:cx="132.71743"
+     inkscape:cy="564.74031"
+     inkscape:window-width="2400"
+     inkscape:window-height="1271"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g10">
+    <inkscape:page
+       x="0"
+       y="0"
+       id="page8"
+       width="520"
+       height="1125.3333" />
+  </sodipodi:namedview>
+  <g
+     id="g10"
+     inkscape:groupmode="layer"
+     inkscape:label="Page 1"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,1125.3333)">
+    <path
+       d="M 0,0 H 390 V 844 H 0 Z"
+       style="display:none;fill:#45ff84;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path12" />
+    <g
+       id="g14">
+      <g
+         id="g16"
+         clip-path="url(#clipPath20)">
+        <g
+           id="g22">
+          <g
+             id="g24">
+            <path
+               d="M 0,0 H 390 V 844 H 0 Z"
+               style="display:inline;fill:url(#linearGradient34);stroke:none"
+               id="path36" />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

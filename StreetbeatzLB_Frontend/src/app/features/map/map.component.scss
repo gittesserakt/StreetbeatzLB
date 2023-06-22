@@ -1,13 +1,118 @@
+@import "../../../_palette.scss";
+
 // fill screen with map but keep navbar visible and dont allow scrolling
 .map-container {
-  height: calc(100vh - 64px);
+  height: calc(100vh - 66px);
 }
 
-// button to toggle follow mode; positioned in the bottom right corner relative to the map-container
-.map-overlay button {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 2rem;
-  z-index: 1000;
+.map-overlay {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: transparent;
+
+  @media (max-width: 300px) {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+.map-overlay * {
+  z-index: 1000000;
+}
+
+.spacer {
+  width: 5px;
+  height: 5px;
+}
+
+.backToFestivalLocation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2px;
+  background-color: map-get($primary, 200);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 120px;
+}
+
+.backToFestivalLocation mat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 20px;
+}
+
+.backToFestivalLocation span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-family: "Open Sans";
+  width: auto;
+}
+
+.toggleOwnLocation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 120px;
+}
+
+.toggleOwnLocation mat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 20px;
+}
+
+.toggleOwnLocation span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-family: "Open Sans";
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 120px;
+}
+
+.legend mat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 20px;
+}
+
+.legend span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-family: "Open Sans";
+}
+
+.follow {
+  background-color: map-get($primary, 250);
+}
+
+.noFollow {
+  background-color: map-get($primary, 200);;
 }

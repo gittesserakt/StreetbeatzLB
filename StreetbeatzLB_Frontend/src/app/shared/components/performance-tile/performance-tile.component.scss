@@ -1,17 +1,11 @@
-// Funktion, um Hex-Code in RGBA umzuwandeln
-@function hex_rgba($hex, $alpha: 1) {
-  $r: red($hex);
-  $g: green($hex);
-  $b: blue($hex);
-  $a: $alpha;
-
-  @return rgba($r, $g, $b, $a);
-}
+@import "../../../../_palette.scss";
 
 // color palette from theme
-$primary-color: blue; //mat.get-color-from-palette($mat-light-theme, primary, 500);
-$primary-color-light: lightblue;
-$secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent, 500);
+$tile-color: map-get($primary, 300);
+$border-color: map-get($primary, 200);
+$text-color: map-get(map-get($primary, contrast), 50);
+$stage-color: map-get(map-get($primary, contrast), 50);
+$button-color: orange;
 
 .performance-tile-wrapper {
   display: flex;
@@ -21,23 +15,30 @@ $secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent,
   min-height: 100px;
   height: 100px;
   max-height: 150px;
-  width: 100%;
+  max-width: 100%;
   overflow: hidden;
+  background-color: $tile-color;
+  border-radius: 20px;
+  border: $border-color solid 4px;
+  margin: 0 10px;
+  padding-top: 10px;
 
   .left-column {
-    margin-left: 10px;
+    margin-left: 7px;
+    margin-right: 8px;
     flex: 2;
     width: 20%;
     max-width: 100px;
     height: 100%;
     overflow: hidden;
+    background-color: transparent;
 
     @media screen and (max-width: 400px) {
       max-width: 60px;
     }
 
     .stage {
-      color: $secondary-color;
+      color: $stage-color;
       font-size: 20px;
       font-weight: bold;
       display: flex;
@@ -50,13 +51,13 @@ $secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent,
 
       &::before {
         content: 'STAGE';
-        margin-right: 6px;
+        margin-right: 4px;
         margin-left: 2px;
         writing-mode: vertical-rl;
         text-orientation: mixed;
         font-size: 12px;
         font-weight: normal;
-        color: $secondary-color;
+        color: $stage-color;
       }
 
       @media screen and (max-width: 400px) {
@@ -74,41 +75,16 @@ $secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent,
   .middle-column {
     flex: 4;
     height: 100%;
+    color: $text-color;
 
     .description {
       display: flex;
       flex-direction: column;
       justify-content: center;
       overflow: hidden;
-      $min-font-size: 12px;
-      $max-font-size: 24px;
 
       .artist {
-        font-size: $max-font-size; // Schriftgröße auf Maximum setzen
-
-        @if (calc($min-font-size * 1.5) > $max-font-size) { // falls die maximale Schriftgröße zu klein ist
-          font-size: $min-font-size; // Schriftgröße auf Minimum setzen
-        }
-        @else {
-          $i: 1;
-          @while (calc(100% - $i * 10%) > 0) { // Schriftgröße in 10%-Schritten reduzieren, bis sie passt
-            $font-size: calc($max-font-size - $i * 2px);
-            @if (calc(100% - $i * 10%) < 0 or $font-size < $min-font-size) { // falls die Schriftgröße zu klein wird
-              $font-size: $min-font-size;
-               // Schleife beenden
-            }
-            .text {
-              font-size: $font-size;
-            }
-            $i: $i + 1;
-          }
-        }
-      }
-
-      @media screen and (max-width: 400px) {
-        .artist {
-          font-size: 1.2rem;
-        }
+        font-size: 19px;
       }
 
       .time {
@@ -145,11 +121,32 @@ $secondary-color: purple; //mat.get-color-from-palette($mat-light-theme, accent,
     justify-content: flex-end;
     height: 100%;
 
-    .navigate button {
-      background-color: transparent;
-      color: $secondary-color;
-      margin-right: 10px;
-      box-shadow: none;
+    .navigate {
+      padding-right: 1rem;
+      color: $button-color;
+
+      button {
+        color: $text-color;
+        margin-right: 10px;
+        box-shadow: none;
+      }
+    }
+
+    .change {
+      display: flex;
+      justify-content: center;
+      padding-right: 0.5rem;
+      color: $button-color;
+
+      button {
+        color: $text-color;
+        margin-right: 10px;
+        box-shadow: none;
+
+        .leftButton {
+          margin-right: 0.7rem;
+        }
+      }
     }
   }
 }

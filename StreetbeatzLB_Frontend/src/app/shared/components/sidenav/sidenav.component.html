@@ -1,0 +1,19 @@
+<div class="background" [ngStyle]="sidenavBackground">
+  <div class="iconWrapper">
+    <h1 class="title">Menu</h1>
+  <!--  <mat-icon class="logo" svgIcon="streetbeatz"></mat-icon>-->
+  </div>
+
+  <mat-nav-list class="list">
+    <a mat-list-item routerLink="/" (click)="toggleSidenavEvent()"><p>Home</p></a>
+    <a mat-list-item routerLink="/performances" (click)="toggleSidenavEvent()"><p>Performances</p></a>
+    <a mat-list-item routerLink="/map" (click)="toggleSidenavEvent()"><p>Map</p></a>
+    <a mat-list-item routerLink="/vote" (click)="toggleSidenavEvent()"><p>Vote</p></a>
+    <ng-container *ngIf="isAuthenticated$ | async;">
+      <a mat-list-item routerLink="/admin-view" (click)="toggleSidenavEvent()"><p>Admin</p></a>
+      <a mat-list-item>
+        <p><app-logout-button></app-logout-button></p>
+      </a>
+    </ng-container>
+  </mat-nav-list>
+</div>

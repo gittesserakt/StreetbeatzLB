@@ -1,6 +1,12 @@
-import { Component, EventEmitter, Input, Output, Inject, OnInit } from '@angular/core';
-import { VerbosePerformance } from '../../../core/models/verbosePerformance';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { AuthService } from "@auth0/auth0-angular";
+import { take } from "rxjs/operators";
+import { VerbosePerformanceService } from "../../../core";
+import { ArtistService } from "../../../core/services/artist.service";
+import { Artist } from "../../../core/models/artist.model";
+import { StageService } from "../../../core/services/stage.service";
+import { Stage } from "../../../core/models/stage.model";
 
 @Component({
   selector: 'app-edit-popup',
@@ -9,59 +15,134 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 })
 
 export class PerformancePopupComponent implements OnInit{
-  popupName: string = ""; // "Edit Performance" or "Add Performance"
 
-  @Input() performance!: VerbosePerformance;
-  @Output() saved = new EventEmitter<VerbosePerformance>();
-  @Output() closed = new EventEmitter();
+  // [(ngModel)]
+  startTime!: string;
+  startDate!: string;
+  selectedArtistId: number = 0;
+  selectedStageId: number = 0;
 
-  updatedPerformance: VerbosePerformance = { ...this.performance };
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: {
+      functionName: string;   // "Edit Performance" or "Add Performance"
+      performance_popup_id: number;
+      p_artist: string;
+      p_stage: string;
+      p_time: string;
+    },
+    private dialogRef: MatDialogRef<PerformancePopupComponent>,
+    private authService: AuthService,
+    private verbosePerformanceService: VerbosePerformanceService,
+    private artistService: ArtistService,
+    private stageService: StageService
+  ) {
 
-  constructor(private dialofRef: MatDialogRef<PerformancePopupComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { performance: VerbosePerformance, functionName: string }) {}
+    if(this.data.functionName == "Edit Performance") {
+      [this.startDate, this.startTime] = this.data.p_time.split('T');
+    }
+  }
+
+  artists!: Artist[];
+  stages!: Stage[];
+  authSub!: string;
 
   ngOnInit() {
-    this.popupName = this.data.functionName;
-    const labelElement = document.querySelector('#popup-label');
-    if (labelElement) {
-      labelElement.textContent = `${this.popupName}`;
-    }
+    this.getAllArtists();
+    this.getAllStages();
+    this.getCurrentUser();
   }
 
-  getDateTime() { //TODO: Zeit ausgeben
-    if (!this.updatedPerformance.start_time) {
-      return '';
-    }
-    const date = new Date(this.updatedPerformance.start_time + 'Z'); // 'Z' für Coordinated Universal Time
-    return date.toISOString().slice(0, 16);
+  getCurrentUser() {
+    this.authService.user$.pipe(take(1)).subscribe({
+      next: (user) => {
+        this.authSub = user?.sub || ""; // Hier wird der auth0 user sub der variable authSub zugewiesen.
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
-  //TODO: Künstler für Combobox aus der DB lesen
-  //TODO: vllt, Stages für Combobox aus der DB lesen
+  getAllArtists() {
+    this.artistService.getAllArtists()
+      .subscribe((response) => {
+        const {data, error} = response;
 
-  onSave() {
-    const start_time = new Date(this.updatedPerformance.start_time);
-    const start_period = new Date('2023-05-26');
-    const end_period = new Date('2023-05-28');
+        if (data) {
+          this.artists = data as Artist[];
+        }
 
-    if (start_time >= start_period && start_time <= end_period) {
-      if (/* künstler bedingung */ true) { //TODO: checken ob Künstler frei ist
-        if (/* stage bedingung */ true) { //TODO: checken ob Stage frei ist
-          const changedPerformance: VerbosePerformance = {
-            performance_id: this.performance.performance_id,
-            start_time: start_time.toISOString(),
-            end_time: this.performance.end_time,
-            artist: this.updatedPerformance.artist,
-            stage: this.updatedPerformance.stage
-          };
-          //TODO: speichern der änderungen
-          this.dialofRef.close();
-        } else { alert('The stage is already occupied at that time.'); }
-      } else { alert('The artist is already playing on another stage at the time.'); }
-    } else { alert('The start time is outside the festival period and must be between 26/05/2023 and 28/05/2023.'); }
+        if (error) {
+          console.log(error);
+        }
+      })
+  }
+
+  getAllStages() {
+    this.stageService.getAllStages()
+      .subscribe((response) => {
+        const {data, error} = response;
+
+        if (data) {
+          this.stages = data as Stage[];
+        }
+
+        if (error) {
+          console.log(error);
+        }
+      })
+  }
+
+  savePerformance() {
+    const startTimeDate = this.startDate + " " + this.startTime;
+    if (this.data.functionName == "Add Performance" && (startTimeDate == " " || this.selectedArtistId == 0 || this.selectedStageId == 0)) {
+      if (startTimeDate == " ") {
+        alert("Please select a start time and date!");
+      } else if (this.selectedArtistId == 0) {
+        alert("Please select a artist!")
+      } else if (this.selectedStageId == 0) {
+        alert("Please select a stage!")
+      }
+    } else {
+
+      const start_period = new Date('2023-05-26 18:00');
+      const end_period = new Date('2023-05-28 23:00');
+
+      if (new Date(startTimeDate) >= start_period && new Date(startTimeDate) <= end_period) {
+            if (this.data.functionName == "Edit Performance") {
+              this.verbosePerformanceService.editPerformance(this.data.performance_popup_id, new Date(startTimeDate), this.selectedArtistId, this.selectedStageId)
+                .subscribe(
+                  (response: any) => {
+                    const {data, error} = response;
+
+                    if (error) {
+                      console.log(error);
+                    } else {
+                      this.dialogRef.close();
+                      location.reload();
+                    }
+                  }
+                );
+            } else {
+              this.verbosePerformanceService.addPerformance(new Date(startTimeDate), this.authSub, this.selectedArtistId, this.selectedStageId)
+                .subscribe(
+                  (response: any) => {
+                    const {data, error} = response;
+
+                    if (error) {
+                      console.log(error);
+                    } else {
+                      this.dialogRef.close();
+                      location.reload();
+                    }
+                  }
+                );
+            }
+      } else { alert('The date or time is outside the festival period and must be between 05/26/2023, 6:00 pm and 05/28/2023, 11:00 pm.'); }
+    }
   }
 
   onCancel() {
-    this.dialofRef.close();
+    this.dialogRef.close();
   }
 }

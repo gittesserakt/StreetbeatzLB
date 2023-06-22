@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core";
 import {CookieService} from "ngx-cookie-service";
 import {Filter} from "../models/filter.model";
 import {Artist} from "../models/artist.model";
-import {ArtistService} from "./artist.service";
 
 
 @Injectable({
@@ -10,64 +9,53 @@ import {ArtistService} from "./artist.service";
 })
 export class SmfCookieService {
 
-  constructor(private smfService: CookieService, private artistService: ArtistService) {
+  constructor(private smfService: CookieService) {
   }
 
   saveFilter(filter: Filter) {
-    console.log("Write Filter as Cookies, param = " + filter.toString())
-
-    if (filter.date) {
-      this.smfService.set("filterCookieDate", <string>filter.date.toISOString())
-    } else {
-      this.smfService.delete("filterCookieDate")
-    }
-    if (filter.artist) {
-      this.smfService.set("filterCookieArtist", <string>filter.artist.toString())
-    } else {
-      this.smfService.delete("filterCookieArtist")
-    }
-    if (filter.stage) {
-      this.smfService.set("filterCookieStage", <string>filter.stage.toString())
-    } else {
-      this.smfService.delete("filterCookieStage")
-    }
+    this.smfService.set("filterCookie", filter.toJSON());
   }
 
   loadFilter(): Filter {
-    console.log("Get Filter from Cookies")
-    const filter = new Filter(
-      this.smfService.check("filterCookieDate") ? new Date(<string>this.smfService.get("filterCookieDate")) : null,
-      this.smfService.check("filterCookieArtist") ? this.smfService.get("filterCookieArtist") : null,
-      this.smfService.check("filterCookieStage") ? this.smfService.get("filterCookieStage") : null,
-    );
-    console.log(filter.toString())
+    const filter = Filter.fromJSON(this.smfService.get("filterCookie"));
     return filter;
   }
 
-  setVoteCookies(artist: Artist | null | undefined, hasChosen: boolean){
-    console.log("Write Vote as Cookies")
-
-    if (hasChosen && artist != undefined) {
-      this.smfService.set("hasChosen", "chosen")
-      this.smfService.set("chosenArtist", artist.name)
-    } else {
-      this.smfService.delete("hasChosen")
-      this.smfService.delete("chosenArtist")
-    }
-    console.log(artist)
+  filterSet(): boolean {
+    return (this.smfService.check("filterCookies"));
   }
 
-  getVoteCookies(): string {
-    console.log("Get Vote from Cookies")
+  setVoteCookies(artist1: Artist | null | undefined, artist2: Artist | null | undefined, voteCount: number,
+                 hasVoted: boolean){
+    if (hasVoted && artist1 && artist2 != undefined) {
+      this.smfService.set("voteCount", voteCount.toString());
+      this.smfService.set("hasVoted", "voted");
+      this.smfService.set("chosenArtist1", artist1.name);
+      this.smfService.set("chosenArtist2", artist2.name);
+    } else if(artist1 != undefined){
+      this.smfService.set("voteCount", voteCount.toString());
+        this.smfService.set("chosenArtist1", artist1.name);
+        this.smfService.delete("chosenArtist2");
+    } else {
+      this.smfService.delete("voteCount");
+      this.smfService.delete("hasVoted");
+      this.smfService.delete("chosenArtist1");
+      this.smfService.delete("chosenArtist2");
+    }
+  }
 
-    let artistName: string = ""
-    if(this.smfService.check("hasChosen")){
-      const chosenArtist = this.smfService.get("chosenArtist");
-      if (chosenArtist && chosenArtist.trim() !== '') {
-        artistName = chosenArtist.replace("%20", " ");
+  getVoteCookies(): string[] {
+    let artistName:string[] = ["",""];
+    if(this.smfService.check("voteCount")){
+      const chosenArtist1 = this.smfService.get("chosenArtist1");
+      const chosenArtist2 = this.smfService.get("chosenArtist2");
+      if (chosenArtist1 && chosenArtist1.trim() !== '') {
+        artistName[0] = chosenArtist1.replace("%20", " ");
+      }
+      if (chosenArtist2 && chosenArtist2.trim() !== '') {
+        artistName[1] = chosenArtist2.replace("%20", " ");
       }
     }
-    console.log("HALLO=" + artistName)
     return artistName;
   }
 }

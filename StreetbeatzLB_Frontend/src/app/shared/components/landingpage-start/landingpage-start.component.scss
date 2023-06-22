@@ -1,0 +1,61 @@
+@import "../../../../_palette.scss";
+
+.background{
+  position: relative;
+  .infoWrapper{
+    max-height: 50vh;
+  }
+  .dateWrapper{
+    padding-left: 7%;
+    padding-top: 10%;
+  }
+
+  .scrollIcon{
+    height: 9%;
+    width: 9%;
+    position: absolute;
+    bottom: 1%;
+    right: 46%;
+
+    mat-icon{
+      height: 100%;
+      width: 100%;;
+    }
+  }
+}
+
+//region HandsetPortrait
+@media screen and (max-width: 599.98px){
+
+}
+//endregion
+//region HandsetLandscape
+@media screen and (min-width: 600px) and (max-width: 959.98px){
+
+}
+//endregion
+//region TabletPortrait
+@media screen and (min-width: 600px) and (max-width: 839.98px){
+
+}
+//endregion
+//region TabletLandscape
+@media screen and (min-width: 960px) and (max-width: 1279.98px){
+
+}
+//endregion
+//region WebLandscape
+@media screen and (min-width: 1280px){
+  .background{
+    padding-top: 5%;
+    .infoWrapper{
+      height: 50%;
+    }
+    .dateWrapper{
+      height: 50%;
+      padding-left: 7%;
+      padding-top: 0;
+    }
+  }
+}
+//endregion

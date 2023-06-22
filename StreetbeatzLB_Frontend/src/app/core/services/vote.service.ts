@@ -10,19 +10,16 @@ import {Artist} from "../models/artist.model";
 })
 
 export class VoteService {
-  constructor(public externalApiService: ExternalApiService) {}
+  constructor(public externalApiService: ExternalApiService) {
+  }
 
   voteForArtist = async (artist: string): Promise<void> => {
-    console.log(artist);
     const re = new RegExp(' ', 'g');
     const formattedArtist = artist.replace(re, '_');
-    console.log(encodeURIComponent(formattedArtist));
     const response = await fetch(`${env.api.serverUrl}/voting/vote?artist=` + encodeURIComponent(formattedArtist), {
       method: 'PUT',
     });
-    console.log(response);
     const responseData = await response.text();
-    console.log(responseData);
   };
 
   getVoteById = (artist_id: number): Observable<ApiResponseModel> => {
@@ -44,5 +41,40 @@ export class VoteService {
         });
       })
     );
+  };
+
+  getVoteStatus = (): Observable<ApiResponseModel> => {
+    const config: RequestConfigModel = {
+      url: `${env.api.serverUrl}/voting/voteStatus`,
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    };
+
+    return this.externalApiService.callExternalApi(config).pipe(
+      mergeMap((response) => {
+        const {data, error} = response;
+
+        return of({
+          data: data !== null ? (data as boolean) : null,
+          error,
+        });
+      })
+    );
+  }
+
+  closeVoting = async (): Promise<void> => {
+    const response = await fetch(`${env.api.serverUrl}/voting/closeVoting`, {
+      method: 'PUT',
+    });
+    console.log(response);
+  };
+
+  openVoting = async (): Promise<void> => {
+    const response = await fetch(`${env.api.serverUrl}/voting/openVoting`, {
+      method: 'PUT',
+    });
+    console.log(response);
   };
 }

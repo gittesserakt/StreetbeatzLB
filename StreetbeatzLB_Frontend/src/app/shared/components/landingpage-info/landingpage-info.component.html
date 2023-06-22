@@ -1,0 +1,8 @@
+<div class="infoWrapper" [ngStyle]="{'height': screenHeightPX + 'px', 'width': screenWidthPX + 'px'}">
+  <div class="titleWrapper">
+      <span class="title" [ngStyle]="{'font-family': 'Teko, sans-serif', 'white-space': 'pre-line'}"><b>{{title}}</b></span>
+  </div>
+  <div class="textWrapper">
+    <app-textbox [screenHeightPX]="screenHeightPX" [screenWidthPX]="screenWidthPX" [text]="text"></app-textbox>
+  </div>
+</div>

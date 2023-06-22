@@ -32,4 +32,25 @@ export class PoiService {
       })
     );
   };
+
+  getPoiByName = (name: string): Observable<ApiResponseModel> => {
+    const config: RequestConfigModel = {
+      url: `${env.api.serverUrl}/pois/poiByName?poi=${name}`,
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    };
+
+    return this.externalApiService.callExternalApi(config).pipe(
+      mergeMap((response) => {
+        const {data, error} = response;
+
+        return of({
+          data: data ? (data as Poi) : null,
+          error,
+        });
+      })
+    );
+  };
 }

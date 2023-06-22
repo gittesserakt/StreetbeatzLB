@@ -1,59 +1,66 @@
 import {Time} from "@angular/common";
 
 /**
- * Date is never allowed to be null, because if a time can not be stored in a null field.
- * Therefore, date can never be null inside this Model.
- * If this happens the date will be set to 1970 and 0 Milisecounds through setTime(0).
- * If date is earlier than December 1972 date the month and day part of the Date are to be ignored
- * but the time can still be relevant.
- * Time is to be ignored if it is set to 00:00 o'clock.
+ * Internally timeDate is always initialized with the value of the 1 of January 1970 this is to be ignored.
+ * To outside use this class will return null if timeDate has values for get(Hour && Minute) = 0
  *
  * The festival is between 18 and 23 o'clock
  */
 export class Filter {
 
-  constructor(date: Date | null, private _artist: string | null, private _stage: string | null) {
-    if (date) {
-      this._date = date;
-    } else {
-      this._date = new Date();
-      this._date.setTime(0);
-    }
-    this._artist = _artist;
-    this._stage = _stage;
-  }
+  private timeInternal: Date = new Date()// Represents the time (Hours:Minutes)
+  private dateInternal: Date = new Date()
 
   /**
-   * If time should be deleted or set with value "null",
-   * call this method with both parameters being 0.
    *
-   * @param hours starting with 0 to 23
-   * @param minutes starting with 0 to 59
+   * @param _dateDate Represents the date (Day, month, Year)
+   * @param _timeDate Represents the time (Hours:Minutes)
+   * @param _artist
+   * @param _stage
    */
-  setTime(hours: number, minutes: number) {
-    this._date.setHours(hours);
-    this._date.setMinutes(minutes);
-  }
-
-  getTime(): Time {
-    return {hours: this._date.getHours(), minutes: this._date.getMinutes()}
-  }
-
-  get date(): Date | null {
-      return this._date;
-  }
-
-  set date(value: Date | null) {
-    const tmpH: number = this._date.getHours();
-    const tmpM: number = this._date.getMinutes();
-    if (value) {
-      this._date = value;
-    } else {
-      this._date = new Date();
-      this._date.setTime(0);
+  constructor(private _dateDate: Date | null, private _timeDate: Date | null,
+              private _artist: string | null, private _stage: string | null) {
+    if (_timeDate) {
+      this.timeInternal.setHours(_timeDate.getHours());
+      this.timeInternal.setMinutes(_timeDate.getMinutes());
     }
-    this._date.setHours(tmpH)
-    this._date.setMinutes(tmpM)
+    if (_dateDate) {
+      this.dateInternal.setMonth(_dateDate.getMonth(), _dateDate.getDate());
+    }
+  }
+
+  get timeDate(): Date | null {
+    if (this.timeInternal.getHours() != 0) {
+      return this.timeInternal;
+    } else {
+      return null;
+    }
+  }
+
+  set timeDate(value: Date | null) {
+    if (value) {
+      this.timeInternal.setHours(value.getHours());
+      this.timeInternal.setMinutes(value.getMinutes());
+    } else {
+      this.timeInternal.setHours(0);
+      this.timeInternal.setMinutes(0);
+    }
+  }
+
+  get dateDate(): Date | null {
+    if (this.dateInternal.getDate() != 0) {
+      return this.dateInternal;
+    } else {
+      return null;
+    }
+  }
+
+  set dateDate(value: Date | null) {
+    if (value) {
+      this.dateInternal.setMonth(value.getMonth(), value.getDate());
+    } else {
+      this.dateInternal.setDate(0);
+    }
   }
 
   get artist(): string | null {
@@ -72,12 +79,71 @@ export class Filter {
     this._stage = value;
   }
 
-  private _date: Date;
+  getTimeType(): Time | null {
+    return (this.timeInternal.getHours() == 0) ? null : {
+      hours: this.timeInternal.getHours(),
+      minutes: this.timeInternal.getMinutes()
+    }
+  }
+
+
+  setWithTimeType(time: Time | null) {
+    if (time) {
+      this.timeInternal.setHours(time.hours)
+      this.timeInternal.setMinutes(time.minutes)
+    } else {
+      this.timeInternal.setHours(0)
+      this.timeInternal.setMinutes(0)
+    }
+  }
+
+  private static fromStringToDate(dateTimeString: string): Date {
+    const [datePart, timePart] = dateTimeString.split(',_');
+
+    const [day, month, year] = datePart.split('/').map(segment => parseInt(segment, 10));
+
+    const [hour, minute] = timePart.split(':').map(segment => parseInt(segment, 10));
+
+    var date = new Date();
+    date.setFullYear(year, month - 1, day);
+    date.setHours(hour, minute, 0, 0);
+    return date;
+  }
+
+  toJSON(): string {
+    return JSON.stringify({
+      dateDate: this.dateInternal?.toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).replace(' ', '_'),
+      timeDate: this.timeInternal?.toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).replace(' ', '_'),
+      artist: this._artist,
+      stage: this._stage
+    });
+  }
+
+  static fromJSON(json: string): Filter {
+    const { dateDate, timeDate, artist, stage } = JSON.parse(json);
+    return new Filter(
+      dateDate ? this.fromStringToDate(dateDate) : null,
+      timeDate ? this.fromStringToDate(timeDate) : null,
+      artist || null,
+      stage || null
+    );
+  }
 
   toString(): string {
-    return "Date: " + (this._date ? <string>this._date?.toISOString() : "null") +
-      "| Time: " + ((this._date.getHours() == 0) ? this._date.getHours() + ":" + this._date.getMinutes() : "null") +
-      "| Artist: " + (this._artist ? this._artist! : "null") +
-      "| Stage: " + (this._stage ? this._stage! : "null");
+    return this.toJSON();
   }
 }

@@ -19,6 +19,10 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {RouterModule} from "@angular/router";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -45,6 +49,10 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatTooltipModule,
     RouterModule,
     MatSnackBarModule,
+    MatTabsModule,
+    MatCheckboxModule,
+    MatButtonToggleModule,
+    MatSlideToggleModule,
   ],
   exports: [
     ...COMPONENTS

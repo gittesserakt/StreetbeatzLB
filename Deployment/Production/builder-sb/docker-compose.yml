@@ -1,0 +1,13 @@
+version: "3.9"
+name: sb-builder
+services:
+    builder:
+        container_name: builder-sb
+        restart: "no"
+        build:
+            context: .
+            dockerfile: builder.dockerfile
+        env_file:
+            - ${PROJECT_PATH}/Deployment/Environment/.env
+        volumes:
+            - ${PROJECT_PATH}:/data
