@@ -78,20 +78,21 @@ INSERT INTO `artist` (`name`, vote_count) VALUES
     ('Lavinia Hope', 0),
     ('Lev Radagan', 0),
     ('Magdalena Ganter', 0),
-    ('Maja Iris', 0),
     ('Mario Parizek', 0),
     ('MC Money and the Jazz Rats', 0),
     ('Mirakolo', 0),
     ('Moanzy', 0),
+    ('Mr Alboh', 0),
     ('MT Head', 0),
+    ('PaperMoon SwingCombo (Tiffany Estrada)', 0),
     ('Ramm Tamm Tilda', 0),
     ('Roadstring Army', 0),
+    ('Simon Fetzer', 0),
     ('SISSOS', 0),
     ('Sleepwalker’s Station', 0),
     ('Tijs Groen', 0),
     ('Toni Mogens', 0),
-    ('Walk Two Folk', 0),
-    ('YARA', 0);
+    ('Walk Two Folk', 0);
 
 INSERT INTO `poi` (name, icon, poi_type, latitude, longitude) VALUES
     ('Haupteingang', 'entrance.svg', 'entrance', 48.89629356141575, 9.196231354904848),
