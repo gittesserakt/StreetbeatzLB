@@ -8,7 +8,9 @@
             <div class="row-container">
               <div class="row" *ngFor="let artist of tab.artists">
                 <div class="left-column">
-                  <div class="picture"></div>
+                  <div class="picture">
+                    <img [src]="getArtistUrl(artist.name)" alt="Artist Image">
+                  </div>
                 </div>
                 <span>{{ artist.name }}</span>
                 <div class="right-column">
@@ -48,7 +50,9 @@
         <div class="tab" *ngFor="let tab of artistTabs; let i = index" [class.active]="i === activeTab">
           <div class="row-container">
             <div class="row" *ngFor="let artist of tab.artists">
-              <div class="picture"></div>
+              <div class="picture">
+                <img [src]="getArtistUrl(artist.name)" alt="Artist Image">
+              </div>
               <span>{{ artist.name }}</span>
               <button mat-fab color="primary" (click)="navigateToArtist(artist.name)">
                 <mat-icon>chevron_right</mat-icon>

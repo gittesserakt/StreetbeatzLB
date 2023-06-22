@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import {APP_BASE_HREF} from "@angular/common";
 
 @Component({
   selector: 'app-artist-view',
@@ -315,7 +316,7 @@ export class ArtistViewComponent implements OnInit {
   ];
 
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, @Inject(APP_BASE_HREF) public baseHref: string) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {

@@ -1,9 +1,10 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, Inject, OnInit} from '@angular/core';
 import { Artist } from "../../../core/models/artist.model";
 import { ArtistService } from "../../../core/services/artist.service";
 import { AuthService } from "@auth0/auth0-angular";
 import { Router } from "@angular/router";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
+import {APP_BASE_HREF} from "@angular/common";
 
 @Component({
   selector: 'app-landingpage-artists',
@@ -31,8 +32,16 @@ export class LandingpageArtistsComponent implements OnInit {
     private artistService: ArtistService,
     private router: Router,
     private authService: AuthService,
-    private breakpointObserver: BreakpointObserver) {
+    private breakpointObserver: BreakpointObserver,
+    @Inject(APP_BASE_HREF) private baseHref: string) {
     this.onResize();
+  }
+
+  getArtistUrl(artistName: string): string {
+    artistName = artistName.trim();
+    artistName = artistName.replace(/\s+/g, '_');
+    artistName = artistName.toLowerCase();
+    return this.baseHref + 'assets/artists/' + artistName + '.jpg';
   }
 
   ngOnInit(): void {
