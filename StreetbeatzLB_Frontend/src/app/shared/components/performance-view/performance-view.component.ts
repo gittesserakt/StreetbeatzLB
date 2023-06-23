@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {VerbosePerformance} from "../../../core/models/verbosePerformance";
 import {VerbosePerformanceService} from "../../../core";
