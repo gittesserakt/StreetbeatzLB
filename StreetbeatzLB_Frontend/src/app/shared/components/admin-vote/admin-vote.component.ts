@@ -34,17 +34,16 @@ export class AdminVoteComponent {
   onToggleClick():void{
     if(!this.voteStatus){
       console.log("Open vote");
-      this.voteService.openVoting().then(() =>{
+      this.voteService.openVoting();
         this.voteStatus = true;
         this.slideToggleText ="Vote is open!";
-      });
     }else{
       console.log("close vote")
-      this.voteService.closeVoting().then(() => {
+      this.voteService.closeVoting();
         this.showWinner();
         this.voteStatus = false;
         this.slideToggleText = "Vote is closed!";
-      });
+
     }
   }
 
@@ -77,6 +76,8 @@ export class AdminVoteComponent {
       });
     });
   }
+
+
 
   showWinner(){
     this.topArtists = this.artists;
