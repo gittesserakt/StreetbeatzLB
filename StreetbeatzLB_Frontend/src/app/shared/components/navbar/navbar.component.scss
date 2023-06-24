@@ -1,5 +1,9 @@
 @import "../../../../_palette.scss";
 
+$isLightBackground: var(--lightBackground);
+$text-white: map-get(map-get($primary, contrast), 500);
+$text-black: map-get(map-get($primary, contrast), 400);
+
 mat-toolbar {
   background-color: map-get($primary, 100);
 }
@@ -20,7 +24,6 @@ mat-toolbar {
     .title{
       margin-left: 0.7rem;
       margin-top: 0.7rem;
-      color: map-get(map-get($primary, contrast), 500);
     }
   }
 
@@ -33,9 +36,6 @@ mat-toolbar {
     color: map-get(map-get($primary, contrast), 500);
     a {
       width: auto;
-      p{
-      color: map-get(map-get($primary, contrast), 100);
-      }
     }
   }
 }

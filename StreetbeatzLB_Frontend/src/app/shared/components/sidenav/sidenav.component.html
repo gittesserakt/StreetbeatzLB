@@ -1,7 +1,6 @@
 <div class="background" [ngStyle]="sidenavBackground">
   <div class="iconWrapper">
     <h1 class="title">Menu</h1>
-  <!--  <mat-icon class="logo" svgIcon="streetbeatz"></mat-icon>-->
   </div>
 
   <mat-nav-list class="list">
@@ -15,5 +14,6 @@
         <p><app-logout-button></app-logout-button></p>
       </a>
     </ng-container>
+    <a mat-list-item routerLink="/help-page" (click)="toggleSidenavEvent()"><p>Help</p></a>
   </mat-nav-list>
 </div>
