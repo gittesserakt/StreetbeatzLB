@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
@@ -13,6 +14,7 @@ import org.springframework.security.oauth2.core.OAuth2ErrorCodes;
 import org.springframework.security.oauth2.core.OAuth2TokenValidatorResult;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @RequiredArgsConstructor
@@ -28,10 +30,16 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain httpSecurity(final HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable()
-        .authorizeHttpRequests()
-        .requestMatchers("/api/messages/protected", "/api/users/all")
-          .authenticated().anyRequest()
-          .permitAll().and()
+        .authorizeHttpRequests(authorize -> authorize
+            .requestMatchers(
+                new AntPathRequestMatcher("/api/**", HttpMethod.POST.toString()),
+                new AntPathRequestMatcher("/api/**", HttpMethod.PUT.toString()),
+                new AntPathRequestMatcher("/api/**", HttpMethod.DELETE.toString())
+            )
+            .authenticated()
+            .anyRequest()
+            .permitAll()
+        )
         .oauth2ResourceServer()
           .authenticationEntryPoint(authenticationErrorHandler)
             .jwt()
