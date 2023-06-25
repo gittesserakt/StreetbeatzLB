@@ -15,6 +15,7 @@ import org.springframework.security.oauth2.core.OAuth2TokenValidatorResult;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
 
 @Configuration
 @RequiredArgsConstructor
@@ -30,20 +31,22 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain httpSecurity(final HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable()
-        .authorizeHttpRequests(authorize -> authorize
-            .requestMatchers(
-                new AntPathRequestMatcher("/api/**", HttpMethod.POST.toString()),
-                new AntPathRequestMatcher("/api/**", HttpMethod.PUT.toString()),
-                new AntPathRequestMatcher("/api/**", HttpMethod.DELETE.toString())
-            )
-            .authenticated()
-            .anyRequest()
-            .permitAll()
-        )
-        .oauth2ResourceServer()
-          .authenticationEntryPoint(authenticationErrorHandler)
-            .jwt()
-              .decoder(makeJwtDecoder());
+      .authorizeHttpRequests()
+      .requestMatchers(
+        new AntPathRequestMatcher("/api/voting/vote", HttpMethod.PUT.toString())
+      ).permitAll()
+      .requestMatchers(
+        new AntPathRequestMatcher("/api/**", HttpMethod.POST.toString()),
+        new AntPathRequestMatcher("/api/**", HttpMethod.PUT.toString()),
+        new AntPathRequestMatcher("/api/**", HttpMethod.DELETE.toString()),
+        new AntPathRequestMatcher("/api/administrators/**")
+      ).authenticated()
+      .anyRequest().permitAll()
+      .and()
+      .oauth2ResourceServer()
+        .authenticationEntryPoint(authenticationErrorHandler)
+          .jwt()
+            .decoder(makeJwtDecoder());
     return http.build();
   }
 

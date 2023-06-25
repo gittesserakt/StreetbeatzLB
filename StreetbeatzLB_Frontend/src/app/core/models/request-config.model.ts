@@ -4,7 +4,5 @@ export interface RequestConfigModel {
   headers: {
     [index: string]: string;
   },
-  body?: {
-    [index: string]: string;
-  };
+  body?: any;
 }

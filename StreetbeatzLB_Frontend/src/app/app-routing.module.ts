@@ -39,10 +39,6 @@ const routes: Routes = [
       import('./features/imprint/imprint.module').then((m) => m.ImprintModule),
   },
   {
-    path: `streetbeatzlb/api`,
-    redirectTo: `https://hjetter.ddns.net/streetbeatzlb/api`,
-  },
-  {
     path: '**',
     loadChildren: () =>
       import('./features/not-found/not-found.module').then(

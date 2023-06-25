@@ -31,12 +31,14 @@ export class ExternalApiService {
             mergeMap((token) => {
               config.headers['Authorization'] = `Bearer ${token}`;
               return this.http.request<unknown>(config.method, config.url, {
+                body: config.body,
                 headers: { ...config.headers },
               });
             })
           );
         } else {
           return this.http.request<unknown>(config.method, config.url, {
+            body: config.body,
             headers: { ...config.headers },
           });
         }

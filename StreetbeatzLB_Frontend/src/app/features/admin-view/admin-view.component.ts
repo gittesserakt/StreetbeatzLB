@@ -4,6 +4,9 @@ import { VerbosePerformanceService } from "../../core";
 import { VerbosePerformance } from "../../core/models/verbosePerformance";
 import { PerformancePopupComponent } from "../../shared/components/performance-popup/performance-popup.component";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import { AuthService } from '@auth0/auth0-angular';
+import {AdministratorService} from "../../core/services/administrator.service";
+import {Administrator} from "../../core/models/administrator.model";
 
 @Component({
   selector: 'app-admin-view',
@@ -27,9 +30,24 @@ export class AdminViewComponent {
   constructor(
     private verbosePerformanceService: VerbosePerformanceService,
     private dialog: MatDialog,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    public auth: AuthService,
+    public administratorService: AdministratorService
   ) {
     this.onResize();
+    this.auth.user$.subscribe(user => {
+      // check if user is admin with administrator service
+      if (user?.email && user?.name) {
+        this.administratorService.checkAdministrator(new Administrator(user.email, user.name, null)).subscribe(response => {
+          const {data, error} = response;
+
+          if (error) {
+            console.error(error);
+            this.auth.logout();
+          }
+        });
+      }
+    });
   }
 
   addPerformance(): void {
