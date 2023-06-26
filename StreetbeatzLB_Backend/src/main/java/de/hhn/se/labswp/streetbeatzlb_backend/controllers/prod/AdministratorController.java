@@ -2,8 +2,6 @@ package de.hhn.se.labswp.streetbeatzlb_backend.controllers.prod;
 
 import de.hhn.se.labswp.streetbeatzlb_backend.models.Administrator;
 import de.hhn.se.labswp.streetbeatzlb_backend.models.AdministratorRepository;
-import de.hhn.se.labswp.streetbeatzlb_backend.models.Artist;
-import de.hhn.se.labswp.streetbeatzlb_backend.models.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
