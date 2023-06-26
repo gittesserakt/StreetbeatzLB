@@ -34,16 +34,25 @@ export class AdminVoteComponent {
   onToggleClick():void{
     if(!this.voteStatus){
       console.log("Open vote");
-      this.voteService.openVoting();
-        this.voteStatus = true;
-        this.slideToggleText ="Vote is open!";
+      this.voteService.openVoting().subscribe((response) => {
+        if (response.error == null) {
+          this.voteStatus = true;
+          this.slideToggleText ="Vote is open!";
+        } else {
+          console.log(response.error);
+        }
+      });
     }else{
       console.log("close vote")
-      this.voteService.closeVoting();
-        this.showWinner();
-        this.voteStatus = false;
-        this.slideToggleText = "Vote is closed!";
-
+      this.voteService.closeVoting().subscribe((response) => {
+        if (response.error == null) {
+          this.showWinner();
+          this.voteStatus = false;
+          this.slideToggleText ="Vote is closed!";
+        } else {
+          console.log(response.error);
+        }
+      });
     }
   }
 
