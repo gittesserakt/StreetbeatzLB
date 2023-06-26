@@ -39,6 +39,11 @@ const routes: Routes = [
       import('./features/imprint/imprint.module').then((m) => m.ImprintModule),
   },
   {
+    path: 'help-page',
+    loadChildren: () =>
+      import('./features/help-page/help-page.module').then((m) => m.HelpPageModule),
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./features/not-found/not-found.module').then(

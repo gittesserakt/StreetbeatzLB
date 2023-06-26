@@ -1,4 +1,4 @@
-import {Component, OnInit, HostListener, ViewChild, Inject} from '@angular/core';
+import {Component, OnInit, HostListener, ViewChild, Inject, ElementRef} from '@angular/core';
 import {AuthService} from "@auth0/auth0-angular";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
@@ -13,6 +13,8 @@ import { APP_BASE_HREF } from '@angular/common';
 export class AppComponent implements OnInit {
   @ViewChild("sidenav") sidenav!: MatSidenav;
   title = 'StreetbeatzLB';
+
+  lightBackground: boolean = false;
 
   backgroundImageStyles: any;
 
@@ -45,7 +47,8 @@ export class AppComponent implements OnInit {
   }
 
   constructor(private authService: AuthService, private breakpointObserver: BreakpointObserver,
-              private router: Router, @Inject(APP_BASE_HREF) public baseHref: string) {
+              private router: Router, @Inject(APP_BASE_HREF) public baseHref: string, private el: ElementRef) {
+    this.el.nativeElement.style.setProperty('--lightBackground', this.lightBackground);
     this.init();
   }
 
@@ -143,6 +146,7 @@ export class AppComponent implements OnInit {
 
   generateBackgroundImageStyles(): any {
     if(this.currentURL.includes('/map')){
+      this.lightBackground = false;
       return {
         'background-image': `url(${this.backgroundURL})`,
         'background-position': `0% 0%`,
@@ -150,7 +154,17 @@ export class AppComponent implements OnInit {
         'background-repeat': 'no-repeat',
         'background-attachment': 'fixed',
       }
-    }else {
+    }else if(this.currentURL.includes('/imprint') || this.currentURL.includes('/help-page')) {
+      this.lightBackground = true;
+      return {
+        'background-color': 'white',
+      }
+    }else{
+      if(this.currentURL.includes('/performances') || this.currentURL.includes('/admin-view')){
+        this.lightBackground = true;
+      }else {
+        this.lightBackground = false;
+      }
       return {
         'background-image': `url(${this.backgroundBallURL}), url(${this.backgroundBallURL}), url(${this.backgroundBallURL}), url(${this.backgroundURL})`,
         'background-position': `${this.xPositionBall1}% ${this.yPositionBall1}%, ${this.xPositionBall2}% ${this.yPositionBall2}%, ${this.xPositionBall3}% ${this.yPositionBall3}%, 0% 0%`,
