@@ -53,7 +53,7 @@ create or replace table performance
         foreign key (stage_id) references stage (stage_id)
 );
 
---# identifier is email encoded with Base64URL; admin_name is auth0 nickname
+# identifier is email encoded with Base64URL; admin_name is auth0 nickname
 INSERT INTO `administrator` (identifier, email, admin_name, picture) VALUES
 	('c3RyZWV0bXVzaWNmZXN0aXZhbGxiQGdtYWlsLmNvbQ', 'streetmusicfestivallb@gmail.com', 'streetmusicfestivallb', null),
     ('dGVzdGVyQHRlc3QuZGU', 'tester@test.de', 'tester', null);
