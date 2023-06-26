@@ -51,7 +51,7 @@ public class SecurityConfig {
   }
 
   private JwtDecoder makeJwtDecoder() {
-    final var issuer = resourceServerProps.getJwt().getIssuerUri();
+    final var issuer = resourceServerProps.getJwt().getIssuerUri() + "/";
     final var decoder = JwtDecoders.<NimbusJwtDecoder>fromIssuerLocation(issuer);
     final var withIssuer = JwtValidators.createDefaultWithIssuer(issuer);
     final var tokenValidator = new DelegatingOAuth2TokenValidator<>(withIssuer, this::withAudience);
