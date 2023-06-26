@@ -18,16 +18,25 @@ export class AdminVoteComponent {
   listButtonText: string = "All artists";
 
   constructor( private artistService: ArtistService, private voteService: VoteService) {
-    this.getAllArtist();
-    this.getVoteStatus().then((voteStatus) => {
-      this.voteStatus = voteStatus as boolean;
+    this.artistService.getAllArtists().subscribe((response) => {
+      const {data, error} = response;
 
-      if(!this.voteStatus){
-        this.showWinner();
-        this.slideToggleText = "Vote is closed!";
+      if (data) {
+        this.artists = data as Artist[];
+        this.getVoteStatus().then((voteStatus) => {
+          this.voteStatus = voteStatus as boolean;
+
+          if(!this.voteStatus){
+            this.showWinner();
+            this.slideToggleText = "Vote is closed!";
+          }
+        }).catch((error) => {
+          console.log("Vote Status Error: " + error);
+        });
       }
-    }).catch((error) => {
-      console.log("Vote Status Error: " + error);
+      if (error) {
+        console.log(error);
+      }
     });
   }
 
@@ -54,19 +63,6 @@ export class AdminVoteComponent {
         }
       });
     }
-  }
-
-  getAllArtist(){
-    this.artistService.getAllArtists().subscribe((response) => {
-      const {data, error} = response;
-
-      if (data) {
-        this.artists = data as Artist[];
-      }
-      if (error) {
-        console.log(error);
-      }
-    });
   }
 
   getVoteStatus() {
