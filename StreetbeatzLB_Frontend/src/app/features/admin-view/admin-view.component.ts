@@ -37,8 +37,8 @@ export class AdminViewComponent {
     this.onResize();
     this.auth.user$.subscribe(user => {
       // check if user is admin with administrator service
-      if (user?.email && user?.name) {
-        this.administratorService.checkAdministrator(new Administrator(user.email, user.name, null)).subscribe(response => {
+      if (user?.email && user?.nickname) {
+        this.administratorService.checkAdministrator(new Administrator(user.email, user.nickname, null)).subscribe(response => {
           const {data, error} = response;
 
           if (error) {

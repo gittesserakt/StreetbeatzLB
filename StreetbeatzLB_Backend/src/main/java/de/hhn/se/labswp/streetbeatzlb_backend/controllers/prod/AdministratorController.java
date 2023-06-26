@@ -50,7 +50,7 @@ public class AdministratorController {
         Iterable<Administrator> administrators = administratorRepository.findAll();
 
         for (Administrator admin : administrators) {
-            if (admin.equals(administrator)) {
+            if (admin.getIdentifier().equals(administrator.getIdentifier())) {
                 return;
             }
         }
