@@ -15,15 +15,15 @@ public class VoteController {
     private static boolean voteOpen = true;
 
     @PutMapping(path="/vote")
-    public @ResponseBody void voteForArtist(@RequestParam String artist) {
+    public @ResponseBody void voteForArtist(@RequestBody Artist artist) {
 
         if(voteOpen){
-            artist = artist.replace('_', ' ');
+            artist.setName(artist.getName().replace('_', ' '));
 
             Iterable<Artist> artists = artistRepository.findAll();
 
             for(Artist currentArtist : artists) {
-                if(currentArtist.getName().equals(artist)){
+                if(currentArtist.getName().equals(artist.getName())){
                     int artistID = Math.toIntExact(currentArtist.getArtist_id());
                     artistRepository.findById(artistID).get()
                             .setVote_count(artistRepository.findById(artistID).get()
@@ -34,6 +34,38 @@ public class VoteController {
             }
         }
 
+    }
+
+    public class ArtistVote {
+        private int artist_id;
+        private String name;
+        private int vote_count;
+
+        // Getter und Setter für artist_id, name und vote_count
+
+        public int getArtist_id() {
+            return artist_id;
+        }
+
+        public void setArtist_id(int artist_id) {
+            this.artist_id = artist_id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getVote_count() {
+            return vote_count;
+        }
+
+        public void setVote_count(int vote_count) {
+            this.vote_count = vote_count;
+        }
     }
 
     @GetMapping(path = "/getVotesByID")

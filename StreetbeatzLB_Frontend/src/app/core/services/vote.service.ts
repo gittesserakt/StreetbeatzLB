@@ -13,16 +13,14 @@ export class VoteService {
   constructor(public externalApiService: ExternalApiService) {
   }
 
-  voteForArtist = (artist: string): Observable<ApiResponseModel> => {
+  voteForArtist = (artist: Artist): Observable<ApiResponseModel> => {
     const config: RequestConfigModel = {
       url: `${env.api.serverUrl}/voting/vote`,
       method: `PUT`,
       headers: {
         'content-type': 'application/json',
       },
-      body: {
-        'artist': artist,
-      }
+      body: artist,
     }
 
     return this.externalApiService.callExternalApi(config).pipe(

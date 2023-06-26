@@ -25,37 +25,53 @@ export class SmfCookieService {
     return (this.smfService.check("filterCookies"));
   }
 
-  setVoteCookies(artist1: Artist | null | undefined, artist2: Artist | null | undefined, voteCount: number,
-                 hasVoted: boolean){
-    if (hasVoted && artist1 && artist2 != undefined) {
-      this.smfService.set("voteCount", voteCount.toString());
-      this.smfService.set("hasVoted", "voted");
-      this.smfService.set("chosenArtist1", artist1.name);
-      this.smfService.set("chosenArtist2", artist2.name);
-    } else if(artist1 != undefined){
-      this.smfService.set("voteCount", voteCount.toString());
-        this.smfService.set("chosenArtist1", artist1.name);
-        this.smfService.delete("chosenArtist2");
-    } else {
-      this.smfService.delete("voteCount");
-      this.smfService.delete("hasVoted");
-      this.smfService.delete("chosenArtist1");
-      this.smfService.delete("chosenArtist2");
-    }
-  }
+  /* Voting Cookies */
 
-  getVoteCookies(): string[] {
-    let artistName:string[] = ["",""];
-    if(this.smfService.check("voteCount")){
-      const chosenArtist1 = this.smfService.get("chosenArtist1");
-      const chosenArtist2 = this.smfService.get("chosenArtist2");
-      if (chosenArtist1 && chosenArtist1.trim() !== '') {
-        artistName[0] = chosenArtist1.replace("%20", " ");
-      }
-      if (chosenArtist2 && chosenArtist2.trim() !== '') {
-        artistName[1] = chosenArtist2.replace("%20", " ");
-      }
+  getVoteArtist1Cookie(): string {
+    let artistName = "";
+    if(this.smfService.check("chosenArtist1")){
+      artistName = this.smfService.get("chosenArtist1");
     }
     return artistName;
+  }
+
+  setVoteArtist1Cookie(artist1: Artist){
+    this.smfService.set("chosenArtist1", artist1.name);
+  }
+
+  getVoteArtist2Cookie(): string {
+    let artistName = "";
+    if(this.smfService.check("chosenArtist2")){
+      artistName = this.smfService.get("chosenArtist2");
+    }
+    return artistName;
+  }
+
+  setVoteArtist2Cookie(artist2: Artist){
+    this.smfService.set("chosenArtist2", artist2.name);
+  }
+
+  getVoteCountCookie(): number {
+    let voteCount = 0;
+    if(this.smfService.check("voteCount")){
+      voteCount = parseInt(this.smfService.get("voteCount"));
+    }
+    return voteCount;
+  }
+
+  setVoteCountCookie(voteCount: number){
+    this.smfService.set("voteCount", voteCount.toString());
+  }
+
+  getHasVotedCookie(): boolean {
+    let hasVoted = false;
+    if(this.smfService.check("hasVoted")){
+      hasVoted = this.smfService.get("hasVoted") == "true";
+    }
+    return hasVoted;
+  }
+
+  setHasVotedCookie(hasVoted: boolean){
+    this.smfService.set("hasVoted", hasVoted.toString());
   }
 }
