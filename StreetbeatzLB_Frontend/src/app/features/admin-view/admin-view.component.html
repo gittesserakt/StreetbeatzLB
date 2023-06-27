@@ -1,38 +1,42 @@
 <div *ngIf="device === 'Web', else elseBlock">
-      <mat-tab-group>
-        <mat-tab label="Performances">
-          <div class="desktop-centering-wrapper">
-            <div class="performances-wrapper-desktop" [ngStyle]="{'height': screenHeightPX + 'px'}">
-              <div class="performanceWrapper">
-                <button mat-button matTooltip="Add a performance" class="add-performance-button" (click)="addPerformance()">
-                  <mat-icon>add</mat-icon>
-                </button>
-                <mat-divider vertical="false" [inset]></mat-divider>
-                <app-performance-view [isAdmin]="true"></app-performance-view>
-                <mat-divider vertical="false" [inset]></mat-divider>
-              </div>
-            </div>
+  <mat-tab-group>
+    <mat-tab label="Performances">
+      <div class="desktop-centering-wrapper">
+        <div class="performances-wrapper-desktop" [ngStyle]="{'height': screenHeightPX + 'px'}">
+          <div class="performanceWrapper">
+            <button mat-button matTooltip="Add a performance" class="add-performance-button" (click)="addPerformance()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <mat-divider vertical="false" [inset]></mat-divider>
+            <app-performance-view [isAdmin]="true"></app-performance-view>
+            <mat-divider vertical="false" [inset]></mat-divider>
           </div>
-        </mat-tab>
-        <mat-tab label="Voting">
-          <div class="votingWrapper">
-            <app-admin-vote></app-admin-vote>
-          </div>
-        </mat-tab>
-      </mat-tab-group>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Voting">
+      <div class="votingWrapper">
+        <app-admin-vote></app-admin-vote>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>
 <ng-template #elseBlock>
   <div [ngStyle]="{'height': screenHeightPX + 'px'}">
     <mat-tab-group>
       <mat-tab label="Performances">
-        <div class="performanceWrapper">
-          <button mat-button matTooltip="Add a performance" class="add-performance-button"
-                  (click)="addPerformance()">
-            <mat-icon>add</mat-icon>
-          </button>
-          <mat-divider vertical="false" [inset]></mat-divider>
-          <app-performance-view [isAdmin]="true"></app-performance-view>
-          <mat-divider vertical="false" [inset]></mat-divider>
+        <div class="center-mobile-wrapper">
+          <div class="mobile-wrapper">
+            <div class="performanceWrapper">
+              <button mat-button matTooltip="Add a performance" class="add-performance-button"
+                      (click)="addPerformance()">
+                <mat-icon>add</mat-icon>
+              </button>
+              <mat-divider vertical="false" [inset]></mat-divider>
+              <app-performance-view [isAdmin]="true"></app-performance-view>
+              <mat-divider vertical="false" [inset]></mat-divider>
+            </div>
+          </div>
         </div>
       </mat-tab>
       <mat-tab label="Voting">
