@@ -96,12 +96,12 @@ INSERT INTO `artist` (`name`, vote_count, artist_info) VALUES
     ('Walk Two Folk', 0, 'Matthias „Sharpharp“ Weidle, Bluesmusiker aus Fellbach und Matthias Möhring, Singer/Songwriter aus Stuttgart. „Walk Two Folk“ spielen handgemachte, akustische Musik aus den USA, Irland, Großbritannien und Deutschland, virtuos mit Mundharmonika, Ukulele, Percussion, Gitarre und Gesang- und viel Tempo und Witz.');
 
 INSERT INTO `poi` (name, icon, poi_type, latitude, longitude) VALUES
-    ('Haupteingang', 'entrance.svg', 'entrance', 48.89629356141575, 9.196231354904848),
-    ('Ein-/Ausgang Mömpelgardstraße', 'entrance.svg', 'entrance', 48.89885774762525, 9.197583035983675),
-    ('Ausgang Schlossstraße', 'entrance.svg', 'entrance', 48.89867543398833, 9.194351937108538),
-    ('Ausgng Anlagenstraße', 'entrance.svg', 'entrance', 48.89892308260906, 9.202108342960857),
-    ('Ausgang Marbacher Straße', 'entrance.svg', 'entrance', 48.90230707231683, 9.196224601159885),
-    ('Ein-/Ausgang Hinterer Schlosshof', 'entrance.svg', 'entrance', 48.89982743592445, 9.197495485734656),
+    ('Haupteingang', 'entranceAndExit.svg', 'entrance', 48.89629356141575, 9.196231354904848),
+    ('Ein-/Ausgang Mömpelgardstraße', 'entranceAndExit.svg', 'entrance', 48.89885774762525, 9.197583035983675),
+    ('Ausgang Schlossstraße', 'exit.svg', 'entrance', 48.89867543398833, 9.194351937108538),
+    ('Ausgang Anlagenstraße', 'exit.svg', 'entrance', 48.89892308260906, 9.202108342960857),
+    ('Ausgang Marbacher Straße', 'exit.svg', 'entrance', 48.90230707231683, 9.196224601159885),
+    ('Ein-/Ausgang Hinterer Schlosshof', 'entranceAndExit.svg', 'entrance', 48.89982743592445, 9.197495485734656),
 	('Vorgarten', NULL, 'spot', 48.89890437269485, 9.196007967518401),
 	('Barocke Broderie', NULL, 'spot', 48.90163303471827, 9.195045750240379),
 	('Herzogschaukel/ Aktionshaus', NULL, 'spot', 48.902251005875385, 9.199487247719524),
@@ -127,7 +127,8 @@ INSERT INTO `poi` (name, icon, poi_type, latitude, longitude) VALUES
 	('Stage I', 'stage_I.svg', 'stage', 48.90176861891673, 9.197159877980996),
 	('Stage K', 'stage_K.svg', 'stage', 48.90158259620384, 9.195645484951458),
 	('Stage M', 'stage_M.svg', 'stage', 48.8998816112992, 9.198310214505911),
-	('Stage S', 'stage_S.svg', 'stage', 48.9005792479601, 9.195935465077127);
+	('Stage S', 'stage_S.svg', 'stage', 48.9005792479601, 9.195935465077127),
+    ('Deutsches Rotes Kreuz', 'drk.svg', NULL, 48.898063186749695, 9.19749678516192);
 
 INSERT INTO `stage` (name, stage_size) VALUES
 	('A', 25.6),    -- 1
