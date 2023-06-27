@@ -21,7 +21,7 @@ $text-color: map-get(map-get($primary, contrast), 50);
   }
 
   .artist-info {
-    margin: 50px 5vw 0 5vw;
+    margin: 50px 5vw 25px 5vw;
 
     p {
       font-size: 24px;
@@ -52,7 +52,7 @@ $text-color: map-get(map-get($primary, contrast), 50);
 
     .artist-info {
       p {
-        margin: 20px 25px 0 25px;
+        margin: 20px 25px 25px 25px;
         font-size: 16px;
         color: $text-color;
       }
