@@ -1,6 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import {APP_BASE_HREF} from "@angular/common";
+import { APP_BASE_HREF } from "@angular/common";
+import { ArtistService } from "../../core/services/artist.service";
+import { Artist } from "../../core/models/artist.model";
 
 @Component({
   selector: 'app-artist-view',
@@ -11,6 +13,8 @@ export class ArtistViewComponent implements OnInit {
   artistName!: string;
   artistNameImage!: string;
   artistInfo!: string;
+
+  showedArtist?: Artist;
 
   allArtistInfos: ArtistInfo[] = [
     {
@@ -315,18 +319,37 @@ export class ArtistViewComponent implements OnInit {
     }
   ];
 
-
-  constructor(private route: ActivatedRoute, @Inject(APP_BASE_HREF) public baseHref: string) {}
+  constructor(private route: ActivatedRoute, @Inject(APP_BASE_HREF) public baseHref: string, private artistService: ArtistService) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const name = params.get('artistName');
-      if (name !== null) {
+      if (name != null) {
         this.artistName = name;
         this.artistNameImage = this.formatArtistToImageName(name);
-        this.artistInfo = this.setArtistInfo();
+
+        this.getArtistByName(name).then((artist) => {
+          this.showedArtist = artist as Artist;
+          this.artistInfo = this.showedArtist.artist_info;
+        }).catch((error) => {
+          console.log(error);
+        });
       }
     })
+  }
+
+  getArtistByName(name: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.artistService.getArtistByName(name).subscribe((response) => {
+        const {data, error} = response;
+        if (data) {
+          resolve(data);
+        }
+        if (error) {
+          reject(error);
+        }
+      });
+    });
   }
 
   formatArtistToImageName(name: string): string {

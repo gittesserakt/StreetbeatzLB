@@ -10,6 +10,7 @@ public class Artist {
     private Long artist_id;
     private String name;
     private Long vote_count;
+    private String artist_info;
 
     public Long getArtist_id() {
         return artist_id;
@@ -33,5 +34,13 @@ public class Artist {
 
     public void setVote_count(Long vote_count) {
         this.vote_count = vote_count;
+    }
+
+    public String getArtist_info() {
+        return artist_info;
+    }
+
+    public void setArtist_info(String artist_info) {
+        this.artist_info = artist_info;
     }
 }
