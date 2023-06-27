@@ -359,15 +359,6 @@ export class ArtistViewComponent implements OnInit {
 
     return name;
   }
-
-  setArtistInfo() : string {
-    for (const info of this.allArtistInfos) {
-      if (info.artistName === this.artistName) {
-        return info.infoText;
-      }
-    }
-    return "";
-  }
 }
 
 interface ArtistInfo {

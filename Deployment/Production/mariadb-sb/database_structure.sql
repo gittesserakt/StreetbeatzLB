@@ -15,7 +15,7 @@ create or replace table artist
         primary key,
     name        varchar(255) not null,
 	vote_count  int null,
-    artist_info varchar(600) null
+    artist_info varchar(2000) null
 );
 
 create or replace table poi
