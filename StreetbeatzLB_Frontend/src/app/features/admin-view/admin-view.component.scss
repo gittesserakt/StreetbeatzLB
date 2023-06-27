@@ -39,5 +39,26 @@ mat-divider {
   overflow: hidden;
 }
 
+@media screen and (min-width: 950px) {
+  .center-mobile-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .mobile-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: (100svw / 3) * 4;
+    overflow: hidden;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .mobile-wrapper {
+    margin: 0 5%;
+  }
+}
+
 .votingWrapper{
 }

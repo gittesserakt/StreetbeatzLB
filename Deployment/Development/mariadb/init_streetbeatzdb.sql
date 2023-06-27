@@ -14,7 +14,8 @@ create or replace table artist
     artist_id   int auto_increment
         primary key,
     name        varchar(255) not null,
-	vote_count  int null
+	vote_count  int null,
+    artist_info varchar(600) null
 );
 
 create or replace table poi
@@ -59,40 +60,40 @@ INSERT INTO `administrator` (identifier, email, admin_name, picture) VALUES
     ('dGVzdGVyQHRlc3QuZGU', 'tester@test.de', 'tester', null);
     -- "auth0|" is removed when reading the Id, leads to problems.
 
-INSERT INTO `artist` (`name`, vote_count) VALUES
-	('Alice Rose', 0),
-    ('Bajram Agushev Band', 0),
-    ('Bastik', 0),
-    ('BENJAKOB', 0),
-    ('Beranger', 0),
-    ('blu12', 0),
-    ('Borja Catanesi', 0),
-    ('Crobbs', 0),
-    ('HaltMaKurz', 0),
-    ('Ideal Forgery', 0),
-    ('Jivers', 0),
-    ('Jon Kenzie', 0),
-    ('Karacan Kombo', 0),
-    ('Kuma', 0),
-    ('Kustan Adam', 0),
-    ('Lavinia Hope', 0),
-    ('Lev Radagan', 0),
-    ('Magdalena Ganter', 0),
-    ('Mario Parizek', 0),
-    ('MC Money and the Jazz Rats', 0),
-    ('Mirakolo', 0),
-    ('Moanzy', 0),
-    ('Mr Alboh', 0),
-    ('MT Head', 0),
-    ('PaperMoon SwingCombo (Tiffany Estrada)', 0),
-    ('Ramm Tamm Tilda', 0),
-    ('Roadstring Army', 0),
-    ('Simon Fetzer', 0),
-    ('SISSOS', 0),
-    ('Sleepwalker’s Station', 0),
-    ('Tijs Groen', 0),
-    ('Toni Mogens', 0),
-    ('Walk Two Folk', 0);
+INSERT INTO `artist` (`name`, vote_count, artist_info) VALUES
+	('Alice Rose', 0, 'Die Dänische Sängerin, Musikerin und Kosmopolitin lebt in Berlin, der Welthauptstadt der elektronischen Musik. Aber statt Drum Machine nimmt sie nun ein neues Instrument mit auf die Straße: eine Autoharp. Ein akustisches Instrument, das aus der amerikanischen Bluegrass-Musik stammt. Das Konzept ist einfach und wirkungsvoll: Gesang plus Autoharp. Diese Kombination überzeugt mit einer berührenden Authentizität. Alice Rose will die Menschen mit ihrer Musik berühren, inspirieren und ermutigen, weiter ihren Weg zu gehen.'),
+    ('Bajram Agushev Band', 0, ''),
+    ('Bastik', 0, 'In diesen für uns alle ungewöhnlichen letzten Jahren hat der Stuttgarter Singer-/Songwriter Bastik seine Debut-EP „FORT“ produziert und aufgenommen. Sie erschien im September 2021. Eigentlich ist Bastian Kilper Schlagzeuger mehrerer Stuttgarter Bands. Als Bastik hat er ein Ventil gefunden, an Gesang und Gitarre ganz persönliche Geschichten und Gedanken zu verarbeiten und zu teilen. Hier verwirklicht er alles, was er als Schlagzeuger nie verwirklichen konnte.'),
+    ('BENJAKOB', 0, 'Aus dem sicheren Hafen der Vergangenheit in den Staub der Straße von heute. Benjakob lernt laufen und geht Solo. Eigene Songs auf Deutsch und Englisch, Acoustic Soul „straight from the heart“. Seine musikalischen Sporen verdiente er in den 2000er Jahren mit Bands wie Jive Injector und Cosmopolitan Drive. Beim diesjährigen SMF geht er mit Back-up von Bastian Kilper an den Drums und weiteren Special-Guests an den Start.'),
+    ('Beranger', 0, 'Stellen Sie sich vor, der klassische Komponist Bach hätte mit Dave Grohl von Nirvana eine Band gegründet. Das wäre gar nicht so weit von der Wahrheit entfernt. Beranger Gras ist ein französischer Pianist und Todd James ein Grunge-Schlagzeuger aus Australien. Die beiden trafen sich in Berlin und spielten in ihren vier gemeinsamen Jahren der Straßenmusik bereits auf den Bühnen des Lollapalooza und des Melt Festivals.'),
+    ('blu12', 0, 'Blu12 sind blu – Musiker, Künstler, Poet & Ozeanliebhaber- & seine 12-Saiten Gitarrre. Gemeinsam zelebrieren sie an den Küsten dieser Welt pures, essentielles Songwriting, Genreübergreifende Rhythmen & improsative Meditation. Zwischen den Wellen, kurz vor dem Sonnenuntergang entstehen so atmosphärische Klangwelten, welche einen magischen Raum für kleine lyrische Feuerwerke entfalten.'),
+    ('Borja Catanesi', 0, ''),
+    ('Crobbs', 0, ''),
+    ('HaltMaKurz', 0, ''),
+    ('Ideal Forgery', 0, ''),
+    ('Jivers', 0, ''),
+    ('Jon Kenzie', 0, ''),
+    ('Karacan Kombo', 0, ''),
+    ('Kuma', 0, ''),
+    ('Kustan Adam', 0, ''),
+    ('Lavinia Hope', 0, ''),
+    ('Lev Radagan', 0, ''),
+    ('Magdalena Ganter', 0, ''),
+    ('Mario Parizek', 0, ''),
+    ('MC Money and the Jazz Rats', 0, ''),
+    ('Mirakolo', 0, ''),
+    ('Moanzy', 0, ''),
+    ('Mr Alboh', 0, ''),
+    ('MT Head', 0, ''),
+    ('PaperMoon SwingCombo (Tiffany Estrada)', 0, ''),
+    ('Ramm Tamm Tilda', 0, ''),
+    ('Roadstring Army', 0, ''),
+    ('Simon Fetzer', 0, ''),
+    ('SISSOS', 0, ''),
+    ('Sleepwalker’s Station', 0, ''),
+    ('Tijs Groen', 0, ''),
+    ('Toni Mogens', 0, ''),
+    ('Walk Two Folk', 0, '');
 
 INSERT INTO `poi` (name, icon, poi_type, latitude, longitude) VALUES
     ('Haupteingang', 'entrance.svg', 'entrance', 48.89629356141575, 9.196231354904848),
