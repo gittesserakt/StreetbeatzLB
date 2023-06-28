@@ -8,7 +8,7 @@ import {Time} from "@angular/common";
   styleUrls: ['./filter-timepicker.component.scss']
 })
 export class FilterTimepickerComponent implements OnInit {
-  private _inTime!: Time | null;
+
   @Input() set inTime(value: Time | null) {
     if (value !== null) {
       this.hoursControl.setValue(value.hours);

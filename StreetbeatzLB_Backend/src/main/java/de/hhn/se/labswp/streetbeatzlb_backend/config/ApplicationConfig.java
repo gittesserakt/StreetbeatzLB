@@ -8,20 +8,17 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 @Configuration
 @RequiredArgsConstructor
-public class ApplicationConfig { // implements WebMvcConfigurer
+public class ApplicationConfig {
 
   private final ApplicationProperties applicationProps;
 
   @Bean
   public CorsFilter corsFilter() {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
-    corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));
-    //corsConfiguration.setAllowCredentials(true);
-    //corsConfiguration.setAllowedOriginPatterns(Arrays.asList("https://*.localhost:[*]", "https://*.hjetter.ddns.net:[*]"));
+    corsConfiguration.setAllowedOriginPatterns(Arrays.asList("https://*.localhost:[*]", applicationProps.getClientOriginUrl() + ":[*]"));
     corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
         "Accept", "Authorization", "Origin, Accept", "X-Requested-With",
         "Access-Control-Request-Method", "Access-Control-Request-Headers"));

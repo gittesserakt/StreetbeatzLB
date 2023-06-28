@@ -19,6 +19,11 @@ PATH_SSL_CERT_KEY=<path to ssl cert .key>
 REBUILD_DB=<true|false>                                     # if true, the database will be deleted and rebuild on startup
 DB_SAMPLE_DATA=<true|false>                                 # if true, the database will be filled with sample data
 
+# auth0 settings                                            # you can get these values from your auth0 account
+AUTH0_DOMAIN=<auth0 domain>
+AUTH0_CLIENT_ID=<auth0 client id>
+AUTH0_AUDIENCE=<auth0 audience>
+
 # database settings
 PUBLIC_DB_ACCESS=<true|false>                               # if true and if USE_PROXY true, the database will be added to reverse proxy and therefore accessible from the internet
 DB_PORT=<db port>                                           #default: 3307

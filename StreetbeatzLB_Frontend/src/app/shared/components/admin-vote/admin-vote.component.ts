@@ -18,47 +18,51 @@ export class AdminVoteComponent {
   listButtonText: string = "All artists";
 
   constructor( private artistService: ArtistService, private voteService: VoteService) {
-    this.getAllArtist();
-    this.getVoteStatus().then((voteStatus) => {
-      this.voteStatus = voteStatus as boolean;
+    this.artistService.getAllArtists().subscribe((response) => {
+      const {data, error} = response;
 
-      if(!this.voteStatus){
-        this.showWinner();
-        this.slideToggleText = "Vote is closed!";
+      if (data) {
+        this.artists = data as Artist[];
+        this.getVoteStatus().then((voteStatus) => {
+          this.voteStatus = voteStatus as boolean;
+
+          if(!this.voteStatus){
+            this.showWinner();
+            this.slideToggleText = "Vote is closed!";
+          }
+        }).catch((error) => {
+          console.log("Vote Status Error: " + error);
+        });
       }
-    }).catch((error) => {
-      console.log("Vote Status Error: " + error);
+      if (error) {
+        console.log(error);
+      }
     });
   }
 
   onToggleClick():void{
     if(!this.voteStatus){
       console.log("Open vote");
-      this.voteService.openVoting().then(() =>{
-        this.voteStatus = true;
-        this.slideToggleText ="Vote is open!";
+      this.voteService.openVoting().subscribe((response) => {
+        if (response.error == null) {
+          this.voteStatus = true;
+          this.slideToggleText ="Vote is open!";
+        } else {
+          console.log(response.error);
+        }
       });
     }else{
       console.log("close vote")
-      this.voteService.closeVoting().then(() => {
-        this.showWinner();
-        this.voteStatus = false;
-        this.slideToggleText = "Vote is closed!";
+      this.voteService.closeVoting().subscribe((response) => {
+        if (response.error == null) {
+          this.showWinner();
+          this.voteStatus = false;
+          this.slideToggleText ="Vote is closed!";
+        } else {
+          console.log(response.error);
+        }
       });
     }
-  }
-
-  getAllArtist(){
-    this.artistService.getAllArtists().subscribe((response) => {
-      const {data, error} = response;
-
-      if (data) {
-        this.artists = data as Artist[];
-      }
-      if (error) {
-        console.log(error);
-      }
-    });
   }
 
   getVoteStatus() {
@@ -77,6 +81,8 @@ export class AdminVoteComponent {
       });
     });
   }
+
+
 
   showWinner(){
     this.topArtists = this.artists;

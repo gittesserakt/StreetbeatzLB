@@ -17,6 +17,18 @@ export class FilterMobileComponent implements OnInit {
   ngOnInit() {
     if (this.inFilter) {
       this.filter = this.inFilter;
+      if (this.filter.dateDate != null) {
+        this.dateChangeEvent(this.filter.dateDate);
+      }
+      if (this.filter.artist != null){
+        this.artistChangeEvent(this.filter.artist);
+      }
+      if (this.filter.stage != null){
+        this.stageChangeEvent(this.filter.stage);
+      }
+      if (this.filter.timeDate != null){
+        this.timeChangeEvent(this.filter.getTimeType());
+      }
       this.applyFilter();
     }
   }

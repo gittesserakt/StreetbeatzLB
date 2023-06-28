@@ -54,12 +54,12 @@ export class VoteComponent implements OnInit {
   }
 
   initCheckBoxList(): void {
-    if (this.smfCookieService.getVoteCookies()[0] != "" && this.smfCookieService.getVoteCookies()[1] != "") {
+    if (this.smfCookieService.getVoteArtist1Cookie() != "" && this.smfCookieService.getVoteArtist2Cookie() != "") {
 
-      this.getArtistByNamePromise(this.smfCookieService.getVoteCookies()[0]).then((artist1) => {
+      this.getArtistByNamePromise(this.smfCookieService.getVoteArtist1Cookie()).then((artist1) => {
         this.chosenArtist1 = artist1 as Artist;
 
-        this.getArtistByNamePromise(this.smfCookieService.getVoteCookies()[1]).then((artist2) => {
+        this.getArtistByNamePromise(this.smfCookieService.getVoteArtist2Cookie()).then((artist2) => {
           this.chosenArtist2 = artist2 as Artist;
 
           this.getAllArtists();
@@ -83,9 +83,9 @@ export class VoteComponent implements OnInit {
       }).catch((error) => {
         console.log(error);
       });
-    } else if (this.smfCookieService.getVoteCookies()[0] != "") {
+    } else if (this.smfCookieService.getVoteArtist1Cookie() != "") {
 
-      this.getArtistByNamePromise(this.smfCookieService.getVoteCookies()[0]).then((artist) => {
+      this.getArtistByNamePromise(this.smfCookieService.getVoteArtist1Cookie()).then((artist) => {
         this.chosenArtist1 = artist as Artist;
 
         this.remainingVotes = 1;
@@ -146,18 +146,37 @@ export class VoteComponent implements OnInit {
   }
 
   voteForArtist(): void {
-    if (this.smfCookieService.getVoteCookies()[0] == '' && this.smfCookieService.getVoteCookies()[1] == "") {
-      if (this.chosenArtist1 && this.chosenArtist2 != undefined) {
-        this.voteService.voteForArtist(this.chosenArtist1.name);
-        this.voteService.voteForArtist(this.chosenArtist2.name);
-        this.smfCookieService.setVoteCookies(this.chosenArtist1, this.chosenArtist2, this.voteCount, true);
-      } else if (this.chosenArtist1 != undefined && this.chosenArtist2 == undefined) {
-        this.voteService.voteForArtist(this.chosenArtist1.name);
-        this.smfCookieService.setVoteCookies(this.chosenArtist1, undefined, this.voteCount, false);
+    if (!this.smfCookieService.getHasVotedCookie() && this.smfCookieService.getVoteCountCookie() < 2) {
+
+      // if not yet voted for artist1
+      if (this.smfCookieService.getVoteArtist1Cookie() == '' && this.chosenArtist1 != undefined) {
+        this.voteService.voteForArtist(this.chosenArtist1).subscribe((response) => {
+          if (response.error == null) {
+            this.smfCookieService.setVoteArtist1Cookie(this.chosenArtist1!);
+            this.smfCookieService.setVoteCountCookie(this.smfCookieService.getVoteCountCookie() + 1);
+            if (this.smfCookieService.getVoteCountCookie() >= 2) {
+              this.smfCookieService.setHasVotedCookie(true);
+            }
+          } else {
+            console.log(response.error);
+          }
+        });
       }
-    } else {
-      this.voteService.voteForArtist(this.chosenArtist2!.name);
-      this.smfCookieService.setVoteCookies(this.chosenArtist1, this.chosenArtist2, this.voteCount, true);
+
+      // if not yet voted for artist2
+      if (this.smfCookieService.getVoteArtist2Cookie() == '' && this.chosenArtist2 != undefined) {
+        this.voteService.voteForArtist(this.chosenArtist2).subscribe((response) => {
+          if (response.error == null) {
+            this.smfCookieService.setVoteArtist2Cookie(this.chosenArtist2!);
+            this.smfCookieService.setVoteCountCookie(this.smfCookieService.getVoteCountCookie() + 1);
+            if (this.smfCookieService.getVoteCountCookie() >= 2) {
+              this.smfCookieService.setHasVotedCookie(true);
+            }
+          } else {
+            console.log(response.error);
+          }
+        });
+      }
     }
   }
 

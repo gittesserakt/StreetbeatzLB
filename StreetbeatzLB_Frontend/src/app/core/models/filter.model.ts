@@ -42,7 +42,7 @@ export class Filter {
       this.timeInternal.setHours(value.getHours());
       this.timeInternal.setMinutes(value.getMinutes());
     } else {
-      this.timeInternal.setHours(0);
+      this.timeInternal.setHours(18);
       this.timeInternal.setMinutes(0);
     }
   }
@@ -59,8 +59,9 @@ export class Filter {
     if (value) {
       this.dateInternal.setMonth(value.getMonth(), value.getDate());
     } else {
-      this.dateInternal.setDate(0);
+      this.dateInternal.setMonth(new Date().getMonth(), new Date().getDate());
     }
+    this._dateDate = this.dateInternal;
   }
 
   get artist(): string | null {
@@ -86,13 +87,12 @@ export class Filter {
     }
   }
 
-
   setWithTimeType(time: Time | null) {
     if (time) {
       this.timeInternal.setHours(time.hours)
       this.timeInternal.setMinutes(time.minutes)
     } else {
-      this.timeInternal.setHours(0)
+      this.timeInternal.setHours(18)
       this.timeInternal.setMinutes(0)
     }
   }

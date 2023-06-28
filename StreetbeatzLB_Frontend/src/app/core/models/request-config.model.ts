@@ -3,5 +3,6 @@ export interface RequestConfigModel {
   method: string;
   headers: {
     [index: string]: string;
-  };
+  },
+  body?: any;
 }

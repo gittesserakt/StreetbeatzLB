@@ -28,7 +28,9 @@ export class PerformancesComponent implements OnInit {
   loadedPerformances: string = "0";
 
   isTextVisible: boolean = false;
-  isButtonVisible: boolean = false;
+  isTextNextDayVisible: boolean = false;
+  isButtonMoreVisible: boolean = false;
+  isButtonNextDayVisible: boolean = false;
 
   constructor(private verbosePerformanceService: VerbosePerformanceService, private activatedRoute: ActivatedRoute,
               private route: Router, private breakpointObserver: BreakpointObserver, private smfService: SmfCookieService) {
@@ -54,7 +56,10 @@ export class PerformancesComponent implements OnInit {
         }
 
         this.isTextVisible = this.loadedPerformances === "0";
-        this.isButtonVisible = newLoadedPerformances.length === 20;
+        this.isButtonMoreVisible = newLoadedPerformances.length === 20;
+
+        this.isButtonNextDayVisible = !this.isButtonMoreVisible && !this.isTextVisible;
+        this.isTextNextDayVisible = false;
 
         if (error) {
           console.log(error);
@@ -83,6 +88,19 @@ export class PerformancesComponent implements OnInit {
 
   loadMorePerformances() {
     this.getFilteredPerformances(this.smfService.loadFilter(), this.loadedPerformances);
+  }
+
+  loadNextDayPerformances() {
+    let filter = this.smfService.loadFilter();
+    filter.dateDate?.setDate(filter.dateDate?.getDate() + 1);
+    if (filter.dateDate?.getDate() === 29){
+      this.isButtonNextDayVisible = false;
+      this.isTextNextDayVisible = true;
+    } else {
+      filter.timeDate?.setHours(18, 0, 0, 0);
+      this.smfService.saveFilter(filter);
+      this.getFilteredPerformances(this.smfService.loadFilter(), null);
+    }
   }
 
   @HostListener('window:resize', ['$event'])

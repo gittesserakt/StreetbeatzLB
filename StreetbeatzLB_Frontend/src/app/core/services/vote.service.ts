@@ -13,13 +13,26 @@ export class VoteService {
   constructor(public externalApiService: ExternalApiService) {
   }
 
-  voteForArtist = async (artist: string): Promise<void> => {
-    const re = new RegExp(' ', 'g');
-    const formattedArtist = artist.replace(re, '_');
-    const response = await fetch(`${env.api.serverUrl}/voting/vote?artist=` + encodeURIComponent(formattedArtist), {
-      method: 'PUT',
-    });
-    const responseData = await response.text();
+  voteForArtist = (artist: Artist): Observable<ApiResponseModel> => {
+    const config: RequestConfigModel = {
+      url: `${env.api.serverUrl}/voting/vote`,
+      method: `PUT`,
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: artist,
+    }
+
+    return this.externalApiService.callExternalApi(config).pipe(
+      mergeMap((response) => {
+        const {data,error} = response;
+
+        return of({
+          data: data ? (data as Artist): null,
+          error,
+        });
+      })
+    );
   };
 
   getVoteById = (artist_id: number): Observable<ApiResponseModel> => {
@@ -64,17 +77,45 @@ export class VoteService {
     );
   }
 
-  closeVoting = async (): Promise<void> => {
-    const response = await fetch(`${env.api.serverUrl}/voting/closeVoting`, {
-      method: 'PUT',
-    });
-    console.log(response);
+  closeVoting = (): Observable<ApiResponseModel> => {
+    const config: RequestConfigModel = {
+      url: `${env.api.serverUrl}/voting/closeVoting`,
+      method: `PUT`,
+      headers: {
+        'content-type': 'application/json',
+      },
+    }
+
+    return this.externalApiService.callExternalApi(config).pipe(
+      mergeMap((response) => {
+        const {data,error} = response;
+
+        return of({
+          data: null,
+          error,
+        });
+      })
+    );
   };
 
-  openVoting = async (): Promise<void> => {
-    const response = await fetch(`${env.api.serverUrl}/voting/openVoting`, {
-      method: 'PUT',
-    });
-    console.log(response);
-  };
+  openVoting = (): Observable<ApiResponseModel> => {
+    const config: RequestConfigModel = {
+      url: `${env.api.serverUrl}/voting/openVoting`,
+      method: `PUT`,
+      headers: {
+        'content-type': 'application/json',
+      },
+    }
+
+    return this.externalApiService.callExternalApi(config).pipe(
+      mergeMap((response) => {
+        const {data, error} = response;
+
+        return of({
+          data: null,
+          error,
+        });
+      })
+    );
+  }
 }

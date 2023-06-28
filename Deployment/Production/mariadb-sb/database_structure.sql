@@ -14,7 +14,8 @@ create or replace table artist
     artist_id   int auto_increment
         primary key,
     name        varchar(255) not null,
-	vote_count  int null
+	vote_count  int null,
+    artist_info varchar(2000) null
 );
 
 create or replace table poi

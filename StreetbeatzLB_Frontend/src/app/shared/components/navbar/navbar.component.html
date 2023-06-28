@@ -1,7 +1,7 @@
 <mat-toolbar class="navbar">
   <a routerLink="/" class="logoTitle">
     <mat-icon class="logo" svgIcon="streetbeatz"></mat-icon>
-    <h1 class="title" [ngStyle]="{'font-family': 'Teko, sans-serif', 'font-size': '2.75rem'}">
+    <h1 class="title" [ngStyle]="{'font-family': 'Teko, sans-serif', 'font-size': '2.75rem', 'color': lightBackground ? 'black' : 'white'}">
       StreetbeatzLB
     </h1>
   </a>
@@ -9,15 +9,16 @@
   <span class="example-spacer"></span>
 
   <mat-nav-list class="list">
-    <a mat-list-item routerLink="/"><p>Home</p></a>
-    <a mat-list-item routerLink="/performances"><p>Performances</p></a>
-    <a mat-list-item routerLink="/map"><p>Map</p></a>
-    <a mat-list-item routerLink="/vote"><p>Vote</p></a>
+    <a mat-list-item routerLink="/"><p [ngStyle]="{'color': lightBackground ? 'black' : 'white'}">Home</p></a>
+    <a mat-list-item routerLink="/performances"><p [ngStyle]="{'color': lightBackground ? 'black' : 'white'}">Performances</p></a>
+    <a mat-list-item routerLink="/map"><p [ngStyle]="{'color': lightBackground ? 'black' : 'white'}">Map</p></a>
+    <a mat-list-item routerLink="/vote"><p [ngStyle]="{'color': lightBackground ? 'black' : 'white'}">Vote</p></a>
     <ng-container *ngIf="isAuthenticated$ | async;">
-      <a mat-list-item routerLink="/admin-view"><p>Admin</p></a>
+      <a mat-list-item routerLink="/admin-view"><p [ngStyle]="{'color': lightBackground ? 'black' : 'white'}">Admin</p></a>
       <a mat-list-item>
         <app-logout-button></app-logout-button>
       </a>
     </ng-container>
+    <a mat-list-item routerLink="/help-page"><p [ngStyle]="{'color': lightBackground ? 'black' : 'white'}">Help</p></a>
   </mat-nav-list>
 </mat-toolbar>

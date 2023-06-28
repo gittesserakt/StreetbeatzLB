@@ -14,7 +14,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://dev-decl55hw5iibzttr.eu.auth0.com/
+          issuer-uri: https://dev-decl55hw5iibzttr.eu.auth0.com
   sql:
     init:
       continue-on-error: true

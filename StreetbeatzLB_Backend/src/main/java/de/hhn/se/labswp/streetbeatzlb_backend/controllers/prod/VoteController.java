@@ -15,15 +15,15 @@ public class VoteController {
     private static boolean voteOpen = true;
 
     @PutMapping(path="/vote")
-    public @ResponseBody void voteForArtist(@RequestParam String artist) {
+    public @ResponseBody void voteForArtist(@RequestBody Artist artist) {
 
         if(voteOpen){
-            artist = artist.replace('_', ' ');
+            artist.setName(artist.getName().replace('_', ' '));
 
             Iterable<Artist> artists = artistRepository.findAll();
 
             for(Artist currentArtist : artists) {
-                if(currentArtist.getName().equals(artist)){
+                if(currentArtist.getName().equals(artist.getName())){
                     int artistID = Math.toIntExact(currentArtist.getArtist_id());
                     artistRepository.findById(artistID).get()
                             .setVote_count(artistRepository.findById(artistID).get()
